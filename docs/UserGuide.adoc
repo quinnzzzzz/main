@@ -14,17 +14,19 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level4
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team SE-EDU`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-AddressBook Level 4 (AB4) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB4 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+The Project Manager Application is for project managers or directors who require a system to keep track of their
+ongoing projects and the volunteer pool. This application allows the user to analyse and extract various data and
+is suitable for people who prefer commandline interfaces.
 
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `ProjectManager.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for your Project Manager.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -55,19 +57,38 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 === Viewing help : `help`
 
 Format: `help`
+=== Adding a project: 'addProject'
+//can use n/PROJECT_TITLE??
+Adds a project to the project manager +
+Format: 'addProject n/PROJECT_TITLE d/DATE v/NUMBER_OF_VOLUNTEERS [t/TAG]...'
 
-=== Adding a person: `add`
+****
+* Please enter DATE in ddmmyy format
+* Please enter a minimum number of volunteers required for NUMBER_OF_VOLUNTEERS
+****
 
-Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Examples:
+
+* `addProject n/Charity Run d/081219 v/20`
+* `addProject n/Spring Cleaning t/ongoing d/05022019 v10`
+
+=== Adding a person: `addPerson`
+
+Adds a person to the project manager +
+Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+
+****
+* "Add Successful!" message is prompted upon successfully adding a person
+* Otherwise, if the person already exists, show edit option to update portfolio
+****
 
 [TIP]
 A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addPerson n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 === Listing all persons : `list`
 
@@ -114,7 +135,18 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
-=== Deleting a person : `delete`
+=== Deleting a project ： ‘deleteProject'
+
+Deletes the specified project from the address book. +
+Format: 'delete PROJECT_TITLE'
+
+****
+* Deletes the project specified with 'PROJECT_TITLE'.
+* The PROJECT_TITLE should match exactly, use 'listProjects' to view all projects if unsure.
+* Error message is shown if the PROJECT_TITLE entered is invalid
+****
+
+=== Deleting a person : `deletePerson`
 
 Deletes the specified person from the address book. +
 Format: `delete INDEX`
@@ -123,6 +155,7 @@ Format: `delete INDEX`
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index *must be a positive integer* 1, 2, 3, ...
+* Error message is shown if the given index is invalid
 ****
 
 Examples:
@@ -216,7 +249,7 @@ The `redo` command fails as there are no `undo` commands executed previously.
 
 === Clearing all entries : `clear`
 
-Clears all entries from the address book. +
+Clears all entries from the specific list requested by user. +
 Format: `clear`
 
 === Exiting the program : `exit`
