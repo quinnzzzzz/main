@@ -16,7 +16,7 @@ As part of our software engineering module, CS2113T, Projecto was developed with
 == Project Team
 
 === Quinn Zhao Jun Ru
-image::damithc.jpg[width="150", align="left"]
+image::Quinn.jpg[width="150", align="left"]
 {empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/quinnzzzzz[github]] [<<johndoe#, portfolio>>]
 
 Role: Project Advisor
@@ -34,7 +34,7 @@ Responsibilities: UI
 '''
 
 === Nguyen Dang Huu
-image::yijinl.jpg[width="150", align="left"]
+image::Huu.jpg[width="150", align="left"]
 {empty}[http://github.com/ndhuu[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer 
@@ -43,7 +43,7 @@ Responsibilities: Data
 '''
 
 === Zander Liow Zhu Hui
-image::m133225.jpg[width="150", align="left"]
+image::Zander.jpg[width="150", align="left"]
 {empty}[http://github.com/swalahlah[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer 
