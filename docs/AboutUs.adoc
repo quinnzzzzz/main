@@ -34,7 +34,7 @@ Responsibilities: UI
 image::Huu.png[width="150", align="left"]
 {empty}[http://github.com/ndhuu[github]] [<<johndoe#, portfolio>>]
 
-Role: Developer +
+Role: Product Manager +
 Responsibilities: Deliverables and Deadlines
 
 '''
@@ -43,7 +43,7 @@ Responsibilities: Deliverables and Deadlines
 image::Zander.png[width="150", align="left"]
 {empty}[http://github.com/swalahlah[github]] [<<johndoe#, portfolio>>]
 
-Role: Product Manager +
+Role: Developer +
 Responsibilities: Dev Ops + Threading
 
 '''
