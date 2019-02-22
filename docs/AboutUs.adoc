@@ -4,13 +4,10 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-AddressBook - Level 4 was developed by the https://se-edu.github.io/docs/Team.html[se-edu] team. +
-_{The dummy content given below serves as a placeholder to be used by future forks of the project.}_ +
-{empty} +
 
 We are a group of students from AY 18/19, team 08-1, currently studying in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore]. 
 
-As part of our software engineering module, CS2113T, Projecto was developed with the aim to help project managers to manage multiple projects efficiently and effectively.
+As part of our software engineering module, CS2113T, **Projecto** was developed with the aim to help project managers to manage multiple projects efficiently and effectively.
 
 
 == Project Team
@@ -19,16 +16,16 @@ As part of our software engineering module, CS2113T, Projecto was developed with
 image::Quinn.png[width="150", align="left"]
 {empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/quinnzzzzz[github]] [<<johndoe#, portfolio>>]
 
-Role: Developer
+Role: Developer +
 Responsibilities: Code Quality
 
 '''
 
 === Wong Kai Wen Jeremy
-image::lejolly.png[width="150", align="left"]
+image::lejolly.jpg[width="150", align="left"]
 {empty}[http://github.com/articstranger[github]] [<<johndoe#, portfolio>>]
 
-Role: Team Lead
+Role: Team Lead +
 Responsibilities: UI
 
 '''
