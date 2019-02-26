@@ -15,7 +15,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level4/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
 == Setting up
 
@@ -71,37 +71,6 @@ This project follows https://github.com/oss-generic/process/blob/master/docs/Cod
 * For `Import Layout`: The order is `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*`, `import all other imports`. Add a `<blank line>` between each `import`
 
 Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check style-compliance as you write code.
-
-==== Updating documentation to match your fork
-
-After forking the repo, the documentation will still have the SE-EDU branding and refer to the `se-edu/addressbook-level4` repo.
-
-If you plan to develop this fork as a separate product (i.e. instead of contributing to `se-edu/addressbook-level4`), you should do the following:
-
-. Configure the <<Docs-SiteWideDocSettings, site-wide documentation settings>> in link:{repoURL}/build.gradle[`build.gradle`], such as the `site-name`, to suit your own project.
-
-. Replace the URL in the attribute `repoURL` in link:{repoURL}/docs/DeveloperGuide.adoc[`DeveloperGuide.adoc`] and link:{repoURL}/docs/UserGuide.adoc[`UserGuide.adoc`] with the URL of your fork.
-
-==== Setting up CI
-
-Set up Travis to perform Continuous Integration (CI) for your fork. See <<UsingTravis#, UsingTravis.adoc>> to learn how to set it up.
-
-After setting up Travis, you can optionally set up coverage reporting for your team fork (see <<UsingCoveralls#, UsingCoveralls.adoc>>).
-
-[NOTE]
-Coverage reporting could be useful for a team repository that hosts the final version but it is not that useful for your personal fork.
-
-Optionally, you can set up AppVeyor as a second CI (see <<UsingAppVeyor#, UsingAppVeyor.adoc>>).
-
-[NOTE]
-Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
-
-==== Getting started with coding
-
-When you are ready to start coding,
-
-1. Get some sense of the overall design by reading <<Design-Architecture>>.
-2. Take a look at <<GetStartedProgramming>>.
 
 == Design
 
@@ -811,13 +780,17 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* manager of a volunteer organization such as shool's CCAs, CIP office
+* has a need to manage significant number of volunteers but not attached exclusively to any other volunteering program
+* has a need to manage a significant number of interested beneficiaries who want to connect to the volunteers
+* has a need to manage multiple projects
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*:
+* manage volunteers, beneficiaries, projects' details faster than a typical mouse/GUI driven app
 
 [appendix]
 == User Stories
@@ -829,15 +802,50 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |volunteer manager |add a new volunteer |have their information in the system to manage and distribute them
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |volunteer manager |delete an existing volunteer |remove the volunteer that no longer needs
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |volunteer manager |edit a volunteer |update information of volunteer
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |volunteer mangager |find a volunteer by name |locate details of the volunteer without having to go through the entire list
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |volunteer manager |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+
+|`* * *` |volunteer manager |sort volunteer list by name |locate a the volunteer easily
+
+|`* * *` |volunteer manager |add a beneficiary |have their infomation in the system to manage
+
+|`* * *` |volunteer manager |add beneficiary's description |have a description of beneficiary to refer to
+
+|`* ` |volunteer manager |highlight details/ keywords in the beneficiary's description |read and scan through the information easily
+
+|`* * *` |volunteer manager |delete a beneficiary |remove beneficary
+
+|`* * *` |volunteer manager |edit a beneficiary |update details if there is any changes
+
+|`* * *` |volunteer manager |sort the beneficiary by name or more |easily manange the list of beneficiary
+
+|`* * *` |volunteer manager |add a new project with specific details |manage the project and allocate volunteers in the project
+
+|`* * *` |volunteer manager |edit a project |change details of the project if needed
+
+|`* * *` |volunteer manager |delete a project |remove projects that is abundant, cancelled or outdated
+
+|`* *` |volunteer manager |take attendance of volunteers for a project |keep track of volunteers's attendance
+
+|`* *` |volunteer manager |remind the most prioritised/ closed to dealine project |remind me to work of pay special attention to that project's progress
+
+|`*` |volunteer manager |have a calendar of projects on the GUI |easily visualize the timeline of work and projects
+
+|`* *` |volunteer manager |have a recommendation list of volunteer based on several factors |easily adding relevant volunteers in a project
+
+|`* *` |volunteer manager |import, export data |easily transfer the data to other machines to use
+
+|`* *` |volunteer manager |undo, redo |go back to my preferred state if I make a mistake
+
+|`* *` |volunteer manager |have autofill function on command line |type faster
+
 |=======================================================================
 
 _{More to be added}_
@@ -848,14 +856,14 @@ _{More to be added}_
 (For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Delete volunteer
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list volunteers
+2.  AddressBook shows a list of volunteers
+3.  User requests to delete a specific volunteer in the list
+4.  AddressBook deletes the volunteer
 +
 Use case ends.
 
@@ -879,7 +887,7 @@ _{More to be added}_
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+.  Should be able to hold up to 1000 volunteers without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_
