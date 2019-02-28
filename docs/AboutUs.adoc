@@ -4,53 +4,47 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-AddressBook - Level 4 was developed by the https://se-edu.github.io/docs/Team.html[se-edu] team. +
-_{The dummy content given below serves as a placeholder to be used by future forks of the project.}_ +
-{empty} +
-We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
+
+We are a group of students from AY 18/19, team 08-1, currently studying in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore]. 
+
+As part of our software engineering module, CS2113T, **Projecto** was developed with the aim to help project managers to manage multiple projects efficiently and effectively.
+
 
 == Project Team
 
-=== John Doe
-image::damithc.jpg[width="150", align="left"]
-{empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/damithc[github]] [<<johndoe#, portfolio>>]
+=== Quinn Zhao Jun Ru
+image::Quinn.png[width="150", align="left"]
+{empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/quinnzzzzz[github]] [<<johndoe#, portfolio>>]
 
-Role: Project Advisor
+Role: Developer +
+Responsibilities: Code Quality
 
 '''
 
-=== John Roe
+=== Wong Kai Wen Jeremy
 image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/lejolly[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/articstranger[github]] [<<johndoe#, portfolio>>]
 
 Role: Team Lead +
 Responsibilities: UI
 
 '''
 
-=== Johnny Doe
-image::yijinl.jpg[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+=== Nguyen Dang Huu
+image::Huu.png[width="150", align="left"]
+{empty}[http://github.com/ndhuu[github]] [<<johndoe#, portfolio>>]
 
-Role: Developer +
-Responsibilities: Data
+Role: Product Manager +
+Responsibilities: Deliverables and Deadlines
 
 '''
 
-=== Johnny Roe
-image::m133225.jpg[width="150", align="left"]
-{empty}[http://github.com/m133225[github]] [<<johndoe#, portfolio>>]
+=== Zander Liow Zhu Hui
+image::Zander.png[width="150", align="left"]
+{empty}[http://github.com/swalahlah[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Dev Ops + Threading
 
 '''
 
-=== Benson Meier
-image::yl_coder.jpg[width="150", align="left"]
-{empty}[http://github.com/yl-coder[github]] [<<johndoe#, portfolio>>]
-
-Role: Developer +
-Responsibilities: UI
-
-'''
