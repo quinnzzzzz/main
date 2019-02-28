@@ -19,8 +19,8 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 == Introduction
 
 The Project Manager Application is for project managers or directors who require a system to keep track of their
-ongoing projects and the volunteer pool. This application allows the user to analyse and extract various data and
-is suitable for people who prefer commandline interfaces.
+ongoing projects and the volunteer pool. This application allows the user to analyse and extract various data for
+easy management of projects.
 
 == Quick Start
 
