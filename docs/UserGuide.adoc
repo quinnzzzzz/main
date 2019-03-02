@@ -57,7 +57,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 === Viewing help : `help`
 
 Format: `help`
-=== Adding a project: 'addProject'
+=== Adding a project: `addProject`
 Adds a project to the project manager +
 Format: `addProject n/PROJECT_NAME d/DATE b/BENEFICIARY [t/TAG]...`
 
