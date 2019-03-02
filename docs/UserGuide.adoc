@@ -57,6 +57,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 === Viewing help : `help`
 
 Format: `help`
+
 === Adding a project: `addProject`
 Adds a project to the project manager +
 Format: `addProject n/PROJECT_NAME d/DATE b/BENEFICIARY [t/TAG]...`
@@ -110,7 +111,7 @@ Examples:
 Shows a list of all volunteers in the volunteer pool. +
 Format: `list`
 
-=== Editing a project : 'editProject'
+=== Editing a project : `editProject`
 
 Edits an existing project in the project manager. +
 Format: `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...`
@@ -287,7 +288,7 @@ The `redo` command fails as there are no `undo` commands executed previously.
 Clears all entries from the specific list requested by user. +
 Format: `clear`
 
-=== Export data file: 'export'
+=== Export data file: `export`
 
 Exports the saved data in a csv file. +
 Format: 'export'
@@ -296,7 +297,7 @@ Format: 'export'
 * Application shows successful export message once exported
 ****
 
-=== Import data file: 'import'
+=== Import data file: `import`
 
 Imports csv file saved in local folder. +
 Format: 'import FILE_DIRECTORY'
