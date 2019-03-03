@@ -15,12 +15,12 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-Hello! Welcome to VolunCheer, a new desktop volunteer management application.
+Hello! Welcome to VolunCheer, a new desktop volunteer management application. +
 This application aims to help project managers within voluntary organisations manage their responsibilities easily.
 
 Features include:
-*Easy adding/removing of people/projects
-*Calendar to keep track of project dates
+* Easy adding/removing of people/projects
+* Calendar to keep track of project dates
 
 For more information, please visit the User Guide below.
 
