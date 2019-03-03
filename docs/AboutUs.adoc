@@ -5,9 +5,9 @@
 :stylesDir: stylesheets
 
 
-We are a group of students from AY 18/19, team 08-1, currently studying in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore]. 
+We are a group of students from AY 18/19, team 08-1, currently studying in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
-As part of our software engineering module, CS2113T, **Projecto** was developed with the aim to help project managers to manage multiple projects efficiently and effectively.
+As part of our software engineering module, CS2113T, **VolunCHeer** was developed with the aim to help project managers to manage multiple projects efficiently and effectively.
 
 
 == Project Team
@@ -16,12 +16,12 @@ As part of our software engineering module, CS2113T, **Projecto** was developed 
 image::Quinn.png[width="150", align="left"]
 {empty}[https://github.com/quinnzzzzz[github]]
 
-Role: Team Lead/ Developer + 
+Role: Team Lead/Developer +
 Responsibilities: Deadline & Deliverables, Scheduling and Tracking, Documentation
 
 '''
 
-=== Jeremy Wong Kai Wen 
+=== Jeremy Wong Kai Wen
 image::Jeremy.png[width="150", align="left"]
 {empty}[http://github.com/articstranger[github]]
 
@@ -43,8 +43,7 @@ Responsibilities: Integration, Code quality
 image::Zander.png[width="150", align="left"]
 {empty}[http://github.com/swalahlah[github]]
 
-Role: Developer +
-Responsibilities: UI/UX design, Ensure smooth faciliation of tests
-
+Role: Developer/Tester +
+Responsibilities: UI/UX design, Testing
 '''
 
