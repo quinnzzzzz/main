@@ -571,7 +571,7 @@ _{More to be added}_
 (For all use cases below, the *System* is the `VoluncheerBook` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete volunteer
+=== Use case 1: Delete volunteer
 
 *MSS*
 
@@ -597,8 +597,296 @@ Use case ends.
 Use case resumes at step 2.
 
 
+[discrete]
+=== Use case 2: Add volunteer
 
-_{More to be added}_
+*MSS*
+
+1.  User requests to add a volunteer, including name, age, email, address, etc.
+2.  VoluncheerBook shows the successful add message
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The volunteer has existed, show edit option
++
+Use case ends.
+
+* 3a. The given command line is invalid.
++
+[none]
+** 3a1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 3: Edit volunteer
+
+*MSS*
+
+1.  Users requests to find a volunteer.
+2.  User requests to edit the volunteer.
+3.  VoluncheerBook shows the successful edit message.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The volunteer cannot be found
++
+Use case ends.
+
+* 2a. Given index for edit command is invalid.
++
+[none]
+** 2a1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 4: Add Project
+
+*MSS*
+
+1.  Users requests to add a project.
+2.  VoluncheerBook shows the successful add message.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The command line is invalid.
++
+[none]
+** 2a1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[none]
+* 2b. The date is invalid.
++
+[none]
+** 2b1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[none]
+* 2c. The project is existed.
++
+[none]
+** 2c1. VoluncheerBook shows edit option.
++
+Use case ends.
+
+[discrete]
+=== Use case 5: Edit Project
+
+*MSS*
+
+1.  Users requests to edit a project.
+2.  VoluncheerBook shows the successful edit message.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The project is not existed.
++
+[none]
+** 2a1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 5: Edit Project
+
+*MSS*
+
+1.  Users requests to edit a project.
+2.  VoluncheerBook shows the successful edit message.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The project is not existed.
++
+[none]
+** 2a1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 6: Find volunteer
+
+*MSS*
+
+1.  Users requests to find (a) volunteer/volunteers by name.
+2.  VoluncheerBook shows the list of volunteers who share the name.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. There is no volunteer with that name.
++
+[none]
+** 2a1. VoluncheerBook returns an empty list.
++
+Use case ends.
+
+[discrete]
+=== Use case 7: Find volunteer
+
+*MSS*
+
+1.  Users requests to find (a) volunteer/volunteers by name.
+2.  VoluncheerBook shows the list of volunteers who share the name.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. There is no volunteer with that name.
++
+[none]
+** 2a1. VoluncheerBook returns an empty list.
++
+Use case ends.
+
+[discrete]
+=== Use case 8: Delete Project
+
+*MSS*
+
+1.  User requests to delete a specific project by name
+2.  VoluncheerBook deletes the project
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. project is not existed.
++
+[none]
+** 2a1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 9: export volunteer list
+
+*MSS*
+
+1.  User requests to import a volunteer file
+2.  VoluncheerBook imports the volunteer file to the volunteer list
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. file cannot be found.
++
+[none]
+** 2a1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 10: export volunteer list
+
+*MSS*
+
+1.  User requests to export a volunteer file
+2.  VoluncheerBook exports new volunteer data file
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. the file has existed.
++
+[none]
+** 2a1. VoluncheerBook overwritten the file.
++
+Use case ends.
+
+[discrete]
+=== Use case 11: export volunteer list
+
+*MSS*
+
+1.  User requests to export a volunteer file
+2.  VoluncheerBook exports new volunteer data file
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. the file has existed.
++
+[none]
+** 2a1. VoluncheerBook overwritten the file.
++
+Use case ends.
+
+[discrete]
+=== Use case 12: Add beneficiary
+
+*MSS*
+
+1.  User requests to add a beneficiary.
+2.  VoluncheerBook shows the successful add message
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The beneficiary has existed, show edit option
++
+Use case ends.
+
+* 3a. The given command line is invalid.
++
+[none]
+** 3a1. VoluncheerBook shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 13: Filter
+
+*MSS*
+
+1.  User requests to make a filtered list of volunteers.
+2.  VoluncheerBook shows the successful filtered list.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. List is empty.
++
+Use case ends.
+
+[none]
+* 2b. Invalid filter.
++
+** 2b1. VoluncheerBook shows error message.
 
 [appendix]
 == Non Functional Requirements
@@ -607,7 +895,6 @@ _{More to be added}_
 .  Should be able to hold up to 1000 volunteers without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-_{More to be added}_
 
 [appendix]
 == Glossary
