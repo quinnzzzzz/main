@@ -18,15 +18,15 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-The Project Manager Application is for project managers or directors who require a system to keep track of their
-ongoing projects and the volunteer pool. This application allows the user to analyse and extract various data and
-is suitable for people who prefer commandline interfaces.
+The VolunCHeer Application is for project managers or directors who require a system to keep track of their
+ongoing projects and the volunteer pool. This application allows the user to analyse and extract various data for
+easy management of projects.
 
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `ProjectManager.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Project Manager.
+.  Download the latest `VolunCHeer.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for our VolunCHeer Application.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -36,7 +36,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the volunteer list.
 * **`delete`**`3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
@@ -57,67 +57,104 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 === Viewing help : `help`
 
 Format: `help`
-=== Adding a project: 'addProject'
-//can use n/PROJECT_TITLE??
-Adds a project to the project manager +
-Format: `addProject n/PROJECT_TITLE d/DATE v/NUMBER_OF_VOLUNTEERS [t/TAG]...`
+
+=== Adding a project: `addProject`
+Adds a new project +
+Format: `addProject n/PROJECT_NAME d/DATE b/BENEFICIARY [t/TAG]...`
 
 ****
 * Please enter DATE in ddmmyy format
-* Please enter a minimum number of volunteers required for NUMBER_OF_VOLUNTEERS
+* The specified 'BENEFICIARY' has to be added before adding the project
 ****
 
 Examples:
 
-* `addProject n/Charity Run d/081219 v/20`
-* `addProject n/Spring Cleaning t/ongoing d/05022019 v10`
+* `addProject n/Charity Run d/081219 b/Bright Primary School`
 
-=== Adding a person: `addPerson`
+=== Adding a volunteer: `addVolunteer`
 
-Adds a person to the project manager +
-Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Adds a volunteer to the volunteer pool +
+Format: `addVolunteer n/NAME y/AGE a/ADDRESS e/EMAIL p/PHONE_NUMBER g/EMERGENCY_CONTACT r/RACE d/DIETARY_PREFERENCE
+m/MEDICAL CONDITION [t/TAG]...`
 
 ****
-* "Add Successful!" message is prompted upon successfully adding a person
-* Otherwise, if the person already exists, show edit option to update portfolio
+* "Add Successful!" message is prompted upon successfully adding a volunteer
+* Otherwise, if the volunteer already exists, show edit option to update portfolio
+* Please enter 'NIL' for m/MEDICAL CONDITION if not applicable
 ****
 
 [TIP]
-A person can have any number of tags (including 0)
+A volunteer can have any number of tags (including 0)
 
 Examples:
 
-* `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addPerson n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addVolunteer n/John Doe y/18 a/John street, block 123, #01-01 e/johnd@example.com p/98765432 g/98292998 r/chinese
+   d/vegetarian m/asthma`
+* `addVolunteer n/Sarah S y/22 a/betsy ave 6, 02-08 e/sarah08@example.com p/12345678 g/98299900 r/malay
+   d/muslim`
 
-=== Listing all persons : `list`
+=== Adding a beneficiary: `addBeneficiary`
 
-Shows a list of all persons in the address book. +
+Adds a beneficiary to the list of Beneficiaries +
+Format: `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER v/VOLUNTEERS_REQUIRED [t/TAG]...`
+
+****
+* "Add Successful!" message is prompted upon successfully adding a beneficiary
+* To edit Beneficiary details, please remove the existing Beneficiary and add new one with addBeneficiary
+****
+
+Examples:
+
+* `addBeneficiary n/Sunshine Old Folks Home a/sunshine ave 5 e/sunny@oldfolks.sg p/67580392 v/20`
+
+=== Listing all volunteers : `list`
+
+Shows a list of all volunteers in the volunteer pool. +
 Format: `list`
 
-=== Editing a person : `edit`
+=== Editing a project : `editProject`
 
-Edits an existing person in the address book. +
+Edits an existing project +
+Format: `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...`
+
+****
+* Edits the project at the specified 'PROJECT_NAME'.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the project will be removed i.e adding of tags is not cumulative. 
+* Project's tags can be removed by typing `t/` without specifying any tags after it.
+* `n/` is invalid as 'PROJECT_NAME' cannot be removed unless with deleteProject command.
+****
+
+Examples:
+
+* `editProject Charity Run d/010319` +
+Edits the date of the project to be '010319'.
+* `editProject Charity Run b/Sunshine Old Folks Home` +
+Edits the beneficiary of the Charity Run project to 'Sunshine Old Folks Home'
+
+=== Editing a volunteer : `editVolunteer`
+
+Edits an existing volunteer in the volunteer list. +
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 ****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
+* Edits the volunteer at the specified `INDEX`. The index refers to the index number shown in the displayed volunteer list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the volunteer will be removed i.e adding of tags is not cumulative.
+* You can remove all the volunteer's tags by typing `t/` without specifying any tags after it.
 ****
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `editVolunteer 1 p/91234567 e/johndoe@example.com` +
+Edits the phone number and email address of the 1st volunteer to be `91234567` and `johndoe@example.com` respectively.
+* `editVolunteer  2 n/Betsy Crower t/` +
+Edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing tags.
 
-=== Locating persons by name: `find`
+=== Locating volunteers by name: `find`
 
-Finds persons whose names contain any of the given keywords. +
+Finds volunteers whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 ****
@@ -125,7 +162,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* volunteers matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 ****
 
 Examples:
@@ -133,11 +170,11 @@ Examples:
 * `find John` +
 Returns `john` and `John Doe`
 * `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+Returns any volunteer having names `Betsy`, `Tim`, or `John`
 
-=== Deleting a project ： ‘deleteProject'
+=== Deleting a project ： `deleteProject`
 
-Deletes the specified project from the address book. +
+Deletes the specified project from the application. +
 Format: `delete PROJECT_TITLE`
 
 ****
@@ -146,14 +183,14 @@ Format: `delete PROJECT_TITLE`
 * Error message is shown if the PROJECT_TITLE entered is invalid
 ****
 
-=== Deleting a person : `deletePerson`
+=== Deleting a volunteer : `deleteVolunteer`
 
-Deletes the specified person from the address book. +
+Deletes the specified volunteer from the volunteer list. +
 Format: `delete INDEX`
 
 ****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the volunteer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed volunteer list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * Error message is shown if the given index is invalid
 ****
@@ -162,19 +199,19 @@ Examples:
 
 * `list` +
 `delete 2` +
-Deletes the 2nd person in the address book.
+Deletes the 2nd volunteer in the volunteer list.
 * `find Betsy` +
 `delete 1` +
-Deletes the 1st person in the results of the `find` command.
+Deletes the 1st volunteer in the results of the `find` command.
 
-=== Selecting a person : `select`
+=== Selecting a volunteer : `select`
 
-Selects the person identified by the index number used in the displayed person list. +
+Selects the volunteer identified by the index number used in the displayed volunteer list. +
 Format: `select INDEX`
 
 ****
-* Selects the person and loads the Google search page the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Selects the volunteer and loads the Google search page the volunteer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed volunteer list.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
 
@@ -182,10 +219,54 @@ Examples:
 
 * `list` +
 `select 2` +
-Selects the 2nd person in the address book.
+Selects the 2nd volunteer in the volunteer list.
 * `find Betsy` +
 `select 1` +
-Selects the 1st person in the results of the `find` command.
+Selects the 1st volunteer in the results of the `find` command.
+
+=== Assigning mapping index to each volunteer : `map`
+
+Assigns the volunteers with points 3, 2, 1 according to the selection criteria set by the user.
+Format: `map t/SELECTION t/SELECTION t/SELECTION`
+
+****
+* The tags are the same as the tags for addVolunteer.
+* There can be at most 3 tags and at least 1 tag as the selection criteria.
+* Each volunteer is tagged with the final PRIORITY_SCORE used for sorting later on
+* 'SELECTION' criteria can have comparators (i.e) "y/18 >" would mean that volunteers with age above 18 are chosen
+****
+
+Examples:
+
+* `map y/18 > r/chinese m/NIL`
+Gives volunteers above the AGE of 18 3 points, RACE chinese 2 points and MEDICAL_CONDITION of NIL 1 point.
+* `map m/NIL`
+Only selects volunteers with no MEDICAL_CONDITION.
+
+=== Sort volunteers according to PRIORITY_SCORE : `sort`
+
+Sorts the volunteers from highest PRIORITY_SCORE to lowest PRIORITY_SCORE.
+Format: `sort`
+
+****
+* The map function should be called before sort to generate the PRIORITY_SCORE
+* Volunteers with PRIORITY_SCORE of 0 will not be sorted in any particular order
+* Selection of the volunteers based on the selection criteria can be done after they are sorted
+****
+
+=== Select multiple volunteers from sorted list : `extract`
+Format: `extract VOLUNTEERS_REQUIRED`
+
+****
+* Call extract after sort function to extract the top "VOLUNTEERS_REQUIRED" number of volunteers
+****
+
+Examples:
+
+*`extract 20`
+Extracts the first 20 volunteers in the sorted list
+*`extract VOLUNTEERS_REQUIRED`
+Calls the variable VOLUNTEERS_REQUIRED in beneficiary.class to extract the required number of volunteers
 
 === Listing entered commands : `history`
 
@@ -200,12 +281,12 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 // tag::undoredo[]
 === Undoing previous command : `undo`
 
-Restores the address book to the state before the previous _undoable_ command was executed. +
+Restores the VolunCHeer application to the state before the previous _undoable_ command was executed. +
 Format: `undo`
 
 [NOTE]
 ====
-Undoable commands: those commands that modify the address book's content (`add`, `delete`, `edit` and `clear`).
+Undoable commands: those commands that modify the VolunCHeer application's main content (`addProject`, `addVolunteer`, `delete`, `edit` and `clear`).
 ====
 
 Examples:
@@ -252,22 +333,25 @@ The `redo` command fails as there are no `undo` commands executed previously.
 Clears all entries from the specific list requested by user. +
 Format: `clear`
 
-=== Export data file: 'export'
+=== Export data file: `export`
 
 Exports the saved data in a csv file. +
 Format: 'export'
 
 ****
+* Supports export of volunteer list
+* Supports export of project data
 * Application shows successful export message once exported
 ****
 
-=== Import data file: 'import'
+=== Import data file: `import`
 
 Imports csv file saved in local folder. +
 Format: 'import FILE_DIRECTORY'
 
 ****
 * The application finds the local file and extrapolate the data
+* Supports import of volunteer data
 * Application shows successful import message once imported
 ****
 
@@ -278,41 +362,53 @@ Format: `exit`
 
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+All data for the application are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
+=== Attendance taking `[coming in v2.0]`
+Track attendance of the volunteers and award frequent volunteers with certificates or promote to team leader.
 
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
+=== Manage funding and sponsorships `[coming in v2.0]`
+Manage funds and sponsors for individual projects and track project spending.
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous VolunCHeer application folder.
 
 == Command Summary
 
-* *AddProject* `addProject n/PROJECT_TITLE d/DATE v/NUMBER_OF_VOLUNTEERS [t/TAG]...`
-e.g. `addProject n/Charity Run d/081219 v/20`
-* *AddPerson* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
-* *DeleteProject* : `delete PROJECT_TITLE`
-e.g. `delete Charity Run`
-* *DeletePerson* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
+* *AddProject* `addProject n/PROJECT_TITLE d/DATE b/BENEFICIARY [t/TAG]...` +
+e.g. `addProject n/Charity Run d/081219 b/Sunshine Old Folks Home`
+* *AddVolunteer* `addVolunteer n/NAME y/AGE a/ADDRESS e/EMAIL p/PHONE_NUMBER g/EMERGENCY_CONTACT r/RACE d/DIETARY_PREFERENCE
+                 m/MEDICAL CONDITION [t/TAG]...` +
+e.g. `addVolunteer n/John Doe y/18 a/John street, block 123, #01-01 e/johnd@example.com p/98765432 g/98292998 r/chinese
+        d/vegetarian m/asthma`
+* *AddBeneficiary* `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER v/VOLUNTEERS_REQUIRED [t/TAG]...` +
+e.g. `addBeneficiary n/Sunshine Old Folks Home a/sunshine ave 5 e/sunny@oldfolks.sg p/67580392 v/20`
+* *List* : `list`
+* *EditProject* `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...` +
+e.g. `editProject Charity Run d/010319`
+* *EditVolunteer* `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+e.g. `editVolunteer 1 p/91234567 e/johndoe@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
-* *Export* : `export`
-* *Import* : `import`
-* *List* : `list`
-* *Help* : `help`
+* *DeleteProject* : `delete PROJECT_TITLE`
+e.g. `delete Charity Run`
+* *DeleteVolunteer* : `delete INDEX` +
+e.g. `delete 3`
 * *Select* : `select INDEX` +
 e.g.`select 2`
+* *Map* `map t/SELECTION t/SELECTION t/SELECTION` +
+e.g. `map y/18 > r/chinese m/NIL`
+* *Sort* `sort`
+* *Extract* `extract VOLUNTEERS_REQUIRED`+
+e.g. `extract 20`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
+* *Clear* : `clear`
+* *Export* : `export`
+* *Import* : `import`
+* *Exit* * : `exit`
+* *Help* : `help`
