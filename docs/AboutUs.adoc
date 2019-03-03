@@ -45,5 +45,6 @@ image::Zander.png[width="150", align="left"]
 
 Role: Developer +
 Responsibilities: UI/UX design, Ensure smooth faciliation of tests
+
 '''
 
