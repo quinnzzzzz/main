@@ -120,7 +120,7 @@ Format: `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...`
 ****
 * Edits the project at the specified 'PROJECT_NAME'.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the project will be removed i.e adding of tags is not cumulative. 
+* When editing tags, the existing tags of the project will be removed i.e adding of tags is not cumulative.
 * Project's tags can be removed by typing `t/` without specifying any tags after it.
 * `n/` is invalid as 'PROJECT_NAME' cannot be removed unless with deleteProject command.
 ****
