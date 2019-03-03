@@ -80,6 +80,7 @@ m/MEDICAL CONDITION [t/TAG]...`
 ****
 * "Add Successful!" message is prompted upon successfully adding a volunteer
 * Otherwise, if the volunteer already exists, show edit option to update portfolio
+* Please enter 'NIL' for m/MEDICAL CONDITION if not applicable
 ****
 
 [TIP]
@@ -223,6 +224,50 @@ Selects the 2nd volunteer in the volunteer list.
 `select 1` +
 Selects the 1st volunteer in the results of the `find` command.
 
+=== Assigning mapping index to each volunteer : `map`
+
+Assigns the volunteers with points 3, 2, 1 according to the selection criteria set by the user.
+Format: `map t/SELECTION t/SELECTION t/SELECTION`
+
+****
+* The tags are the same as the tags for addVolunteer.
+* There can be at most 3 tags and at least 1 tag as the selection criteria.
+* Each volunteer is tagged with the final PRIORITY_SCORE used for sorting later on
+* 'SELECTION' criteria can have comparators (i.e) "y/18 >" would mean that volunteers with age above 18 are chosen
+****
+
+Examples:
+
+* `map y/18 > r/chinese m/NIL`
+Gives volunteers above the AGE of 18 3 points, RACE chinese 2 points and MEDICAL_CONDITION of NIL 1 point.
+* `map m/NIL`
+Only selects volunteers with no MEDICAL_CONDITION.
+
+=== Sort volunteers according to PRIORITY_SCORE : `sort`
+
+Sorts the volunteers from highest PRIORITY_SCORE to lowest PRIORITY_SCORE.
+Format: `sort`
+
+****
+* The map function should be called before sort to generate the PRIORITY_SCORE
+* Volunteers with PRIORITY_SCORE of 0 will not be sorted in any particular order
+* Selection of the volunteers based on the selection criteria can be done after they are sorted
+****
+
+=== Select multiple volunteers from sorted list : `extract`
+Format: `extract VOLUNTEERS_REQUIRED`
+
+****
+* Call extract after sort function to extract the top "VOLUNTEERS_REQUIRED" number of volunteers
+****
+
+Examples:
+
+*`extract 20`
+Extracts the first 20 volunteers in the sorted list
+*`extract VOLUNTEERS_REQUIRED`
+Calls the variable VOLUNTEERS_REQUIRED in beneficiary.class to extract the required number of volunteers
+
 === Listing entered commands : `history`
 
 Lists all the commands that you have entered in reverse chronological order. +
@@ -294,6 +339,8 @@ Exports the saved data in a csv file. +
 Format: 'export'
 
 ****
+* Supports export of volunteer list
+* Supports export of project data
 * Application shows successful export message once exported
 ****
 
@@ -304,6 +351,7 @@ Format: 'import FILE_DIRECTORY'
 
 ****
 * The application finds the local file and extrapolate the data
+* Supports import of volunteer data
 * Application shows successful import message once imported
 ****
 
