@@ -365,7 +365,7 @@ Format: `exit`
 All data for the application are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-=== Attendance taking`[coming in v2.0]`
+=== Attendance taking `[coming in v2.0]`
 Track attendance of the volunteers and award frequent volunteers with certificates or promote to team leader.
 
 === Manage funding and sponsorships `[coming in v2.0]`
