@@ -14,37 +14,36 @@ As part of our software engineering module, CS2113T, **Projecto** was developed 
 
 === Quinn Zhao Jun Ru
 image::Quinn.png[width="150", align="left"]
-{empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/quinnzzzzz[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/quinnzzzzz[github]]
 
-Role: Developer +
-Responsibilities: Code Quality
+Role: Team Lead/ Developer + 
+Responsibilities: Deadline & Deliverables, Scheduling and Tracking, Documentation
 
 '''
 
-=== Wong Kai Wen Jeremy
-image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/articstranger[github]] [<<johndoe#, portfolio>>]
+=== Jeremy Wong Kai Wen 
+image::Jeremy.png[width="150", align="left"]
+{empty}[http://github.com/articstranger[github]]
 
-Role: Team Lead +
-Responsibilities: UI
+Role: Git expert/Travis CI/Developer +
+Responsibilities: Handle Git Hub PRs, Travis Build
 
 '''
 
 === Nguyen Dang Huu
 image::Huu.png[width="150", align="left"]
-{empty}[http://github.com/ndhuu[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/ndhuu[github]]
 
-Role: Product Manager +
-Responsibilities: Deliverables and Deadlines
+Role: Head Developer +
+Responsibilities: Integration, Code quality
 
 '''
 
 === Zander Liow Zhu Hui
 image::Zander.png[width="150", align="left"]
-{empty}[http://github.com/swalahlah[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/swalahlah[github]]
 
 Role: Developer +
-Responsibilities: Dev Ops + Threading
-
+Responsibilities: UI/UX design, Ensure smooth faciliation of tests
 '''
 
