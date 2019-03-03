@@ -18,15 +18,15 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-The Project Manager Application is for project managers or directors who require a system to keep track of their
+The VolunCHeer Application is for project managers or directors who require a system to keep track of their
 ongoing projects and the volunteer pool. This application allows the user to analyse and extract various data for
 easy management of projects.
 
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `ProjectManager.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Project Manager.
+.  Download the latest `VolunCHeer.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for our VolunCHeer Application.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -36,7 +36,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the project manager.
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the volunteer list.
 * **`delete`**`3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
@@ -59,7 +59,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 Format: `help`
 
 === Adding a project: `addProject`
-Adds a project to the project manager +
+Adds a new project +
 Format: `addProject n/PROJECT_NAME d/DATE b/BENEFICIARY [t/TAG]...`
 
 ****
@@ -80,6 +80,7 @@ m/MEDICAL CONDITION [t/TAG]...`
 ****
 * "Add Successful!" message is prompted upon successfully adding a volunteer
 * Otherwise, if the volunteer already exists, show edit option to update portfolio
+* Please enter 'NIL' for m/MEDICAL CONDITION if not applicable
 ****
 
 [TIP]
@@ -94,7 +95,7 @@ Examples:
 
 === Adding a beneficiary: `addBeneficiary`
 
-Adds a beneficiary to the project manager +
+Adds a beneficiary to the list of Beneficiaries +
 Format: `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER v/VOLUNTEERS_REQUIRED [t/TAG]...`
 
 ****
@@ -113,7 +114,7 @@ Format: `list`
 
 === Editing a project : `editProject`
 
-Edits an existing project in the project manager. +
+Edits an existing project +
 Format: `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...`
 
 ****
@@ -133,7 +134,7 @@ Edits the beneficiary of the Charity Run project to 'Sunshine Old Folks Home'
 
 === Editing a volunteer : `editVolunteer`
 
-Edits an existing volunteer in the project manager. +
+Edits an existing volunteer in the volunteer list. +
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 ****
@@ -173,7 +174,7 @@ Returns any volunteer having names `Betsy`, `Tim`, or `John`
 
 === Deleting a project ： `deleteProject`
 
-Deletes the specified project from the project manager. +
+Deletes the specified project from the application. +
 Format: `delete PROJECT_TITLE`
 
 ****
@@ -184,7 +185,7 @@ Format: `delete PROJECT_TITLE`
 
 === Deleting a volunteer : `deleteVolunteer`
 
-Deletes the specified volunteer from the project manager. +
+Deletes the specified volunteer from the volunteer list. +
 Format: `delete INDEX`
 
 ****
@@ -223,6 +224,50 @@ Selects the 2nd volunteer in the volunteer list.
 `select 1` +
 Selects the 1st volunteer in the results of the `find` command.
 
+=== Assigning mapping index to each volunteer : `map`
+
+Assigns the volunteers with points 3, 2, 1 according to the selection criteria set by the user.
+Format: `map t/SELECTION t/SELECTION t/SELECTION`
+
+****
+* The tags are the same as the tags for addVolunteer.
+* There can be at most 3 tags and at least 1 tag as the selection criteria.
+* Each volunteer is tagged with the final PRIORITY_SCORE used for sorting later on
+* 'SELECTION' criteria can have comparators (i.e) "y/18 >" would mean that volunteers with age above 18 are chosen
+****
+
+Examples:
+
+* `map y/18 > r/chinese m/NIL`
+Gives volunteers above the AGE of 18 3 points, RACE chinese 2 points and MEDICAL_CONDITION of NIL 1 point.
+* `map m/NIL`
+Only selects volunteers with no MEDICAL_CONDITION.
+
+=== Sort volunteers according to PRIORITY_SCORE : `sort`
+
+Sorts the volunteers from highest PRIORITY_SCORE to lowest PRIORITY_SCORE.
+Format: `sort`
+
+****
+* The map function should be called before sort to generate the PRIORITY_SCORE
+* Volunteers with PRIORITY_SCORE of 0 will not be sorted in any particular order
+* Selection of the volunteers based on the selection criteria can be done after they are sorted
+****
+
+=== Select multiple volunteers from sorted list : `extract`
+Format: `extract VOLUNTEERS_REQUIRED`
+
+****
+* Call extract after sort function to extract the top "VOLUNTEERS_REQUIRED" number of volunteers
+****
+
+Examples:
+
+*`extract 20`
+Extracts the first 20 volunteers in the sorted list
+*`extract VOLUNTEERS_REQUIRED`
+Calls the variable VOLUNTEERS_REQUIRED in beneficiary.class to extract the required number of volunteers
+
 === Listing entered commands : `history`
 
 Lists all the commands that you have entered in reverse chronological order. +
@@ -236,12 +281,12 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 // tag::undoredo[]
 === Undoing previous command : `undo`
 
-Restores the project manager to the state before the previous _undoable_ command was executed. +
+Restores the VolunCHeer application to the state before the previous _undoable_ command was executed. +
 Format: `undo`
 
 [NOTE]
 ====
-Undoable commands: those commands that modify the project manager's content (`addProject`, `addVolunteer`, `delete`, `edit` and `clear`).
+Undoable commands: those commands that modify the VolunCHeer application's main content (`addProject`, `addVolunteer`, `delete`, `edit` and `clear`).
 ====
 
 Examples:
@@ -294,6 +339,8 @@ Exports the saved data in a csv file. +
 Format: 'export'
 
 ****
+* Supports export of volunteer list
+* Supports export of project data
 * Application shows successful export message once exported
 ****
 
@@ -304,6 +351,7 @@ Format: 'import FILE_DIRECTORY'
 
 ****
 * The application finds the local file and extrapolate the data
+* Supports import of volunteer data
 * Application shows successful import message once imported
 ****
 
@@ -314,41 +362,53 @@ Format: `exit`
 
 === Saving the data
 
-project manager data are saved in the hard disk automatically after any command that changes the data. +
+All data for the application are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
+=== Attendance taking `[coming in v2.0]`
+Track attendance of the volunteers and award frequent volunteers with certificates or promote to team leader.
 
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
+=== Manage funding and sponsorships `[coming in v2.0]`
+Manage funds and sponsors for individual projects and track project spending.
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous project manager folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous VolunCHeer application folder.
 
 == Command Summary
 
-* *AddProject* `addProject n/PROJECT_TITLE d/DATE v/NUMBER_OF_VOLUNTEERS [t/TAG]...`
-e.g. `addProject n/Charity Run d/081219 v/20`
-* *addVolunteer* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
-* *DeleteProject* : `delete PROJECT_TITLE`
-e.g. `delete Charity Run`
-* *Deletevolunteer* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
+* *AddProject* `addProject n/PROJECT_TITLE d/DATE b/BENEFICIARY [t/TAG]...` +
+e.g. `addProject n/Charity Run d/081219 b/Sunshine Old Folks Home`
+* *AddVolunteer* `addVolunteer n/NAME y/AGE a/ADDRESS e/EMAIL p/PHONE_NUMBER g/EMERGENCY_CONTACT r/RACE d/DIETARY_PREFERENCE
+                 m/MEDICAL CONDITION [t/TAG]...` +
+e.g. `addVolunteer n/John Doe y/18 a/John street, block 123, #01-01 e/johnd@example.com p/98765432 g/98292998 r/chinese
+        d/vegetarian m/asthma`
+* *AddBeneficiary* `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER v/VOLUNTEERS_REQUIRED [t/TAG]...` +
+e.g. `addBeneficiary n/Sunshine Old Folks Home a/sunshine ave 5 e/sunny@oldfolks.sg p/67580392 v/20`
+* *List* : `list`
+* *EditProject* `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...` +
+e.g. `editProject Charity Run d/010319`
+* *EditVolunteer* `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+e.g. `editVolunteer 1 p/91234567 e/johndoe@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
-* *Export* : `export`
-* *Import* : `import`
-* *List* : `list`
-* *Help* : `help`
+* *DeleteProject* : `delete PROJECT_TITLE`
+e.g. `delete Charity Run`
+* *DeleteVolunteer* : `delete INDEX` +
+e.g. `delete 3`
 * *Select* : `select INDEX` +
 e.g.`select 2`
+* *Map* `map t/SELECTION t/SELECTION t/SELECTION` +
+e.g. `map y/18 > r/chinese m/NIL`
+* *Sort* `sort`
+* *Extract* `extract VOLUNTEERS_REQUIRED`+
+e.g. `extract 20`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
+* *Clear* : `clear`
+* *Export* : `export`
+* *Import* : `import`
+* *Exit* * : `exit`
+* *Help* : `help`
