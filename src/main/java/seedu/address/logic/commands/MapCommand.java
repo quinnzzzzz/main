@@ -29,11 +29,14 @@ public class MapCommand extends Command {
             "(Corresponding prefix and criteria 3)\n"
             + "Example: map y/18> r/chinese";
 
-    private final NameContainsKeywordsPredicate predicate;
+    @Override
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
 
-    public MapCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+        throw new CommandException("not ready");
+
     }
+
 
 
 }
