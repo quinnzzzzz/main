@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.project.Project;
 
 /**
  * Wraps all data at the address-book level
@@ -69,7 +70,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
-
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -140,5 +140,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    public void addProject(Project project) {
     }
 }

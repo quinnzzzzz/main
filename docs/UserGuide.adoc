@@ -1,4 +1,4 @@
-= AddressBook Level 4 - User Guide
+= VolunCHeer - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
@@ -120,7 +120,7 @@ Format: `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...`
 ****
 * Edits the project at the specified 'PROJECT_NAME'.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the project will be removed i.e adding of tags is not cumulative. 
+* When editing tags, the existing tags of the project will be removed i.e adding of tags is not cumulative.
 * Project's tags can be removed by typing `t/` without specifying any tags after it.
 * `n/` is invalid as 'PROJECT_NAME' cannot be removed unless with deleteProject command.
 ****
@@ -255,18 +255,18 @@ Format: `sort`
 ****
 
 === Select multiple volunteers from sorted list : `extract`
-Format: `extract VOLUNTEERS_REQUIRED`
+Format: `extract [a][b]`
 
 ****
-* Call extract after sort function to extract the top "VOLUNTEERS_REQUIRED" number of volunteers
+* Call extract after sort function to extract [b]-[a] number of volunteers.
 ****
 
 Examples:
 
-*`extract 20`
-Extracts the first 20 volunteers in the sorted list
-*`extract VOLUNTEERS_REQUIRED`
-Calls the variable VOLUNTEERS_REQUIRED in beneficiary.class to extract the required number of volunteers
+*`extract [1][20]`
+Extracts the first 20 volunteers in the sorted list.
+*`extract [5][15]`
+Extracts volunteer number 5 to 15 in the list.
 
 === Listing entered commands : `history`
 
