@@ -7,6 +7,7 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
@@ -62,8 +63,14 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the address book.
      */
+
     void deletePerson(Person target);
 
+    /**
+     * Adds the given project.
+     * {@code project} must not already exist in the address book.
+     */
+    void addProject(Project project);
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
