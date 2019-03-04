@@ -13,6 +13,10 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.project.Beneficiary;
+import seedu.address.model.project.Date;
+import seedu.address.model.project.ProjectTitle;
+import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +52,18 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+    public static ProjectTitle parseProjectTitle(String projectTitle) throws ParseException {
+        requireNonNull(projectTitle);
+        return new ProjectTitle();
+    }
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        return new Date();
+    }
+    public static Beneficiary parseBeneficiary(String beneficiary) throws ParseException {
+        requireNonNull(beneficiary);
+        return new Beneficiary();
     }
 
     /**

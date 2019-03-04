@@ -11,6 +11,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 
 /**
  * Adds a person to the address book.
@@ -47,7 +48,12 @@ public class AddCommand extends Command {
         toAdd = person;
     }
 
-    @Override
+    /**
+     * Creates an AddProjectCommand to add the specified {@code Project}
+     */
+
+
+        @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
@@ -58,8 +64,8 @@ public class AddCommand extends Command {
         model.addPerson(toAdd);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
 
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
