@@ -12,8 +12,8 @@ As part of our software engineering module, CS2113T, **VolunCHeer** was develope
 
 == Project Team
 
-=== Quinn Zhao Jun Ru
-image::Quinn.png[width="150", align="left"]
+=== Zhao Jun Ru
+image::quinnzzzzz.png[width="150", align="left"]
 {empty}[https://github.com/quinnzzzzz[github]]
 
 Role: Team Lead/Developer +
@@ -21,8 +21,8 @@ Responsibilities: Deadline & Deliverables, Scheduling and Tracking, Documentatio
 
 '''
 
-=== Jeremy Wong Kai Wen
-image::Jeremy.png[width="150", align="left"]
+=== Wong Kai Wen Jeremy
+image::articstranger.png[width="150", align="left"]
 {empty}[http://github.com/articstranger[github]]
 
 Role: Git expert/Travis CI/Developer +
@@ -31,7 +31,7 @@ Responsibilities: Handle Git Hub PRs, Travis Build
 '''
 
 === Nguyen Dang Huu
-image::Huu.png[width="150", align="left"]
+image::ndhuu.png[width="150", align="left"]
 {empty}[http://github.com/ndhuu[github]]
 
 Role: Head Developer +
@@ -39,8 +39,8 @@ Responsibilities: Integration, Code quality
 
 '''
 
-=== Zander Liow Zhu Hui
-image::Zander.png[width="150", align="left"]
+=== Liow Zhu Hui
+image::swalahlah.png[width="150", align="left"]
 {empty}[http://github.com/swalahlah[github]]
 
 Role: Developer/Tester +
