@@ -12,5 +12,4 @@ public class ProjectTitle {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-
 }
