@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
@@ -63,7 +64,6 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the address book.
      */
-
     void deletePerson(Person target);
 
     /**
@@ -71,6 +71,7 @@ public interface Model {
      * {@code project} must not already exist in the address book.
      */
     void addProject(Project project);
+
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
@@ -134,4 +135,14 @@ public interface Model {
      * Sets the selected person in the filtered person list.
      */
     void setSelectedPerson(Person person);
+
+    /**
+     * Add Beneficiary.
+     */
+    void addBeneficiary(Beneficiary beneficiary);
+
+    /**
+     * Check for the existence of the beneficiary.
+     */
+    boolean hasBeneficiary(Beneficiary beneficiary);
 }
