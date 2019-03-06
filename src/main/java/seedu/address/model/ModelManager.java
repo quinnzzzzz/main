@@ -15,9 +15,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.project.Project;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -121,6 +123,11 @@ public class ModelManager implements Model {
     public void addVolunteer(Volunteer volunteer) {
         versionedAddressBook.addVolunteer(volunteer);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addProject(Project project) {
+        versionedAddressBook.addProject(project);
     }
 
     @Override
@@ -241,6 +248,19 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
+    }
+
+    @Override
+    public void addBeneficiary(Beneficiary beneficiary) {
+
+    }
+
+    /*
+    ** prototype for checking existence of beneficiary
+     */
+    @Override
+    public boolean hasBeneficiary(Beneficiary Beneficiary) {
+        return false;
     }
 
 }

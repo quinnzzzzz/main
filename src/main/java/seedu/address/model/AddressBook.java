@@ -11,6 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueVolunteerList;
+import seedu.address.model.project.Project;
 
 /**
  * Wraps all data at the address-book level
@@ -73,12 +74,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
-
+    /**
+     * Returns true if a volunteer with the same identity as {@code volunteer} exists in the address book.
+     */
     public boolean hasVolunteer(Volunteer volunteer){
         requireNonNull(volunteer);
         return volunteers.contains(volunteer);
     }
-
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -152,5 +154,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    public void addProject(Project project) {
     }
 }
