@@ -45,5 +45,6 @@ image::swalahlah.png[width="150", align="left"]
 
 Role: Developer/Tester +
 Responsibilities: UI/UX design, Testing
+
 '''
 
