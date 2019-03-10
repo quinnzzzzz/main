@@ -79,11 +79,31 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
         }
     }
 
-    public void setBeneficiarys(UniqueBeneficiaryList replacement) {
+    public void setBeneficiaries(UniqueBeneficiaryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
+    public void setBeneficiaries(List<Beneficiary> beneficiaries) {
+        requireAllNonNull(beneficiaries);
+        if (!beneficiariesAreUnique(beneficiaries)) {
+            throw new DuplicateBeneficiaryException();
+        }
 
+        internalList.setAll(beneficiaries);
+    }
+    /**
+     * Returns true if {@code beneficiaries} contains only unique beneficiaries.
+     */
+    private boolean beneficiariesAreUnique(List<Beneficiary> beneficiaries) {
+        for (int i = 0; i < beneficiaries.size() - 1; i++) {
+            for (int j = i + 1; j < beneficiaries.size(); j++) {
+                if (beneficiaries.get(i).isSameBeneficiary(beneficiaries.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     /**
      * Replaces the contents of this list with {@code Beneficiarys}.
      * {@code Beneficiarys} must not contain duplicate Beneficiarys.
