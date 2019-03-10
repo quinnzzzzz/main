@@ -5,14 +5,14 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Volunteer;
+import seedu.address.model.volunteer.Volunteer;
 
 public class AddVolunteer extends Command {
 
     public static final String COMMAND_WORD = "addVolunteer";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New volunteer added: %1$s";
+    public static final String MESSAGE_DUPLICATE_VOLUNTEER = "This volunteer already exists in the address book";
 
     private final Volunteer toAdd;
 
@@ -26,7 +26,7 @@ public class AddVolunteer extends Command {
         requireNonNull(model);
 
         if (model.hasVolunteer(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
         }
 
         model.addVolunteer(toAdd);

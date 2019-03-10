@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.volunteer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -37,8 +37,8 @@ public class Emergency_contact {
         @Override
         public boolean equals(Object other) {
             return other == this // short circuit if same object
-                    || (other instanceof seedu.address.model.person.Emergency_contact // instanceof handles nulls
-                    && value.equals(((seedu.address.model.person.Emergency_contact) other).value)); // state check
+                    || (other instanceof seedu.address.model.volunteer.Emergency_contact // instanceof handles nulls
+                    && value.equals(((seedu.address.model.volunteer.Emergency_contact) other).value)); // state check
         }
 
         @Override

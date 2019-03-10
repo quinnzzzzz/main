@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.volunteer;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -69,8 +69,8 @@ public class Volunteer {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both volunteers of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two volunteers.
      */
     public boolean isSameVolunteer(Volunteer otherVolunteer) { //change later
         if (otherVolunteer == this) {
@@ -83,8 +83,8 @@ public class Volunteer {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both volunteers have the same identity and data fields.
+     * This defines a stronger notion of equality between two volunteers.
      */
     @Override
     public boolean equals(Object other) {
@@ -140,5 +140,4 @@ public class Volunteer {
         return builder.toString();
     }
 
-    
 }
