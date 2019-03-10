@@ -17,11 +17,12 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new project to VolunCHeer. "
             + "Parameters: "
-            + PREFIX_PROJECTTITLE + "NAME "
+            + PREFIX_PROJECTTITLE + "Project Title "
             + PREFIX_DATE + "DATE "
+            + PREFIX_BENEFICIARY + "BENEFICIARY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Charity Run "
+            + PREFIX_PROJECTTITLE + "Charity Run "
             + PREFIX_DATE + "020319 "
             + PREFIX_BENEFICIARY + "Bright Primary School";
 
@@ -41,7 +42,6 @@ public class AddProjectCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-
         model.addProject(toAddProject);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddProject));

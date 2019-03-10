@@ -55,7 +55,7 @@ public class ParserUtil {
     }
     public static ProjectTitle parseProjectTitle(String projectTitle) throws ParseException {
         requireNonNull(projectTitle);
-        return new ProjectTitle();
+        return new ProjectTitle(projectTitle);
     }
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
