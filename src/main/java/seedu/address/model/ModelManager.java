@@ -19,6 +19,7 @@ import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.project.Project;
 
 /**
@@ -30,6 +31,7 @@ public class ModelManager implements Model {
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Project> filteredProjects;
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
 
     /**
@@ -45,6 +47,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
         filteredPersons.addListener(this::ensureSelectedPersonIsValid);
+        filteredProjects = new FilteredList<>(versionedAddressBook.getProjectList());
     }
 
     public ModelManager() {
@@ -115,6 +118,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteProject(Project target) {
+            versionedAddressBook.removeProject(target);
+    }
+    @Override
     public void addPerson(Person person) {
         versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -128,6 +135,7 @@ public class ModelManager implements Model {
     @Override
     public void addProject(Project project) {
         versionedAddressBook.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
@@ -147,11 +155,20 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================
@@ -254,7 +271,9 @@ public class ModelManager implements Model {
     public void addBeneficiary(Beneficiary beneficiary) {
 
     }
-
+//    @Override
+//    public void addProject(Project project) {
+//    }
     /*
     ** prototype for checking existence of beneficiary
      */
