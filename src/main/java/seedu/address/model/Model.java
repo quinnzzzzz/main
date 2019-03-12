@@ -150,7 +150,6 @@ public interface Model {
 
     void setSelectedVolunteer(Volunteer volunteer);
 
-
     /**
      * Add Beneficiary.
      */

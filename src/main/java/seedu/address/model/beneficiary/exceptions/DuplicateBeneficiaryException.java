@@ -6,6 +6,6 @@ package seedu.address.model.beneficiary.exceptions;
  */
 public class DuplicateBeneficiaryException extends RuntimeException {
     public DuplicateBeneficiaryException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate beneficiary");
     }
 }
