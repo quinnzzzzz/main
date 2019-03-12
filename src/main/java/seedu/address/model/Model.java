@@ -7,8 +7,8 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Volunteer;
+import seedu.address.model.volunteer.Volunteer;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
 
 /**
@@ -18,7 +18,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -61,16 +61,16 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a volunteer with the same identity as {@code volunteer} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasVolunteer(Volunteer volunteer);
 
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given volunteer.
+     * The volunteer must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteVolunteer(Volunteer target);
 
     /**
      * Adds the given project.
@@ -79,29 +79,29 @@ public interface Model {
     void addProject(Project project);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given volunteer.
+     * {@code volunteer} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addVolunteer(Volunteer volunteer);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setVolunteer(Volunteer target, Volunteer editedVolunteer);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered volunteer list
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Volunteer> getFilteredVolunteerList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
 
     /**
      * Returns true if the model has previous address book states to restore.
@@ -129,27 +129,26 @@ public interface Model {
     void commitAddressBook();
 
     /**
-     * Selected person in the filtered person list.
-     * null if no person is selected.
+     * Selected volunteer in the filtered volunteer list.
+     * null if no volunteer is selected.
      */
-    ReadOnlyProperty<Person> selectedPersonProperty();
+    ReadOnlyProperty<Volunteer> selectedVolunteerProperty();
 
     /**
-     * Returns the selected person in the filtered person list.
-     * null if no person is selected.
+     * Returns the selected volunteer in the filtered volunteer list.
+     * null if no volunteer is selected.
      */
-    Person getSelectedPerson();
 
     /**
-     * Sets the selected person in the filtered person list.
+     * gets the selected volunteer in the filtered volunteer list.
      */
-    void setSelectedPerson(Person person);
 
-    //Volunteers
-    boolean hasVolunteer(Volunteer volunteer);
+    Volunteer getSelectedVolunteer();
+    /**
+     * Sets the selected volunteer in the filtered volunteer list.
+     */
 
-    void addVolunteer(Volunteer volunteer);
-
+    void setSelectedVolunteer(Volunteer volunteer);
 
     /**
      * Add Beneficiary.

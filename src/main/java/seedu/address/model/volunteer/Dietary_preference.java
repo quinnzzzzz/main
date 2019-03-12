@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.volunteer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -34,8 +34,8 @@ public class Dietary_preference {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Dietary_preference // instanceof handles nulls
-                && restriction.equals(((seedu.address.model.person.Dietary_preference) other).restriction)); // state check
+                || (other instanceof seedu.address.model.volunteer.Dietary_preference // instanceof handles nulls
+                && restriction.equals(((seedu.address.model.volunteer.Dietary_preference) other).restriction)); // state check
     }
 
     @Override

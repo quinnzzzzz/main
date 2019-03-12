@@ -9,7 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * API of the Logic component
@@ -31,8 +31,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of volunteers */
+    ObservableList<Volunteer> getFilteredVolunteerList();
 
     /**
      * Returns an unmodifiable view of the list of commands entered by the user.
@@ -56,17 +56,17 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Selected person in the filtered person list.
-     * null if no person is selected.
+     * Selected volunteer in the filtered volunteer list.
+     * null if no volunteer is selected.
      *
-     * @see seedu.address.model.Model#selectedPersonProperty()
+     * @see seedu.address.model.Model#selectedVolunteerProperty()
      */
-    ReadOnlyProperty<Person> selectedPersonProperty();
+    ReadOnlyProperty<Volunteer> selectedVolunteerProperty();
 
     /**
-     * Sets the selected person in the filtered person list.
+     * Sets the selected volunteer in the filtered volunteer list.
      *
-     * @see seedu.address.model.Model#setSelectedPerson(Person)
+     * @see seedu.address.model.Model#setSelectedVolunteer(Volunteer)
      */
-    void setSelectedPerson(Person person);
+    void setSelectedVolunteer(Volunteer volunteer);
 }
