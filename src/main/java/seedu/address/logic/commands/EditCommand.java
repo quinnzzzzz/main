@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BENEFICIARIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,22 +20,22 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.beneficiary.Address;
-import seedu.address.model.beneficiary.Email;
-import seedu.address.model.beneficiary.Name;
-import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.beneficiary.Phone;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing beneficiary in the address book.
+ * Edits the details of an existing person in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the beneficiary identified "
-            + "by the index number used in the displayed beneficiary list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+            + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -47,60 +47,61 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Beneficiary: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This beneficiary already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditBeneficiaryDescriptor editBeneficiaryDescriptor;
+    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the beneficiary in the filtered beneficiary list to edit
-     * @param editBeneficiaryDescriptor details to edit the beneficiary with
+     * @param index of the person in the filtered person list to edit
+     * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
-        requireNonNull(editBeneficiaryDescriptor);
+        requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editBeneficiaryDescriptor = new EditBeneficiaryDescriptor(editBeneficiaryDescriptor);
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Beneficiary beneficiaryToEdit = lastShownList.get(index.getZeroBased());
-        Beneficiary editedBeneficiary = createEditedBeneficiary(beneficiaryToEdit, editBeneficiaryDescriptor);
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!beneficiaryToEdit.isSameBeneficiary(editedBeneficiary) && model.hasBeneficiary(editedBeneficiary)) {
+        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setBeneficiary(beneficiaryToEdit, editedBeneficiary);
-        model.updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedBeneficiary));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
     /**
-     * Creates and returns a {@code Beneficiary} with the details of {@code beneficiaryToEdit}
-     * edited with {@code editBeneficiaryDescriptor}.
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
      */
-    private static Beneficiary createEditedBeneficiary(Beneficiary beneficiaryToEdit, EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
-        assert beneficiaryToEdit != null;
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
 
-        Name updatedName = editBeneficiaryDescriptor.getName().orElse(beneficiaryToEdit.getName());
-        Phone updatedPhone = editBeneficiaryDescriptor.getPhone().orElse(beneficiaryToEdit.getPhone());
-        Email updatedEmail = editBeneficiaryDescriptor.getEmail().orElse(beneficiaryToEdit.getEmail());
-        Address updatedAddress = editBeneficiaryDescriptor.getAddress().orElse(beneficiaryToEdit.getAddress());
+        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Beneficiary(updatedName, updatedPhone, updatedEmail, updatedAddress);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -118,27 +119,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editBeneficiaryDescriptor.equals(e.editBeneficiaryDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
-     * Stores the details to edit the beneficiary with. Each non-empty field value will replace the
-     * corresponding field value of the beneficiary.
+     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * corresponding field value of the person.
      */
-    public static class EditBeneficiaryDescriptor {
+    public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditBeneficiaryDescriptor() {}
+        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditBeneficiaryDescriptor(EditBeneficiaryDescriptor toCopy) {
+        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -210,12 +211,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditBeneficiaryDescriptor)) {
+            if (!(other instanceof EditPersonDescriptor)) {
                 return false;
             }
 
             // state check
-            EditBeneficiaryDescriptor e = (EditBeneficiaryDescriptor) other;
+            EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

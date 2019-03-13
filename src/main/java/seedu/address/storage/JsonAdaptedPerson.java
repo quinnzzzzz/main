@@ -10,18 +10,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.beneficiary.Address;
-import seedu.address.model.beneficiary.Email;
-import seedu.address.model.beneficiary.Name;
-import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.beneficiary.Phone;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Beneficiary}.
+ * Jackson-friendly version of {@link Person}.
  */
-class JsonAdaptedBeneficiary {
+class JsonAdaptedPerson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Beneficiary's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -30,10 +31,10 @@ class JsonAdaptedBeneficiary {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedBeneficiary} with the given beneficiary details.
+     * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedBeneficiary(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -46,21 +47,29 @@ class JsonAdaptedBeneficiary {
     }
 
     /**
-     * Converts a given {@code Beneficiary} into this class for Jackson use.
+     * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedBeneficiary(Beneficiary source) {
+    public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted beneficiary object into the model's {@code Beneficiary} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted beneficiary.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Beneficiary toModelType() throws IllegalValueException {
+    public Person toModelType() throws IllegalValueException {
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -93,7 +102,8 @@ class JsonAdaptedBeneficiary {
         }
         final Address modelAddress = new Address(address);
 
-        return new Beneficiary(modelName, modelPhone, modelEmail, modelAddress);
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

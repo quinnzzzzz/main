@@ -7,6 +7,7 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.project.Project;
 
@@ -17,7 +18,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Beneficiary> PREDICATE_SHOW_ALL_BENEFICIARIES = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -60,16 +61,16 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasBeneficiary(Beneficiary beneficiary);
+    boolean hasPerson(Person person);
 
 
     /**
-     * Deletes the given beneficiary.
-     * The beneficiary must exist in the address book.
+     * Deletes the given person.
+     * The person must exist in the address book.
      */
-    void deleteBeneficiary(Beneficiary target);
+    void deletePerson(Person target);
 
     /**
      * Adds the given project.
@@ -78,29 +79,29 @@ public interface Model {
     void addProject(Project project);
 
     /**
-     * Adds the given beneficiary.
-     * {@code beneficiary} must not already exist in the address book.
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
      */
-    void addBeneficiary(Beneficiary beneficiary);
+    void addPerson(Person person);
 
     /**
-     * Replaces the given beneficiary {@code target} with {@code editedBeneficiary}.
+     * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The beneficiary identity of {@code editedBeneficiary} must not be the same as another existing beneficiary in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
+    void setPerson(Person target, Person editedPerson);
 
     /**
-     * Returns an unmodifiable view of the filtered beneficiary list
+     * Returns an unmodifiable view of the filtered person list
      */
-    ObservableList<Beneficiary> getFilteredBeneficiaryList();
+    ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered beneficiary list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
+    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Returns true if the model has previous address book states to restore.
@@ -128,19 +129,35 @@ public interface Model {
     void commitAddressBook();
 
     /**
-     * Selected beneficiary in the filtered beneficiary list.
-     * null if no beneficiary is selected.
+     * Selected person in the filtered person list.
+     * null if no person is selected.
      */
-    ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty();
+    ReadOnlyProperty<Person> selectedPersonProperty();
 
     /**
-     * Returns the selected beneficiary in the filtered beneficiary list.
-     * null if no beneficiary is selected.
+     * Returns the selected person in the filtered person list.
+     * null if no person is selected.
      */
-    Beneficiary getSelectedBeneficiary();
+    Person getSelectedPerson();
 
     /**
-     * Sets the selected beneficiary in the filtered beneficiary list.
+     * Sets the selected person in the filtered person list.
      */
-    void setSelectedBeneficiary(Beneficiary beneficiary);
+    void setSelectedPerson(Person person);
+
+    //Volunteers
+    boolean hasVolunteer(Volunteer volunteer);
+
+    void addVolunteer(Volunteer volunteer);
+
+
+    /**
+     * Add Beneficiary.
+     */
+    void addBeneficiary(Beneficiary beneficiary);
+
+    /**
+     * Check for the existence of the beneficiary.
+     */
+    boolean hasBeneficiary(Beneficiary beneficiary);
 }

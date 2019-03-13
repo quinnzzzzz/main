@@ -167,7 +167,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
-    public void removeBeneficiary(Beneficiary key) {
+    public void removeBenficiary(Beneficiary key) {
         beneficiaries.remove(key);
         indicateModified();
     }

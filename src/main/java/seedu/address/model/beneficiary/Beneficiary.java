@@ -24,8 +24,8 @@ public class Beneficiary {
     /**
      * Every field must be present and not null.
      */
-    public Beneficiary(Name name, Phone phone, Email email, Address address) {
-        requireAllNonNull(name, phone, email, address);
+    public Beneficiary(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
