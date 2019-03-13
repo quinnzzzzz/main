@@ -72,7 +72,7 @@ public class EditCommand extends Command {
         List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
         }
 
         Beneficiary beneficiaryToEdit = lastShownList.get(index.getZeroBased());

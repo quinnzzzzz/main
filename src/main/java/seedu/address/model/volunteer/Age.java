@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.volunteer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -43,8 +43,8 @@ public class Age {
         @Override
         public boolean equals(Object other) {
             return other == this // short circuit if same object
-                    || (other instanceof seedu.address.model.person.Age // instanceof handles nulls
-                    && age_output.equals(((seedu.address.model.person.Age) other).age_output)); // state check
+                    || (other instanceof seedu.address.model.volunteer.Age // instanceof handles nulls
+                    && age_output.equals(((seedu.address.model.volunteer.Age) other).age_output)); // state check
         }
 
         @Override
