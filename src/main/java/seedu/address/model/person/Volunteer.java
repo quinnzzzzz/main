@@ -9,7 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
-/*
+/**
  * Volunteer
  */
 public class Volunteer {
@@ -50,21 +50,35 @@ public class Volunteer {
         return name;
     }
 
-    public Age getAge() { return age; }
+    public Age getAge() {
+        return age;
+    }
 
-    public Race getRace() { return race; }
+    public Race getRace() {
+        return race;
+    }
 
-    public Phone getPhone() { return phone; }
+    public Phone getPhone() {
+        return phone;
+    }
 
-    public Email getEmail() { return email; }
+    public Email getEmail() {
+        return email;
+    }
 
     public Address getAddress() { return address; }
 
-    public DietaryPreference getDietary_preference() { return dietaryPreference; }
+    public DietaryPreference getDietary_preference() {
+        return dietaryPreference;
+    }
 
-    public EmergencyContact getEmergency_contact() { return emergencyContact; }
+    public EmergencyContact getEmergency_contact() {
+        return emergencyContact;
+    }
 
-    public MedicalCondition getMedical_condition() { return medicalCondition; }
+    public MedicalCondition getMedical_condition() {
+        return medicalCondition;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
-/*
+/**
  * Unique volunteer list
  */
 public class UniqueVolunteerList implements Iterable<Volunteer> {

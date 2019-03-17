@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-/*
+/**
  * race
  */
 public class Race {

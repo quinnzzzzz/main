@@ -36,7 +36,7 @@ public class ParserUtilProject extends ParserUtil {
         return new Name(trimmedName);
     }
 
-    /*
+    /**
      * parse project title
      */
     public static ProjectTitle parseProjectTitle(String projectTitle) throws ParseException {
@@ -44,7 +44,7 @@ public class ParserUtilProject extends ParserUtil {
         return new ProjectTitle(projectTitle);
     }
 
-    /*
+    /**
      * parse project date
      */
     public static Date parseDate(String date) throws ParseException {
@@ -52,7 +52,7 @@ public class ParserUtilProject extends ParserUtil {
         return new Date();
     }
 
-    /*
+    /**
      * parse beneficiary
      */
     public static Beneficiary parseBeneficiary(String beneficiary) throws ParseException {
