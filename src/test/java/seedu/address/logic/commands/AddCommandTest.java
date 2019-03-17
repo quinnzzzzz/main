@@ -102,20 +102,20 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method " +
-                    "should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
         public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method" +
-                    " should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method " +
-                    "should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
@@ -130,14 +130,14 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Person person) {
-            throw new AssertionError("This method " +
-                    "should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
         public void addVolunteer(Volunteer volunteer) {
-            throw new AssertionError("This method " +
-                    "should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
@@ -152,14 +152,14 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method" +
-                    " should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
         public boolean hasPerson(Person person) {
-            throw new AssertionError("This method" +
-                    " should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
@@ -169,8 +169,8 @@ public class AddCommandTest {
 
         @Override
         public void deletePerson(Person target) {
-            throw new AssertionError("This method" +
-                    " should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
@@ -210,14 +210,14 @@ public class AddCommandTest {
 
         @Override
         public boolean canUndoAddressBook() {
-            throw new AssertionError("This method" +
-                    " should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
         public boolean canRedoAddressBook() {
-            throw new AssertionError("This method " +
-                    "should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
@@ -257,8 +257,8 @@ public class AddCommandTest {
 
         @Override
         public void setSelectedPerson(Person person) {
-            throw new AssertionError("This method " +
-                    "should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
