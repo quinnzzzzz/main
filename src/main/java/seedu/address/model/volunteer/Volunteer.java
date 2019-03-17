@@ -112,7 +112,7 @@ public class Volunteer {
     @Override
     public int hashCode() { //To change later***
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, race, age, phone, address, email, emergency_contact, dietary_preference, medical_condition, tags);
     }
 
     @Override

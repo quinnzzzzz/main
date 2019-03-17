@@ -47,11 +47,11 @@ public class UniqueVolunteerList implements Iterable<Volunteer> {
 
             int index = internalList.indexOf(target);
             if (index == -1) {
-                throw new PersonNotFoundException();
+                throw new VolunteerNotFoundException();
             }
 
             if (!target.isSameVolunteer(editedVolunteer) && contains(editedVolunteer)) {
-                throw new DuplicatePersonException();
+                throw new DuplicateVolunteerException();
             }
 
             internalList.set(index, editedVolunteer);

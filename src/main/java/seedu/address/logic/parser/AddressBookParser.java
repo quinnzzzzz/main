@@ -42,7 +42,7 @@ public class AddressBookParser {
                 return new AddProjectCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddVolunteerCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

@@ -11,10 +11,6 @@ import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.UniqueVolunteerList;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UniqueVolunteerList;
 import seedu.address.model.project.Project;
 
 /**
@@ -36,7 +32,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         volunteers = new UniqueVolunteerList();
-        persons = new UniquePersonList();
         beneficiaries = new UniqueBeneficiaryList();
     }
 
@@ -85,7 +80,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setVolunteers(newData.getVolunteerList());
-        setPersons(newData.getPersonList());
         setBeneficiaries(newData.getBeneficiaryList());
     }
 
@@ -188,10 +182,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: refine later
     }
 
-    @Override
-    public ObservableList<Volunteer> getVolunteerList() {
-        return volunteers.asUnmodifiableObservableList();
-    }
 
     @Override
     public boolean equals(Object other) {
