@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.SelectCommand.MESSAGE_SELECT_VOLUNTEER_SUCCESS;
+import static seedu.address.logic.commands.SelectVolunteerCommand.MESSAGE_SELECT_VOLUNTEER_SUCCESS;
 import static seedu.address.testutil.TestUtil.getLastIndex;
 import static seedu.address.testutil.TestUtil.getMidIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_VOLUNTEER;
@@ -14,11 +14,11 @@ import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SelectVolunteerCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 
-public class SelectCommandSystemTest extends AddressBookSystemTest {
+public class SelectVolunteerCommandSystemTest extends AddressBookSystemTest {
     @Test
     public void select() {
         /* ------------------------ Perform select operations on the shown unfiltered list -------------------------- */
@@ -26,12 +26,12 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
         /* Case: select the first card in the volunteer list, command with leading spaces and trailing spaces
          * -> selected
          */
-        String command = "   " + SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + "   ";
+        String command = "   " + SelectVolunteerCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + "   ";
         assertCommandSuccess(command, INDEX_FIRST_VOLUNTEER);
 
         /* Case: select the last card in the volunteer list -> selected */
         Index volunteerCount = getLastIndex(getModel());
-        command = SelectCommand.COMMAND_WORD + " " + volunteerCount.getOneBased();
+        command = SelectVolunteerCommand.COMMAND_WORD + " " + volunteerCount.getOneBased();
         assertCommandSuccess(command, volunteerCount);
 
         /* Case: undo previous selection -> rejected */
@@ -46,7 +46,7 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: select the middle card in the volunteer list -> selected */
         Index middleIndex = getMidIndex(getModel());
-        command = SelectCommand.COMMAND_WORD + " " + middleIndex.getOneBased();
+        command = SelectVolunteerCommand.COMMAND_WORD + " " + middleIndex.getOneBased();
         assertCommandSuccess(command, middleIndex);
 
         /* Case: select the current selected card -> selected */
@@ -59,42 +59,42 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
          */
         showVolunteersWithName(KEYWORD_MATCHING_MEIER);
         int invalidIndex = getModel().getAddressBook().getVolunteerList().size();
-        assertCommandFailure(SelectCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
+        assertCommandFailure(SelectVolunteerCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
 
         /* Case: filtered volunteer list, select index within bounds of address book and volunteer list -> selected */
         Index validIndex = Index.fromOneBased(1);
         assertTrue(validIndex.getZeroBased() < getModel().getFilteredVolunteerList().size());
-        command = SelectCommand.COMMAND_WORD + " " + validIndex.getOneBased();
+        command = SelectVolunteerCommand.COMMAND_WORD + " " + validIndex.getOneBased();
         assertCommandSuccess(command, validIndex);
 
         /* ----------------------------------- Perform invalid select operations ------------------------------------ */
 
         /* Case: invalid index (0) -> rejected */
-        assertCommandFailure(SelectCommand.COMMAND_WORD + " " + 0,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+        assertCommandFailure(SelectVolunteerCommand.COMMAND_WORD + " " + 0,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectVolunteerCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (-1) -> rejected */
-        assertCommandFailure(SelectCommand.COMMAND_WORD + " " + -1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+        assertCommandFailure(SelectVolunteerCommand.COMMAND_WORD + " " + -1,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectVolunteerCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
         invalidIndex = getModel().getFilteredVolunteerList().size() + 1;
-        assertCommandFailure(SelectCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
+        assertCommandFailure(SelectVolunteerCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
 
         /* Case: invalid arguments (alphabets) -> rejected */
-        assertCommandFailure(SelectCommand.COMMAND_WORD + " abc",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+        assertCommandFailure(SelectVolunteerCommand.COMMAND_WORD + " abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectVolunteerCommand.MESSAGE_USAGE));
 
         /* Case: invalid arguments (extra argument) -> rejected */
-        assertCommandFailure(SelectCommand.COMMAND_WORD + " 1 abc",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+        assertCommandFailure(SelectVolunteerCommand.COMMAND_WORD + " 1 abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectVolunteerCommand.MESSAGE_USAGE));
 
         /* Case: mixed case command word -> rejected */
         assertCommandFailure("SeLeCt 1", MESSAGE_UNKNOWN_COMMAND);
 
         /* Case: select from empty address book -> rejected */
         deleteAllVolunteers();
-        assertCommandFailure(SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased(),
+        assertCommandFailure(SelectVolunteerCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased(),
                 MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
     }
 

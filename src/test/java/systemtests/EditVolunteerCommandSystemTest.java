@@ -35,7 +35,7 @@ import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditVolunteerCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
@@ -48,7 +48,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.VolunteerBuilder;
 import seedu.address.testutil.VolunteerUtil;
 
-public class EditCommandSystemTest extends AddressBookSystemTest {
+public class EditVolunteerCommandSystemTest extends AddressBookSystemTest {
 
     @Test
     public void edit() {
@@ -60,7 +60,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
          * -> edited
          */
         Index index = INDEX_FIRST_VOLUNTEER;
-        String command = " " + EditCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
+        String command = " " + EditVolunteerCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
                 + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + TAG_DESC_HUSBAND + " ";
         Volunteer editedVolunteer = new VolunteerBuilder(BOB).withTags(VALID_TAG_HUSBAND).build();
         assertCommandSuccess(command, index, editedVolunteer);
@@ -77,7 +77,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: edit a volunteer with new values same as existing values -> edited */
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandSuccess(command, index, BOB);
 
@@ -85,7 +85,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         assertTrue(getModel().getAddressBook().getVolunteerList().contains(BOB));
         index = INDEX_SECOND_VOLUNTEER;
         assertNotEquals(getModel().getFilteredVolunteerList().get(index.getZeroBased()), BOB);
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         editedVolunteer = new VolunteerBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedVolunteer);
@@ -94,14 +94,14 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
          * -> edited
          */
         index = INDEX_SECOND_VOLUNTEER;
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         editedVolunteer = new VolunteerBuilder(BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         assertCommandSuccess(command, index, editedVolunteer);
 
         /* Case: clear tags -> cleared */
         index = INDEX_FIRST_VOLUNTEER;
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + PREFIX_TAG.getPrefix();
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + " " + PREFIX_TAG.getPrefix();
         Volunteer volunteerToEdit = getModel().getFilteredVolunteerList().get(index.getZeroBased());
         editedVolunteer = new VolunteerBuilder(volunteerToEdit).withTags().build();
         assertCommandSuccess(command, index, editedVolunteer);
@@ -109,10 +109,10 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
         /* Case: filtered volunteer list, edit index within bounds of address book and volunteer list -> edited */
-        shoVolunteersWithName(KEYWORD_MATCHING_MEIER);
+        showVolunteersWithName(KEYWORD_MATCHING_MEIER);
         index = INDEX_FIRST_VOLUNTEER;
         assertTrue(index.getZeroBased() < getModel().getFilteredVolunteerList().size());
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + NAME_DESC_BOB;
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + " " + NAME_DESC_BOB;
         volunteerToEdit = getModel().getFilteredVolunteerList().get(index.getZeroBased());
         editedVolunteer = new VolunteerBuilder(volunteerToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedVolunteer);
@@ -122,7 +122,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
          */
         showVolunteersWithName(KEYWORD_MATCHING_MEIER);
         int invalidIndex = getModel().getAddressBook().getVolunteerList().size();
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
                 Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
 
         /* --------------------- Performing edit operation while a volunteer card is selected -------------------------- */
@@ -133,7 +133,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         showAllVolunteers();
         index = INDEX_FIRST_VOLUNTEER;
         selectVolunteer(index);
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + TAG_DESC_FRIEND;
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new volunteer's name
@@ -142,81 +142,81 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */
 
         /* Case: invalid index (0) -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " 0" + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " 0" + NAME_DESC_BOB,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditVolunteerCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (-1) -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " -1" + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " -1" + NAME_DESC_BOB,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditVolunteerCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
         invalidIndex = getModel().getFilteredVolunteerList().size() + 1;
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
                 Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
 
         /* Case: missing index -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + NAME_DESC_BOB,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditVolunteerCommand.MESSAGE_USAGE));
 
         /* Case: missing all fields -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased(),
-                EditCommand.MESSAGE_NOT_EDITED);
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased(),
+                EditVolunteerCommand.MESSAGE_NOT_EDITED);
 
         /* Case: invalid name -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_NAME_DESC,
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_NAME_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_PHONE_DESC,
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid email -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_EMAIL_DESC,
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_EMAIL_DESC,
                 Email.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid address -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_ADDRESS_DESC,
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_ADDRESS_DESC,
                 Address.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_TAG_DESC,
+        assertCommandFailure(EditVolunteerCommand.COMMAND_WORD + " " + INDEX_FIRST_VOLUNTEER.getOneBased() + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS);
 
         /* Case: edit a volunteer with new values same as another volunteer's values -> rejected */
-        executeCommand(VolunteerUtil.getAddCommand(BOB));
+        executeCommand(VolunteerUtil.getAddVolunteerCommand(BOB));
         assertTrue(getModel().getAddressBook().getVolunteerList().contains(BOB));
         index = INDEX_FIRST_VOLUNTEER;
         assertFalse(getModel().getFilteredVolunteerList().get(index.getZeroBased()).equals(BOB));
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
-        assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(command, EditVolunteerCommand.MESSAGE_DUPLICATE_VOLUNTEER);
 
         /* Case: edit a volunteer with new values same as another volunteer's values but with different tags -> rejected */
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
-        assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(command, EditVolunteerCommand.MESSAGE_DUPLICATE_VOLUNTEER);
 
         /* Case: edit a volunteer with new values same as another volunteer's values but with different address -> rejected */
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
-        assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(command, EditVolunteerCommand.MESSAGE_DUPLICATE_VOLUNTEER);
 
         /* Case: edit a volunteer with new values same as another volunteer's values but with different phone -> rejected */
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
-        assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(command, EditVolunteerCommand.MESSAGE_DUPLICATE_VOLUNTEER);
 
         /* Case: edit a volunteer with new values same as another volunteer's values but with different email -> rejected */
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
+        command = EditVolunteerCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
-        assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(command, EditVolunteerCommand.MESSAGE_DUPLICATE_VOLUNTEER);
     }
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Index, Volunteer, Index)} except that
      * the browser url and selected card remain unchanged.
      * @param toEdit the index of the current model's filtered list
-     * @see EditCommandSystemTest#assertCommandSuccess(String, Index, Volunteer, Index)
+     * @see EditVolunteerCommandSystemTest#assertCommandSuccess(String, Index, Volunteer, Index)
      */
     private void assertCommandSuccess(String command, Index toEdit, Volunteer editedVolunteer) {
         assertCommandSuccess(command, toEdit, editedVolunteer, null);
@@ -224,11 +224,11 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
-     * 1. Asserts that result display box displays the success message of executing {@code EditCommand}.<br>
+     * 1. Asserts that result display box displays the success message of executing {@code EditVolunteerCommand}.<br>
      * 2. Asserts that the model related components are updated to reflect the volunteer at index {@code toEdit} being
      * updated to values specified {@code editedVolunteer}.<br>
      * @param toEdit the index of the current model's filtered list.
-     * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
+     * @see EditVolunteerCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
      */
     private void assertCommandSuccess(String command, Index toEdit, Volunteer editedVolunteer,
             Index expectedSelectedCardIndex) {
@@ -237,13 +237,13 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         expectedModel.updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
 
         assertCommandSuccess(command, expectedModel,
-                String.format(EditCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer), expectedSelectedCardIndex);
+                String.format(EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer), expectedSelectedCardIndex);
     }
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} except that the
      * browser url and selected card remain unchanged.
-     * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
+     * @see EditVolunteerCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
         assertCommandSuccess(command, expectedModel, expectedResultMessage, null);
