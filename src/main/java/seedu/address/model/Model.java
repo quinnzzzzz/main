@@ -150,7 +150,7 @@ public interface Model {
 
     void addVolunteer(Volunteer volunteer);
 
-}
+
     /**
      * Add Beneficiary.
      */
