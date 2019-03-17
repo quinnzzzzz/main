@@ -20,6 +20,7 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<Beneficiary> PREDICATE_SHOW_ALL_BENEFICIARIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -66,6 +67,10 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    /**
+     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
+     */
+    boolean hasBeneficiary(Beneficiary beneficiary);
 
     /**
      * Deletes the given person.
@@ -78,6 +83,11 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deleteProject(Project target);
+    /**
+     * Deletes the given beneficiary.
+     * The beneficiary must exist in the address book.
+     */
+    void deleteBeneficiary(Beneficiary target);
 
     /**
      * Adds the given project.
@@ -100,21 +110,34 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Replaces the given Beneficiary{@code target} with {@code editedBeneficiary}.
+     * {@code target} must exist in the address book.
+     * The Beneficiary identity of {@code editedBeneficiary} must not be the same
+     * as another existing Beneficiary in the address book.
+     */
+    void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
+
+    /**
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Person> getFilteredPersonList();
+    ObservableList<Beneficiary> getFilteredBeneficiaryList();
 
     /**
      * Returns an unmodifiable view of the filtered project list
      */
     ObservableList<Project> getFilteredProjectList();
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered Beneficiary list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
     void updateFilteredProjectList(Predicate<Project> predicate);
+
+    void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
+
     /**
      * Returns true if the model has previous address book states to restore.
      */
@@ -147,15 +170,24 @@ public interface Model {
     ReadOnlyProperty<Person> selectedPersonProperty();
 
     /**
-     * Returns the selected person in the filtered person list.
-     * null if no person is selected.
+     * Selected beneficiary in the filtered beneficiary list.
+     * null if no beneficiary is selected.
      */
-    Person getSelectedPerson();
+    ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty();
 
+    /**
+     * Returns the selected beneficiary in the filtered beneficiary list.
+     * null if no beneficairy is selected.
+     */
+    Beneficiary getSelectedBeneficiary();
+
+    Person getSelectedPerson();
     /**
      * Sets the selected person in the filtered person list.
      */
     void setSelectedPerson(Person person);
+
+    void setSelectedBeneficiary (Beneficiary beneficiary);
 
     //Volunteers
     boolean hasVolunteer(Volunteer volunteer);
@@ -167,9 +199,4 @@ public interface Model {
      * Add Beneficiary.
      */
     void addBeneficiary(Beneficiary beneficiary);
-
-    /**
-     * Check for the existence of the beneficiary.
-     */
-    boolean hasBeneficiary(Beneficiary beneficiary);
 }

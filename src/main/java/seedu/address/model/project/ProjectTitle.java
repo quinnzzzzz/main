@@ -30,6 +30,7 @@ public class ProjectTitle {
         checkArgument(isValidName(projectTitle), MESSAGE_CONSTRAINTS);
         fullTitle = projectTitle;
     }
+
     /**
      * Returns true if a given string is a valid name.
      */

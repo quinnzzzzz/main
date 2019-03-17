@@ -1,11 +1,11 @@
 package seedu.address.model.project;
 
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Project in the address book.
@@ -78,7 +78,6 @@ public class Project {
         return otherProject.getProjectTitle().equals(getProjectTitle())
                 && otherProject.getDate().equals(getDate())
                 && otherProject.getBeneficiary().equals(getBeneficiary());
-//                && otherProject.getTags().equals(getTags());
     }
 
     @Override

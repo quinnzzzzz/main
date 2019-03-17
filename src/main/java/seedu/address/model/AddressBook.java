@@ -16,6 +16,7 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueVolunteerList;
 import seedu.address.model.project.UniqueProjectList;
 
+
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
@@ -111,7 +112,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the address book.
      */
-    public boolean hasVolunteer(Volunteer volunteer){
+    public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
         return volunteers.contains(volunteer);
     }
@@ -119,7 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
      */
-    public boolean hasBeneficiary(Beneficiary beneficiary){
+    public boolean hasBeneficiary(Beneficiary beneficiary) {
         requireNonNull(beneficiary);
         return beneficiaries.contains(beneficiary);
     }
@@ -132,6 +133,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
         indicateModified();
     }
+
+    /**
+     * Adds a volunteer to the address book.
+     * The person must not already exist in the address book.
+     */
     public void addVolunteer(Volunteer v) {
         volunteers.add(v);
         indicateModified();
@@ -185,7 +191,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.remove(key);
         indicateModified();
     }
-    public void removeBenficiary(Beneficiary key) {
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeBeneficiary(Beneficiary key) {
         beneficiaries.remove(key);
         indicateModified();
     }
