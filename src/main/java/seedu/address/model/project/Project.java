@@ -2,9 +2,9 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Project in the address book.

@@ -66,7 +66,9 @@ public class Volunteer {
         return email;
     }
 
-    public Address getAddress() { return address; }
+    public Address getAddress() {
+        return address;
+    }
 
     public DietaryPreference getDietary_preference() {
         return dietaryPreference;
