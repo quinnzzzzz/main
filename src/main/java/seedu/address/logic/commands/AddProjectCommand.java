@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntaxProject.*;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,12 +17,12 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new project to VolunCHeer. "
             + "Parameters: "
-            + PREFIX_PROJECTTITLE + "Project Title "
+            + PREFIX_PROJECT_TITLE + "Project Title "
             + PREFIX_DATE + "DATE "
             + PREFIX_BENEFICIARY + "BENEFICIARY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECTTITLE + "Charity Run "
+            + PREFIX_PROJECT_TITLE + "Charity Run "
             + PREFIX_DATE + "020319 "
             + PREFIX_BENEFICIARY + "Bright Primary School";
 
