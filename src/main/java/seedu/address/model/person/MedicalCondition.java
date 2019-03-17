@@ -7,6 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Medical Condition of volunteer
  */
 public class MedicalCondition {
+    //field
     public static final String MESSAGE_CONSTRAINTS =
             "Medical Conditions should not contain numbers";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -16,16 +17,16 @@ public class MedicalCondition {
      * Constructs a {@code MedicalCondition}.
      *
      */
-    public MedicalCondition(String medical_condition) {
-        requireNonNull(medical_condition);
-        checkArgument(isValidMedical_condition(medical_condition), MESSAGE_CONSTRAINTS);
-        status = medical_condition;
+    public MedicalCondition(String medicalCondition) {
+        requireNonNull(medicalCondition);
+        checkArgument(isValidMedicalCondition(medicalCondition), MESSAGE_CONSTRAINTS);
+        status = medicalCondition;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidMedical_condition(String test) {
+    public static boolean isValidMedicalCondition(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

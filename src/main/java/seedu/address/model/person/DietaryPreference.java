@@ -7,19 +7,20 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Dietary preference of volunteer
  */
 public class DietaryPreference {
+    //field
     public static final String MESSAGE_CONSTRAINTS =
             "Dietary Preference should not contain numbers";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";;
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String restriction;
 
     /**
      * Constructs a {@code DietaryPreference}.
      *
      */
-    public DietaryPreference(String dietary_preference) {
-        requireNonNull(dietary_preference);
-        checkArgument(isValidDietary_preference(dietary_preference), MESSAGE_CONSTRAINTS);
-        restriction = dietary_preference;
+    public DietaryPreference(String dietaryPreference) {
+        requireNonNull(dietaryPreference);
+        checkArgument(isValidDietary_preference(dietaryPreference), MESSAGE_CONSTRAINTS);
+        restriction = dietaryPreference;
     }
 
     /**

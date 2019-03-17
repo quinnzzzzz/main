@@ -135,18 +135,4 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
     public int hashCode() {
         return internalList.hashCode();
     }
-
-    /**
-     * Returns true if {@code beneficiaries} contains only unique beneficiaries.
-     */
-    private boolean BeneficiariesAreUnique(List<Beneficiary> beneficiaries) {
-        for (int i = 0; i < beneficiaries.size() - 1; i++) {
-            for (int j = i + 1; j < beneficiaries.size(); j++) {
-                if (beneficiaries.get(i).isSameBeneficiary(beneficiaries.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }

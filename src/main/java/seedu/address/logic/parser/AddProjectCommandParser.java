@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_BENEFICIARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_PROJECT_TITLE;
+import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -42,9 +42,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Beneficiary beneficiary = ParserUtilProject.parseBeneficiary(argMultimap.getValue(PREFIX_BENEFICIARY).get());
         Set<Tag> tagList = ParserUtilProject.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Project Project = new Project(projectTitle, date, beneficiary, tagList);
+        Project project = new Project(projectTitle, date, beneficiary, tagList);
 
-        return new AddProjectCommand(Project);
+        return new AddProjectCommand(project);
     }
 
     /**

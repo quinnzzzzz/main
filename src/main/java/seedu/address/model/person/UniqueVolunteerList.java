@@ -15,7 +15,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * Unique volunteer list
  */
 public class UniqueVolunteerList implements Iterable<Volunteer> {
-
+    //field
     private final ObservableList<Volunteer> internalList = FXCollections.observableArrayList();
     private final ObservableList<Volunteer> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

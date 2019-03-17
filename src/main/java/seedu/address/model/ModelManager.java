@@ -271,7 +271,8 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedBeneficiaryReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+            boolean wasSelectedBeneficiaryReplaced = change.wasReplaced()
+                    && change.getAddedSize() == change.getRemovedSize()
                     && change.getRemoved().contains(selectedBeneficiary.getValue());
             if (wasSelectedBeneficiaryReplaced) {
                 // Update selectedPerson to its new value.
@@ -281,7 +282,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedBeneficiaryRemoved = change.getRemoved().stream()
-                    .anyMatch(removedBeneficiary -> selectedBeneficiary.getValue().isSameBeneficiary(removedBeneficiary));
+                    .anyMatch(removedBeneficiary -> selectedBeneficiary.getValue()
+                            .isSameBeneficiary(removedBeneficiary));
             if (wasSelectedBeneficiaryRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
