@@ -161,8 +161,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteBeneficiary(Beneficiary target) {
+
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
+
         }
 
         @Override
@@ -171,8 +181,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
+
         }
 
         @Override
@@ -206,6 +226,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
+            return null;
+        }
+
+        @Override
+        public Beneficiary getSelectedBeneficiary() {
+            return null;
+        }
+
+        @Override
         public Person getSelectedPerson() {
             throw new AssertionError("This method should not be called.");
         }
@@ -213,6 +243,11 @@ public class AddCommandTest {
         @Override
         public void setSelectedPerson(Person person) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSelectedBeneficiary(Beneficiary beneficiary) {
+
         }
 
         @Override
