@@ -85,8 +85,8 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case MapCommand.COMMAND_WORD:
-            return new MapCommand();
-        //TODO : change this to a parser later on
+            return new MapCommandParser().parse(arguments);
+
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
