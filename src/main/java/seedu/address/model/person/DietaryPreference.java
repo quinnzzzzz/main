@@ -3,20 +3,24 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class Dietary_preference {
+/**
+ * Dietary preference of volunteer
+ */
+public class DietaryPreference {
+    //field
     public static final String MESSAGE_CONSTRAINTS =
             "Dietary Preference should not contain numbers";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";;
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String restriction;
 
     /**
-     * Constructs a {@code Dietary_preference}.
+     * Constructs a {@code DietaryPreference}.
      *
      */
-    public Dietary_preference(String dietary_preference) {
-        requireNonNull(dietary_preference);
-        checkArgument(isValidDietary_preference(dietary_preference), MESSAGE_CONSTRAINTS);
-        restriction = dietary_preference;
+    public DietaryPreference(String dietaryPreference) {
+        requireNonNull(dietaryPreference);
+        checkArgument(isValidDietary_preference(dietaryPreference), MESSAGE_CONSTRAINTS);
+        restriction = dietaryPreference;
     }
 
     /**
@@ -34,8 +38,8 @@ public class Dietary_preference {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Dietary_preference // instanceof handles nulls
-                && restriction.equals(((seedu.address.model.person.Dietary_preference) other).restriction)); // state check
+                || (other instanceof DietaryPreference // instanceof handles nulls
+                && restriction.equals(((DietaryPreference) other).restriction)); // state check
     }
 
     @Override

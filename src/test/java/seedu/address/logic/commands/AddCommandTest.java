@@ -23,10 +23,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.project.Project;
-import seedu.address.testutil.Assert;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -102,17 +102,20 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
         public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
@@ -127,15 +130,21 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
+
         @Override
         public void addVolunteer(Volunteer volunteer) {
+            throw new AssertionError("This method "
+                    + "should not be called.");
+        }
+
+        @Override
+        public void addProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
-        @Override
-        public void addProject(Project project) { throw new AssertionError("This method should not be called.");
-        }
+
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
@@ -143,20 +152,30 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method"
+                    + " should not be called.");
+        }
+
+        @Override
+        public boolean hasVolunteer(Volunteer volunteer) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasVolunteer(Volunteer volunteer) { throw new AssertionError("This method should not be called."); }
+        public void deletePerson(Person target) {
+            throw new AssertionError("This method"
+                    + " should not be called.");
+        }
 
         @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
+        public void deleteBeneficiary(Beneficiary target) {
+
         }
 
         @Override
@@ -165,8 +184,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
+
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
+            return null;
         }
 
         @Override
@@ -175,13 +204,20 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
+
+        }
+
+        @Override
         public boolean canUndoAddressBook() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
         public boolean canRedoAddressBook() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
@@ -205,14 +241,42 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
+            return null;
+        }
+
+        @Override
+        public Beneficiary getSelectedBeneficiary() {
+            return null;
+        }
+
+        @Override
         public Person getSelectedPerson() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setSelectedPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
+
+        @Override
+        public void setSelectedBeneficiary(Beneficiary beneficiary) {
+
+        }
+
+        @Override
+        public void addBeneficiary(Beneficiary beneficiary) {
+
+        }
+
+        @Override
+        public boolean hasBeneficiary(Beneficiary beneficiary) {
+            return false;
+        }
+
+
     }
 
     /**
