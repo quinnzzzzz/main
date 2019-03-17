@@ -4,11 +4,10 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 
 public class Date {
-    public final String fullDate;
+    public final String projectDate;
 
-    public Date(String projectDate) {
-        requireNonNull(projectDate);
-        fullDate = projectDate;
+    public Date(String date) {
+        requireNonNull(date);
+        projectDate = date;
     }
-
 }

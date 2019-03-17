@@ -47,9 +47,9 @@ public class ParserUtilProject extends ParserUtil {
     /**
      * parse project date
      */
-    public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        return new Date();
+    public static Date parseDate(String projectDate) throws ParseException {
+        requireNonNull(projectDate);
+        return new Date(projectDate);
     }
 
     /**

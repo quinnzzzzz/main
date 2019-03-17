@@ -355,15 +355,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons)
                 && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
     }
-    @Override
-    public void addBeneficiary(Beneficiary beneficiary) {
-
-    }
-    /*
-    ** prototype for checking existence of beneficiary
-     */
-    @Override
-    public boolean hasBeneficiary(Beneficiary Beneficiary) {
-        return false;
-    }
 }
