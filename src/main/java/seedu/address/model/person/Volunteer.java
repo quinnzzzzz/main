@@ -139,5 +139,4 @@ public class Volunteer {
         getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }
