@@ -1,20 +1,20 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BENEFICIARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECTTITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_BENEFICIARY;
+import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_PROJECT_TITLE;
+import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.project.Date;
 import seedu.address.model.project.Beneficiary;
+import seedu.address.model.project.Date;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,21 +29,22 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      */
     public AddProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECTTITLE, PREFIX_DATE, PREFIX_BENEFICIARY, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_TITLE, PREFIX_DATE, PREFIX_BENEFICIARY, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECTTITLE, PREFIX_DATE, PREFIX_BENEFICIARY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_TITLE, PREFIX_DATE, PREFIX_BENEFICIARY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
 
-        ProjectTitle projectTitle = ParserUtil.parseProjectTitle(argMultimap.getValue(PREFIX_PROJECTTITLE).get());
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        Beneficiary beneficiary = ParserUtil.parseBeneficiary(argMultimap.getValue(PREFIX_BENEFICIARY).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap
+                .getValue(PREFIX_PROJECT_TITLE).get());
+        Date date = ParserUtilProject.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Beneficiary beneficiary = ParserUtilProject.parseBeneficiary(argMultimap.getValue(PREFIX_BENEFICIARY).get());
+        Set<Tag> tagList = ParserUtilProject.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Project Project = new Project(projectTitle,date,beneficiary,tagList);
+        Project project = new Project(projectTitle, date, beneficiary, tagList);
 
-        return new AddProjectCommand(Project);
+        return new AddProjectCommand(project);
     }
 
     /**

@@ -28,6 +28,7 @@ public class ProjectTitle {
         requireNonNull(projectTitle);
         checkArgument(isValidName(projectTitle), MESSAGE_CONSTRAINTS);
     }
+
     /**
      * Returns true if a given string is a valid name.
      */

@@ -32,6 +32,9 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
 
+    private final FilteredList<Beneficiary> filteredBeneficiaries;
+    private final SimpleObjectProperty<Beneficiary> selectedBeneficiary = new SimpleObjectProperty<>();
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -45,6 +48,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
         filteredPersons.addListener(this::ensureSelectedPersonIsValid);
+
+        filteredBeneficiaries = new FilteredList<>(versionedAddressBook.getBeneficiaryList());
+        filteredBeneficiaries.addListener(this::ensureSelectedBeneficiaryIsValid);
     }
 
     public ModelManager() {
@@ -110,8 +116,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasBeneficiary(Beneficiary beneficiary) {
+        requireNonNull(beneficiary);
+        return versionedAddressBook.hasBeneficiary(beneficiary);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteBeneficiary(Beneficiary target) {
+        versionedAddressBook.removeBeneficiary(target);
     }
 
     @Override
@@ -126,6 +143,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addBeneficiary(Beneficiary beneficiary) {
+        versionedAddressBook.addBeneficiary(beneficiary);
+        updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
+    }
+
+    @Override
     public void addProject(Project project) {
         versionedAddressBook.addProject(project);
     }
@@ -135,6 +158,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         versionedAddressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
+        requireAllNonNull(target, editedBeneficiary);
+
+        versionedAddressBook.setBeneficiary(target, editedBeneficiary);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -149,9 +179,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
+        return filteredBeneficiaries;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
+        requireNonNull(predicate);
+        filteredBeneficiaries.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================
@@ -189,9 +230,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
+        return selectedBeneficiary;
+    }
+
+    @Override
     public Person getSelectedPerson() {
         return selectedPerson.getValue();
     }
+
+    @Override
+    public Beneficiary getSelectedBeneficiary() {
+        return selectedBeneficiary.getValue();
+    }
+
 
     @Override
     public void setSelectedPerson(Person person) {
@@ -199,6 +251,45 @@ public class ModelManager implements Model {
             throw new PersonNotFoundException();
         }
         selectedPerson.setValue(person);
+    }
+
+    @Override
+    public void setSelectedBeneficiary(Beneficiary beneficiary) {
+        if (beneficiary != null && !filteredBeneficiaries.contains(beneficiary)) {
+            throw new PersonNotFoundException();
+        }
+        selectedBeneficiary.setValue(beneficiary);
+    }
+
+    /**
+     * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
+     */
+    private void ensureSelectedBeneficiaryIsValid(ListChangeListener.Change<? extends Beneficiary> change) {
+        while (change.next()) {
+            if (selectedBeneficiary.getValue() == null) {
+                // null is always a valid selected person, so we do not need to check that it is valid anymore.
+                return;
+            }
+
+            boolean wasSelectedBeneficiaryReplaced = change.wasReplaced()
+                    && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedBeneficiary.getValue());
+            if (wasSelectedBeneficiaryReplaced) {
+                // Update selectedPerson to its new value.
+                int index = change.getRemoved().indexOf(selectedBeneficiary.getValue());
+                selectedBeneficiary.setValue(change.getAddedSubList().get(index));
+                continue;
+            }
+
+            boolean wasSelectedBeneficiaryRemoved = change.getRemoved().stream()
+                    .anyMatch(removedBeneficiary -> selectedBeneficiary.getValue()
+                            .isSameBeneficiary(removedBeneficiary));
+            if (wasSelectedBeneficiaryRemoved) {
+                // Select the person that came before it in the list,
+                // or clear the selection if there is no such person.
+                selectedBeneficiary.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            }
+        }
     }
 
     /**
@@ -248,19 +339,6 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
-    }
-
-    @Override
-    public void addBeneficiary(Beneficiary beneficiary) {
-
-    }
-
-    /*
-    ** prototype for checking existence of beneficiary
-     */
-    @Override
-    public boolean hasBeneficiary(Beneficiary Beneficiary) {
-        return false;
     }
 
 }
