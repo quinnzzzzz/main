@@ -31,7 +31,7 @@ public class MapCommand extends Command {
             + "Example: map y/3>18 r/2chinese";
 
     public static final String MESSAGE_SUCCESS = "Mapping complete!";
-
+    public static final String MESSAGE_FAIL = "ERROR";
     private MapObject map;
 
     public MapCommand(MapObject newMap) {
@@ -44,7 +44,7 @@ public class MapCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-
+        throw new CommandException(MESSAGE_FAIL);
 
     }
 
