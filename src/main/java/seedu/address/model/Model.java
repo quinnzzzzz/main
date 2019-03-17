@@ -106,7 +106,8 @@ public interface Model {
     /**
      * Replaces the given Beneficiary{@code target} with {@code editedBeneficiary}.
      * {@code target} must exist in the address book.
-     * The Beneficiary identity of {@code editedBeneficiary} must not be the same as another existing Beneficiary in the address book.
+     * The Beneficiary identity of {@code editedBeneficiary} must not be the same
+     * as another existing Beneficiary in the address book.
      */
     void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
 

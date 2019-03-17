@@ -7,15 +7,14 @@ import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddBeneficiaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.beneficiary.Address;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Email;
 import seedu.address.model.beneficiary.Name;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Phone;
 
 /**
@@ -34,7 +33,8 @@ public class AddBeneficiaryCommandParser implements Parser<AddBeneficiaryCommand
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBeneficiaryCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddBeneficiaryCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtilBeneficiary.parseName(argMultimap.getValue(PREFIX_NAME).get());

@@ -9,6 +9,9 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+/*
+ * Volunteer
+ */
 public class Volunteer {
     // Identity fields
     private final Name name;
@@ -18,16 +21,18 @@ public class Volunteer {
     private final Race race;
 
     // Data fields
-    private final Emergency_contact emergency_contact;
+    private final EmergencyContact emergencyContact;
     private final Address address;
-    private final Dietary_preference dietary_preference;
-    private final Medical_condition medical_condition;
+    private final DietaryPreference dietaryPreference;
+    private final MedicalCondition medicalCondition;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Volunteer(Name name, Age age, Race race, Phone phone,Address address, Email email, Emergency_contact emergency_contact,Dietary_preference dietary_preference, Medical_condition medical_condition , Set<Tag> tags) {
+    public Volunteer(Name name, Age age, Race race, Phone phone, Address address, Email email,
+                     EmergencyContact emergencyContact, DietaryPreference dietaryPreference,
+                     MedicalCondition medicalCondition , Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.age = age;
@@ -35,18 +40,19 @@ public class Volunteer {
         this.phone = phone;
         this.address = address;
         this.email = email;
-        this.emergency_contact = emergency_contact;
-        this.dietary_preference = dietary_preference;
+        this.emergencyContact = emergencyContact;
+        this.dietaryPreference = dietaryPreference;
         this.tags.addAll(tags);
-        this.medical_condition = medical_condition;
+        this.medicalCondition = medicalCondition;
     }
+
     public Name getName() {
         return name;
     }
 
-    public Age getAge() {return age;}
+    public Age getAge() { return age; }
 
-    public Race getRace() {return race;}
+    public Race getRace() { return race; }
 
     public Phone getPhone() { return phone; }
 
@@ -54,11 +60,11 @@ public class Volunteer {
 
     public Address getAddress() { return address; }
 
-    public Dietary_preference getDietary_preference() {return dietary_preference;}
+    public DietaryPreference getDietary_preference() { return dietaryPreference; }
 
-    public Emergency_contact getEmergency_contact() { return emergency_contact;}
+    public EmergencyContact getEmergency_contact() { return emergencyContact; }
 
-    public Medical_condition getMedical_condition() {return medical_condition;}
+    public MedicalCondition getMedical_condition() { return medicalCondition; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

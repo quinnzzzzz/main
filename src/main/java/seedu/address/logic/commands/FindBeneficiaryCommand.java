@@ -31,7 +31,8 @@ public class FindBeneficiaryCommand extends Command {
         requireNonNull(model);
         model.updateFilteredBeneficiaryList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_BENEFICIARIES_LISTED_OVERVIEW, model.getFilteredBeneficiaryList().size()));
+                String.format(Messages.MESSAGE_BENEFICIARIES_LISTED_OVERVIEW,
+                        model.getFilteredBeneficiaryList().size()));
     }
 
     @Override

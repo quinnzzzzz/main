@@ -8,16 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditBeneficiaryCommand;
 import seedu.address.logic.commands.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -39,7 +33,8 @@ public class EditBeneficiaryCommandParser implements Parser<EditBeneficiaryComma
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBeneficiaryCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditBeneficiaryCommand.MESSAGE_USAGE), pe);
         }
 
         EditBeneficiaryDescriptor editBeneficiaryDescriptor = new EditBeneficiaryDescriptor();
@@ -47,13 +42,16 @@ public class EditBeneficiaryCommandParser implements Parser<EditBeneficiaryComma
             editBeneficiaryDescriptor.setName(ParserUtilBeneficiary.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editBeneficiaryDescriptor.setPhone(ParserUtilBeneficiary.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editBeneficiaryDescriptor.setPhone(ParserUtilBeneficiary.parsePhone(argMultimap
+                    .getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editBeneficiaryDescriptor.setEmail(ParserUtilBeneficiary.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editBeneficiaryDescriptor.setEmail(ParserUtilBeneficiary.parseEmail(argMultimap
+                    .getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editBeneficiaryDescriptor.setAddress(ParserUtilBeneficiary.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editBeneficiaryDescriptor.setAddress(ParserUtilBeneficiary.parseAddress(argMultimap
+                    .getValue(PREFIX_ADDRESS).get()));
         }
 
         if (!editBeneficiaryDescriptor.isAnyFieldEdited()) {
