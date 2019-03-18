@@ -33,6 +33,7 @@ import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
@@ -81,7 +82,7 @@ public class AddVolunteerCommandSystemTest extends AddressBookSystemTest {
         /* Case: add a volunteer with all fields same as another volunteer in the address book except phone and email
          * -> added
          */
-        toAdd = new volunteerBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        toAdd = new VolunteerBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         command = VolunteerUtil.getAddVolunteerCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
