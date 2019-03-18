@@ -24,6 +24,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.project.Project;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -120,6 +121,7 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Beneficiary> beneficiaries = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Volunteer> volunteers = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
@@ -130,6 +132,9 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
+        @Override
+        public ObservableList<Project> getProjectList() { return projects; }
 
         @Override
         public ObservableList<Beneficiary> getBeneficiaryList() {

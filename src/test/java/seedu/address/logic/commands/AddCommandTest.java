@@ -174,6 +174,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteProject(Project target) {
+
+        }
+        @Override
         public void deleteBeneficiary(Beneficiary target) {
 
         }
@@ -194,6 +198,9 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Project> getFilteredProjectList() { return null; }
+
+        @Override
         public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
             return null;
         }
@@ -202,7 +209,10 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
 
+        }
         @Override
         public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
 
