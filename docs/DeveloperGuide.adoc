@@ -291,6 +291,7 @@ Step 3. `MapCommandParser` splits the arguments into the previously mentioned `P
 
 Step 4. `MapCommand` searches through the list of all volunteers. A score is given to all volunteers based on criteria met * weightage given. The score and `Volunteer` is stored in an array of `Pairs` and sorted by the score.
 
+// end::map[]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption
