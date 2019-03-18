@@ -7,11 +7,15 @@ import java.util.List;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
+import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.project.Project;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueVolunteerList;
-import seedu.address.model.project.Project;
+import seedu.address.model.project.UniqueProjectList;
+
 
 /**
  * Wraps all data at the address-book level
@@ -21,6 +25,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueVolunteerList volunteers;
+    private final UniqueProjectList projects;
+    private final UniqueBeneficiaryList beneficiaries;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -33,6 +39,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         volunteers = new UniqueVolunteerList();
         persons = new UniquePersonList();
+        projects = new UniqueProjectList();
+        beneficiaries = new UniqueBeneficiaryList();
     }
 
     public AddressBook() {}
@@ -56,6 +64,31 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    public void setProjects(List<Project> projects) {
+        this.projects.setProjects(projects);
+        indicateModified();
+    }
+    @Override
+    public ObservableList<Beneficiary> getBeneficiaryList() {
+        return beneficiaries.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Volunteer> getVolunteerList() {
+        return volunteers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Project> getProjectList() { return projects.asUnmodifiableObservableList(); }
+
+    /**
+     * Replaces the contents of the Beneficiary list with {@code beneficiaries}.
+     * {@code beneficiaries} must not contain duplicate persons.
+     */
+    public void setBeneficiaries(List<Beneficiary> beneficiaries) {
+        this.beneficiaries.setBeneficiaries(beneficiaries);
+        indicateModified();
+    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -63,6 +96,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setBeneficiaries(newData.getBeneficiaryList());
+        setProjects(newData.getProjectList());
     }
 
     //// person-level operations
@@ -77,10 +112,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the address book.
      */
-    public boolean hasVolunteer(Volunteer volunteer){
+    public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
         return volunteers.contains(volunteer);
     }
+
+    /**
+     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
+     */
+    public boolean hasBeneficiary(Beneficiary beneficiary) {
+        requireNonNull(beneficiary);
+        return beneficiaries.contains(beneficiary);
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -89,10 +133,29 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
         indicateModified();
     }
+
+    /**
+     * Adds a volunteer to the address book.
+     * The person must not already exist in the address book.
+     */
     public void addVolunteer(Volunteer v) {
         volunteers.add(v);
         indicateModified();
     }
+
+    public void addProject(Project r) {
+        projects.add(r);
+        indicateModified();
+    }
+    /**
+     * Adds a beneficiary to the address book.
+     * The beneficiary must not already exist in the address book.
+     */
+    public void addBeneficiary(Beneficiary b) {
+        beneficiaries.add(b);
+        indicateModified();
+    }
+
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -106,11 +169,34 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
+        requireNonNull(editedBeneficiary);
+
+        beneficiaries.setBeneficiary(target, editedBeneficiary);
+        indicateModified();
+    }
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        indicateModified();
+    }
+    public void removeProject(Project key) {
+        projects.remove(key);
+        indicateModified();
+    }
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeBeneficiary(Beneficiary key) {
+        beneficiaries.remove(key);
         indicateModified();
     }
 
@@ -144,6 +230,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+//    @Override
+//    public ObservableList<Project> getProejctList() {
+//        return projects.asUnmodifiableObservableList();
+//    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -156,6 +247,4 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
-    public void addProject(Project project) {
-    }
 }

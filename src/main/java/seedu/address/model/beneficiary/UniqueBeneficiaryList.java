@@ -8,15 +8,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
 import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
+import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
 
 /**
- * A list of Beneficiarys that enforces uniqueness between its elements and does not allow nulls.
- * A Beneficiary is considered unique by comparing using {@code Beneficiary#isSameBeneficiary(Beneficiary)}. As such, adding and updating of
- * Beneficiarys uses Beneficiary#isSameBeneficiary(Beneficiary) for equality so as to ensure that the Beneficiary being added or updated is
- * unique in terms of identity in the UniqueBeneficiaryList. However, the removal of a Beneficiary uses Beneficiary#equals(Object) so
- * as to ensure that the Beneficiary with exactly the same fields will be removed.
+ * A list of beneficiaries that enforces uniqueness between its elements and does not allow nulls.
+ * A Beneficiary is considered unique by comparing using {@code Beneficiary#isSameBeneficiary(Beneficiary)}. As such,
+ * adding and updating of Beneficiaries uses Beneficiary#isSameBeneficiary(Beneficiary) for equality so as to ensure
+ * that the Beneficiary being added or updated is unique in terms of identity in the UniqueBeneficiaryList. However,
+ * the removal of a Beneficiary uses Beneficiary#equals(Object) so as to ensure that the Beneficiary with exactly
+ * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -51,7 +52,8 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
     /**
      * Replaces the Beneficiary {@code target} in the list with {@code editedBeneficiary}.
      * {@code target} must exist in the list.
-     * The Beneficiary identity of {@code editedBeneficiary} must not be the same as another existing Beneficiary in the list.
+     * The Beneficiary identity of {@code editedBeneficiary} must not be the same as another existing
+     * Beneficiary in the list.
      */
     public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
         requireAllNonNull(target, editedBeneficiary);
@@ -79,22 +81,35 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
         }
     }
 
-    public void setBeneficiarys(UniqueBeneficiaryList replacement) {
+    public void setBeneficiaries(UniqueBeneficiaryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code Beneficiarys}.
-     * {@code Beneficiarys} must not contain duplicate Beneficiarys.
+     * Replaces the contents of this list with {@code beneficiaries}.
+     * {@code beneficiaries} must not contain duplicate beneficiaries.
      */
-    public void setBeneficiarys(List<Beneficiary> Beneficiarys) {
-        requireAllNonNull(Beneficiarys);
-        if (!BeneficiarysAreUnique(Beneficiarys)) {
+    public void setBeneficiaries(List<Beneficiary> beneficiaries) {
+        requireAllNonNull(beneficiaries);
+        if (!beneficiariesAreUnique(beneficiaries)) {
             throw new DuplicateBeneficiaryException();
         }
 
-        internalList.setAll(Beneficiarys);
+        internalList.setAll(beneficiaries);
+    }
+    /**
+     * Returns true if {@code beneficiaries} contains only unique beneficiaries.
+     */
+    private boolean beneficiariesAreUnique(List<Beneficiary> beneficiaries) {
+        for (int i = 0; i < beneficiaries.size() - 1; i++) {
+            for (int j = i + 1; j < beneficiaries.size(); j++) {
+                if (beneficiaries.get(i).isSameBeneficiary(beneficiaries.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -119,19 +134,5 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code Beneficiarys} contains only unique Beneficiarys.
-     */
-    private boolean BeneficiarysAreUnique(List<Beneficiary> Beneficiarys) {
-        for (int i = 0; i < Beneficiarys.size() - 1; i++) {
-            for (int j = i + 1; j < Beneficiarys.size(); j++) {
-                if (Beneficiarys.get(i).isSameBeneficiary(Beneficiarys.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

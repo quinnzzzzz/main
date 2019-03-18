@@ -7,6 +7,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
 
+/**
+ * Adds a new project to VolunCHeer.
+ */
 public class AddVolunteer extends Command {
 
     public static final String COMMAND_WORD = "addVolunteer";

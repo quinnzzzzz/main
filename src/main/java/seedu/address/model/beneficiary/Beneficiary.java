@@ -3,9 +3,6 @@ package seedu.address.model.beneficiary;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Beneficiary in the address book.
@@ -24,8 +21,8 @@ public class Beneficiary {
     /**
      * Every field must be present and not null.
      */
-    public Beneficiary(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Beneficiary(Name name, Phone phone, Email email, Address address) {
+        requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.phone = phone;
         this.email = email;
