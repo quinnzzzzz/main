@@ -6,10 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
@@ -72,11 +69,6 @@ public interface Model {
      */
     void deleteVolunteer(Volunteer target);
 
-    /**
-     * Adds the given project.
-     * {@code project} must not already exist in the address book.
-     */
-    void addProject(Project project);
 
     /**
      * Adds the given volunteer.
@@ -150,13 +142,5 @@ public interface Model {
 
     void setSelectedVolunteer(Volunteer volunteer);
 
-    /**
-     * Add Beneficiary.
-     */
-    void addBeneficiary(Beneficiary beneficiary);
 
-    /**
-     * Check for the existence of the beneficiary.
-     */
-    boolean hasBeneficiary(Beneficiary beneficiary);
 }

@@ -38,29 +38,27 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddProjectCommand.COMMAND_WORD:
-                return new AddProjectCommandParser().parse(arguments);
 
-        case AddCommand.COMMAND_WORD:
+        case AddVolunteerCommand.COMMAND_WORD:
             return new AddVolunteerCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditVolunteerCommand.COMMAND_WORD:
+            return new EditVolunteerCommandParser().parse(arguments);
 
-        case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser().parse(arguments);
+        case SelectVolunteerCommand.COMMAND_WORD:
+            return new SelectVolunteerCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteVolunteerCommand.COMMAND_WORD:
+            return new DeleteVolunteerCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindVolunteerCommand.COMMAND_WORD:
+            return new FindVolunteerCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListVolunteerCommand.COMMAND_WORD:
+            return new ListVolunteerCommand();
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();

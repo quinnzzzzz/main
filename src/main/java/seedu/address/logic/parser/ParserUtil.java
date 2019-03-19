@@ -18,10 +18,6 @@ import seedu.address.model.volunteer.Emergency_contact;
 import seedu.address.model.volunteer.Medical_condition;
 import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Phone;
-import seedu.address.model.project.Beneficiary;
-import seedu.address.model.project.Date;
-import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -58,18 +54,7 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
-    public static ProjectTitle parseProjectTitle(String projectTitle) throws ParseException {
-        requireNonNull(projectTitle);
-        return new ProjectTitle(projectTitle);
-    }
-    public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        return new Date();
-    }
-    public static Beneficiary parseBeneficiary(String beneficiary) throws ParseException {
-        requireNonNull(beneficiary);
-        return new Beneficiary();
-    }
+
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.

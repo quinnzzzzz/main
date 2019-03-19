@@ -21,8 +21,6 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.exceptions.DuplicateVolunteerException;
 import seedu.address.testutil.VolunteerBuilder;
@@ -119,7 +117,6 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Volunteer> volunteers = FXCollections.observableArrayList();
-        private final ObservableList<Beneficiary> beneficiaries = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Volunteer> volunteers) {
             this.volunteers.setAll(volunteers);
@@ -130,10 +127,6 @@ public class AddressBookTest {
             return volunteers;
         }
 
-        @Override
-        public ObservableList<Beneficiary> getBeneficiaryList() {
-            return beneficiaries;
-        }
 
 
         @Override

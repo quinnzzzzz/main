@@ -9,9 +9,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.UniqueVolunteerList;
-import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.beneficiary.UniqueBeneficiaryList;
-import seedu.address.model.project.Project;
 
 /**
  * Wraps all data at the address-book level
@@ -20,7 +17,6 @@ import seedu.address.model.project.Project;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueVolunteerList volunteers;
-    private final UniqueBeneficiaryList beneficiaries;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -32,7 +28,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         volunteers = new UniqueVolunteerList();
-        beneficiaries = new UniqueBeneficiaryList();
     }
 
     public AddressBook() {}
@@ -56,10 +51,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
-    @Override
-    public ObservableList<Beneficiary> getBeneficiaryList() {
-        return beneficiaries.asUnmodifiableObservableList();
-    }
 
     @Override
     public ObservableList<Volunteer> getVolunteerList() {
@@ -67,20 +58,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the Beneficiary list with {@code beneficiaries}.
-     * {@code beneficiaries} must not contain duplicate persons.
-     */
-    public void setBeneficiaries(List<Beneficiary> beneficiaries) {
-        this.beneficiaries.setBeneficiaries(beneficiaries);
-        indicateModified();
-    }
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setVolunteers(newData.getVolunteerList());
-        setBeneficiaries(newData.getBeneficiaryList());
     }
 
     //// volunteer-level operations
@@ -93,13 +75,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return volunteers.contains(volunteer);
     }
 
-    /**
-     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
-     */
-    public boolean hasBeneficiary(Beneficiary beneficiary){
-        requireNonNull(beneficiary);
-        return beneficiaries.contains(beneficiary);
-    }
 
     /**
      * Adds a volunteer to the address book.
@@ -115,10 +90,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a beneficiary to the address book.
      * The beneficiary must not already exist in the address book.
      */
-    public void addBeneficiary(Beneficiary b) {
-        beneficiaries.add(b);
-        indicateModified();
-    }
 
     /**
      * Replaces the given volunteer {@code target} in the list with {@code editedPerson}.
@@ -137,12 +108,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
-        requireNonNull(editedBeneficiary);
-
-        beneficiaries.setBeneficiary(target, editedBeneficiary);
-        indicateModified();
-    }
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -152,10 +117,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
-    public void removeBenficiary(Beneficiary key) {
-        beneficiaries.remove(key);
-        indicateModified();
-    }
 
     @Override
     public void addListener(InvalidationListener listener) {
@@ -195,6 +156,4 @@ public class AddressBook implements ReadOnlyAddressBook {
         return volunteers.hashCode();
     }
 
-    public void addProject(Project project) {
-    }
 }

@@ -15,11 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.exceptions.VolunteerNotFoundException;
-import seedu.address.model.project.Project;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -115,10 +112,6 @@ public class ModelManager implements Model {
         updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
     }
 
-    @Override
-    public void addProject(Project project) {
-        versionedAddressBook.addProject(project);
-    }
 
     @Override
     public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
@@ -186,7 +179,7 @@ public class ModelManager implements Model {
     @Override
     public void setSelectedVolunteer(Volunteer volunteer) {
         if (volunteer != null && !filteredVolunteers.contains(volunteer))
-        selectedVolunteer.setValue(volunteer);
+            selectedVolunteer.setValue(volunteer);
     }
 
     /**
@@ -237,18 +230,4 @@ public class ModelManager implements Model {
                 && filteredVolunteers.equals(other.filteredVolunteers)
                 && Objects.equals(selectedVolunteer.get(), other.selectedVolunteer.get());
     }
-
-    @Override
-    public void addBeneficiary(Beneficiary beneficiary) {
-
-    }
-
-    /*
-    ** prototype for checking existence of beneficiary
-     */
-    @Override
-    public boolean hasBeneficiary(Beneficiary Beneficiary) {
-        return false;
-    }
-
 }

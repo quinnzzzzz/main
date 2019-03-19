@@ -23,9 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.project.Project;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.VolunteerBuilder;
 
@@ -129,9 +127,7 @@ public class AddVolunteerCommandTest {
         public void addVolunteer(Volunteer volunteer) {
             throw new AssertionError("This method should not be called.");
         }
-        @Override
-        public void addProject(Project project) { throw new AssertionError("This method should not be called.");
-        }
+
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
@@ -206,16 +202,6 @@ public class AddVolunteerCommandTest {
         @Override
         public void setSelectedVolunteer(Volunteer volunteer) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addBeneficiary(Beneficiary beneficiary) {
-
-        }
-
-        @Override
-        public boolean hasBeneficiary(Beneficiary beneficiary) {
-            return false;
         }
 
 
