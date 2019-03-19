@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Volunteer;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
 
 /**
@@ -21,6 +21,7 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
     Predicate<Beneficiary> PREDICATE_SHOW_ALL_BENEFICIARIES = unused -> true;
+    Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -121,8 +122,14 @@ public interface Model {
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Person> getFilteredPersonList();
+    /**
+     * Returns an unmodifiable view of the filtered beneficiary list
+     */
     ObservableList<Beneficiary> getFilteredBeneficiaryList();
-
+    /**
+     * Returns an unmodifiable view of the filtered volunteer list
+     */
+    ObservableList<Volunteer> getFilteredVolunteerList();
     /**
      * Returns an unmodifiable view of the filtered project list
      */
@@ -193,6 +200,48 @@ public interface Model {
     boolean hasVolunteer(Volunteer volunteer);
 
     void addVolunteer(Volunteer volunteer);
+
+    /**
+     * Deletes the given volunteer.
+     * The volunteer must exist in the address book.
+     */
+    void deleteVolunteer(Volunteer target);
+
+    /**
+     * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
+     * {@code target} must exist in the address book.
+     * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the address book.
+     */
+    void setVolunteer(Volunteer target, Volunteer editedVolunteer);
+
+    /**
+     * Selected volunteer in the filtered volunteer list.
+     * null if no volunteer is selected.
+     */
+    ReadOnlyProperty<Volunteer> selectedVolunteerProperty();
+
+    /**
+     * Returns the selected volunteer in the filtered volunteer list.
+     * null if no volunteer is selected.
+     */
+
+    /**
+     * gets the selected volunteer in the filtered volunteer list.
+     */
+
+    Volunteer getSelectedVolunteer();
+    /**
+     * Sets the selected volunteer in the filtered volunteer list.
+     */
+
+    void setSelectedVolunteer(Volunteer volunteer);
+
+    /**
+     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
 
 
     /**

@@ -10,10 +10,10 @@ import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Volunteer;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UniqueVolunteerList;
+import seedu.address.model.volunteer.UniqueVolunteerList;
 import seedu.address.model.project.UniqueProjectList;
 
 
@@ -247,4 +247,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
+    /**
+     * Replaces the given volunteer {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedVolunteer} must not be the same as another existing volunteer in the address book.
+     */
+    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
+        requireNonNull(editedVolunteer);
+
+        volunteers.setVolunteer(target, editedVolunteer);
+        indicateModified();
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeVolunteer(Volunteer key) {
+        volunteers.remove(key);
+        indicateModified();
+    }
 }

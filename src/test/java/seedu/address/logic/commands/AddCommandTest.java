@@ -25,7 +25,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Volunteer;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
 
@@ -206,6 +206,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<seedu.address.model.volunteer.Volunteer> getFilteredVolunteerList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -273,6 +278,36 @@ public class AddCommandTest {
 
         @Override
         public void setSelectedBeneficiary(Beneficiary beneficiary) {
+
+        }
+
+        @Override
+        public void deleteVolunteer(seedu.address.model.volunteer.Volunteer target) {
+
+        }
+
+        @Override
+        public void setVolunteer(seedu.address.model.volunteer.Volunteer target, seedu.address.model.volunteer.Volunteer editedVolunteer) {
+
+        }
+
+        @Override
+        public ReadOnlyProperty<seedu.address.model.volunteer.Volunteer> selectedVolunteerProperty() {
+            return null;
+        }
+
+        @Override
+        public seedu.address.model.volunteer.Volunteer getSelectedVolunteer() {
+            return null;
+        }
+
+        @Override
+        public void setSelectedVolunteer(seedu.address.model.volunteer.Volunteer volunteer) {
+
+        }
+
+        @Override
+        public void updateFilteredVolunteerList(Predicate<seedu.address.model.volunteer.Volunteer> predicate) {
 
         }
 
