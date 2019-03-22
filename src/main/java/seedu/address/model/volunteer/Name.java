@@ -1,10 +1,10 @@
-package seedu.address.model.beneficiary;
+package seedu.address.model.volunteer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Beneficiary's name in the address book.
+ * Represents a Volunteer's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
