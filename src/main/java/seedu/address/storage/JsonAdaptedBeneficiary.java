@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,22 +25,17 @@ class JsonAdaptedBeneficiary {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedBeneficiary} with the given beneficiary details.
      */
     @JsonCreator
     public JsonAdaptedBeneficiary(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                                  @JsonProperty("email") String email, @JsonProperty("address") String address,
-                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                  @JsonProperty("email") String email, @JsonProperty("address") String address) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
     }
 
     /**
@@ -62,9 +55,6 @@ class JsonAdaptedBeneficiary {
      */
     public Beneficiary toModelType() throws IllegalValueException {
         final List<Tag> beneficiaryTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            beneficiaryTags.add(tag.toModelType());
-        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -98,7 +88,6 @@ class JsonAdaptedBeneficiary {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(beneficiaryTags);
         return new Beneficiary(modelName, modelPhone, modelEmail, modelAddress);
     }
 
