@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.awt.*;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
@@ -7,9 +8,12 @@ import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.beneficiary.Beneficiary;
 
@@ -23,9 +27,15 @@ public class BeneficiaryListPanel extends UiPart<Region> {
     @FXML
     private ListView<Beneficiary> beneficiaryListView;
 
+    @FXML
+    private Label panelName;
+
     public BeneficiaryListPanel(ObservableList<Beneficiary> beneficiaryList, ObservableValue<Beneficiary> selectedBeneficiary,
                                 Consumer<Beneficiary> onSelectedBeneficiaryChange) {
         super(FXML);
+        panelName.setFont(Font.font("Cambria", 32));
+        panelName.setTextFill(Color.web("#ADFF2F")) ;
+        panelName.setText("Beneficiaries Dummy");
         beneficiaryListView.setItems(beneficiaryList);
         beneficiaryListView.setCellFactory(listView -> new BeneficiaryListViewCell());
         beneficiaryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
