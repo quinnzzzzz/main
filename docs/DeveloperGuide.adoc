@@ -318,6 +318,25 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+//tag::map[]
+=== Map feature
+==== Current Implementation
+
+The Mapping mechanism is facilitated by `MapObject`. It stores the given criteria and its weightage as a `Pair`.
+`MapObject` is created by the `MapCommandParser` method and passed to `MapCommand`.
+
+Given below is an example usage scenario and how the map mechanism behaves at each step.
+
+Step 1. The map command invoked by the user. We shall look at the example command of "map y/3>18 r/2chinese m/1nil". `AddressBookParser` detects the map command and calls `MapCommandParser`
+
+Step 2. `MapCommandParser` collects the arguments and checks for the appropriate prefixes. Current accepted prefixes: age(y/), race(r/), medical condition(m/).
+
+Step 3. `MapCommandParser` splits the arguments into the previously mentioned `Pairs` of (`Weightage`,`Criteria`). In the given example, the above command would be stored in `Pairs` of (3,18), (2,chinese) and (1,nil). The comparator for age is stored in a separate field (currently accepted: >, <, =). A new `MapObject` instance is created to store the pairs, which is passed to `MapCommand`.
+
+Step 4. `MapCommand` searches through the list of all volunteers. A score is given to all volunteers based on criteria met * weightage given. The score and `Volunteer` is stored in an array of `Pairs` and sorted by the score.
+
+// end::map[]
+
 // tag::dataencryption[]
 === [Proposed] Data Encryption
 
