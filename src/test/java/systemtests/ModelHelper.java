@@ -6,34 +6,34 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.model.Model;
-import seedu.address.model.volunteer.Volunteer;
+import seedu.address.model.person.Person;
 
 /**
  * Contains helper methods to set up {@code Model} for testing.
  */
 public class ModelHelper {
-    private static final Predicate<Volunteer> PREDICATE_MATCHING_NO_VOLUNTEERS = unused -> false;
+    private static final Predicate<Person> PREDICATE_MATCHING_NO_PERSONS = unused -> false;
 
     /**
      * Updates {@code model}'s filtered list to display only {@code toDisplay}.
      */
-    public static void setFilteredList(Model model, List<Volunteer> toDisplay) {
-        Optional<Predicate<Volunteer>> predicate =
+    public static void setFilteredList(Model model, List<Person> toDisplay) {
+        Optional<Predicate<Person>> predicate =
                 toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
-        model.updateFilteredVolunteerList(predicate.orElse(PREDICATE_MATCHING_NO_VOLUNTEERS));
+        model.updateFilteredPersonList(predicate.orElse(PREDICATE_MATCHING_NO_PERSONS));
     }
 
     /**
      * @see ModelHelper#setFilteredList(Model, List)
      */
-    public static void setFilteredList(Model model, Volunteer... toDisplay) {
+    public static void setFilteredList(Model model, Person... toDisplay) {
         setFilteredList(model, Arrays.asList(toDisplay));
     }
 
     /**
-     * Returns a predicate that evaluates to true if this {@code Volunteer} equals to {@code other}.
+     * Returns a predicate that evaluates to true if this {@code Person} equals to {@code other}.
      */
-    private static Predicate<Volunteer> getPredicateMatching(Volunteer other) {
-        return volunteer -> volunteer.equals(other);
+    private static Predicate<Person> getPredicateMatching(Person other) {
+        return person -> person.equals(other);
     }
 }

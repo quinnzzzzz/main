@@ -15,7 +15,9 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.volunteer.Volunteer;
+import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 import seedu.address.storage.Storage;
 
 /**
@@ -72,8 +74,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Volunteer> getFilteredVolunteerList() {
-        return model.getFilteredVolunteerList();
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
+    }
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return model.getFilteredProjectList();
+    }
+
+    @Override
+    public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
+        return model.getFilteredBeneficiaryList();
     }
 
     @Override
@@ -97,12 +108,22 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyProperty<Volunteer> selectedVolunteerProperty() {
-        return model.selectedVolunteerProperty();
+    public ReadOnlyProperty<Person> selectedPersonProperty() {
+        return model.selectedPersonProperty();
     }
 
     @Override
-    public void setSelectedVolunteer(Volunteer volunteer) {
-        model.setSelectedVolunteer(volunteer);
+    public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
+        return model.selectedBeneficiaryProperty();
+    }
+
+    @Override
+    public void setSelectedPerson(Person person) {
+        model.setSelectedPerson(person);
+    }
+
+    @Override
+    public void setSelectedBeneficiary(Beneficiary beneficiary) {
+        model.setSelectedBeneficiary(beneficiary);
     }
 }

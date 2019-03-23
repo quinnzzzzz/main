@@ -6,7 +6,10 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.person.Person;
 import seedu.address.model.volunteer.Volunteer;
+import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
@@ -15,6 +18,9 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<Beneficiary> PREDICATE_SHOW_ALL_BENEFICIARIES = unused -> true;
     Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
 
     /**
@@ -58,42 +64,86 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a volunteer with the same identity as {@code volunteer} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasVolunteer(Volunteer volunteer);
-
+    boolean hasPerson(Person person);
 
     /**
-     * Deletes the given volunteer.
-     * The volunteer must exist in the address book.
+     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
      */
-    void deleteVolunteer(Volunteer target);
-
+    boolean hasBeneficiary(Beneficiary beneficiary);
 
     /**
-     * Adds the given volunteer.
-     * {@code volunteer} must not already exist in the address book.
+     * Deletes the given person.
+     * The person must exist in the address book.
      */
-    void addVolunteer(Volunteer volunteer);
+    void deletePerson(Person target);
 
     /**
-     * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
+     * Deletes the given project.
+     * The person must exist in the address book.
+     */
+    void deleteProject(Project target);
+    /**
+     * Deletes the given beneficiary.
+     * The beneficiary must exist in the address book.
+     */
+    void deleteBeneficiary(Beneficiary target);
+
+    /**
+     * Adds the given project.
+     * {@code project} must not already exist in the address book.
+     */
+
+    void addProject(Project project);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void addPerson(Person person);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setVolunteer(Volunteer target, Volunteer editedVolunteer);
+    void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given Beneficiary{@code target} with {@code editedBeneficiary}.
+     * {@code target} must exist in the address book.
+     * The Beneficiary identity of {@code editedBeneficiary} must not be the same
+     * as another existing Beneficiary in the address book.
+     */
+    void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
+
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
+    ObservableList<Person> getFilteredPersonList();
+    /**
+     * Returns an unmodifiable view of the filtered beneficiary list
+     */
+    ObservableList<Beneficiary> getFilteredBeneficiaryList();
     /**
      * Returns an unmodifiable view of the filtered volunteer list
      */
     ObservableList<Volunteer> getFilteredVolunteerList();
-
     /**
-     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
+     * Returns an unmodifiable view of the filtered project list
+     */
+    ObservableList<Project> getFilteredProjectList();
+    /**
+     * Updates the filter of the filtered Beneficiary list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
+    void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredProjectList(Predicate<Project> predicate);
+
+    void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
 
     /**
      * Returns true if the model has previous address book states to restore.
@@ -121,6 +171,50 @@ public interface Model {
     void commitAddressBook();
 
     /**
+     * Selected person in the filtered person list.
+     * null if no person is selected.
+     */
+    ReadOnlyProperty<Person> selectedPersonProperty();
+
+    /**
+     * Selected beneficiary in the filtered beneficiary list.
+     * null if no beneficiary is selected.
+     */
+    ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty();
+
+    /**
+     * Returns the selected beneficiary in the filtered beneficiary list.
+     * null if no beneficairy is selected.
+     */
+    Beneficiary getSelectedBeneficiary();
+
+    Person getSelectedPerson();
+    /**
+     * Sets the selected person in the filtered person list.
+     */
+    void setSelectedPerson(Person person);
+
+    void setSelectedBeneficiary (Beneficiary beneficiary);
+
+    //Volunteers
+    boolean hasVolunteer(Volunteer volunteer);
+
+    void addVolunteer(Volunteer volunteer);
+
+    /**
+     * Deletes the given volunteer.
+     * The volunteer must exist in the address book.
+     */
+    void deleteVolunteer(Volunteer target);
+
+    /**
+     * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
+     * {@code target} must exist in the address book.
+     * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the address book.
+     */
+    void setVolunteer(Volunteer target, Volunteer editedVolunteer);
+
+    /**
      * Selected volunteer in the filtered volunteer list.
      * null if no volunteer is selected.
      */
@@ -142,5 +236,16 @@ public interface Model {
 
     void setSelectedVolunteer(Volunteer volunteer);
 
+    /**
+     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
 
+
+    /**
+     * Add Beneficiary.
+     */
+    void addBeneficiary(Beneficiary beneficiary);
 }

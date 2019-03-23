@@ -5,8 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.TypicalVolunteers.ALICE;
-import static seedu.address.testutil.TypicalVolunteers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,9 +21,12 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.person.Person;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.volunteer.exceptions.DuplicateVolunteerException;
-import seedu.address.testutil.VolunteerBuilder;
+import seedu.address.model.project.Project;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
@@ -34,7 +37,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getVolunteerList());
+        assertEquals(Collections.emptyList(), addressBook.getPersonList());
     }
 
     @Test
@@ -51,46 +54,46 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicateVolunteers_throwsDuplicateVolunteerException() {
-        // Two volunteers with the same identity fields
-        Volunteer editedAlice = new VolunteerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+        // Two persons with the same identity fields
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Volunteer> newVolunteers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newVolunteers);
+        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newPersons);
 
-        thrown.expect(DuplicateVolunteerException.class);
+        thrown.expect(DuplicatePersonException.class);
         addressBook.resetData(newData);
     }
 
     @Test
-    public void hasVolunteer_nullVolunteer_throwsNullPointerException() {
+    public void hasPerson_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        addressBook.hasVolunteer(null);
+        addressBook.hasPerson(null);
     }
 
     @Test
-    public void hasVolunteer_volunteerNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasVolunteer(ALICE));
+    public void hasPerson_personNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasVolunteer_volunteerInAddressBook_returnsTrue() {
-        addressBook.addVolunteer(ALICE);
-        assertTrue(addressBook.hasVolunteer(ALICE));
+    public void hasPerson_personInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        assertTrue(addressBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasVolunteer_volunteerWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addVolunteer(ALICE);
-        Volunteer editedAlice = new VolunteerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasVolunteer(editedAlice));
+        assertTrue(addressBook.hasPerson(editedAlice));
     }
 
     @Test
-    public void getVolunteerList_modifyList_throwsUnsupportedOperationException() {
+    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        addressBook.getVolunteerList().remove(0);
+        addressBook.getPersonList().remove(0);
     }
 
     @Test
@@ -98,7 +101,7 @@ public class AddressBookTest {
         SimpleIntegerProperty counter = new SimpleIntegerProperty();
         InvalidationListener listener = observable -> counter.set(counter.get() + 1);
         addressBook.addListener(listener);
-        addressBook.addVolunteer(ALICE);
+        addressBook.addPerson(ALICE);
         assertEquals(1, counter.get());
     }
 
@@ -108,26 +111,40 @@ public class AddressBookTest {
         InvalidationListener listener = observable -> counter.set(counter.get() + 1);
         addressBook.addListener(listener);
         addressBook.removeListener(listener);
-        addressBook.addVolunteer(ALICE);
+        addressBook.addPerson(ALICE);
         assertEquals(0, counter.get());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose volunteers list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
+        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Beneficiary> beneficiaries = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Volunteer> volunteers = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Volunteer> volunteers) {
-            this.volunteers.setAll(volunteers);
+        AddressBookStub(Collection<Person> persons) {
+            this.persons.setAll(persons);
+        }
+
+        @Override
+        public ObservableList<Person> getPersonList() {
+            return persons;
+        }
+
+        @Override
+        public ObservableList<Project> getProjectList() { return projects; }
+
+        @Override
+        public ObservableList<Beneficiary> getBeneficiaryList() {
+            return beneficiaries;
         }
 
         @Override
         public ObservableList<Volunteer> getVolunteerList() {
             return volunteers;
         }
-
-
 
         @Override
         public void addListener(InvalidationListener listener) {

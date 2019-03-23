@@ -15,8 +15,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.person.Person;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.volunteer.exceptions.VolunteerNotFoundException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.model.project.Project;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,8 +30,15 @@ public class ModelManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Project> filteredProjects;
+    private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
     private final FilteredList<Volunteer> filteredVolunteers;
-    private final SimpleObjectProperty<Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<seedu.address.model.volunteer.Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
+
+
+    private final FilteredList<Beneficiary> filteredBeneficiaries;
+    private final SimpleObjectProperty<Beneficiary> selectedBeneficiary = new SimpleObjectProperty<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +51,12 @@ public class ModelManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
+        filteredPersons.addListener(this::ensureSelectedPersonIsValid);
+        filteredProjects = new FilteredList<>(versionedAddressBook.getProjectList());
+        filteredBeneficiaries = new FilteredList<>(versionedAddressBook.getBeneficiaryList());
+        filteredBeneficiaries.addListener(this::ensureSelectedBeneficiaryIsValid);
+
         filteredVolunteers = new FilteredList<>(versionedAddressBook.getVolunteerList());
         filteredVolunteers.addListener(this::ensureSelectedVolunteerIsValid);
     }
@@ -96,6 +113,71 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return versionedAddressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasBeneficiary(Beneficiary beneficiary) {
+        requireNonNull(beneficiary);
+        return versionedAddressBook.hasBeneficiary(beneficiary);
+    }
+
+    @Override
+    public void deletePerson(Person target) {
+        versionedAddressBook.removePerson(target);
+    }
+
+    @Override
+
+    public void deleteProject(Project target) {
+        versionedAddressBook.removeProject(target);
+    }
+
+    public void deleteBeneficiary(Beneficiary target) {
+        versionedAddressBook.removeBeneficiary(target);
+    }
+
+    @Override
+    public void addPerson(Person person) {
+        versionedAddressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addVolunteer(Volunteer volunteer) {
+        versionedAddressBook.addVolunteer(volunteer);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addBeneficiary(Beneficiary beneficiary) {
+        versionedAddressBook.addBeneficiary(beneficiary);
+        updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
+    }
+
+    @Override
+    public void addProject(Project project) {
+        versionedAddressBook.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        versionedAddressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
+        requireAllNonNull(target, editedBeneficiary);
+
+        versionedAddressBook.setBeneficiary(target, editedBeneficiary);
+    }
+
+    @Override
     public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
         return versionedAddressBook.hasVolunteer(volunteer);
@@ -105,13 +187,6 @@ public class ModelManager implements Model {
     public void deleteVolunteer(Volunteer target) {
         versionedAddressBook.removeVolunteer(target);
     }
-
-    @Override
-    public void addVolunteer(Volunteer volunteer) {
-        versionedAddressBook.addVolunteer(volunteer);
-        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
-    }
-
 
     @Override
     public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
@@ -135,6 +210,45 @@ public class ModelManager implements Model {
     public void updateFilteredVolunteerList(Predicate<Volunteer> predicate) {
         requireNonNull(predicate);
         filteredVolunteers.setPredicate(predicate);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
+        return filteredBeneficiaries;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
+        requireNonNull(predicate);
+        filteredBeneficiaries.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================
@@ -211,6 +325,105 @@ public class ModelManager implements Model {
         }
     }
 
+    //=========== Selected person ===========================================================================
+
+    @Override
+    public ReadOnlyProperty<Person> selectedPersonProperty() {
+        return selectedPerson;
+    }
+
+    @Override
+    public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
+        return selectedBeneficiary;
+    }
+
+    @Override
+    public Person getSelectedPerson() {
+        return selectedPerson.getValue();
+    }
+
+    @Override
+    public Beneficiary getSelectedBeneficiary() {
+        return selectedBeneficiary.getValue();
+    }
+
+
+    @Override
+    public void setSelectedPerson(Person person) {
+        if (person != null && !filteredPersons.contains(person)) {
+            throw new PersonNotFoundException();
+        }
+        selectedPerson.setValue(person);
+    }
+
+    @Override
+    public void setSelectedBeneficiary(Beneficiary beneficiary) {
+        if (beneficiary != null && !filteredBeneficiaries.contains(beneficiary)) {
+            throw new PersonNotFoundException();
+        }
+        selectedBeneficiary.setValue(beneficiary);
+    }
+
+    /**
+     * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
+     */
+    private void ensureSelectedBeneficiaryIsValid(ListChangeListener.Change<? extends Beneficiary> change) {
+        while (change.next()) {
+            if (selectedBeneficiary.getValue() == null) {
+                // null is always a valid selected person, so we do not need to check that it is valid anymore.
+                return;
+            }
+
+            boolean wasSelectedBeneficiaryReplaced = change.wasReplaced()
+                    && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedBeneficiary.getValue());
+            if (wasSelectedBeneficiaryReplaced) {
+                // Update selectedPerson to its new value.
+                int index = change.getRemoved().indexOf(selectedBeneficiary.getValue());
+                selectedBeneficiary.setValue(change.getAddedSubList().get(index));
+                continue;
+            }
+
+            boolean wasSelectedBeneficiaryRemoved = change.getRemoved().stream()
+                    .anyMatch(removedBeneficiary -> selectedBeneficiary.getValue()
+                            .isSameBeneficiary(removedBeneficiary));
+            if (wasSelectedBeneficiaryRemoved) {
+                // Select the person that came before it in the list,
+                // or clear the selection if there is no such person.
+                selectedBeneficiary.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            }
+        }
+    }
+
+    /**
+     * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
+     */
+    private void ensureSelectedPersonIsValid(ListChangeListener.Change<? extends Person> change) {
+        while (change.next()) {
+            if (selectedPerson.getValue() == null) {
+                // null is always a valid selected person, so we do not need to check that it is valid anymore.
+                return;
+            }
+
+            boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedPerson.getValue());
+            if (wasSelectedPersonReplaced) {
+                // Update selectedPerson to its new value.
+                int index = change.getRemoved().indexOf(selectedPerson.getValue());
+                selectedPerson.setValue(change.getAddedSubList().get(index));
+                continue;
+            }
+
+            boolean wasSelectedPersonRemoved = change.getRemoved().stream()
+                    .anyMatch(removedPerson -> selectedPerson.getValue().isSamePerson(removedPerson));
+            if (wasSelectedPersonRemoved) {
+                // Select the person that came before it in the list,
+                // or clear the selection if there is no such person.
+                selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            }
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -227,7 +440,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredVolunteers.equals(other.filteredVolunteers)
-                && Objects.equals(selectedVolunteer.get(), other.selectedVolunteer.get());
+                && filteredPersons.equals(other.filteredPersons)
+                && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
     }
 }

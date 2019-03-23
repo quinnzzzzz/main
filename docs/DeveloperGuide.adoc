@@ -194,6 +194,50 @@ Classes used by multiple components are in the `seedu.voluncheerbook.commons` pa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::[recommendationCommandLine][]
+=== [Proposed] Command Line Recommendation feature
+==== Proposed Implementation
+The command line recommendation feature is facilitated by the `CommandLineParser`. It imports the 'CliSyntax.Java'
+and stores internally the `UserClosestInput` and `CommandUsed`. It updates the `UserClosestInput` and process to
+give suggestions.
++
+Given below is an example usage scenario and how the command line recommendation feature behaves at each step.
+
+Step 1: The user types in a command keyword then type [space], the CommandLineParser is initialized which stores the
+`UserClosestInput` and `CommandUsed`. Then the command line show the command syntax.
+
+Step 2: The user continues to type, `UserClosestInput` takes the input and stores. There are 2 alternatives:
+* If the user types a slash [\] the `UserClosestInput` waits for syntax and when syntax match, shows the recommandation
+list for that particular slash sub syntax.
+
+* If the user types without the slash [\] the example remains.
+
+Step 3: After the users type [Enter] the class is cleared.
+
+image::CommandLineRecommendationSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: How often should the `UserClosestInput` refreshs itself
+
+* **Alternative 1 (current choice):** Everytime the [space] key is used.
+** Pros: Easy to implement.
+** Cons: Unable to dynamicly support the user.
+* **Alternative 2:** Everytime a new character is type.
+** Pros: Very dynamic in the UI and supporting the user.
+** Cons: Potential to cause lagging, harder to implement.
+
+===== Aspect (proposed): Choices for user to quickly choose the recommendation
+
+* **Alternative 1 (current choice):** [tab] when only 1 choice left.
+** Pros: Easy to implement.
+** Cons: Unoptimized for this particular purpose.
+* **Alternative 2:** Arrow key.
+** Pros: Good for user experiences.
+** Cons: Might be difficult to implement.
+
+// end::recommendationCommandLine[]
+
 // tag::undoredo[]
 === Undo/Redo feature
 ==== Current Implementation
