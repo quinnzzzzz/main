@@ -48,16 +48,16 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVolunteerCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
-        Race race = ParserUtil.parseRace(argMultimap.getValue(PREFIX_RACE).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Emergency_contact emergency_contact = ParserUtil.parseEmergency_contact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
-        Medical_condition medical_condition = ParserUtil.parseMedical_condition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get());
-        Dietary_preference dietary_preference = ParserUtil.parseDietary_preference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Name name = ParserUtilVolunteer.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Age age = ParserUtilVolunteer.parseAge(argMultimap.getValue(PREFIX_AGE).get());
+        Race race = ParserUtilVolunteer.parseRace(argMultimap.getValue(PREFIX_RACE).get());
+        Phone phone = ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Address address = ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Email email = ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Emergency_contact emergency_contact = ParserUtilVolunteer.parseEmergency_contact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
+        Medical_condition medical_condition = ParserUtilVolunteer.parseMedical_condition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get());
+        Dietary_preference dietary_preference = ParserUtilVolunteer.parseDietary_preference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get());
+        Set<Tag> tagList = ParserUtilVolunteer.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Volunteer volunteer = new Volunteer(name, age, race, phone, address, email, emergency_contact, dietary_preference, medical_condition, tagList);
 

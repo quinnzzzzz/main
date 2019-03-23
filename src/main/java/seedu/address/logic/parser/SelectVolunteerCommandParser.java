@@ -18,7 +18,7 @@ public class SelectVolunteerCommandParser implements Parser<SelectVolunteerComma
      */
     public SelectVolunteerCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtilVolunteer.parseIndex(args);
             return new SelectVolunteerCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
