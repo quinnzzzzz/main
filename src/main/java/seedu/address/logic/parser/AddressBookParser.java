@@ -58,11 +58,11 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddProjectCommand.COMMAND_WORD:
-                return new AddProjectCommandParser().parse(arguments);
+        case AddProjectCommand.COMMAND_WORD:
+            return new AddProjectCommandParser().parse(arguments);
 
-            case AddBeneficiaryCommand.COMMAND_WORD:
-                return new AddBeneficiaryCommandParser().parse(arguments);
+        case AddBeneficiaryCommand.COMMAND_WORD:
+            return new AddBeneficiaryCommandParser().parse(arguments);
 
             case AddVolunteerCommand.COMMAND_WORD:
                 return new AddVolunteerCommandParser().parse(arguments);
@@ -100,9 +100,10 @@ public class AddressBookParser {
             case ListBeneficiaryCommand.COMMAND_WORD:
                 return new ListBeneficiaryCommand();
 
+
             case ListVolunteerCommand.COMMAND_WORD:
                 return new ListVolunteerCommand();
-
+            
             case HistoryCommand.COMMAND_WORD:
                 return new HistoryCommand();
 
@@ -114,6 +115,7 @@ public class AddressBookParser {
 
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
+
 
             case UndoCommand.COMMAND_WORD:
                 return new UndoCommand();
