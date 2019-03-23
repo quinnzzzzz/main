@@ -21,6 +21,10 @@ import seedu.address.logic.commands.EditVolunteerCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindBeneficiaryCommand;
 import seedu.address.logic.commands.FindVolunteerCommand;
+import seedu.address.logic.commands.EditBeneficiaryCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindBeneficiaryCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
@@ -62,8 +66,11 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddProjectCommand.COMMAND_WORD:
-                return new AddProjectCommandParser().parse(arguments);
+        case AddProjectCommand.COMMAND_WORD:
+            return new AddProjectCommandParser().parse(arguments);
+
+        case AddBeneficiaryCommand.COMMAND_WORD:
+            return new AddBeneficiaryCommandParser().parse(arguments);
 
             case AddBeneficiaryCommand.COMMAND_WORD:
                 return new AddBeneficiaryCommandParser().parse(arguments);
@@ -97,22 +104,55 @@ public class AddressBookParser {
 
             case FindBeneficiaryCommand.COMMAND_WORD:
                 return new FindBeneficiaryCommandParser().parse(arguments);
+            
+            case EditBeneficiaryCommand.COMMAND_WORD:
+                return new EditBeneficiaryCommandParser().parse(arguments);
+
+            case SelectCommand.COMMAND_WORD:
+                return new SelectCommandParser().parse(arguments);
 
             case FindVolunteerCommand.COMMAND_WORD:
                 return new FindVolunteerCommandParser().parse(arguments);
 
             case ListBeneficiaryCommand.COMMAND_WORD:
                 return new ListBeneficiaryCommand();
+            
+            case DeleteBeneficiaryCommand.COMMAND_WORD:
+                return new DeleteBeneficiaryCommandParser().parse(arguments);
+
+            case DeleteProjectCommand.COMMAND_WORD:
+                return new DeleteProjectCommandParser().parse(arguments);
+
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
             case ListVolunteerCommand.COMMAND_WORD:
                 return new ListVolunteerCommand();
-
+            
             case HistoryCommand.COMMAND_WORD:
                 return new HistoryCommand();
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
 
+            case FindBeneficiaryCommand.COMMAND_WORD:
+                return new FindBeneficiaryCommandParser().parse(arguments);
+
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
+
+            case ListBeneficiaryCommand.COMMAND_WORD:
+                return new ListBeneficiaryCommand();
+
+            case HistoryCommand.COMMAND_WORD:
+                return new HistoryCommand();
+
+            case MapCommand.COMMAND_WORD:
+                return new MapCommandParser().parse(arguments);
+
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+            
             case MapCommand.COMMAND_WORD:
                 return new MapCommandParser().parse(arguments);
 
