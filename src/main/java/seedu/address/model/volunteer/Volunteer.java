@@ -18,16 +18,18 @@ public class Volunteer {
     private final Race race;
 
     // Data fields
-    private final Emergency_contact emergency_contact;
+    private final EmergencyContact emergencycontact;
     private final Address address;
-    private final Dietary_preference dietary_preference;
-    private final Medical_condition medical_condition;
+    private final DietaryPreference dietarypreference;
+    private final MedicalCondition medicalcondition;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Volunteer(Name name, Age age, Race race, Phone phone,Address address, Email email, Emergency_contact emergency_contact,Dietary_preference dietary_preference, Medical_condition medical_condition , Set<Tag> tags) {
+    public Volunteer(Name name, Age age, Race race, Phone phone, Address address, Email email,
+                     EmergencyContact emergencycontact, DietaryPreference dietarypreference,
+                     MedicalCondition medicalcondition , Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.age = age;
@@ -35,18 +37,18 @@ public class Volunteer {
         this.phone = phone;
         this.address = address;
         this.email = email;
-        this.emergency_contact = emergency_contact;
-        this.dietary_preference = dietary_preference;
+        this.emergencycontact = emergencycontact;
+        this.dietarypreference = dietarypreference;
         this.tags.addAll(tags);
-        this.medical_condition = medical_condition;
+        this.medicalcondition = medicalcondition;
     }
     public Name getName() {
         return name;
     }
 
-    public Age getAge() {return age;}
+    public Age getAge() { return age; }
 
-    public Race getRace() {return race;}
+    public Race getRace() { return race; }
 
     public Phone getPhone() { return phone; }
 
@@ -54,11 +56,11 @@ public class Volunteer {
 
     public Address getAddress() { return address; }
 
-    public Dietary_preference getDietary_preference() {return dietary_preference;}
+    public DietaryPreference getDietaryPreference() { return dietarypreference; }
 
-    public Emergency_contact getEmergency_contact() { return emergency_contact;}
+    public EmergencyContact getEmergencyContact() { return emergencycontact; }
 
-    public Medical_condition getMedical_condition() {return medical_condition;}
+    public MedicalCondition getMedicalCondition() { return medicalcondition; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -103,16 +105,17 @@ public class Volunteer {
                 && otherVolunteer.getPhone().equals(getPhone())
                 && otherVolunteer.getEmail().equals(getEmail())
                 && otherVolunteer.getAddress().equals(getAddress())
-                && otherVolunteer.getDietary_preference().equals(getDietary_preference())
-                && otherVolunteer.getMedical_condition().equals(getMedical_condition())
-                && otherVolunteer.getEmergency_contact().equals(getEmergency_contact())
+                && otherVolunteer.getDietaryPreference().equals(getDietaryPreference())
+                && otherVolunteer.getMedicalCondition().equals(getMedicalCondition())
+                && otherVolunteer.getEmergencyContact().equals(getEmergencyContact())
                 && otherVolunteer.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() { //To change later***
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, race, age, phone, address, email, emergency_contact, dietary_preference, medical_condition, tags);
+        return Objects.hash(name, race, age, phone, address, email,
+                emergencycontact, dietarypreference, medicalcondition, tags);
     }
 
     @Override
@@ -130,11 +133,11 @@ public class Volunteer {
                 .append(" Address: ")
                 .append(getAddress())
                 .append("Medical Condition: ")
-                .append(getMedical_condition())
+                .append(getMedicalCondition())
                 .append("Emergency Contact: ")
-                .append(getEmergency_contact())
+                .append(getEmergencyContact())
                 .append ("Dietary Preference: ")
-                .append(getDietary_preference())
+                .append(getDietaryPreference())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

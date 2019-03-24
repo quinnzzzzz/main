@@ -10,11 +10,11 @@ import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 import seedu.address.model.person.Person;
-import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.project.Project;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.volunteer.UniqueVolunteerList;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.volunteer.Volunteer;
+import seedu.address.model.volunteer.UniqueVolunteerList;
 
 
 /**
@@ -143,6 +143,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    /**
+     * Adds a Project to the address book.
+     * The project must not already exist in the address book.
+     */
     public void addProject(Project r) {
         projects.add(r);
         indicateModified();
@@ -187,6 +191,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
         indicateModified();
     }
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+
     public void removeProject(Project key) {
         projects.remove(key);
         indicateModified();
@@ -250,7 +259,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given volunteer {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedVolunteer} must not be the same as another existing volunteer in the address book.
+     * The person identity of {@code editedVolunteer} must not be the same
+     * as another existing volunteer in the address book.
      */
     public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
         requireNonNull(editedVolunteer);
