@@ -25,6 +25,9 @@ public class DeleteBeneficiaryCommand extends Command {
 
     public static final String MESSAGE_DELETE_BENEFICIARY_SUCCESS = "Deleted Beneficiary: %1$s";
 
+    public static final String MESSAGE_BENEFICIARY_HAS_PROJECTS_ATTACHED = "%1$s has this/these projects: %2$s"
+            + " attached to it, please delete them before delete the beneficiary.";
+
     private final Index targetIndex;
 
     public DeleteBeneficiaryCommand(Index targetIndex) {
@@ -41,6 +44,12 @@ public class DeleteBeneficiaryCommand extends Command {
         }
 
         Beneficiary beneficiaryToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (beneficiaryToDelete.hasAttachedProjects()) {
+            throw new CommandException(String.format(MESSAGE_BENEFICIARY_HAS_PROJECTS_ATTACHED,
+                    beneficiaryToDelete.getName(),
+                    beneficiaryToDelete.getAttachedProjectLists()));
+        }
+
         model.deleteBeneficiary(beneficiaryToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_BENEFICIARY_SUCCESS, beneficiaryToDelete));
