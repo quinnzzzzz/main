@@ -7,11 +7,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.volunteer.Volunteer;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
 
 public class AddVolunteerCommand extends Command {
@@ -21,15 +26,25 @@ public class AddVolunteerCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_AGE + "AGE "
+            + PREFIX_RACE + "RACE "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT "
+            + PREFIX_DIETARY_PREFERENCE + "DIETARY PREFERENCE "
+            + PREFIX_MEDICAL_CONDITION + "MEDICAL CONDITION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_AGE + "22 "
+            + PREFIX_RACE + "French "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_EMERGENCY_CONTACT + "mum, susan doe ,91234567"
+            + PREFIX_DIETARY_PREFERENCE + "nil"
+            + PREFIX_MEDICAL_CONDITION + "nil "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

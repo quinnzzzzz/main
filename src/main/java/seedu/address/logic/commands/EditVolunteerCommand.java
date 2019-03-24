@@ -1,11 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VOLUNTEERS;
 
 import java.util.Collections;
@@ -27,10 +32,9 @@ import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Email;
-import seedu.address.model.volunteer.Emergency_contact;
-import seedu.address.model.volunteer.Dietary_preference;
-import seedu.address.model.volunteer.Medical_condition;
-
+import seedu.address.model.volunteer.EmergencyContact;
+import seedu.address.model.volunteer.DietaryPreference;
+import seedu.address.model.volunteer.MedicalCondition;
 
 import seedu.address.model.tag.Tag;
 
@@ -39,15 +43,20 @@ import seedu.address.model.tag.Tag;
  */
 public class EditVolunteerCommand extends Command {
 
-    public static final String COMMAND_WORD = "editVolunteer";
+    public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the volunteer identified "
             + "by the index number used in the displayed volunteer list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_RACE + "RACE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_EMERGENCY_CONTACT + "NAME, RELATIONSHIP, PHONE] "
+            + "[" + PREFIX_DIETARY_PREFERENCE + "PREFERENCE] "
+            + "[" + PREFIX_MEDICAL_CONDITION + "STATUS] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -108,12 +117,12 @@ public class EditVolunteerCommand extends Command {
         Phone updatedPhone = editVolunteerDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
         Email updatedEmail = editVolunteerDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
         Address updatedAddress = editVolunteerDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
-        Emergency_contact updatedEmergency_contact = editVolunteerDescriptor.getEmergency_contact().orElse(volunteerToEdit.getEmergency_contact());
-        Dietary_preference updatedDietary_preference = editVolunteerDescriptor.getDietary_preference().orElse(volunteerToEdit.getDietary_preference());
-        Medical_condition updatedMedical_condition= editVolunteerDescriptor.getMedical_condition().orElse(volunteerToEdit.getMedical_condition());
+        EmergencyContact updatedEmergencyContact = editVolunteerDescriptor.getEmergencyContact().orElse(volunteerToEdit.getEmergencyContact());
+        DietaryPreference updatedDietaryPreference = editVolunteerDescriptor.getDietaryPreference().orElse(volunteerToEdit.getDietaryPreference());
+        MedicalCondition updatedMedicalCondition= editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
         Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
-        return new Volunteer(updatedName, updatedAge, updatedRace, updatedPhone, updatedAddress, updatedEmail, updatedEmergency_contact ,updatedDietary_preference ,updatedMedical_condition ,updatedTags);
+        return new Volunteer(updatedName, updatedAge, updatedRace, updatedPhone, updatedAddress, updatedEmail, updatedEmergencyContact ,updatedDietaryPreference ,updatedMedicalCondition ,updatedTags);
     }
 
     @Override
@@ -145,9 +154,9 @@ public class EditVolunteerCommand extends Command {
         private Phone phone;
         private Address address;
         private Email email;
-        private Emergency_contact emergency_contact;
-        private Dietary_preference dietary_preference;
-        private Medical_condition medical_condition;
+        private EmergencyContact emergency_contact;
+        private DietaryPreference dietary_preference;
+        private MedicalCondition medical_condition;
         private Set<Tag> tags;
 
         public EditVolunteerDescriptor() {}
@@ -163,9 +172,9 @@ public class EditVolunteerCommand extends Command {
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
             setEmail(toCopy.email);
-            setEmergency_contact(toCopy.emergency_contact);
-            setDietary_preference(toCopy.dietary_preference);
-            setMedical_condition(toCopy.medical_condition);
+            setEmergencyContact(toCopy.emergency_contact);
+            setDietaryPreference(toCopy.dietary_preference);
+            setMedicalCondition(toCopy.medical_condition);
             setTags(toCopy.tags);
         }
 
@@ -221,26 +230,26 @@ public class EditVolunteerCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
-        public void setEmergency_contact(Emergency_contact emergency_contact) {
+        public void setEmergencyContact(EmergencyContact emergency_contact) {
             this.emergency_contact = emergency_contact;
         }
 
-        public Optional<Emergency_contact> getEmergency_contact() {
+        public Optional<EmergencyContact> getEmergencyContact() {
             return Optional.ofNullable(emergency_contact);
         }
-        public void setDietary_preference(Dietary_preference dietary_preference) {
+        public void setDietaryPreference(DietaryPreference dietary_preference) {
             this.dietary_preference = dietary_preference;
         }
 
-        public Optional<Dietary_preference> getDietary_preference() {
+        public Optional<DietaryPreference> getDietaryPreference() {
             return Optional.ofNullable(dietary_preference);
         }
 
-        public void setMedical_condition(Medical_condition medical_condition) {
+        public void setMedicalCondition(MedicalCondition medical_condition) {
             this.medical_condition = medical_condition;
         }
 
-        public Optional<Medical_condition> getMedical_condition() {
+        public Optional<MedicalCondition> getMedicalCondition() {
             return Optional.ofNullable(medical_condition);
         }
         /**
@@ -281,9 +290,9 @@ public class EditVolunteerCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getAddress().equals(e.getAddress())
                     && getEmail().equals(e.getEmail())
-                    && getEmergency_contact().equals(e.getEmergency_contact())
-                    && getDietary_preference().equals(e.getDietary_preference())
-                    && getMedical_condition().equals(e.getMedical_condition())
+                    && getEmergencyContact().equals(e.getEmergencyContact())
+                    && getDietaryPreference().equals(e.getDietaryPreference())
+                    && getMedicalCondition().equals(e.getMedicalCondition())
                     && getTags().equals(e.getTags());
         }
     }

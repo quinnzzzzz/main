@@ -2,15 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -24,9 +24,9 @@ import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Email;
-import seedu.address.model.volunteer.Emergency_contact;
-import seedu.address.model.volunteer.Dietary_preference;
-import seedu.address.model.volunteer.Medical_condition;
+import seedu.address.model.volunteer.EmergencyContact;
+import seedu.address.model.volunteer.DietaryPreference;
+import seedu.address.model.volunteer.MedicalCondition;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,12 +54,12 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         Phone phone = ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Address address = ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Email email = ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Emergency_contact emergency_contact = ParserUtilVolunteer.parseEmergency_contact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
-        Medical_condition medical_condition = ParserUtilVolunteer.parseMedical_condition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get());
-        Dietary_preference dietary_preference = ParserUtilVolunteer.parseDietary_preference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get());
+        EmergencyContact emergency_contact = ParserUtilVolunteer.parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
+        MedicalCondition medicalcondition = ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get());
+        DietaryPreference dietary_preference = ParserUtilVolunteer.parseDietaryPreference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get());
         Set<Tag> tagList = ParserUtilVolunteer.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Volunteer volunteer = new Volunteer(name, age, race, phone, address, email, emergency_contact, dietary_preference, medical_condition, tagList);
+        Volunteer volunteer = new Volunteer(name, age, race, phone, address, email, emergency_contact, dietary_preference, medicalcondition, tagList);
 
         return new AddVolunteerCommand(volunteer);
     }

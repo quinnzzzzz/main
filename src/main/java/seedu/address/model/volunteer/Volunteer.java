@@ -18,16 +18,16 @@ public class Volunteer {
     private final Race race;
 
     // Data fields
-    private final Emergency_contact emergency_contact;
+    private final EmergencyContact emergency_contact;
     private final Address address;
-    private final Dietary_preference dietary_preference;
-    private final Medical_condition medical_condition;
+    private final DietaryPreference dietary_preference;
+    private final MedicalCondition medical_condition;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Volunteer(Name name, Age age, Race race, Phone phone,Address address, Email email, Emergency_contact emergency_contact,Dietary_preference dietary_preference, Medical_condition medical_condition , Set<Tag> tags) {
+    public Volunteer(Name name, Age age, Race race, Phone phone,Address address, Email email, EmergencyContact emergency_contact,DietaryPreference dietary_preference, MedicalCondition medical_condition , Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.age = age;
@@ -54,11 +54,11 @@ public class Volunteer {
 
     public Address getAddress() { return address; }
 
-    public Dietary_preference getDietary_preference() {return dietary_preference;}
+    public DietaryPreference getDietaryPreference() {return dietary_preference;}
 
-    public Emergency_contact getEmergency_contact() { return emergency_contact;}
+    public EmergencyContact getEmergencyContact() { return emergency_contact;}
 
-    public Medical_condition getMedical_condition() {return medical_condition;}
+    public MedicalCondition getMedicalCondition() {return medical_condition;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -103,9 +103,9 @@ public class Volunteer {
                 && otherVolunteer.getPhone().equals(getPhone())
                 && otherVolunteer.getEmail().equals(getEmail())
                 && otherVolunteer.getAddress().equals(getAddress())
-                && otherVolunteer.getDietary_preference().equals(getDietary_preference())
-                && otherVolunteer.getMedical_condition().equals(getMedical_condition())
-                && otherVolunteer.getEmergency_contact().equals(getEmergency_contact())
+                && otherVolunteer.getDietaryPreference().equals(getDietaryPreference())
+                && otherVolunteer.getMedicalCondition().equals(getMedicalCondition())
+                && otherVolunteer.getEmergencyContact().equals(getEmergencyContact())
                 && otherVolunteer.getTags().equals(getTags());
     }
 
@@ -130,11 +130,11 @@ public class Volunteer {
                 .append(" Address: ")
                 .append(getAddress())
                 .append("Medical Condition: ")
-                .append(getMedical_condition())
+                .append(getMedicalCondition())
                 .append("Emergency Contact: ")
-                .append(getEmergency_contact())
+                .append(getEmergencyContact())
                 .append ("Dietary Preference: ")
-                .append(getDietary_preference())
+                .append(getDietaryPreference())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

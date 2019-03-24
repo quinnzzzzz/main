@@ -12,10 +12,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.Race;
-import seedu.address.model.volunteer.Dietary_preference;
+import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.Email;
-import seedu.address.model.volunteer.Emergency_contact;
-import seedu.address.model.volunteer.Medical_condition;
+import seedu.address.model.volunteer.EmergencyContact;
+import seedu.address.model.volunteer.MedicalCondition;
 import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Phone;
 import seedu.address.model.tag.Tag;
@@ -128,46 +128,46 @@ public class ParserUtilVolunteer {
         return tagSet;
     }
     /**
-     * Parses a {@code String emergency_contact} into an {@code Emergency_contact}.
+     * Parses a {@code String emergency_contact} into an {@code EmergencyContact}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code emergency_contact} is invalid.
      */
-    public static Emergency_contact parseEmergency_contact(String emergency_contact) throws ParseException {
+    public static EmergencyContact parseEmergencyContact(String emergency_contact) throws ParseException {
         requireNonNull(emergency_contact);
-        String trimmedEmergency_contact = emergency_contact.trim();
-        if (!Emergency_contact.isValidEmergency_contact(trimmedEmergency_contact)) {
-            throw new ParseException(Emergency_contact.MESSAGE_CONSTRAINTS);
+        String trimmedEmergencyContact = emergency_contact.trim();
+        if (!EmergencyContact.isValidEmergencyContact(trimmedEmergencyContact)) {
+            throw new ParseException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
-        return new Emergency_contact(trimmedEmergency_contact);
+        return new EmergencyContact(trimmedEmergencyContact);
     }
     /**
-     * Parses a {@code String medical_condition} into an {@code Medical_condition}.
+     * Parses a {@code String medical_condition} into an {@code MedicalCondition}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Medical_condition parseMedical_condition(String medical_condition) throws ParseException {
+    public static MedicalCondition parseMedicalCondition(String medical_condition) throws ParseException {
         requireNonNull(medical_condition);
-        String trimmedMedical_condition = medical_condition.trim();
-        if (!Medical_condition.isValidMedical_condition(trimmedMedical_condition)) {
-            throw new ParseException(Medical_condition.MESSAGE_CONSTRAINTS);
+        String trimmedMedicalCondition = medical_condition.trim();
+        if (!MedicalCondition.isValidMedicalCondition(trimmedMedicalCondition)) {
+            throw new ParseException(MedicalCondition.MESSAGE_CONSTRAINTS);
         }
-        return new Medical_condition(trimmedMedical_condition);
+        return new MedicalCondition(trimmedMedicalCondition);
     }
     /**
-     * Parses a {@code String dietary_preference} into an {@code Dietary_preference}.
+     * Parses a {@code String dietary_preference} into an {@code DietaryPreference}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Dietary_preference parseDietary_preference(String dietary_preference) throws ParseException {
+    public static DietaryPreference parseDietaryPreference(String dietary_preference) throws ParseException {
         requireNonNull(dietary_preference);
-        String trimmedDietary_preference = dietary_preference.trim();
-        if (!Dietary_preference.isValidDietary_preference(trimmedDietary_preference)) {
+        String trimmedDietaryPreference = dietary_preference.trim();
+        if (!DietaryPreference.isValidDietaryPreference(trimmedDietaryPreference)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new Dietary_preference(trimmedDietary_preference);
+        return new DietaryPreference(trimmedDietaryPreference);
     }
     public static Age parseAge(String age) throws ParseException {
         requireNonNull(age);
