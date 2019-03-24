@@ -3,6 +3,11 @@ package seedu.address.model.volunteer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Volunteer's medical condition in the address book.
+ * Guarantees: mutable; is valid as declared in {@link #isValidMedicalCondition(String)}
+ */
+
 public class MedicalCondition {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -14,10 +19,10 @@ public class MedicalCondition {
      * Constructs a {@code MedicalCondition}.
      *
      */
-    public MedicalCondition(String medical_condition) {
-        requireNonNull(medical_condition);
-        checkArgument(isValidMedicalCondition(medical_condition), MESSAGE_CONSTRAINTS);
-        status = medical_condition;
+    public MedicalCondition(String medicalcondition) {
+        requireNonNull(medicalcondition);
+        checkArgument(isValidMedicalCondition(medicalcondition), MESSAGE_CONSTRAINTS);
+        status = medicalcondition;
     }
 
     /**

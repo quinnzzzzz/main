@@ -18,6 +18,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import seedu.address.model.tag.Tag;
+
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
@@ -29,7 +31,7 @@ import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.Volunteer;
 
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new AddVolunteerCommand object
@@ -65,7 +67,8 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         Set<Tag> tagList =
                 ParserUtilVolunteer.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Volunteer volunteer = new Volunteer(name, age, race, phone, address, email, emergencycontact, dietarypreference, medicalcondition, tagList);
+        Volunteer volunteer = new Volunteer(name, age, race, phone, address, email, emergencycontact,
+                dietarypreference, medicalcondition, tagList);
 
         return new AddVolunteerCommand(volunteer);
     }

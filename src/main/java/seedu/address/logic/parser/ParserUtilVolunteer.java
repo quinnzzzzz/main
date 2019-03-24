@@ -11,13 +11,13 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
-import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.Email;
 import seedu.address.model.volunteer.EmergencyContact;
 import seedu.address.model.volunteer.MedicalCondition;
 import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Phone;
+import seedu.address.model.volunteer.Race;
 
 import seedu.address.model.tag.Tag;
 
@@ -185,6 +185,14 @@ public class ParserUtilVolunteer {
         }
         return new Age(trimmedAge);
     }
+
+    /**
+     * Parses a {@code String race} into an {@code Race}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code race} is invalid.
+     */
+
     public static Race parseRace(String race) throws ParseException {
         requireNonNull(race);
         String trimmedRace = race.trim();

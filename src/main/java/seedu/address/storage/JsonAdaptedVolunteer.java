@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
+import seedu.address.model.tag.Tag;
+
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
@@ -22,7 +24,7 @@ import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.Volunteer;
 
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Volunteer}.
@@ -46,7 +48,7 @@ class JsonAdaptedVolunteer {
      * Constructs a {@code JsonAdaptedVolunteer} with the given volunteer details.
      */
     @JsonCreator
-    public JsonAdaptedVolunteer(@JsonProperty("name") String name,  @JsonProperty("Age") String age,
+    public JsonAdaptedVolunteer (@JsonProperty("name") String name,  @JsonProperty("Age") String age,
                                 @JsonProperty("Race") String race, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("DietaryPreference") String dietarypreference,
@@ -73,7 +75,7 @@ class JsonAdaptedVolunteer {
      */
     public JsonAdaptedVolunteer(Volunteer source) {
         name = source.getName().fullName;
-        age = source.getAge().age_output;
+        age = source.getAge().ageOutput;
         race = source.getRace().raceOutput;
         phone = source.getPhone().value;
         email = source.getEmail().value;

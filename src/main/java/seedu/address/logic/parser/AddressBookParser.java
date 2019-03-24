@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteBeneficiaryCommand;
+import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
 import seedu.address.logic.commands.EditBeneficiaryCommand;
 import seedu.address.logic.commands.EditVolunteerCommand;
@@ -27,7 +28,6 @@ import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
-import seedu.address.logic.commands.DeleteProjectCommand;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 

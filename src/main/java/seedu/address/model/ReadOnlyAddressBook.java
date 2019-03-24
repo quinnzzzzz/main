@@ -4,8 +4,8 @@ import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * Unmodifiable view of an address book

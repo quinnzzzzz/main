@@ -2,17 +2,20 @@ package seedu.address.model.volunteer;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a Volunteer's medical condition in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRace(String)}
+ */
+
 public class Race {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Race should not contain any spaces or numbers";
+    public static final String MESSAGE_CONSTRAINTS = "Race should not contain any spaces or numbers";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
     public final String raceOutput;
 
     /**

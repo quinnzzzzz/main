@@ -3,6 +3,11 @@ package seedu.address.model.volunteer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Volunteer's name in the address book.
+ * Guarantees: mutable; is valid as declared in {@link #isValidAge(String)}
+ */
+
 public class Age {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -14,7 +19,7 @@ public class Age {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String age_output;
+    public final String ageOutput;
 
     /**
      * Constructs a {@code Age}.
@@ -24,7 +29,7 @@ public class Age {
     public Age(String age) {
         requireNonNull(age);
         checkArgument(isValidAge(age), MESSAGE_CONSTRAINTS);
-        age_output = age;
+        ageOutput = age;
     }
 
     /**
@@ -37,19 +42,19 @@ public class Age {
 
     @Override
     public String toString() {
-        return age_output;
+        return ageOutput;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.volunteer.Age // instanceof handles nulls
-                && age_output.equals(((seedu.address.model.volunteer.Age) other).age_output)); // state check
+                && ageOutput.equals(((seedu.address.model.volunteer.Age) other).ageOutput)); // state check
     }
 
     @Override
     public int hashCode() {
-        return age_output.hashCode();
+        return ageOutput.hashCode();
     }
 
 }

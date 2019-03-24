@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
@@ -126,7 +126,8 @@ public class EditVolunteerCommand extends Command {
                 editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
         Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
-        return new Volunteer(updatedName, updatedAge, updatedRace, updatedPhone, updatedAddress, updatedEmail, updatedEmergencyContact ,updatedDietaryPreference ,updatedMedicalCondition ,updatedTags);
+        return new Volunteer(updatedName, updatedAge, updatedRace, updatedPhone, updatedAddress, updatedEmail,
+                updatedEmergencyContact, updatedDietaryPreference, updatedMedicalCondition,updatedTags);
     }
 
     @Override
