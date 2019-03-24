@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import javafx.util.Pair;
 import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.MapObject;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntaxProject.*;
