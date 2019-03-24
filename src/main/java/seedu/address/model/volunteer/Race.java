@@ -3,7 +3,7 @@ package seedu.address.model.volunteer;
 import static java.util.Objects.requireNonNull;
 
 public class Race {
-    
+
     public static final String MESSAGE_CONSTRAINTS =
             "Race should not contain any spaces or numbers";
 
