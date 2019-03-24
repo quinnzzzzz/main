@@ -103,7 +103,7 @@ public class AddressBookParser {
 
             case ListVolunteerCommand.COMMAND_WORD:
                 return new ListVolunteerCommand();
-            
+
             case HistoryCommand.COMMAND_WORD:
                 return new HistoryCommand();
 
