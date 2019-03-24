@@ -18,6 +18,7 @@ import seedu.address.model.volunteer.EmergencyContact;
 import seedu.address.model.volunteer.MedicalCondition;
 import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Phone;
+
 import seedu.address.model.tag.Tag;
 
 /**
@@ -128,47 +129,54 @@ public class ParserUtilVolunteer {
         return tagSet;
     }
     /**
-     * Parses a {@code String emergency_contact} into an {@code EmergencyContact}.
+     * Parses a {@code String emergencycontact} into an {@code EmergencyContact}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code emergency_contact} is invalid.
+     * @throws ParseException if the given {@code emergencycontact} is invalid.
      */
-    public static EmergencyContact parseEmergencyContact(String emergency_contact) throws ParseException {
-        requireNonNull(emergency_contact);
-        String trimmedEmergencyContact = emergency_contact.trim();
+    public static EmergencyContact parseEmergencyContact(String emergencycontact) throws ParseException {
+        requireNonNull(emergencycontact);
+        String trimmedEmergencyContact = emergencycontact.trim();
         if (!EmergencyContact.isValidEmergencyContact(trimmedEmergencyContact)) {
             throw new ParseException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
         return new EmergencyContact(trimmedEmergencyContact);
     }
     /**
-     * Parses a {@code String medical_condition} into an {@code MedicalCondition}.
+     * Parses a {@code String medicalcondition} into an {@code MedicalCondition}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static MedicalCondition parseMedicalCondition(String medical_condition) throws ParseException {
-        requireNonNull(medical_condition);
-        String trimmedMedicalCondition = medical_condition.trim();
+    public static MedicalCondition parseMedicalCondition(String medicalcondition) throws ParseException {
+        requireNonNull(medicalcondition);
+        String trimmedMedicalCondition = medicalcondition.trim();
         if (!MedicalCondition.isValidMedicalCondition(trimmedMedicalCondition)) {
             throw new ParseException(MedicalCondition.MESSAGE_CONSTRAINTS);
         }
         return new MedicalCondition(trimmedMedicalCondition);
     }
     /**
-     * Parses a {@code String dietary_preference} into an {@code DietaryPreference}.
+     * Parses a {@code String dietarypreference} into an {@code DietaryPreference}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code dietarypreference} is invalid.
      */
-    public static DietaryPreference parseDietaryPreference(String dietary_preference) throws ParseException {
-        requireNonNull(dietary_preference);
-        String trimmedDietaryPreference = dietary_preference.trim();
+    public static DietaryPreference parseDietaryPreference(String dietarypreference) throws ParseException {
+        requireNonNull(dietarypreference);
+        String trimmedDietaryPreference = dietarypreference.trim();
         if (!DietaryPreference.isValidDietaryPreference(trimmedDietaryPreference)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new DietaryPreference(trimmedDietaryPreference);
     }
+    /**
+     * Parses a {@code String age} into an {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
+
     public static Age parseAge(String age) throws ParseException {
         requireNonNull(age);
         String trimmedAge = age.trim();

@@ -2,11 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.volunteer.Volunteer;
-
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
@@ -18,6 +13,16 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
+import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.volunteer.Volunteer;
+
+
+
+/**
+ * Adds a volunteer to the address book.
+ */
 
 public class AddVolunteerCommand extends Command {
 

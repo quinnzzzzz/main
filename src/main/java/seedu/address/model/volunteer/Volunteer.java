@@ -18,16 +18,18 @@ public class Volunteer {
     private final Race race;
 
     // Data fields
-    private final EmergencyContact emergency_contact;
+    private final EmergencyContact emergencycontact;
     private final Address address;
-    private final DietaryPreference dietary_preference;
-    private final MedicalCondition medical_condition;
+    private final DietaryPreference dietarypreference;
+    private final MedicalCondition medicalcondition;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Volunteer(Name name, Age age, Race race, Phone phone,Address address, Email email, EmergencyContact emergency_contact,DietaryPreference dietary_preference, MedicalCondition medical_condition , Set<Tag> tags) {
+    public Volunteer(Name name, Age age, Race race, Phone phone, Address address, Email email,
+                     EmergencyContact emergencycontact, DietaryPreference dietarypreference,
+                     MedicalCondition medicalcondition , Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.age = age;
@@ -35,18 +37,18 @@ public class Volunteer {
         this.phone = phone;
         this.address = address;
         this.email = email;
-        this.emergency_contact = emergency_contact;
-        this.dietary_preference = dietary_preference;
+        this.emergencycontact = emergencycontact;
+        this.dietarypreference = dietarypreference;
         this.tags.addAll(tags);
-        this.medical_condition = medical_condition;
+        this.medicalcondition = medicalcondition;
     }
     public Name getName() {
         return name;
     }
 
-    public Age getAge() {return age;}
+    public Age getAge() { return age; }
 
-    public Race getRace() {return race;}
+    public Race getRace() { return race; }
 
     public Phone getPhone() { return phone; }
 
@@ -54,11 +56,11 @@ public class Volunteer {
 
     public Address getAddress() { return address; }
 
-    public DietaryPreference getDietaryPreference() {return dietary_preference;}
+    public DietaryPreference getDietaryPreference() { return dietarypreference; }
 
-    public EmergencyContact getEmergencyContact() { return emergency_contact;}
+    public EmergencyContact getEmergencyContact() { return emergencycontact; }
 
-    public MedicalCondition getMedicalCondition() {return medical_condition;}
+    public MedicalCondition getMedicalCondition() { return medicalcondition; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -112,7 +114,8 @@ public class Volunteer {
     @Override
     public int hashCode() { //To change later***
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, race, age, phone, address, email, emergency_contact, dietary_preference, medical_condition, tags);
+        return Objects.hash(name, race, age, phone, address, email,
+                emergencycontact, dietarypreference, medicalcondition, tags);
     }
 
     @Override

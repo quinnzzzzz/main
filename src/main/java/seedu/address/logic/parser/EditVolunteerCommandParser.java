@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
-
 import seedu.address.commons.core.index.Index;
 
 import seedu.address.logic.commands.EditVolunteerCommand;
@@ -35,25 +34,26 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
         try {
             index = ParserUtilVolunteer.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVolunteerCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format
+                    (MESSAGE_INVALID_COMMAND_FORMAT, EditVolunteerCommand.MESSAGE_USAGE), pe);
         }
 
         EditVolunteerDescriptor editVolunteerDescriptor = new EditVolunteerDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editVolunteerDescriptor.setName
-                    (ParserUtilVolunteer.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+                (ParserUtilVolunteer.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editVolunteerDescriptor.setPhone
-                    (ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+                (ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editVolunteerDescriptor.setEmail
-                    (ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+                (ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editVolunteerDescriptor.setAddress
-                    (ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+                (ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
 
         return new EditVolunteerCommand(index, editVolunteerDescriptor);

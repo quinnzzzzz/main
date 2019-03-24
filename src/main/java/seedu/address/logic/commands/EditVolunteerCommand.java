@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
@@ -25,16 +25,16 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.volunteer.Name;
-import seedu.address.model.volunteer.Age;
-import seedu.address.model.volunteer.Race;
-import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Address;
+import seedu.address.model.volunteer.Age;
+import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.Email;
 import seedu.address.model.volunteer.EmergencyContact;
-import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.MedicalCondition;
+import seedu.address.model.volunteer.Name;
+import seedu.address.model.volunteer.Phone;
+import seedu.address.model.volunteer.Race;
+import seedu.address.model.volunteer.Volunteer;
 
 import seedu.address.model.tag.Tag;
 
@@ -108,7 +108,8 @@ public class EditVolunteerCommand extends Command {
      * Creates and returns a {@code Volunteer} with the details of {@code volunteerToEdit}
      * edited with {@code editVolunteerDescriptor}.
      */
-    private static Volunteer createEditedVolunteer(Volunteer volunteerToEdit, EditVolunteerDescriptor editVolunteerDescriptor) {
+    private static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
+                                                   EditVolunteerDescriptor editVolunteerDescriptor) {
         assert volunteerToEdit != null;
 
         Name updatedName = editVolunteerDescriptor.getName().orElse(volunteerToEdit.getName());
@@ -117,9 +118,12 @@ public class EditVolunteerCommand extends Command {
         Phone updatedPhone = editVolunteerDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
         Email updatedEmail = editVolunteerDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
         Address updatedAddress = editVolunteerDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
-        EmergencyContact updatedEmergencyContact = editVolunteerDescriptor.getEmergencyContact().orElse(volunteerToEdit.getEmergencyContact());
-        DietaryPreference updatedDietaryPreference = editVolunteerDescriptor.getDietaryPreference().orElse(volunteerToEdit.getDietaryPreference());
-        MedicalCondition updatedMedicalCondition= editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
+        EmergencyContact updatedEmergencyContact =
+                editVolunteerDescriptor.getEmergencyContact().orElse(volunteerToEdit.getEmergencyContact());
+        DietaryPreference updatedDietaryPreference =
+                editVolunteerDescriptor.getDietaryPreference().orElse(volunteerToEdit.getDietaryPreference());
+        MedicalCondition updatedMedicalCondition =
+                editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
         Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
         return new Volunteer(updatedName, updatedAge, updatedRace, updatedPhone, updatedAddress, updatedEmail, updatedEmergencyContact ,updatedDietaryPreference ,updatedMedicalCondition ,updatedTags);
@@ -154,9 +158,9 @@ public class EditVolunteerCommand extends Command {
         private Phone phone;
         private Address address;
         private Email email;
-        private EmergencyContact emergency_contact;
-        private DietaryPreference dietary_preference;
-        private MedicalCondition medical_condition;
+        private EmergencyContact emergencycontact;
+        private DietaryPreference dietarypreference;
+        private MedicalCondition medicalcondition;
         private Set<Tag> tags;
 
         public EditVolunteerDescriptor() {}
@@ -172,9 +176,9 @@ public class EditVolunteerCommand extends Command {
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
             setEmail(toCopy.email);
-            setEmergencyContact(toCopy.emergency_contact);
-            setDietaryPreference(toCopy.dietary_preference);
-            setMedicalCondition(toCopy.medical_condition);
+            setEmergencyContact(toCopy.emergencycontact);
+            setDietaryPreference(toCopy.dietarypreference);
+            setMedicalCondition(toCopy.medicalcondition);
             setTags(toCopy.tags);
         }
 
@@ -230,27 +234,27 @@ public class EditVolunteerCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
-        public void setEmergencyContact(EmergencyContact emergency_contact) {
-            this.emergency_contact = emergency_contact;
+        public void setEmergencyContact(EmergencyContact emergencycontact) {
+            this.emergencycontact = emergencycontact;
         }
 
         public Optional<EmergencyContact> getEmergencyContact() {
-            return Optional.ofNullable(emergency_contact);
+            return Optional.ofNullable(emergencycontact);
         }
-        public void setDietaryPreference(DietaryPreference dietary_preference) {
-            this.dietary_preference = dietary_preference;
+        public void setDietaryPreference(DietaryPreference dietarypreference) {
+            this.dietarypreference = dietarypreference;
         }
 
         public Optional<DietaryPreference> getDietaryPreference() {
-            return Optional.ofNullable(dietary_preference);
+            return Optional.ofNullable(dietarypreference);
         }
 
-        public void setMedicalCondition(MedicalCondition medical_condition) {
-            this.medical_condition = medical_condition;
+        public void setMedicalCondition(MedicalCondition medicalcondition) {
+            this.medicalcondition = medicalcondition;
         }
 
         public Optional<MedicalCondition> getMedicalCondition() {
-            return Optional.ofNullable(medical_condition);
+            return Optional.ofNullable(medicalcondition);
         }
         /**
          * Sets {@code tags} to this object's {@code tags}.

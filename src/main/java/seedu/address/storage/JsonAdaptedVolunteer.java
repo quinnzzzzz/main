@@ -11,19 +11,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
-
-import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.volunteer.Name;
-import seedu.address.model.volunteer.Age;
-import seedu.address.model.volunteer.Race;
-import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Address;
+import seedu.address.model.volunteer.Age;
+import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.Email;
 import seedu.address.model.volunteer.EmergencyContact;
-import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.MedicalCondition;
-
-
+import seedu.address.model.volunteer.Name;
+import seedu.address.model.volunteer.Phone;
+import seedu.address.model.volunteer.Race;
+import seedu.address.model.volunteer.Volunteer;
 
 import seedu.address.model.tag.Tag;
 
@@ -40,27 +37,31 @@ class JsonAdaptedVolunteer {
     private final String phone;
     private final String address;
     private final String email;
-    private final String emergency_contact;
-    private final String dietary_preference;
-    private final String medical_condition;
+    private final String emergencycontact;
+    private final String dietarypreference;
+    private final String medicalcondition;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedVolunteer} with the given volunteer details.
      */
     @JsonCreator
-    public JsonAdaptedVolunteer(@JsonProperty("name") String name,  @JsonProperty("Age") String age, @JsonProperty("Race") String race, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,  @JsonProperty("DietaryPreference") String dietary_preference,  @JsonProperty("EmergencyContact") String emergency_contact, @JsonProperty("MedicalCondition") String medical_condition,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedVolunteer(@JsonProperty("name") String name,  @JsonProperty("Age") String age,
+                                @JsonProperty("Race") String race, @JsonProperty("phone") String phone,
+                                @JsonProperty("email") String email, @JsonProperty("address") String address,
+                                @JsonProperty("DietaryPreference") String dietarypreference,
+                                @JsonProperty("EmergencyContact") String emergencycontact,
+                                @JsonProperty("MedicalCondition") String medicalcondition,
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.age = age;
         this.race = race;
         this.phone = phone;
         this.address = address;
         this.email = email;
-        this.emergency_contact = emergency_contact;
-        this.dietary_preference = dietary_preference;
-        this.medical_condition = medical_condition;
+        this.emergencycontact = emergencycontact;
+        this.dietarypreference = dietarypreference;
+        this.medicalcondition = medicalcondition;
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -77,9 +78,9 @@ class JsonAdaptedVolunteer {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        emergency_contact = source.getEmergencyContact().value;
-        dietary_preference = source.getDietaryPreference().restriction;
-        medical_condition = source.getMedicalCondition().status;
+        emergencycontact = source.getEmergencyContact().value;
+        dietarypreference = source.getDietaryPreference().restriction;
+        medicalcondition = source.getMedicalCondition().status;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -145,32 +146,36 @@ class JsonAdaptedVolunteer {
         }
         final Email modelEmail = new Email(email);
 
-        if (emergency_contact == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EmergencyContact.class.getSimpleName()));
+        if (emergencycontact == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EmergencyContact.class.getSimpleName()));
         }
-        if (!EmergencyContact.isValidEmergencyContact(emergency_contact)) {
+        if (!EmergencyContact.isValidEmergencyContact(emergencycontact)) {
             throw new IllegalValueException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
-        final EmergencyContact modelEmergencyContact = new EmergencyContact(emergency_contact);
+        final EmergencyContact modelEmergencyContact = new EmergencyContact(emergencycontact);
 
-        if (dietary_preference == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DietaryPreference.class.getSimpleName()));
+        if (dietarypreference == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DietaryPreference.class.getSimpleName()));
         }
-        if (!DietaryPreference.isValidDietaryPreference(dietary_preference)) {
+        if (!DietaryPreference.isValidDietaryPreference(dietarypreference)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final DietaryPreference modelDietaryPreference = new DietaryPreference(dietary_preference);
+        final DietaryPreference modelDietaryPreference = new DietaryPreference(dietarypreference);
 
-        if (medical_condition == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MedicalCondition.class.getSimpleName()));
+        if (medicalcondition == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MedicalCondition.class.getSimpleName()));
         }
-        if (!MedicalCondition.isValidMedicalCondition(medical_condition)) {
+        if (!MedicalCondition.isValidMedicalCondition(medicalcondition)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final MedicalCondition modelMedicalCondition = new MedicalCondition(medical_condition);
+        final MedicalCondition modelMedicalCondition = new MedicalCondition(medicalcondition);
 
         final Set<Tag> modelTags = new HashSet<>(volunteerTags);
-        return new Volunteer(modelName, modelAge, modelRace, modelPhone, modelAddress, modelEmail, modelEmergencyContact, modelDietaryPreference, modelMedicalCondition,modelTags);
+        return new Volunteer(modelName, modelAge, modelRace, modelPhone, modelAddress, modelEmail,
+                modelEmergencyContact, modelDietaryPreference, modelMedicalCondition, modelTags);
     }
 
 }

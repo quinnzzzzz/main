@@ -12,7 +12,7 @@ public class CliSyntaxVolunteer {
     public static final Prefix PREFIX_ADDRESS = new Prefix("add/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_RACE = new Prefix("r/");
-    public static final Prefix PREFIX_MEDICAL_CONDITION= new Prefix("m/");
+    public static final Prefix PREFIX_MEDICAL_CONDITION = new Prefix("m/");
     public static final Prefix PREFIX_AGE = new Prefix ("age/");
     public static final Prefix PREFIX_DIETARY_PREFERENCE = new Prefix ("dp/");
     public static final Prefix PREFIX_EMERGENCY_CONTACT = new Prefix ("ec/");
