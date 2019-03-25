@@ -19,11 +19,15 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.MapObject;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -195,7 +199,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Project> getFilteredProjectList() { return null; }
+        public ObservableList<Project> getFilteredProjectList() {
+            return null; }
 
         @Override
         public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
@@ -284,7 +289,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setVolunteer(seedu.address.model.volunteer.Volunteer target, seedu.address.model.volunteer.Volunteer editedVolunteer) {
+        public void setVolunteer(
+                seedu.address.model.volunteer.Volunteer target,
+                seedu.address.model.volunteer.Volunteer editedVolunteer) {
 
         }
 

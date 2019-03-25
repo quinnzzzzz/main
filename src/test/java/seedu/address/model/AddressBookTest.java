@@ -23,9 +23,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
-import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.project.Project;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -134,7 +134,8 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Project> getProjectList() { return projects; }
+        public ObservableList<Project> getProjectList() {
+            return projects; }
 
         @Override
         public ObservableList<Beneficiary> getBeneficiaryList() {
