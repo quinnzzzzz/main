@@ -19,10 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.volunteer.Volunteer;
@@ -309,6 +306,26 @@ public class AddCommandTest {
         @Override
         public void updateFilteredVolunteerList(Predicate<seedu.address.model.volunteer.Volunteer> predicate) {
 
+        }
+
+        @Override
+        public int checkAge(MapObject map, Volunteer currentVol) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int checkRace(MapObject map, Volunteer currentVol) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int checkMedical(MapObject map, Volunteer currentVol) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void mapAllVolunteer(MapObject map) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
