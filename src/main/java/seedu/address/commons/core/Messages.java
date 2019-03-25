@@ -15,5 +15,5 @@ public class Messages {
     public static final String MESSAGE_BENEFICIARIES_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX = "The volunteer index provided is invalid";
     public static final String MESSAGE_VOLUNTEERS_LISTED_OVERVIEW = "%1$d volunteers listed!";
-
+    public static final String MESSAGE_MAP_SUCCESS = "Mapping success!";
 }

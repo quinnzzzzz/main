@@ -47,8 +47,8 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
 
         EditVolunteerDescriptor editVolunteerDescriptor = new EditVolunteerDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editVolunteerDescriptor.setName
-            (ParserUtilVolunteer.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editVolunteerDescriptor.setName(
+                    ParserUtilVolunteer.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editVolunteerDescriptor.setAge
@@ -59,17 +59,18 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
                     (ParserUtilVolunteer.parseRace(argMultimap.getValue(PREFIX_RACE).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editVolunteerDescriptor.setPhone
-            (ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editVolunteerDescriptor.setPhone(
+                    ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editVolunteerDescriptor.setAddress
                     (ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editVolunteerDescriptor.setEmail
-            (ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editVolunteerDescriptor.setEmail(
+                    ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
+
         if (argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).isPresent()) {
             editVolunteerDescriptor.setEmergencyContact
                     (ParserUtilVolunteer.parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get()));
@@ -81,6 +82,10 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
         if (argMultimap.getValue(PREFIX_MEDICAL_CONDITION).isPresent()) {
             editVolunteerDescriptor.setMedicalCondition
                     (ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get()));
+
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            editVolunteerDescriptor.setAddress(
+                    ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
 
         return new EditVolunteerCommand(index, editVolunteerDescriptor);

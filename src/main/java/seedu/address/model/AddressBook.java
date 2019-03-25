@@ -13,8 +13,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.UniqueVolunteerList;
+import seedu.address.model.volunteer.Volunteer;
 
 
 /**
@@ -79,7 +79,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Project> getProjectList() { return projects.asUnmodifiableObservableList(); }
+    public ObservableList<Project> getProjectList() {
+        return projects.asUnmodifiableObservableList(); }
 
     /**
      * Replaces the contents of the Beneficiary list with {@code beneficiaries}.
@@ -239,10 +240,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-//    @Override
-//    public ObservableList<Project> getProejctList() {
-//        return projects.asUnmodifiableObservableList();
-//    }
+    //@Override
+    //public ObservableList<Project> getProejctList() {
+    //    return projects.asUnmodifiableObservableList();
+    //}
 
     @Override
     public boolean equals(Object other) {

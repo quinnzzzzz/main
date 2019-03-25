@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class DietaryPreference {
 
     public static final String MESSAGE_CONSTRAINTS = "Dietary Preference should not contain numbers";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";;
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String restriction;
 
     /**
@@ -42,7 +42,7 @@ public class DietaryPreference {
             || (other instanceof seedu.address.model.volunteer.DietaryPreference
             // instanceof handles nulls
             && restriction.equals(((seedu.address.model.volunteer.DietaryPreference) other).restriction));
-            // state check
+        // state check
     }
 
     @Override
