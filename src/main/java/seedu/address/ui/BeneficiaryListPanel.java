@@ -26,16 +26,11 @@ public class BeneficiaryListPanel extends UiPart<Region> {
     @FXML
     private ListView<Beneficiary> beneficiaryListView;
 
-    @FXML
-    private Label panelName;
 
     public BeneficiaryListPanel(ObservableList<Beneficiary> beneficiaryList,
                                 ObservableValue<Beneficiary> selectedBeneficiary,
                                 Consumer<Beneficiary> onSelectedBeneficiaryChange) {
         super(FXML);
-        panelName.setFont(Font.font("Cambria", 32));
-        panelName.setTextFill(Color.web("#ADFF2F"));
-        panelName.setText("Beneficiaries Dummy");
         beneficiaryListView.setItems(beneficiaryList);
         beneficiaryListView.setCellFactory(listView -> new BeneficiaryListViewCell());
         beneficiaryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
