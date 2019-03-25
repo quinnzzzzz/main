@@ -12,7 +12,7 @@ public class MedicalCondition {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Medical Conditions should not contain numbers";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";;
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String status;
 
     /**

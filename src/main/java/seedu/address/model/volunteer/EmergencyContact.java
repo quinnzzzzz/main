@@ -3,6 +3,10 @@ package seedu.address.model.volunteer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Volunteer's EmergencyContact in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidEmergencyContact(String)}
+ */
 public class EmergencyContact {
 
     public static final String MESSAGE_CONSTRAINTS =

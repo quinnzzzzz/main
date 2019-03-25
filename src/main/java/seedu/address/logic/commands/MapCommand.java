@@ -7,8 +7,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MapObject;
 import seedu.address.model.Model;
-import seedu.address.model.volunteer.UniqueVolunteerList;
-import seedu.address.model.volunteer.Volunteer;
+
 
 
 /**

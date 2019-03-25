@@ -9,6 +9,10 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a Volunteer in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Volunteer {
     // Identity fields
     private final Name name;
@@ -18,12 +22,12 @@ public class Volunteer {
     private final Race race;
 
     // Data fields
+    private int points;
     private final EmergencyContact emergencycontact;
     private final Address address;
     private final DietaryPreference dietarypreference;
     private final MedicalCondition medicalcondition;
     private final Set<Tag> tags = new HashSet<>();
-    public int points;
     /**
      * Every field must be present and not null.
      */
@@ -47,21 +51,29 @@ public class Volunteer {
         return name;
     }
 
-    public Age getAge() { return age; }
+    public Age getAge() {
+        return age; }
 
-    public Race getRace() { return race; }
+    public Race getRace() {
+        return race; }
 
-    public Phone getPhone() { return phone; }
+    public Phone getPhone() {
+        return phone; }
 
-    public Email getEmail() { return email; }
+    public Email getEmail() {
+        return email; }
 
-    public Address getAddress() { return address; }
+    public Address getAddress() {
+        return address; }
 
-    public DietaryPreference getDietaryPreference() { return dietarypreference; }
+    public DietaryPreference getDietaryPreference() {
+        return dietarypreference; }
 
-    public EmergencyContact getEmergencyContact() { return emergencycontact; }
+    public EmergencyContact getEmergencyContact() {
+        return emergencycontact; }
 
-    public MedicalCondition getMedicalCondition() { return medicalcondition; }
+    public MedicalCondition getMedicalCondition() {
+        return medicalcondition; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -83,6 +95,20 @@ public class Volunteer {
         return otherVolunteer != null
                 && otherVolunteer.getName().equals(getName())
                 && (otherVolunteer.getPhone().equals(getPhone()) || otherVolunteer.getEmail().equals(getEmail()));
+    }
+
+    /**
+     * Adds points to (@code points) during (@code MapCommand)
+     */
+    public void addPoints(int pointsToAdd) {
+        points += pointsToAdd;
+    }
+
+    /**
+     * Returns (@code points)
+     */
+    public int getPoints() {
+        return points;
     }
 
     /**
@@ -143,5 +169,7 @@ public class Volunteer {
         getTags().forEach(builder::append);
         return builder.toString();
     }
+
+
 
 }

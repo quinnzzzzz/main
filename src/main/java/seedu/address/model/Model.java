@@ -8,8 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * The API of the Model component.
@@ -210,7 +210,8 @@ public interface Model {
     /**
      * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
      * {@code target} must exist in the address book.
-     * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the address book.
+     * The volunteer identity of {@code editedVolunteer} must not be the same as
+     * another existing volunteer in the address book.
      */
     void setVolunteer(Volunteer target, Volunteer editedVolunteer);
 
