@@ -12,9 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AssignBeneficiaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 
-//@@author jordancjq
 /**
  * Parses input arguments and creates a new AssignBeneficiaryCommand object
  */
@@ -40,7 +38,7 @@ public class AssignBeneficiaryCommandParser implements Parser<AssignBeneficiaryC
             } else {
                 projectTitle = new ProjectTitle(UNSPECIFIED_FIELD);
             }
-            List<Index> indexList = (List<Index>) ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+            List<Index> indexList = (List<Index>) ParserUtilProject.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
             return new AssignBeneficiaryCommand(projectTitle, indexList);
         } catch (IllegalValueException ive) {

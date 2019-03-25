@@ -27,7 +27,7 @@ public class FindVolunteerCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute() {
         requireNonNull(model);
         model.updateFilteredVolunteerList(predicate);
         return new CommandResult(

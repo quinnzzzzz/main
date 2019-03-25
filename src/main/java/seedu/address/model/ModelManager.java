@@ -13,8 +13,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.ProjectTitle;
@@ -27,7 +29,7 @@ import seedu.address.model.project.Project;
 /**
  * Represents the in-memory model of the address book data.
  */
-public class ModelManager implements Model {
+public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final VersionedAddressBook versionedAddressBook;
@@ -66,6 +68,12 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
+    }
+
+    @Override
+    public void resetData(ReadOnlyAddressBook newData) {
+        versionedAddressBook.resetData(newData);
+        indicateAddressBookChanged();
     }
 
     //=========== UserPrefs ==================================================================================
@@ -130,6 +138,10 @@ public class ModelManager implements Model {
     public boolean hasProject(Project project) {
         requireNonNull(project);
         return versionedAddressBook.hasProject(project);
+    }
+    /** Raises an event to indicate the model has changed */
+    private void indicateAddressBookChanged() {
+        raise(new AddressBookChangedEvent(versionedAddressBook));
     }
 
     @Override

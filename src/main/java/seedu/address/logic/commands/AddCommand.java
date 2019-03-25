@@ -51,7 +51,7 @@ public class AddCommand extends Command {
      * Creates an AddProjectCommand to add the specified {@code Project}
      */
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute() throws CommandException {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {

@@ -27,7 +27,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute() {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(

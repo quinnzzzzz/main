@@ -32,7 +32,7 @@ public class DeleteVolunteerCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute() throws CommandException {
         requireNonNull(model);
         List<Volunteer> lastShownList = model.getFilteredVolunteerList();
 

@@ -26,6 +26,7 @@ public interface Model {
     Predicate<Beneficiary> PREDICATE_SHOW_ALL_BENEFICIARIES = unused -> true;
     Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
 
+    void resetData(ReadOnlyAddressBook newData);
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -45,6 +46,7 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 
     /**
      * Returns the user prefs' address book file path.

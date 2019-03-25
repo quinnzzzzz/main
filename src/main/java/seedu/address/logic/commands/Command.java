@@ -8,6 +8,17 @@ import seedu.address.model.Model;
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
+    protected Model model;
+    protected CommandHistory history;
+//    protected UndoRedoStack undoRedoStack;
+
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
+    public abstract CommandResult execute() throws CommandException;
 
     /**
      * Executes the command and returns the result message.
@@ -17,6 +28,8 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model, CommandHistory history) throws CommandException;
+    public void setData(Model model, CommandHistory history) {
+        this.model = model;
+    }
 
 }

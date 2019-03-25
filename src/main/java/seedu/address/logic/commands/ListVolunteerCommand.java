@@ -17,7 +17,7 @@ public class ListVolunteerCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute() {
         requireNonNull(model);
         model.updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
         return new CommandResult(MESSAGE_SUCCESS);

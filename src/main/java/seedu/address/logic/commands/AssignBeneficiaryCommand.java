@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_INDEX;
 import static seedu.address.logic.parser.ParserUtilProject.UNSPECIFIED_FIELD;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 //import seedu.address.commons.core.EventsCenter;
 //import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 //import seedu.address.commons.events.ui.HighlightSelectedProjectEvent;
 import seedu.address.logic.CommandHistory;
@@ -23,7 +25,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 /**
  * Assigns a beneficiary to a project.
  */
-public class AssignBeneficiaryCommand extends Command {
+public class AssignBeneficiaryCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "assign";
 
@@ -36,8 +38,7 @@ public class AssignBeneficiaryCommand extends Command {
             + "Old Folks Home ";
 
     public static final String MESSAGE_PARAMETERS = "[PROJECT_TITLE] "
-            + PREFIX_INDEX + "INDEX "
-            + "[INDEX]...";
+            + PREFIX_INDEX + "INDEX ";
 
     public static final String MESSAGE_SUCCESS = "Beneficiary successfully assigned to project.";
     public static final String MESSAGE_FAILURE = "Not all beneficiaries have been successfully processed.";
@@ -51,7 +52,7 @@ public class AssignBeneficiaryCommand extends Command {
     private final ProjectTitle targetProject;
     private final List<Index> targetIndex;
 
-    private UniqueBeneficiaryList beneficiariesToAssign;
+    private List<Beneficiary> beneficiariesToAssign;
 
     /**
      * Creates an AssignBeneficiaryCommand to assign beneficiary to {@code Project}
@@ -64,8 +65,9 @@ public class AssignBeneficiaryCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult executeUndoableCommand() throws CommandException {
         String successfulBeneficiaryAssignedMessage = new String();
 
         if (targetProject.toString().equals(UNSPECIFIED_FIELD)) {
@@ -74,7 +76,7 @@ public class AssignBeneficiaryCommand extends Command {
                     model.unassignBeneficiaryFromProject(beneficiary);
                     successfulBeneficiaryAssignedMessage += String.format(MESSAGE_UNASSIGN_TEAM_SUCCESS,
                             beneficiary.hasProjectTitle(targetProject));
-            }
+                }
             } catch (ProjectNotFoundException pnfe) {
                 successfulBeneficiaryAssignedMessage += String.format(MESSAGE_NO_TEAM_TO_UNASSIGN, pnfe.getMessage());
                 throw new CommandException(MESSAGE_FAILURE + successfulBeneficiaryAssignedMessage);
@@ -102,12 +104,37 @@ public class AssignBeneficiaryCommand extends Command {
     }
 
     @Override
+    protected void preprocessUndoableCommand() throws CommandException {
+
+        if (!targetProject.toString().equals(UNSPECIFIED_FIELD)
+                && !model.getAddressBook().getBeneficiaryList().stream().anyMatch(t -> t.getProjectTitle().equals(targetProject))) {
+            throw new CommandException(Messages.MESSAGE_PROJECT_NOT_FOUND);
+            List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
+            List<Index> executableIndexes = new ArrayList<>();
+            Boolean canAssignBeneficiary = false;
+
+            for (Index idx : targetIndex) {
+                if (idx.getZeroBased() < lastShownList.size()) {
+                    executableIndexes.add(idx);
+                    canAssignBeneficiary = true;
+                }
+            }
+
+            if (!canAssignBeneficiary) {
+                throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
+            }
+
+            beneficiariesToAssign = new ArrayList<>();
+            executableIndexes.forEach(idx -> beneficiariesToAssign.add(lastShownList.get(idx.getZeroBased())));
+        }
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignBeneficiaryCommand // instanceof handles nulls
                 && this.targetProject.equals(((AssignBeneficiaryCommand) other).targetProject)) // state check
                 && this.targetIndex.equals(((AssignBeneficiaryCommand) other).targetIndex);
     }
-
 }
 
