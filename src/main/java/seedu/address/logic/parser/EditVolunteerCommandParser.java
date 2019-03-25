@@ -83,6 +83,7 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
         if (argMultimap.getValue(PREFIX_MEDICAL_CONDITION).isPresent()) {
             editVolunteerDescriptor.setMedicalCondition
                     (ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get()));
+        }
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editVolunteerDescriptor.setAddress(

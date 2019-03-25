@@ -54,14 +54,14 @@ public class VolunteerCard extends UiPart<Region> {
         this.volunteer = volunteer;
         id.setText(displayedIndex + ". ");
         name.setText(volunteer.getName().fullName);
-        age.setText(volunteer.getAge().ageOutput);
-        race.setText(volunteer.getRace().raceOutput);
-        phone.setText(volunteer.getPhone().value);
-        address.setText(volunteer.getAddress().value);
-        email.setText(volunteer.getEmail().value);
-        emergencycontact.setText(volunteer.getEmergencyContact().value);
-        dietarypreference.setText(volunteer.getDietaryPreference().restriction);
-        medicalcondition.setText(volunteer.getMedicalCondition().status);
+        age.setText("Age: " + volunteer.getAge().ageOutput);
+        race.setText("Race: " + volunteer.getRace().raceOutput);
+        phone.setText("Phone: " + volunteer.getPhone().value);
+        address.setText("Address: " + volunteer.getAddress().value);
+        email.setText("Email: " + volunteer.getEmail().value);
+        emergencycontact.setText("Emergency Contact: " + volunteer.getEmergencyContact().value);
+        dietarypreference.setText("Dietary Preference: " + volunteer.getDietaryPreference().restriction);
+        medicalcondition.setText("Medical Condition: " + volunteer.getMedicalCondition().status);
         volunteer.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
