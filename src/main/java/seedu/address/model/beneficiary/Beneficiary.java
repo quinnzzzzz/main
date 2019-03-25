@@ -2,7 +2,10 @@ package seedu.address.model.beneficiary;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.project.ProjectTitle;
 
@@ -16,6 +19,7 @@ public class Beneficiary {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private Set<ProjectTitle> attachedProjectList = new HashSet<>();
 
     // Data fields
     private final Address address;
@@ -100,6 +104,62 @@ public class Beneficiary {
                 .append(" Address: ")
                 .append(getAddress());
         return builder.toString();
+    }
+
+    /**
+     * Add a project title to the attached Project Líst.
+     */
+    public void addAttachedProject(ProjectTitle title) {
+        this.attachedProjectList.add(title);
+    }
+
+    /**
+     * update a project title in the attached Project Líst.
+     */
+    public void updateAttachedProject(ProjectTitle oldTitle, ProjectTitle newTitle) {
+        if (this.attachedProjectList.contains(oldTitle)) {
+            this.attachedProjectList.remove(oldTitle);
+        }
+        addAttachedProject(newTitle);
+    }
+
+    /**
+     * delete a project title in the attached Project Líst.
+     */
+    public void deleteAttachedProject(ProjectTitle title) {
+        if (this.attachedProjectList.contains(title)) {
+            this.attachedProjectList.remove(title);
+        }
+    }
+
+    /**
+     * Check attached project List before deletion.
+     * Return true if attached project list is empty.
+     */
+    public boolean hasAttachedProjects() {
+        return !this.attachedProjectList.isEmpty();
+    }
+
+    /**
+     * Check if the project is assigned for this beneficiary.
+     */
+    public boolean hasProjectTitle(ProjectTitle projectTitle) {
+        return this.attachedProjectList.contains(projectTitle);
+    }
+
+    /**.
+     * Get method for attached project list.
+     * @return a set of project titles.
+     */
+    public Set<ProjectTitle> getAttachedProjectLists() {
+        return Collections.unmodifiableSet(this.attachedProjectList);
+    }
+
+    /**
+     * Add all the project attached to this beneficiary.
+     */
+    public void setProjectLists(Set<ProjectTitle> projectList) {
+        this.attachedProjectList.addAll(projectList);
     }
 }
 
