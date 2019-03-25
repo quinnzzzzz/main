@@ -23,6 +23,7 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_BENEFICIARY = "Beneficiary list contains duplicate beneficiary(es).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedBeneficiary> beneficiaries = new ArrayList<>();
@@ -69,5 +70,4 @@ class JsonSerializableAddressBook {
         }
         return addressBook;
     }
-
 }
