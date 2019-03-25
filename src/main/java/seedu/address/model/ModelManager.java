@@ -302,9 +302,11 @@ public class ModelManager implements Model {
 
     @Override
     public void setSelectedVolunteer(Volunteer volunteer) {
-        if (volunteer != null && !filteredVolunteers.contains(volunteer))
+        if (volunteer != null && !filteredVolunteers.contains(volunteer)) {
             selectedVolunteer.setValue(volunteer);
+        }
     }
+
 
     /**
      * Ensures {@code selectedVolunteer} is a valid volunteer in {@code filteredVolunteers}.
@@ -316,7 +318,8 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedVolunteerReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+            boolean wasSelectedVolunteerReplaced =
+                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
                     && change.getRemoved().contains(selectedVolunteer.getValue());
             if (wasSelectedVolunteerReplaced) {
                 // Update selectedVolunteer to its new value.
