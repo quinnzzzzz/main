@@ -50,7 +50,6 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
             editVolunteerDescriptor.setName
             (ParserUtilVolunteer.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editVolunteerDescriptor.setAge
                     (ParserUtilVolunteer.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
