@@ -8,13 +8,14 @@ import seedu.address.model.MapObject;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntaxProject.*;
 
+/**
+ * Parses the given {@code String} of arguments in the context of the MapCommand
+ * and returns an MapCommand object for execution.
+ * @throws ParseException if the user input does not conform the expected format
+ */
+
 public class MapCommandParser implements Parser<MapCommand> {
 
-    /**
-     * Parses the given {@code String} of arguments in the context of the MapCommand
-     * and returns an MapCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
-     */
     public MapCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_YEAR, PREFIX_RACE, PREFIX_MEDICAL);
@@ -39,7 +40,7 @@ public class MapCommandParser implements Parser<MapCommand> {
     /**
      * Splits tokens into proper data for MapCommand() to handle
      */
-    private MapObject parseCriteria(ArgumentMultimap argMultimap){
+    private MapObject parseCriteria(ArgumentMultimap argMultimap) {
         int prefixPoints;
         String prefixCriteria;
         String yearOperator = null;
@@ -50,30 +51,30 @@ public class MapCommandParser implements Parser<MapCommand> {
         Pair<Integer, String> localMedicalPair = new Pair<>(0,"");
 
         //TODO: write input checks on the criteria for all
-        if(!argMultimap.getAllValues(PREFIX_YEAR).isEmpty()){
+        if (!argMultimap.getAllValues(PREFIX_YEAR).isEmpty()){
             criteriaHolder = argMultimap.getValue(PREFIX_YEAR).get();
             prefixPoints = Integer.parseInt(criteriaHolder.substring(0,1));
             yearOperator = criteriaHolder.substring(1,2);
-            prefixCriteria = criteriaHolder.substring(2,criteriaHolder.length());
-            localAgePair = new Pair<>(prefixPoints,Integer.parseInt(prefixCriteria));
+            prefixCriteria = criteriaHolder.substring(2, criteriaHolder.length());
+            localAgePair = new Pair<>(prefixPoints, Integer.parseInt(prefixCriteria));
         } else {
             localAgePair = new Pair<>(0,0);
         }
 
-        if(!argMultimap.getAllValues(PREFIX_RACE).isEmpty()){
+        if (!argMultimap.getAllValues(PREFIX_RACE).isEmpty()){
             criteriaHolder = argMultimap.getValue(PREFIX_RACE).get();
             prefixPoints = Integer.parseInt(criteriaHolder.substring(0,1));
-            prefixCriteria = criteriaHolder.substring(1,criteriaHolder.length());
-            localRacePair = new Pair<>(prefixPoints,prefixCriteria);
+            prefixCriteria = criteriaHolder.substring(1, criteriaHolder.length());
+            localRacePair = new Pair<>(prefixPoints, prefixCriteria);
         } else {
             localRacePair = new Pair<>(0,"");
         }
 
-        if(!argMultimap.getAllValues(PREFIX_MEDICAL).isEmpty()){
+        if (!argMultimap.getAllValues(PREFIX_MEDICAL).isEmpty()){
             criteriaHolder = argMultimap.getValue(PREFIX_MEDICAL).get();
             prefixPoints = Integer.parseInt(criteriaHolder.substring(0,1));
-            prefixCriteria = criteriaHolder.substring(1,criteriaHolder.length());
-            localMedicalPair = new Pair<>(prefixPoints,prefixCriteria);
+            prefixCriteria = criteriaHolder.substring(1, criteriaHolder.length());
+            localMedicalPair = new Pair<>(prefixPoints, prefixCriteria);
         } else {
             localMedicalPair = new Pair<>(0,"");
         }

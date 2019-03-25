@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.awt.*;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
@@ -28,7 +27,8 @@ public class BeneficiaryListPanel extends UiPart<Region> {
     private ListView<Beneficiary> beneficiaryListView;
 
 
-    public BeneficiaryListPanel(ObservableList<Beneficiary> beneficiaryList, ObservableValue<Beneficiary> selectedBeneficiary,
+    public BeneficiaryListPanel(ObservableList<Beneficiary> beneficiaryList,
+                                ObservableValue<Beneficiary> selectedBeneficiary,
                                 Consumer<Beneficiary> onSelectedBeneficiaryChange) {
         super(FXML);
         beneficiaryListView.setItems(beneficiaryList);
