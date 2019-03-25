@@ -243,6 +243,27 @@ public interface Model {
      */
     void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
 
+    /**
+     * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkAge(MapObject map, Volunteer currentVol);
+
+    /**
+     * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkRace(MapObject map, Volunteer currentVol);
+
+    /**
+     * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkMedical(MapObject map, Volunteer currentVol);
+
+    /**
+     * Maps all volunteers in the (@code UniqueVolunteerList)
+     */
+    public void mapAllVolunteer(MapObject map);
+
+
 
     /**
      * Add Beneficiary.

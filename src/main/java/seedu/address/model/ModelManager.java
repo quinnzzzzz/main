@@ -298,6 +298,67 @@ public class ModelManager implements Model {
     }
 
 
+
+    /**
+     * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkAge(MapObject map, Volunteer currentVol)  {
+        switch(map.getComparator())  {
+
+            case "<":
+                if(Integer.parseInt(currentVol.getAge().toString()) < map.getAgePair().getValue()){
+                    return map.getAgePair().getKey();
+                }
+
+            case ">":
+                if(Integer.parseInt(currentVol.getAge().toString()) > map.getAgePair().getValue()){
+                    return map.getAgePair().getKey();
+                }
+
+            case "=":
+                if(Integer.parseInt(currentVol.getAge().toString()) == map.getAgePair().getValue()){
+                    return map.getAgePair().getKey();
+                }
+
+            default:
+                return 0;
+        }
+    }
+
+
+    /**
+     * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkRace(MapObject map, Volunteer currentVol){
+        if(currentVol.getRace().toString() == map.getRacePair().getValue()){
+            return map.getRacePair().getKey();
+        }
+        return 0;
+    }
+
+
+    /**
+     * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkMedical(MapObject map, Volunteer currentVol) {
+        if(currentVol.getMedicalCondition().toString() == map.getMedicalPair().getValue()){
+            return map.getMedicalPair().getKey();
+        }
+        return 0;
+    }
+
+
+
+    public void mapAllVolunteer(MapObject map) {
+        versionedAddressBook.getVolunteerList().forEach(volunteer -> {
+            volunteer.points += checkAge(map, volunteer);
+            volunteer.points += checkRace(map, volunteer);
+            volunteer.points += checkMedical(map, volunteer);
+            System.out.println(volunteer.points);
+        });
+    }
+
+
     /**
      * Ensures {@code selectedVolunteer} is a valid volunteer in {@code filteredVolunteers}.
      */
