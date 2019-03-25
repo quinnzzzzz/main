@@ -2,12 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MapObject;
 import seedu.address.model.Model;
-
-
+import seedu.address.model.volunteer.UniqueVolunteerList;
+import seedu.address.model.volunteer.Volunteer;
 
 
 /**
@@ -40,11 +41,9 @@ public class MapCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-
-        throw new CommandException(MESSAGE_FAIL);
-
+        model.mapAllVolunteer(map);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_MAP_SUCCESS));
     }
-
-
 
 }
