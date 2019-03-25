@@ -20,4 +20,21 @@ public class MapObject {
         this.racePair = (racePair.getKey() != 0) ? racePair : null;
         this.medicalPair = (medicalPair.getKey() != 0) ? medicalPair : null;
     }
-}
+
+    public String getComparator(){
+        return comparator;
+    }
+
+    public Pair<Integer, Integer> getAgePair(){
+        return agePair;
+    }
+
+    public Pair<Integer, String> getRacePair(){
+        return racePair;
+    }
+
+    public Pair<Integer, String> getMedicalPair(){
+        return medicalPair;
+    }
+
+    }
