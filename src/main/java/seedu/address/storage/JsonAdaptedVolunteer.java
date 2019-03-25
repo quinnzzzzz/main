@@ -48,7 +48,7 @@ class JsonAdaptedVolunteer {
      * Constructs a {@code JsonAdaptedVolunteer} with the given volunteer details.
      */
     @JsonCreator
-    public JsonAdaptedVolunteer (@JsonProperty("name") String name,  @JsonProperty("Age") String age,
+    public JsonAdaptedVolunteer (@JsonProperty("name") String name, @JsonProperty("Age") String age,
                                 @JsonProperty("Race") String race, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("DietaryPreference") String dietarypreference,

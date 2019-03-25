@@ -17,10 +17,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -34,7 +33,8 @@ public class ModelManager implements Model {
     private final FilteredList<Project> filteredProjects;
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
     private final FilteredList<Volunteer> filteredVolunteers;
-    private final SimpleObjectProperty<seedu.address.model.volunteer.Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<seedu.address.model.volunteer.Volunteer> selectedVolunteer =
+            new SimpleObjectProperty<>();
 
 
     private final FilteredList<Beneficiary> filteredBeneficiaries;
@@ -295,6 +295,73 @@ public class ModelManager implements Model {
         if (volunteer != null && !filteredVolunteers.contains(volunteer)) {
             selectedVolunteer.setValue(volunteer);
         }
+    }
+
+
+
+    /**
+     * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkAge(MapObject map, Volunteer currentVol) {
+        switch(map.getComparator()) {
+
+        case "<":
+            if (Integer.parseInt(currentVol.getAge().toString()) < map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
+
+        case ">":
+            if (Integer.parseInt(currentVol.getAge().toString()) > map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
+
+        case "=":
+            if (Integer.parseInt(currentVol.getAge().toString()) == map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
+
+        default:
+            return 0;
+        }
+        return 0;
+    }
+
+
+    /**
+     * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkRace(MapObject map, Volunteer currentVol) {
+        if (currentVol.getRace().toString() == map.getRacePair().getValue()) {
+            return map.getRacePair().getKey();
+        }
+        return 0;
+    }
+
+
+    /**
+     * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkMedical(MapObject map, Volunteer currentVol) {
+        if (currentVol.getMedicalCondition().toString() == map.getMedicalPair().getValue()) {
+            return map.getMedicalPair().getKey();
+        }
+        return 0;
+    }
+
+
+    /**
+     * Maps all volunteers in the (@code UniqueVolunteerList)
+     */
+    public void mapAllVolunteer(MapObject map) {
+        versionedAddressBook.getVolunteerList().forEach(volunteer -> {
+            volunteer.addPoints(checkAge(map, volunteer));
+            volunteer.addPoints(checkRace(map, volunteer));
+            volunteer.addPoints(checkMedical(map, volunteer));
+            //System.out.println(volunteer.getPoints());
+        });
     }
 
 

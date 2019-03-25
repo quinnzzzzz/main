@@ -18,7 +18,7 @@ public class Race {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String raceOutput;
 
-    /**
+    /*
      * Constructs a {@code race.
      *
      * @param race A valid race.
