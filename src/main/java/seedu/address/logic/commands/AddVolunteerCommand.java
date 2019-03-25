@@ -47,8 +47,8 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_EMERGENCY_CONTACT + "mum, susan doe ,91234567"
-            + PREFIX_DIETARY_PREFERENCE + "nil"
+            + PREFIX_EMERGENCY_CONTACT + "Sally Mother 91234567 "
+            + PREFIX_DIETARY_PREFERENCE + "nil "
             + PREFIX_MEDICAL_CONDITION + "nil "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
