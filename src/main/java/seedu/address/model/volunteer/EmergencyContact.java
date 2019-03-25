@@ -10,14 +10,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EmergencyContact {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            " Format must be <Name> <Relationship> <Contact number> and separated by spaces. " +
+                    "Name should contain only the first name. " +
+                    "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}  ]*";
     public final String value;
 
     /**
      * Constructs a {@code Phone}.
      *
-     * @param emergencycontact A valid phone number.
+     * @param emergencycontact A valid name, relationship and phone number.
      */
     public EmergencyContact(String emergencycontact) {
         requireNonNull(emergencycontact);
@@ -26,7 +29,7 @@ public class EmergencyContact {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid emergency contact.
      */
     public static boolean isValidEmergencyContact(String test) {
         return test.matches(VALIDATION_REGEX);
