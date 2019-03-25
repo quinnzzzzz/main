@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <StackPane>
-    <Label fx:id = "panelName" styleClass="panel_label"></Label>
+    <Label text = "Beneficiaries" styleClass="panel_label"></Label>
   </StackPane>
   <StackPane>
     <ListView fx:id="beneficiaryListView" VBox.vgrow="ALWAYS" />
