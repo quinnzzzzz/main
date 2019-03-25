@@ -23,7 +23,7 @@ public class Volunteer {
     private final DietaryPreference dietarypreference;
     private final MedicalCondition medicalcondition;
     private final Set<Tag> tags = new HashSet<>();
-
+    public int points;
     /**
      * Every field must be present and not null.
      */
@@ -41,6 +41,7 @@ public class Volunteer {
         this.dietarypreference = dietarypreference;
         this.tags.addAll(tags);
         this.medicalcondition = medicalcondition;
+        this.points = 0;
     }
     public Name getName() {
         return name;
