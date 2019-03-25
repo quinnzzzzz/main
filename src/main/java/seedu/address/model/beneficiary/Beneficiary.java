@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.project.ProjectTitle;
+
 /**
  * Represents a Beneficiary in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -44,6 +46,7 @@ public class Beneficiary {
     public Address getAddress() {
         return address;
     }
+
 
     /**
      * Returns true if both Beneficiarys of the same name have at least one other identity field that is the same.
@@ -98,5 +101,5 @@ public class Beneficiary {
                 .append(getAddress());
         return builder.toString();
     }
-
 }
+

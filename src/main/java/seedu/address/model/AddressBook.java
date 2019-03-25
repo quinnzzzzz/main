@@ -144,7 +144,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void addProject(Project r) {
-        projects.add(r);
+        projects.addProject(r);
         indicateModified();
     }
     /**
@@ -230,16 +230,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-//    @Override
-//    public ObservableList<Project> getProejctList() {
-//        return projects.asUnmodifiableObservableList();
-//    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons))
+                && projects.equals(((AddressBook) other).projects);
     }
 
     @Override

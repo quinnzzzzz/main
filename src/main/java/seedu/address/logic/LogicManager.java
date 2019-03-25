@@ -113,6 +113,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyProperty<Project> selectedProjectProperty() { return model.selectedProjectProperty(); }
+
+    @Override
     public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
         return model.selectedBeneficiaryProperty();
     }
@@ -121,6 +124,9 @@ public class LogicManager implements Logic {
     public void setSelectedPerson(Person person) {
         model.setSelectedPerson(person);
     }
+
+    @Override
+    public void setSelectedProject(Project project) { model.setSelectedProject(project); }
 
     @Override
     public void setSelectedBeneficiary(Beneficiary beneficiary) {

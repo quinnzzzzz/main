@@ -8,6 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.ProjectTitle;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
 
@@ -145,6 +148,13 @@ public interface Model {
 
     void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
 
+    /** Assign beneficiary to project */
+    void assignBeneficiaryToProject(Beneficiary beneficiary, ProjectTitle projectTitle)
+            throws DuplicateProjectException;
+
+    /** Un-assign beneficiary from project */
+    void unassignBeneficiaryFromProject(Beneficiary beneficiary) throws ProjectNotFoundException;
+
     /**
      * Returns true if the model has previous address book states to restore.
      */
@@ -177,6 +187,12 @@ public interface Model {
     ReadOnlyProperty<Person> selectedPersonProperty();
 
     /**
+     * Selected project in the filtered project list.
+     * null if no project is selected.
+     */
+    ReadOnlyProperty<Project> selectedProjectProperty();
+
+    /**
      * Selected beneficiary in the filtered beneficiary list.
      * null if no beneficiary is selected.
      */
@@ -189,11 +205,12 @@ public interface Model {
     Beneficiary getSelectedBeneficiary();
 
     Person getSelectedPerson();
+    Project getSelectedProject();
     /**
      * Sets the selected person in the filtered person list.
      */
     void setSelectedPerson(Person person);
-
+    void setSelectedProject(Project project);
     void setSelectedBeneficiary (Beneficiary beneficiary);
 
     //Volunteers

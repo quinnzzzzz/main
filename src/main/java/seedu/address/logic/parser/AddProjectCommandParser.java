@@ -11,11 +11,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Beneficiary;
-import seedu.address.model.project.Date;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddProjectCommand object
@@ -38,11 +36,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
         ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap
                 .getValue(PREFIX_PROJECT_TITLE).get());
-        Date date = ParserUtilProject.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        Beneficiary beneficiary = ParserUtilProject.parseBeneficiary(argMultimap.getValue(PREFIX_BENEFICIARY).get());
-        Set<Tag> tagList = ParserUtilProject.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        ProjectDate projectDate = ParserUtilProject.parseProjectDate(argMultimap.getValue(PREFIX_DATE).get());
 
-        Project project = new Project(projectTitle, date, beneficiary, tagList);
+        Project project = new Project(projectTitle, projectDate);
 
         return new AddProjectCommand(project);
     }

@@ -5,14 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Optional;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.project.Beneficiary;
-import seedu.address.model.project.Date;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.tag.Tag;
 
@@ -20,6 +20,8 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtilProject extends ParserUtil {
+
+    public static final String UNSPECIFIED_FIELD = "<UNSPECIFIED>";
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -47,47 +49,9 @@ public class ParserUtilProject extends ParserUtil {
     /**
      * parse project date
      */
-    public static Date parseDate(String projectDate) throws ParseException {
+    public static ProjectDate parseProjectDate(String projectDate) throws ParseException {
         requireNonNull(projectDate);
-        return new Date(projectDate);
-    }
-
-    /**
-     * parse beneficiary
-     */
-    public static Beneficiary parseBeneficiary(String beneficiary) throws ParseException {
-        requireNonNull(beneficiary);
-        return new Beneficiary();
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
+        return new ProjectDate(projectDate);
     }
 
     /**
@@ -130,5 +94,16 @@ public class ParserUtilProject extends ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+    /**
+     * Parses a {@code Optional<String> value} into the specified value or {@code UNSPECIFIED_FIELD} if is empty
+     */
+    public static Optional<String> parseValue(Optional<String> value, String messageConstraints)
+            throws IllegalValueException {
+        if (value.isPresent() && value.get().equals(UNSPECIFIED_FIELD)) {
+            throw new IllegalValueException(messageConstraints);
+        } else {
+            return Optional.of(value.orElse(UNSPECIFIED_FIELD));
+        }
     }
 }

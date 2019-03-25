@@ -256,6 +256,9 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyProperty<Project> selectedProjectProperty() { return null; }
+
+        @Override
         public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
             return null;
         }
@@ -271,7 +274,15 @@ public class AddCommandTest {
         }
 
         @Override
+        public Project getSelectedProject() { throw new AssertionError("This method should not be called.");}
+        @Override
         public void setSelectedPerson(Person person) {
+            throw new AssertionError("This method "
+                    + "should not be called.");
+        }
+
+        @Override
+        public void setSelectedProject(Project project) {
             throw new AssertionError("This method "
                     + "should not be called.");
         }

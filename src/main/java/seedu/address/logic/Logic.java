@@ -70,6 +70,13 @@ public interface Logic {
     ReadOnlyProperty<Person> selectedPersonProperty();
 
     /**
+     * Selected person in the filtered person list.
+     * null if no person is selected.
+     *
+     * @see seedu.address.model.Model#selectedPersonProperty()
+     */
+    ReadOnlyProperty<Project> selectedProjectProperty();
+    /**
      * Selected beneficiary in the filtered beneficiary list.
      * null if no beneficiary is selected.
      *
@@ -83,6 +90,13 @@ public interface Logic {
      * @see seedu.address.model.Model#setSelectedPerson(Person)
      */
     void setSelectedPerson(Person person);
+
+    /**
+     * Sets the selected person in the filtered person list.
+     *
+     * @see seedu.address.model.Model#setSelectedPerson(Person)
+     */
+    void setSelectedProject(Project project);
 
     /**
      * Sets the selected beneficiary in the filtered beneficiary list.

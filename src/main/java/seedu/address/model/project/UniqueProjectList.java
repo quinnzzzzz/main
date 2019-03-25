@@ -40,12 +40,12 @@ public class UniqueProjectList implements Iterable<Project> {
      * Adds a project to the list.
      * The project must not already exist in the list.
      */
-    public void add(Project toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
+    public void addProject(Project toAddProject) {
+        requireNonNull(toAddProject);
+        if (contains(toAddProject)) {
             throw new DuplicateProjectException();
         }
-        internalList.add(toAdd);
+        internalList.add(toAddProject);
     }
 
     /**
