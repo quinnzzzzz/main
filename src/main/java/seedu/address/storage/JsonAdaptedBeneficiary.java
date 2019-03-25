@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,7 +15,7 @@ import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Email;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.beneficiary.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.project.ProjectTitle;
 
 /**
  * Jackson-friendly version of {@link Beneficiary}.
@@ -25,17 +28,22 @@ class JsonAdaptedBeneficiary {
     private final String phone;
     private final String email;
     private final String address;
+    private final List<JsonAdaptedProjectTitle> attachedProjects = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedBeneficiary} with the given beneficiary details.
      */
     @JsonCreator
     public JsonAdaptedBeneficiary(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                                  @JsonProperty("email") String email, @JsonProperty("address") String address) {
+                                  @JsonProperty("email") String email, @JsonProperty("address") String address,
+                                  @JsonProperty("attachedProjects") List<JsonAdaptedProjectTitle> attachedProjects) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        if (attachedProjects != null) {
+            this.attachedProjects.addAll(attachedProjects);
+        }
     }
 
     /**
@@ -46,6 +54,9 @@ class JsonAdaptedBeneficiary {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        attachedProjects.addAll(source.getAttachedProjectLists().stream()
+                .map(JsonAdaptedProjectTitle::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -54,7 +65,10 @@ class JsonAdaptedBeneficiary {
      * @throws IllegalValueException if there were any data constraints violated in the adapted beneficiary.
      */
     public Beneficiary toModelType() throws IllegalValueException {
-        final List<Tag> beneficiaryTags = new ArrayList<>();
+        final List<ProjectTitle> projectTitleList = new ArrayList<>();
+        for (JsonAdaptedProjectTitle projectTitle : attachedProjects) {
+            projectTitleList.add(projectTitle.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -88,7 +102,11 @@ class JsonAdaptedBeneficiary {
         }
         final Address modelAddress = new Address(address);
 
-        return new Beneficiary(modelName, modelPhone, modelEmail, modelAddress);
+        Beneficiary beneficiary = new Beneficiary(modelName, modelPhone, modelEmail, modelAddress);
+        final Set<ProjectTitle> modelProjectList = new HashSet<>(projectTitleList);
+        beneficiary.setProjectLists(modelProjectList);
+
+        return beneficiary;
     }
 
 }

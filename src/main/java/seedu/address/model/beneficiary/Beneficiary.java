@@ -2,6 +2,8 @@ package seedu.address.model.beneficiary;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,7 +19,7 @@ public class Beneficiary {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private Set<ProjectTitle> attachedProjectList;
+    private Set<ProjectTitle> attachedProjectList = new HashSet<>();
 
     // Data fields
     private final Address address;
@@ -138,10 +140,24 @@ public class Beneficiary {
     }
 
     /**
+     * Check if the project is assigned for this beneficiary.
+     */
+    public boolean hasProjectTitle(ProjectTitle projectTitle) {
+        return this.attachedProjectList.contains(projectTitle);
+    }
+
+    /**.
      * Get method for attached project list.
      * @return a set of project titles.
      */
     public Set<ProjectTitle> getAttachedProjectLists() {
-        return this.attachedProjectList;
+        return Collections.unmodifiableSet(this.attachedProjectList);
+    }
+
+    /**
+     * Add all the project attached to this beneficiary.
+     */
+    public void setProjectLists(Set<ProjectTitle> projectList) {
+        this.attachedProjectList.addAll(projectList);
     }
 }
