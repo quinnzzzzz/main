@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
@@ -161,6 +162,11 @@ public class AddCommandTest {
             throw new AssertionError("This method"
                     + " should not be called.");
         }
+        @Override
+        public boolean hasProject(Project project) {
+            throw new AssertionError("This method"
+                    + " should not be called.");
+        }
 
         @Override
         public boolean hasVolunteer(Volunteer volunteer) {
@@ -222,6 +228,12 @@ public class AddCommandTest {
         public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
 
         }
+
+        @Override
+        public void assignBeneficiaryToProject(Beneficiary beneficiary, ProjectTitle projectTitle) {}
+
+        @Override
+        public void unassignBeneficiaryFromProject(Beneficiary beneficiary){}
 
         @Override
         public boolean canUndoAddressBook() {

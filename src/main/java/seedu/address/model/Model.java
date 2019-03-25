@@ -70,6 +70,11 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasProject(Project project);
+
 
     /**
      * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.

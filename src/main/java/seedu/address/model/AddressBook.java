@@ -125,6 +125,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return beneficiaries.contains(beneficiary);
     }
 
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return projects.contains(project);
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.

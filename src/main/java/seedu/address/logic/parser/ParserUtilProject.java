@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Optional;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
@@ -24,28 +25,10 @@ public class ParserUtilProject extends ParserUtil {
     public static final String UNSPECIFIED_FIELD = "<UNSPECIFIED>";
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws IllegalValueException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new Name(trimmedName);
-    }
-
-    /**
-     * parse project title
-     */
-    public static ProjectTitle parseProjectTitle(String projectTitle) throws ParseException {
-        requireNonNull(projectTitle);
-        return new ProjectTitle(projectTitle);
-    }
-
     /**
      * parse project date
      */
@@ -53,7 +36,22 @@ public class ParserUtilProject extends ParserUtil {
         requireNonNull(projectDate);
         return new ProjectDate(projectDate);
     }
-
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws IllegalValueException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    /**
+     * parse project title
+     */
+    public static ProjectTitle parseProjectTitle(String projectTitle) throws ParseException {
+        requireNonNull(projectTitle);
+        String trimmedProjectTitle = projectTitle.trim();
+        if (!ProjectTitle.isValidName(trimmedProjectTitle)) {
+            throw new ParseException(ProjectTitle.MESSAGE_PROJECT_TITLE_CONSTRAINTS);
+        }
+        return new ProjectTitle(trimmedProjectTitle);
+    }
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -84,17 +82,6 @@ public class ParserUtilProject extends ParserUtil {
         return new Tag(trimmedTag);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
     /**
      * Parses a {@code Optional<String> value} into the specified value or {@code UNSPECIFIED_FIELD} if is empty
      */

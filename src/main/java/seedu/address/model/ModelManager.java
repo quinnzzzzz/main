@@ -126,6 +126,11 @@ public class ModelManager implements Model {
         requireNonNull(beneficiary);
         return versionedAddressBook.hasBeneficiary(beneficiary);
     }
+    @Override
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return versionedAddressBook.hasProject(project);
+    }
 
     @Override
     public void deletePerson(Person target) {

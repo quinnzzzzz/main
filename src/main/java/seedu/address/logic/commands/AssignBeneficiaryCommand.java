@@ -73,7 +73,7 @@ public class AssignBeneficiaryCommand extends Command {
                 for (Beneficiary beneficiary : beneficiariesToAssign) {
                     model.unassignBeneficiaryFromProject(beneficiary);
                     successfulBeneficiaryAssignedMessage += String.format(MESSAGE_UNASSIGN_TEAM_SUCCESS,
-                            beneficiary.hasProjectTitle());
+                            beneficiary.hasProjectTitle(targetProject));
             }
             } catch (ProjectNotFoundException pnfe) {
                 successfulBeneficiaryAssignedMessage += String.format(MESSAGE_NO_TEAM_TO_UNASSIGN, pnfe.getMessage());
@@ -83,7 +83,7 @@ public class AssignBeneficiaryCommand extends Command {
             try {
                 for (Beneficiary beneficiary : beneficiariesToAssign) {
                     model.assignBeneficiaryToProject(beneficiary, targetProject);
-                    if (beneficiary.hasProjectTitle()) {
+                    if (beneficiary.hasProjectTitle(targetProject)) {
                         successfulBeneficiaryAssignedMessage += String.format(MESSAGE_UNSPECIFIED_TEAM_SUCCESS,
                                 beneficiary.getName().toString(), targetProject.toString());
                     }

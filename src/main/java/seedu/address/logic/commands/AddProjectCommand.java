@@ -22,7 +22,6 @@ public class AddProjectCommand extends Command {
             + "Parameters: "
             + PREFIX_PROJECT_TITLE + "Project Title "
             + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT_TITLE + "Charity Run "
             + PREFIX_DATE + "020319 ";
@@ -30,35 +29,34 @@ public class AddProjectCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in VolunCHeer";
 
-    private final Project toAddProject;
+    private final Project toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Project}
      */
     public AddProjectCommand(Project project) {
         requireNonNull(project);
-        this.toAddProject = project;
+        this.toAdd = project;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        try{
-            model.addProject(toAddProject);
-        } catch (DuplicateProjectException e) {
+        if (model.hasProject(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
-        model.addProject(toAddProject);
+
+        model.addProject(toAdd);
         model.commitAddressBook();
         //EventsCenter.getInstance().post(new ShowNewProjectTitleEvent(toAddProject.getProjectTitle().toString()));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAddProject));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddProjectCommand // instanceof handles nulls
-                && toAddProject.equals(((AddProjectCommand) other).toAddProject));
+                && toAdd.equals(((AddProjectCommand) other).toAdd));
     }
 }
 
