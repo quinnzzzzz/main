@@ -18,10 +18,7 @@ public class DietaryPreference {
      *
      */
     public DietaryPreference(String dietarypreference) {
-        //requireNonNull(dietarypreference);
-        if (dietarypreference.length() == 0) {
-            dietarypreference = "nil";
-        }
+        requireNonNull(dietarypreference);
         checkArgument(isValidDietaryPreference(dietarypreference), MESSAGE_CONSTRAINTS);
         restriction = dietarypreference;
     }
