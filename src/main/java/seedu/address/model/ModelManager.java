@@ -334,7 +334,7 @@ public class ModelManager implements Model {
      * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
     public int checkRace(MapObject map, Volunteer currentVol) {
-        if (currentVol.getRace().toString() == map.getRacePair().getValue()) {
+        if (currentVol.getRace().toString().equalsIgnoreCase(map.getRacePair().getValue())) {
             return map.getRacePair().getKey();
         }
         return 0;
@@ -345,7 +345,7 @@ public class ModelManager implements Model {
      * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
     public int checkMedical(MapObject map, Volunteer currentVol) {
-        if (currentVol.getMedicalCondition().toString() == map.getMedicalPair().getValue()) {
+        if (currentVol.getMedicalCondition().toString().equalsIgnoreCase(map.getMedicalPair().getValue())) {
             return map.getMedicalPair().getKey();
         }
         return 0;
@@ -357,10 +357,10 @@ public class ModelManager implements Model {
      */
     public void mapAllVolunteer(MapObject map) {
         versionedAddressBook.getVolunteerList().forEach(volunteer -> {
+            volunteer.resetPoints();
             volunteer.addPoints(checkAge(map, volunteer));
             volunteer.addPoints(checkRace(map, volunteer));
             volunteer.addPoints(checkMedical(map, volunteer));
-            //System.out.println(volunteer.getPoints());
         });
     }
 
