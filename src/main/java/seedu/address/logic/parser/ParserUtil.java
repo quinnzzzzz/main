@@ -23,4 +23,18 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    /**
+     *
+     * checks @param testingString and returns true if the string can be converted to an integer
+     */
+    public static boolean isValidInt(String testingString) {
+        try {
+            Integer.parseInt(testingString);
+        }
+        catch(Exception e) {
+            return false;
+        }
+        return true;
+    }
 }

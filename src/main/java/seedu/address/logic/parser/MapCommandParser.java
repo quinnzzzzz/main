@@ -5,8 +5,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_MEDICAL;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_YEAR;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.ParserUtil.isValidInt;
 
 import javafx.util.Pair;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.MapObject;
@@ -115,19 +117,6 @@ public class MapCommandParser implements Parser<MapCommand> {
 
     }
 
-
-    /**
-     * checks if the points are a valid integer
-     */
-    public boolean isValidInt(String testingString) {
-        try {
-            Integer.parseInt(testingString);
-        }
-        catch(Exception e) {
-            return false;
-        }
-        return true;
-    }
 
 }
 
