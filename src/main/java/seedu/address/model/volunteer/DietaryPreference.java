@@ -13,13 +13,15 @@ public class DietaryPreference {
     public static final String MESSAGE_CONSTRAINTS = "Dietary Preference should not contain numbers";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String restriction;
-
     /**
      * Constructs a {@code DietaryPreference}.
      *
      */
     public DietaryPreference(String dietarypreference) {
-        requireNonNull(dietarypreference);
+        //requireNonNull(dietarypreference);
+        if (dietarypreference.length() == 0) {
+            dietarypreference = "nil";
+        }
         checkArgument(isValidDietaryPreference(dietarypreference), MESSAGE_CONSTRAINTS);
         restriction = dietarypreference;
     }

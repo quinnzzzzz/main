@@ -11,9 +11,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.person.Person;
-import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.Volunteer;
+import seedu.address.model.project.Project;
 
 /**
  * API of the Logic component
@@ -35,8 +34,7 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectList();
 
     /** Returns an unmodifiable view of the filtered list of volunteers */
@@ -66,13 +64,6 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Selected person in the filtered person list.
-     * null if no person is selected.
-     *
-     * @see seedu.address.model.Model#selectedPersonProperty()
-     */
-    ReadOnlyProperty<Person> selectedPersonProperty();
 
     /**
      * Selected beneficiary in the filtered beneficiary list.
@@ -89,13 +80,6 @@ public interface Logic {
      * @see Model#selectedVolunteerProperty()
      */
     ReadOnlyProperty<Volunteer> selectedVolunteerProperty();
-
-    /**
-     * Sets the selected person in the filtered person list.
-     *
-     * @see seedu.address.model.Model#setSelectedPerson(Person)
-     */
-    void setSelectedPerson(Person person);
 
     /**
      * Sets the selected beneficiary in the filtered beneficiary list.

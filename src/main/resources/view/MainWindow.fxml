@@ -12,11 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Background?>
-<?import javafx.scene.layout.Region?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="VolunCHeer" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -53,12 +48,11 @@
         </StackPane>
 
         <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.4" VBox.vgrow="ALWAYS">
-          <VBox fx:id="personList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
+          <VBox fx:id="volunteerList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
-            <Text text = "Volunteers" />
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="volunteerListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
           <VBox fx:id="beneficiaryList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
@@ -72,7 +66,6 @@
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
-            <Text text = "Projects" />
             <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
