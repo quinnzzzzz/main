@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_MEDICAL;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_YEAR;
@@ -28,11 +29,14 @@ public class MapCommandParser implements Parser<MapCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MapCommand.MESSAGE_USAGE));
         }
         MapObject newMap = parseCriteria(argMultimap);
+        if (newMap == null) {
+            throw new ParseException(String.format(MESSAGE_INVALID_AGE_FORMAT, MapCommand.MESSAGE_USAGE));
+        }
         return new MapCommand(newMap);
     }
 
     /**
-     * Returns true if the argMultimap contains any valid prefixes.1
+     * Returns true if the argMultimap contains any valid prefixes.
      */
     private static boolean noPrefixes(ArgumentMultimap argMultimap) {
         if (argMultimap.getAllValues(PREFIX_YEAR).isEmpty() && argMultimap.getAllValues(PREFIX_RACE).isEmpty()
@@ -41,6 +45,7 @@ public class MapCommandParser implements Parser<MapCommand> {
         }
         return false;
     }
+
 
     /**
      * Splits tokens into proper data for MapCommand() to handle
@@ -58,9 +63,16 @@ public class MapCommandParser implements Parser<MapCommand> {
         //TODO: write input checks on the criteria for all
         if (!argMultimap.getAllValues(PREFIX_YEAR).isEmpty()) {
             criteriaHolder = argMultimap.getValue(PREFIX_YEAR).get();
-            prefixPoints = Integer.parseInt(criteriaHolder.substring(0, 1));
+            prefixPoints = isValidInt(criteriaHolder.substring(0, 1)) ?
+                    Integer.parseInt(criteriaHolder.substring(0, 1)) : -1;
+            if (prefixPoints == -1) {
+                return null;
+            }
             yearOperator = criteriaHolder.substring(1, 2);
             prefixCriteria = criteriaHolder.substring(2, criteriaHolder.length());
+            if (notValidAgePair(yearOperator, prefixCriteria)){
+                return null;
+            }
             localAgePair = new Pair<>(prefixPoints, Integer.parseInt(prefixCriteria));
         } else {
             localAgePair = new Pair<>(0, 0);
@@ -86,6 +98,35 @@ public class MapCommandParser implements Parser<MapCommand> {
 
         MapObject newMap = new MapObject(localAgePair, yearOperator, localRacePair, localMedicalPair);
         return newMap;
+    }
+
+
+    /**
+     * checks the age pair to see if the comparator and year is valid
+     */
+    public boolean notValidAgePair(String comparator, String year) {
+
+        if(comparator.contains("<") || comparator.contains(">") || comparator.contains("=")) {
+            if (isValidInt(year)) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+
+    /**
+     * checks if the points are a valid integer
+     */
+    public boolean isValidInt(String testingString) {
+        try {
+            Integer.parseInt(testingString);
+        }
+        catch(Exception e) {
+            return false;
+        }
+        return true;
     }
 
 }
