@@ -32,9 +32,9 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Project> filteredProjects;
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
+
     private final FilteredList<Volunteer> filteredVolunteers;
-    private final SimpleObjectProperty<seedu.address.model.volunteer.Volunteer> selectedVolunteer =
-            new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
 
 
     private final FilteredList<Beneficiary> filteredBeneficiaries;
@@ -54,6 +54,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
         filteredPersons.addListener(this::ensureSelectedPersonIsValid);
         filteredProjects = new FilteredList<>(versionedAddressBook.getProjectList());
+
         filteredBeneficiaries = new FilteredList<>(versionedAddressBook.getBeneficiaryList());
         filteredBeneficiaries.addListener(this::ensureSelectedBeneficiaryIsValid);
 

@@ -1,8 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.logic.commands.EditBeneficiaryCommand.MESSAGE_DUPLICATE_BENEFICIARY;
-import static seedu.address.logic.commands.EditVolunteerCommand.MESSAGE_DUPLICATE_VOLUNTEER;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +23,8 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_BENEFICIARY = "Beneficiary list contains duplicate beneficiary(es).";
+    public static final String MESSAGE_DUPLICATE_VOLUNTEER = "Volunteer list contains duplicate volunteer(s).";
+
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedBeneficiary> beneficiaries = new ArrayList<>();
@@ -35,7 +34,9 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("beneficiaries") List<JsonAdaptedBeneficiary> beneficiaries,
+                                       @JsonProperty("volunteers") List<JsonAdaptedVolunteer> volunteers) {
         this.persons.addAll(persons);
         this.beneficiaries.addAll(beneficiaries);
         this.volunteers.addAll(volunteers);
