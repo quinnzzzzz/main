@@ -47,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane volunteerListPanelPlaceholder;
 
     @FXML
     private StackPane beneficiaryListPanelPlaceholder;
@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
 
         volunteerListPanel = new VolunteerListPanel(logic.getFilteredVolunteerList(), logic.selectedVolunteerProperty(),
                 logic::setSelectedVolunteer);
-        personListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
+        volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
 
         beneficiaryListPanel = new BeneficiaryListPanel(logic.getFilteredBeneficiaryList(),
                 logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);

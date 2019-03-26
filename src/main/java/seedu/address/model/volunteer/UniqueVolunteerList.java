@@ -82,7 +82,7 @@ public class UniqueVolunteerList implements Iterable<Volunteer> {
         }
     }
 
-    public void setVolunteers(seedu.address.model.volunteer.UniqueVolunteerList replacement) {
+    public void setVolunteers(UniqueVolunteerList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
