@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MapObject;
 import seedu.address.model.Model;
 
@@ -27,7 +26,6 @@ public class MapCommand extends Command {
             + "Example: map y/3>18 r/2chinese";
 
     public static final String MESSAGE_SUCCESS = "Mapping complete!";
-    public static final String MESSAGE_FAIL = "ERROR";
     private MapObject map;
 
     public MapCommand(MapObject newMap) {
@@ -38,7 +36,7 @@ public class MapCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.mapAllVolunteer(map);
         return new CommandResult(

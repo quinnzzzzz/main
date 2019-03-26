@@ -112,6 +112,13 @@ public class Volunteer {
     }
 
     /**
+     * Resets (@code points)
+     */
+    public void resetPoints(){
+        points = 0;
+    }
+
+    /**
      * Returns true if both volunteers have the same identity and data fields.
      * This defines a stronger notion of equality between two volunteers.
      */
