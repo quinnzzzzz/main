@@ -96,7 +96,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setVolunteers(newData.getVolunteerList());
         setBeneficiaries(newData.getBeneficiaryList());
         setProjects(newData.getProjectList());
     }
@@ -170,6 +170,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        indicateModified();
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setVolunteers(List<Volunteer> volunteers) {
+        this.volunteers.setVolunteers(volunteers);
         indicateModified();
     }
 
