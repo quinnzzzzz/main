@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -35,7 +37,7 @@ public class ModelManager implements Model {
     private final FilteredList<Volunteer> filteredVolunteers;
     private final SimpleObjectProperty<seedu.address.model.volunteer.Volunteer> selectedVolunteer =
             new SimpleObjectProperty<>();
-
+    private FilteredList<Volunteer> sortedVolunteers;
 
     private final FilteredList<Beneficiary> filteredBeneficiaries;
     private final SimpleObjectProperty<Beneficiary> selectedBeneficiary = new SimpleObjectProperty<>();
@@ -361,6 +363,16 @@ public class ModelManager implements Model {
             volunteer.addPoints(checkAge(map, volunteer));
             volunteer.addPoints(checkRace(map, volunteer));
             volunteer.addPoints(checkMedical(map, volunteer));
+        });
+    }
+
+
+    public void sortVolunteers() {
+        //sortedVolunteers = filteredVolunteers;
+        Collections.sort(filteredVolunteers, new Comparator<Volunteer>() {
+            public int compare(Volunteer s1, Volunteer s2) {
+                return s2.getPoints() - s1.getPoints();
+            }
         });
     }
 
