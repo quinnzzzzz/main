@@ -40,7 +40,7 @@ class JsonAdaptedProjectTitle {
      */
     public ProjectTitle toModelType() throws IllegalValueException {
         if (!ProjectTitle.isValidName(projectTitle)) {
-            throw new IllegalValueException(ProjectTitle.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(ProjectTitle.MESSAGE_PROJECT_TITLE_CONSTRAINTS);
         }
         return new ProjectTitle(projectTitle);
     }

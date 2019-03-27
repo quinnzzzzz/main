@@ -32,6 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
+    private PersonListPanel personListPanel;
+    private ProjectListPanel projectListPanel;
     private VolunteerListPanel volunteerListPanel;
     private BeneficiaryListPanel beneficiaryListPanel;
     private ResultDisplay resultDisplay;
@@ -48,7 +50,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
 
-    private StackPane beneficiaryListPanelPlaceholder;
+
+    @FXML
+    private StackPane projectListPanelPlaceholder;
+
+    @FXML
+    private StackPane beneficiaryListPanelPlacehoder;
 
     @FXML
     private StackPane volunteerListPanelPlaceholder;
@@ -119,6 +126,11 @@ public class MainWindow extends UiPart<Stage> {
         browserPanel = new BrowserPanel(logic.selectedVolunteerProperty());
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),
+                logic::setSelectedPerson);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+      
         beneficiaryListPanel = new BeneficiaryListPanel(logic.getFilteredBeneficiaryList(),
                 logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);
         beneficiaryListPanelPlaceholder.getChildren().add(beneficiaryListPanel.getRoot());
@@ -185,6 +197,10 @@ public class MainWindow extends UiPart<Stage> {
     public BeneficiaryListPanel getBeneficiaryListPanel() {
 
         return beneficiaryListPanel;
+    }
+
+    public  ProjectListPanel getProjectListPanel() {
+        return projectListPanel;
     }
 
     /**
