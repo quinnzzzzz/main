@@ -17,6 +17,7 @@ import org.junit.rules.ExpectedException;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -344,6 +345,8 @@ public class AddCommandTest {
             return false;
         }
 
+        @Override
+        public boolean checkBeneficiary (Index targetBeneficiaryIndex, ProjectTitle projectTitle) { return false; }
 
     }
 

@@ -27,7 +27,7 @@ public class FindBeneficiaryCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredBeneficiaryList(predicate);
         return new CommandResult(

@@ -40,7 +40,7 @@ public class AddProjectCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         if (model.hasProject(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
@@ -48,7 +48,6 @@ public class AddProjectCommand extends Command {
 
         model.addProject(toAdd);
         model.commitAddressBook();
-        //EventsCenter.getInstance().post(new ShowNewProjectTitleEvent(toAddProject.getProjectTitle().toString()));
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

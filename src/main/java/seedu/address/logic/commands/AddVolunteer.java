@@ -25,7 +25,7 @@ public class AddVolunteer extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
         if (model.hasVolunteer(toAdd)) {

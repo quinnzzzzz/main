@@ -11,7 +11,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
-
 /**
  * Deletes a project identified using it's displayed index from the address book.
  */
@@ -26,6 +25,9 @@ public class DeleteProjectCommand extends Command {
 
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
+    public static final String MESSAGE_PROJECT_HAS_PROJECTS_ATTACHED = "%1$s has this/these projects: %2$s"
+            + " attached to it, please delete them before delete the project.";
+
     private final Index targetIndex;
 
     public DeleteProjectCommand(Index targetIndex) {
@@ -33,7 +35,7 @@ public class DeleteProjectCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
 
@@ -42,6 +44,7 @@ public class DeleteProjectCommand extends Command {
         }
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
+
         model.deleteProject(projectToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));

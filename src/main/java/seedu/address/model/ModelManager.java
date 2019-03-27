@@ -16,6 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
@@ -68,12 +69,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
-    }
-
-    @Override
-    public void resetData(ReadOnlyAddressBook newData) {
-        versionedAddressBook.resetData(newData);
-        indicateAddressBookChanged();
     }
 
     //=========== UserPrefs ==================================================================================
@@ -175,6 +170,11 @@ public class ModelManager extends ComponentManager implements Model {
     public void addBeneficiary(Beneficiary beneficiary) {
         versionedAddressBook.addBeneficiary(beneficiary);
         updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
+    }
+
+    @Override
+    public boolean checkBeneficiary (Index targetBeneficiaryIndex, ProjectTitle projectTitle) {
+        return versionedAddressBook.checkBeneficiaryForProject(targetBeneficiaryIndex, projectTitle);
     }
 
     @Override

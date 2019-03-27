@@ -51,7 +51,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         try {
             Command command = addressBookParser.parseCommand(commandText);
-            commandResult = command.execute();
+            commandResult = command.execute(model, history);
         } finally {
             history.add(commandText);
         }

@@ -38,7 +38,7 @@ public class MapCommand extends Command {
 
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
         throw new CommandException(MESSAGE_FAIL);

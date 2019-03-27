@@ -6,12 +6,14 @@ import java.util.List;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.UniqueVolunteerList;
@@ -277,5 +279,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeVolunteer(Volunteer key) {
         volunteers.remove(key);
         indicateModified();
+    }
+
+    /**
+     * command
+     */
+    public boolean checkBeneficiaryForProject(Index targetBeneficiaryIndex, ProjectTitle projectTitle) {
+        Beneficiary beneficiary = beneficiaries.getBeneficiaryInIndex(targetBeneficiaryIndex);
+        Beneficiary beneficiaryCopy = beneficiary;
+        if (beneficiary.hasProjectTitle(projectTitle)) {
+            return true;
+        }
+        else {
+            beneficiary.addAttachedProject(projectTitle);
+            beneficiaries.setBeneficiary(beneficiaryCopy, beneficiary);
+        }
+        return false;
     }
 }

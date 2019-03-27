@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.ProjectTitle;
@@ -26,7 +27,6 @@ public interface Model {
     Predicate<Beneficiary> PREDICATE_SHOW_ALL_BENEFICIARIES = unused -> true;
     Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
 
-    void resetData(ReadOnlyAddressBook newData);
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -272,4 +272,6 @@ public interface Model {
      * Add Beneficiary.
      */
     void addBeneficiary(Beneficiary beneficiary);
+
+    boolean checkBeneficiary (Index targetBeneficiaryIndex, ProjectTitle projectTitle);
 }

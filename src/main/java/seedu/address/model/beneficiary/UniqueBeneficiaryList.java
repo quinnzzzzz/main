@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
 import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
 
@@ -68,6 +69,10 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
         }
 
         internalList.set(index, editedBeneficiary);
+    }
+
+    public Beneficiary getBeneficiaryInIndex (Index targetIndex) {
+        return internalList.get(targetIndex.getZeroBased());
     }
 
     /**

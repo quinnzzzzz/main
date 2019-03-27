@@ -17,7 +17,7 @@ public class ListBeneficiaryCommand extends Command {
 
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
         return new CommandResult(MESSAGE_SUCCESS);

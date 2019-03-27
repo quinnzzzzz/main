@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;

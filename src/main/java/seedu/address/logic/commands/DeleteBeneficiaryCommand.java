@@ -35,7 +35,7 @@ public class DeleteBeneficiaryCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
 

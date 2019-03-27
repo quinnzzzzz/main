@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddBeneficiaryCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AddVolunteerCommand;
+import seedu.address.logic.commands.AssignBeneficiaryCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteBeneficiaryCommand;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.FindVolunteerCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListBeneficiaryCommand;
+import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.ListVolunteerCommand;
 import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -70,6 +72,9 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+            case AssignBeneficiaryCommand.COMMAND_WORD:
+                return new AssignBeneficiaryCommandParser().parse(arguments);
+
         case EditBeneficiaryCommand.COMMAND_WORD:
             return new EditBeneficiaryCommandParser().parse(arguments);
 
@@ -96,6 +101,9 @@ public class AddressBookParser {
 
         case FindVolunteerCommand.COMMAND_WORD:
             return new FindVolunteerCommandParser().parse(arguments);
+
+            case ListProjectCommand.COMMAND_WORD:
+                return new ListProjectCommand();
 
         case ListBeneficiaryCommand.COMMAND_WORD:
             return new ListBeneficiaryCommand();

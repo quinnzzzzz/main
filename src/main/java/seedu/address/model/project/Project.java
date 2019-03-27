@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Set;
 
+import seedu.address.model.beneficiary.Beneficiary;
+
 
 /**
  * Represents a Project in the address book.
@@ -56,6 +58,9 @@ public class Project extends UniqueProjectList{
                 && (otherProject.getProjectDate().equals(getProjectDate()));
     }
 
+//    public void setBeneficiary(Beneficiary attachedBeneficiary) {
+//        this.attachedProjectList.addAll(projectList);
+//    }
     /**
      * Returns true if both Projects have the same identity and data fields.
      * This defines a stronger notion of equality between two Projects.

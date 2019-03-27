@@ -32,7 +32,7 @@ public class SelectVolunteerCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
         List<Volunteer> filteredVolunteerList = model.getFilteredVolunteerList();
