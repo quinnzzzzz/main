@@ -44,9 +44,9 @@ public class BeneficiaryCard extends UiPart<Region> {
         this.beneficiary = beneficiary;
         id.setText(displayedIndex + ". ");
         name.setText(beneficiary.getName().fullName);
-        phone.setText(beneficiary.getPhone().value);
-        address.setText(beneficiary.getAddress().value);
-        email.setText(beneficiary.getEmail().value);
+        phone.setText("Phone: " + beneficiary.getPhone().value);
+        address.setText("Address: " + beneficiary.getAddress().value);
+        email.setText("Email: " + beneficiary.getEmail().value);
     }
 
     @Override

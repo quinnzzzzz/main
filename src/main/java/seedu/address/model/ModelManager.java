@@ -13,11 +13,9 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.ProjectTitle;
@@ -30,7 +28,7 @@ import seedu.address.model.project.Project;
 /**
  * Represents the in-memory model of the address book data.
  */
-public class ModelManager extends ComponentManager implements Model {
+public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final VersionedAddressBook versionedAddressBook;
@@ -39,8 +37,9 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Project> filteredProjects;
     private final SimpleObjectProperty<Project> selectedProject= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
+
     private final FilteredList<Volunteer> filteredVolunteers;
-    private final SimpleObjectProperty<seedu.address.model.volunteer.Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
 
 
     private final FilteredList<Beneficiary> filteredBeneficiaries;
@@ -60,6 +59,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
         filteredPersons.addListener(this::ensureSelectedPersonIsValid);
         filteredProjects = new FilteredList<>(versionedAddressBook.getProjectList());
+
         filteredBeneficiaries = new FilteredList<>(versionedAddressBook.getBeneficiaryList());
         filteredBeneficiaries.addListener(this::ensureSelectedBeneficiaryIsValid);
 
@@ -133,10 +133,6 @@ public class ModelManager extends ComponentManager implements Model {
     public boolean hasProject(Project project) {
         requireNonNull(project);
         return versionedAddressBook.hasProject(project);
-    }
-    /** Raises an event to indicate the model has changed */
-    private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(versionedAddressBook));
     }
 
     @Override
@@ -322,6 +318,73 @@ public class ModelManager extends ComponentManager implements Model {
         if (volunteer != null && !filteredVolunteers.contains(volunteer)) {
             selectedVolunteer.setValue(volunteer);
         }
+    }
+
+
+
+    /**
+     * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkAge(MapObject map, Volunteer currentVol) {
+        switch(map.getComparator()) {
+
+        case "<":
+            if (Integer.parseInt(currentVol.getAge().toString()) < map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
+
+        case ">":
+            if (Integer.parseInt(currentVol.getAge().toString()) > map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
+
+        case "=":
+            if (Integer.parseInt(currentVol.getAge().toString()) == map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
+
+        default:
+            return 0;
+        }
+        return 0;
+    }
+
+
+    /**
+     * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkRace(MapObject map, Volunteer currentVol) {
+        if (currentVol.getRace().toString().equalsIgnoreCase(map.getRacePair().getValue())) {
+            return map.getRacePair().getKey();
+        }
+        return 0;
+    }
+
+
+    /**
+     * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkMedical(MapObject map, Volunteer currentVol) {
+        if (currentVol.getMedicalCondition().toString().equalsIgnoreCase(map.getMedicalPair().getValue())) {
+            return map.getMedicalPair().getKey();
+        }
+        return 0;
+    }
+
+
+    /**
+     * Maps all volunteers in the (@code UniqueVolunteerList)
+     */
+    public void mapAllVolunteer(MapObject map) {
+        versionedAddressBook.getVolunteerList().forEach(volunteer -> {
+            volunteer.resetPoints();
+            volunteer.addPoints(checkAge(map, volunteer));
+            volunteer.addPoints(checkRace(map, volunteer));
+            volunteer.addPoints(checkMedical(map, volunteer));
+        });
     }
 
 

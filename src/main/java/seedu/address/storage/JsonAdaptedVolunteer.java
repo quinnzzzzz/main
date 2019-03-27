@@ -42,14 +42,15 @@ class JsonAdaptedVolunteer {
     private final String emergencycontact;
     private final String dietarypreference;
     private final String medicalcondition;
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedVolunteer} with the given volunteer details.
      */
     @JsonCreator
-    public JsonAdaptedVolunteer (@JsonProperty("name") String name,  @JsonProperty("Age") String age,
-                                @JsonProperty("Race") String race, @JsonProperty("phone") String phone,
+    public JsonAdaptedVolunteer (@JsonProperty("name") String name,  @JsonProperty("age") String age,
+                                @JsonProperty("race") String race, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("DietaryPreference") String dietarypreference,
                                 @JsonProperty("EmergencyContact") String emergencycontact,
@@ -155,7 +156,8 @@ class JsonAdaptedVolunteer {
         if (!EmergencyContact.isValidEmergencyContact(emergencycontact)) {
             throw new IllegalValueException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
-        final EmergencyContact modelEmergencyContact = new EmergencyContact(emergencycontact);
+        final EmergencyContact modelEmergencyContact = new EmergencyContact
+                (emergencycontact);
 
         if (dietarypreference == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

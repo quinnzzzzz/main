@@ -6,7 +6,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
-import seedu.address.model.beneficiary.Name;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -28,23 +27,19 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label title;
+    private Label projectTitle;
     @FXML
     private Label id;
     @FXML
-    private Label date;
-    @FXML
-    private Label beneficiary;
-    @FXML
-    private FlowPane tags;
+    private Label projectDate;
+
 
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
-        title.setText(project.getProjectTitle().fullTitle);
-        date.setText(project.getProjectDate().fullDate);
-       // beneficiary.setText(beneficiary.getName().Name);
+        projectTitle.setText(project.getProjectTitle().fullTitle);
+        projectDate.setText("Phone: " + project.getProjectDate().fullDate);
     }
 
     @Override

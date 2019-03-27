@@ -21,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MapObject;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -29,6 +30,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -205,7 +207,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Project> getFilteredProjectList() { return null; }
+        public ObservableList<Project> getFilteredProjectList() {
+            return null; }
 
         @Override
         public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
@@ -311,7 +314,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setVolunteer(seedu.address.model.volunteer.Volunteer target, seedu.address.model.volunteer.Volunteer editedVolunteer) {
+        public void setVolunteer(
+                seedu.address.model.volunteer.Volunteer target,
+                seedu.address.model.volunteer.Volunteer editedVolunteer) {
 
         }
 
@@ -333,6 +338,26 @@ public class AddCommandTest {
         @Override
         public void updateFilteredVolunteerList(Predicate<seedu.address.model.volunteer.Volunteer> predicate) {
 
+        }
+
+        @Override
+        public int checkAge(MapObject map, Volunteer currentVol) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int checkRace(MapObject map, Volunteer currentVol) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int checkMedical(MapObject map, Volunteer currentVol) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void mapAllVolunteer(MapObject map) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
