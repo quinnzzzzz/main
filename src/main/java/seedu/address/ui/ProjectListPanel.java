@@ -7,30 +7,32 @@ import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.project.Project;
-import seedu.address.ui.ProjectCard;
-import seedu.address.ui.UiPart;
-import seedu.address.model.project.UniqueProjectList;
 
 /**
  * Panel containing the list of projects.
  */
 public class ProjectListPanel extends UiPart<Region> {
     private static final String FXML = "ProjectListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(seedu.address.ui.ProjectListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(ProjectListPanel.class);
 
-    @javafx.fxml.FXML
+    @FXML
     private ListView<Project> projectListView;
 
-    public ProjectListPanel(ObservableList<Project> projectList, ObservableValue<Project> selectedProject,
-                           Consumer<Project> onSelectedProjectChange) {
+
+    public ProjectListPanel(ObservableList<Project> projectList,
+                                ObservableValue<Project> selectedProject,
+                                Consumer<Project> onSelectedProjectChange) {
         super(FXML);
         projectListView.setItems(projectList);
-        projectListView.setCellFactory(listView -> new seedu.address.ui.ProjectListPanel.ProjectListViewCell());
+        projectListView.setCellFactory(listView -> new ProjectListViewCell());
         projectListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             logger.fine("Selection in project list panel changed to : '" + newValue + "'");
             onSelectedProjectChange.accept(newValue);

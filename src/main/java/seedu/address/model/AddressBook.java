@@ -81,8 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Project> getProjectList() {
-        return projects.asUnmodifiableObservableList(); }
+    public ObservableList<Project> getProjectList() { return projects.asUnmodifiableObservableList(); }
 
     /**
      * Replaces the contents of the Beneficiary list with {@code beneficiaries}.
@@ -254,11 +253,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Project> getProejctList() {
-       return projects.asUnmodifiableObservableList();
     }
   
     @Override

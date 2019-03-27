@@ -49,13 +49,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-
-
-    @FXML
     private StackPane projectListPanelPlaceholder;
 
     @FXML
-    private StackPane beneficiaryListPanelPlacehoder;
+    private StackPane beneficiaryListPanelPlaceholder;
 
     @FXML
     private StackPane volunteerListPanelPlaceholder;
@@ -126,10 +123,6 @@ public class MainWindow extends UiPart<Stage> {
         browserPanel = new BrowserPanel(logic.selectedVolunteerProperty());
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
-
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),
-                logic::setSelectedPerson);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
       
         beneficiaryListPanel = new BeneficiaryListPanel(logic.getFilteredBeneficiaryList(),
                 logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);
@@ -138,6 +131,10 @@ public class MainWindow extends UiPart<Stage> {
         volunteerListPanel = new VolunteerListPanel(logic.getFilteredVolunteerList(),
                 logic.selectedVolunteerProperty(), logic::setSelectedVolunteer);
         volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
+
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(),
+                logic.selectedProjectProperty(),logic::setSelectedProject);
+        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -195,7 +192,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public BeneficiaryListPanel getBeneficiaryListPanel() {
-
         return beneficiaryListPanel;
     }
 
