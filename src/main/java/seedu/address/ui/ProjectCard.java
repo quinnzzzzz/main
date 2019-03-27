@@ -39,7 +39,7 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         id.setText(displayedIndex + ". ");
         projectTitle.setText(project.getProjectTitle().fullTitle);
-        projectDate.setText("Phone: " + project.getProjectDate().fullDate);
+        projectDate.setText("Project Date: " + project.getProjectDate().fullDate);
     }
 
     @Override

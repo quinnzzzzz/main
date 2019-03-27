@@ -68,7 +68,7 @@ public class Beneficiary {
     }
 
     /**
-     * Returns true if both Beneficiarys have the same identity and data fields.
+     * Returns true if both Beneficiaries have the same identity and data fields.
      * This defines a stronger notion of equality between two Beneficiarys.
      */
     @Override
