@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.logic.commands.EditBeneficiaryCommand.MESSAGE_DUPLICATE_BENEFICIARY;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -24,17 +23,23 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_BENEFICIARY = "Beneficiary list contains duplicate beneficiary(es).";
+    public static final String MESSAGE_DUPLICATE_VOLUNTEER = "Volunteer list contains duplicate volunteer(s).";
+
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedBeneficiary> beneficiaries = new ArrayList<>();
+    private final List<JsonAdaptedVolunteer> volunteers = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("beneficiaries") List<JsonAdaptedBeneficiary> beneficiaries,
+                                       @JsonProperty("volunteers") List<JsonAdaptedVolunteer> volunteers) {
         this.persons.addAll(persons);
         this.beneficiaries.addAll(beneficiaries);
+        this.volunteers.addAll(volunteers);
     }
 
     /**
@@ -44,7 +49,10 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        beneficiaries.addAll(source.getBeneficiaryList().stream().map(JsonAdaptedBeneficiary::new).collect(Collectors.toList()));
+        beneficiaries.addAll(source.getBeneficiaryList().stream().map(JsonAdaptedBeneficiary::new)
+                .collect(Collectors.toList()));
+        volunteers.addAll(source.getVolunteerList().stream().map(JsonAdaptedVolunteer::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -67,6 +75,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_BENEFICIARY);
             }
             addressBook.addBeneficiary(beneficiary);
+        }
+        for (JsonAdaptedVolunteer jsonAdaptedVolunteer : volunteers) {
+            Volunteer volunteer = jsonAdaptedVolunteer.toModelType();
+            if (addressBook.hasVolunteer(volunteer)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_VOLUNTEER);
+            }
+            addressBook.addVolunteer(volunteer);
         }
         return addressBook;
     }

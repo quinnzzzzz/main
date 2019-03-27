@@ -25,6 +25,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
@@ -36,14 +37,13 @@ import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.Volunteer;
 
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing volunteer in the address book.
  */
 public class EditVolunteerCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editVolunteer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the volunteer identified "
             + "by the index number used in the displayed volunteer list. "
@@ -127,7 +127,7 @@ public class EditVolunteerCommand extends Command {
         Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
         return new Volunteer(updatedName, updatedAge, updatedRace, updatedPhone, updatedAddress, updatedEmail,
-                updatedEmergencyContact, updatedDietaryPreference, updatedMedicalCondition,updatedTags);
+                updatedEmergencyContact, updatedDietaryPreference, updatedMedicalCondition, updatedTags);
     }
 
     @Override

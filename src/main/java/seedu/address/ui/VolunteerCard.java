@@ -31,11 +31,21 @@ public class VolunteerCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label age;
+    @FXML
+    private Label race;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label emergencycontact;
+    @FXML
+    private Label dietarypreference;
+    @FXML
+    private Label medicalcondition;
     @FXML
     private FlowPane tags;
 
@@ -44,9 +54,14 @@ public class VolunteerCard extends UiPart<Region> {
         this.volunteer = volunteer;
         id.setText(displayedIndex + ". ");
         name.setText(volunteer.getName().fullName);
-        phone.setText(volunteer.getPhone().value);
-        address.setText(volunteer.getAddress().value);
-        email.setText(volunteer.getEmail().value);
+        age.setText("Age: " + volunteer.getAge().ageOutput);
+        race.setText("Race: " + volunteer.getRace().raceOutput);
+        phone.setText("Phone: " + volunteer.getPhone().value);
+        address.setText("Address: " + volunteer.getAddress().value);
+        email.setText("Email: " + volunteer.getEmail().value);
+        emergencycontact.setText("Emergency Contact: " + volunteer.getEmergencyContact().value);
+        dietarypreference.setText("Dietary Preference: " + volunteer.getDietaryPreference().restriction);
+        medicalcondition.setText("Medical Condition: " + volunteer.getMedicalCondition().status);
         volunteer.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 

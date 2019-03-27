@@ -15,8 +15,8 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.UniqueProjectList;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.volunteer.UniqueVolunteerList;
+import seedu.address.model.volunteer.Volunteer;
 
 
 /**
@@ -81,7 +81,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Project> getProjectList() { return projects.asUnmodifiableObservableList(); }
+    public ObservableList<Project> getProjectList() {
+        return projects.asUnmodifiableObservableList(); }
 
     /**
      * Replaces the contents of the Beneficiary list with {@code beneficiaries}.
@@ -97,7 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setVolunteers(newData.getVolunteerList());
         setBeneficiaries(newData.getBeneficiaryList());
         setProjects(newData.getProjectList());
     }
@@ -180,6 +181,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setVolunteers(List<Volunteer> volunteers) {
+        this.volunteers.setVolunteers(volunteers);
+        indicateModified();
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -246,6 +256,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Project> getProejctList() {
+       return projects.asUnmodifiableObservableList();
+    }
+  
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

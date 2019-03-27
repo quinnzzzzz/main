@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
+
 import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
@@ -234,7 +235,8 @@ public interface Model {
     /**
      * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
      * {@code target} must exist in the address book.
-     * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the address book.
+     * The volunteer identity of {@code editedVolunteer} must not be the same as
+     * another existing volunteer in the address book.
      */
     void setVolunteer(Volunteer target, Volunteer editedVolunteer);
 
@@ -266,6 +268,27 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
+
+    /**
+     * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkAge(MapObject map, Volunteer currentVol);
+
+    /**
+     * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkRace(MapObject map, Volunteer currentVol);
+
+    /**
+     * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    public int checkMedical(MapObject map, Volunteer currentVol);
+
+    /**
+     * Maps all volunteers in the (@code UniqueVolunteerList)
+     */
+    public void mapAllVolunteer(MapObject map);
+
 
 
     /**
