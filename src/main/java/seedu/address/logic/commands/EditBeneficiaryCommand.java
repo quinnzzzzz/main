@@ -1,11 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BENEFICIARIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -82,6 +83,7 @@ public class EditBeneficiaryCommand extends Command {
 
         model.setBeneficiary(beneficiaryToEdit, editedBeneficiary);
         model.updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_BENEFICIARY_SUCCESS, editedBeneficiary));
     }

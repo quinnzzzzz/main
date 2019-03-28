@@ -11,11 +11,12 @@ import seedu.address.model.beneficiary.Beneficiary;
  * Represents a Project in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Project extends UniqueProjectList{
+public class Project {
 
     // Identity fields
     private final ProjectTitle projectTitle;
     private final ProjectDate projectDate;
+    private Beneficiary beneficiary;
 
     /**
      * Every field must be present and not null.
@@ -65,7 +66,6 @@ public class Project extends UniqueProjectList{
      * Returns true if both Projects have the same identity and data fields.
      * This defines a stronger notion of equality between two Projects.
      */
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -80,4 +80,11 @@ public class Project extends UniqueProjectList{
                 && otherProject.getProjectDate().equals(getProjectDate());
     }
 
+    public void setBeneficiary (Beneficiary beneficiary) {
+        this.beneficiary = beneficiary;
+    }
+
+    public Beneficiary getBeneficiary () {
+        return beneficiary;
+    }
 }
