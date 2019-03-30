@@ -2,20 +2,26 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.beneficiary.UniqueBeneficiaryList;
+import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
+import seedu.address.model.volunteer.Volunteer;
 
 
 /**
  * Represents a Project in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Project extends UniqueProjectList{
-
-    // Identity fields
+public class Project {
+    //    // Identity fields
     private final ProjectTitle projectTitle;
     private final ProjectDate projectDate;
+    private Complete complete;
+    private Beneficiary beneficiary;
 
     /**
      * Every field must be present and not null.
@@ -24,6 +30,16 @@ public class Project extends UniqueProjectList{
         requireAllNonNull(projectTitle, projectDate);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
+        //internal tags
+        this.complete = new Complete(false);
+        this.beneficiary = null;
+    }
+
+    public void setAssignedBeneficiary(Beneficiary b) {
+        this.beneficiary = b;
+    }
+    public void setComplete() {
+        this.complete = new Complete(true);
     }
 
     public ProjectTitle getProjectTitle() {
@@ -34,12 +50,22 @@ public class Project extends UniqueProjectList{
         return projectDate;
     }
 
+    public Complete getComplete() {
+        return complete;
+    }
+
+    public Beneficiary getBeneficiariesAttached() {//to implement
+        return this.beneficiary; //asObservableList()??
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectTitle())
                 .append(", ")
                 .append(getProjectDate())
+                .append(" Beneficiary: ")
+                .append(getBeneficiariesAttached())
                 .append("\n");
         return builder.toString();
     }
@@ -58,9 +84,6 @@ public class Project extends UniqueProjectList{
                 && (otherProject.getProjectDate().equals(getProjectDate()));
     }
 
-//    public void setBeneficiary(Beneficiary attachedBeneficiary) {
-//        this.attachedProjectList.addAll(projectList);
-//    }
     /**
      * Returns true if both Projects have the same identity and data fields.
      * This defines a stronger notion of equality between two Projects.
@@ -80,4 +103,9 @@ public class Project extends UniqueProjectList{
                 && otherProject.getProjectDate().equals(getProjectDate());
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(projectTitle);
+    }
 }
+

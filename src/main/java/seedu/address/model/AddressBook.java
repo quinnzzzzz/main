@@ -293,16 +293,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * command
      */
-    public boolean checkBeneficiaryForProject(Index targetBeneficiaryIndex, ProjectTitle projectTitle) {
-        Beneficiary beneficiary = beneficiaries.getBeneficiaryInIndex(targetBeneficiaryIndex);
-        Beneficiary beneficiaryCopy = beneficiary;
-        if (beneficiary.hasProjectTitle(projectTitle)) {
-            return true;
-        }
-        else {
-            beneficiary.addAttachedProject(projectTitle);
-            beneficiaries.setBeneficiary(beneficiaryCopy, beneficiary);
-        }
-        return false;
-    }
+//    public boolean checkBeneficiaryForProject(ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
+//        Beneficiary beneficiary = beneficiaries.getBeneficiaryIndex(targetBeneficiaryIndex);
+//        Beneficiary beneficiaryCopy = beneficiary;
+//        if (beneficiary.hasProjectTitle(projectTitle)) {
+//            return true;
+//        }
+//        else {
+//            beneficiary.addAttachedProject(projectTitle);
+//            //project.attachBeneficiary(beneficiary.getName());
+//            beneficiaries.setBeneficiary(beneficiaryCopy, beneficiary);
+//        }
+//        return false;
+//    }
 }

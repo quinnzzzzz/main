@@ -197,11 +197,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
-
-        }
-
-        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -232,12 +227,8 @@ public class AddCommandTest {
         public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
 
         }
-
         @Override
-        public void assignBeneficiaryToProject(Beneficiary beneficiary, ProjectTitle projectTitle) {}
-
-        @Override
-        public void unassignBeneficiaryFromProject(Beneficiary beneficiary){}
+        public void updateProject(Project targetProject, Project editedProject){}
 
         @Override
         public boolean canUndoAddressBook() {
@@ -321,6 +312,9 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary){}
+
+        @Override
         public ReadOnlyProperty<seedu.address.model.volunteer.Volunteer> selectedVolunteerProperty() {
             return null;
         }
@@ -369,9 +363,6 @@ public class AddCommandTest {
         public boolean hasBeneficiary(Beneficiary beneficiary) {
             return false;
         }
-
-        @Override
-        public boolean checkBeneficiary (Index targetBeneficiaryIndex, ProjectTitle projectTitle) { return false; }
 
     }
 

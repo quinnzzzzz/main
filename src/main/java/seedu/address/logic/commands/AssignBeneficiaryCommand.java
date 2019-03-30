@@ -7,6 +7,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 
 /**
@@ -17,7 +19,7 @@ public class AssignBeneficiaryCommand extends Command {
     public static final String COMMAND_WORD = "assign";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a beneficiary to a project "
-            + "More than 1 project can be assigned to each beneficiary.\n"
+            + "Only 1 beneficiary can be assigned to each project.\n"
             + "Parameters: "
             + "[PROJECT_TITLE] "
             + "[INDEX]...\n"
@@ -48,12 +50,17 @@ public class AssignBeneficiaryCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        if (model.checkBeneficiary(targetBeneficiaryIndex, targetProject)){
-            return new CommandResult(MESSAGE_DUPLICATE_BENEFICIARY);
+        Beneficiary b = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
+        // list below might be empty and throw a out of bound exception
+        if (model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject))== null){
+            throw new CommandException("Project does not exist.");
         }
         else {
-            return new CommandResult(MESSAGE_DUPLICATE_BENEFICIARY);
+            Project p = model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject)).get(0);
+            p.setAssignedBeneficiary(b);
+            return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
+
     }
 
     @Override
