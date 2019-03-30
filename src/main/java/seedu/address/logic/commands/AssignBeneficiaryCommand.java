@@ -24,7 +24,8 @@ public class AssignBeneficiaryCommand extends Command {
             + "[PROJECT_TITLE] "
             + "[INDEX]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + "Old Folks Home ";
+            + "Project Sunshine"
+            + "1 ";
 
     public static final String MESSAGE_PARAMETERS = "[PROJECT_TITLE] "
             + PREFIX_INDEX + "INDEX ";
@@ -50,22 +51,20 @@ public class AssignBeneficiaryCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        Beneficiary b = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
-        // list below might be empty and throw a out of bound exception
+        Beneficiary beneficiaryAssigned = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
         if (model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject))== null){
             throw new CommandException("Project does not exist.");
         }
         else {
-            Project p = model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject)).get(0);
-            p.setAssignedBeneficiary(b);
+            Project projectToAssign = model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject)).get(0);
+            projectToAssign.setAssignedBeneficiary(beneficiaryAssigned);
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
 
     }
-
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
+        return other == this
                 || (other instanceof AssignBeneficiaryCommand // instanceof handles nulls
                 && this.targetProject.equals(((AssignBeneficiaryCommand) other).targetProject)) // state check
                 && this.targetBeneficiaryIndex.equals(((AssignBeneficiaryCommand) other).targetBeneficiaryIndex);

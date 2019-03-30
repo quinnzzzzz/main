@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.beneficiary.Name;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
 import seedu.address.model.volunteer.Volunteer;
@@ -35,8 +36,8 @@ public class Project {
         this.beneficiary = null;
     }
 
-    public void setAssignedBeneficiary(Beneficiary b) {
-        this.beneficiary = b;
+    public void setAssignedBeneficiary(Beneficiary beneficiaryAssigned) {
+        this.beneficiary = beneficiaryAssigned;
     }
     public void setComplete() {
         this.complete = new Complete(true);
@@ -54,8 +55,12 @@ public class Project {
         return complete;
     }
 
-    public Beneficiary getBeneficiariesAttached() {//to implement
-        return this.beneficiary; //asObservableList()??
+    public Beneficiary getBeneficiaryAttached() {
+        return this.beneficiary;
+    }
+
+    public Name getBeneficiaryName(){
+        return beneficiary.getName();
     }
 
     @Override
@@ -65,7 +70,7 @@ public class Project {
                 .append(", ")
                 .append(getProjectDate())
                 .append(" Beneficiary: ")
-                .append(getBeneficiariesAttached())
+                .append(getBeneficiaryAttached())
                 .append("\n");
         return builder.toString();
     }
@@ -105,7 +110,7 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectTitle);
+        return Objects.hash(projectTitle,projectDate,complete,beneficiary);
     }
 }
 

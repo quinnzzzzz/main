@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represent Project's completion attribute i.e. whether the Project has Completed
  */
 public class Complete {
-    private static final String MESSAGE_ADDRESS_CONSTRAINTS = "Complete should be 'true' or 'false' only";
+    public static final String MESSAGE_CONSTRAINTS = "Complete should be 'true' or 'false' only";
 
     public final String value;
 
@@ -17,20 +17,22 @@ public class Complete {
 
     public Complete(String isComplete) {
         requireNonNull(isComplete);
-        checkArgument(isValidBoolean(isComplete), MESSAGE_ADDRESS_CONSTRAINTS);
+        checkArgument(isValidBoolean(isComplete), MESSAGE_CONSTRAINTS);
         this.value = isComplete;
     }
 
     /**
      * Returns true if a given string is a valid boolean string.
+     * @param test
      */
-    private static boolean isValidBoolean(String test) {
+    public static Boolean isValidBoolean(String test) {
         return test.equals("true") || test.equals("false");
     }
 
     public boolean isComplete() {
         return this.value.equals("true");
     }
+
     @Override
     public String toString() {
         return value;

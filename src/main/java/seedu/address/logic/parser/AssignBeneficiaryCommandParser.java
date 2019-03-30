@@ -5,9 +5,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntaxProject.*;
 import static seedu.address.logic.parser.ParserUtilProject.UNSPECIFIED_FIELD;
 
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AssignBeneficiaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 
 /**
@@ -24,21 +27,19 @@ public class AssignBeneficiaryCommandParser implements Parser<AssignBeneficiaryC
     public AssignBeneficiaryCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignBeneficiaryCommand.MESSAGE_USAGE));
+        }
 
-        ProjectTitle projectTitle;
-        try {
-            if (!argMultimap.getPreamble().isEmpty()) {
-                projectTitle = ParserUtilProject.parseProjectTitle(argMultimap.getPreamble());
-            } else {
-                projectTitle = new ProjectTitle(UNSPECIFIED_FIELD);
-            }
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap.getValue(PREFIX_NAME).get());
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
             return new AssignBeneficiaryCommand(projectTitle, index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignBeneficiaryCommand.MESSAGE_USAGE), pe);
         }
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
 
