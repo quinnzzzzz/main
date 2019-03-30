@@ -6,12 +6,14 @@ import java.util.List;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.volunteer.UniqueVolunteerList;
 import seedu.address.model.volunteer.Volunteer;
@@ -126,6 +128,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return beneficiaries.contains(beneficiary);
     }
 
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return projects.contains(project);
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -149,7 +156,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The project must not already exist in the address book.
      */
     public void addProject(Project r) {
-        projects.add(r);
+        projects.addProject(r);
         indicateModified();
     }
     /**
@@ -249,16 +256,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    //@Override
-    //public ObservableList<Project> getProejctList() {
-    //    return projects.asUnmodifiableObservableList();
-    //}
-
+    @Override
+    public ObservableList<Project> getProejctList() {
+       return projects.asUnmodifiableObservableList();
+    }
+  
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons))
+                && projects.equals(((AddressBook) other).projects);
     }
 
     @Override
@@ -286,5 +294,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeVolunteer(Volunteer key) {
         volunteers.remove(key);
         indicateModified();
+    }
+
+    /**
+     * command
+     */
+    public boolean checkBeneficiaryForProject(Index targetBeneficiaryIndex, ProjectTitle projectTitle) {
+        Beneficiary beneficiary = beneficiaries.getBeneficiaryInIndex(targetBeneficiaryIndex);
+        Beneficiary beneficiaryCopy = beneficiary;
+        if (beneficiary.hasProjectTitle(projectTitle)) {
+            return true;
+        }
+        else {
+            beneficiary.addAttachedProject(projectTitle);
+            beneficiaries.setBeneficiary(beneficiaryCopy, beneficiary);
+        }
+        return false;
     }
 }

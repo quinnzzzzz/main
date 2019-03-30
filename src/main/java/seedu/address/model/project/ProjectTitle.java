@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ProjectTitle {
 
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_PROJECT_TITLE_CONSTRAINTS =
             "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
@@ -27,8 +27,8 @@ public class ProjectTitle {
      */
     public ProjectTitle(String projectTitle) {
         requireNonNull(projectTitle);
-        checkArgument(isValidName(projectTitle), MESSAGE_CONSTRAINTS);
-        fullTitle = projectTitle;
+        checkArgument(isValidName(projectTitle), MESSAGE_PROJECT_TITLE_CONSTRAINTS);
+        this.fullTitle = projectTitle;
     }
 
     /**

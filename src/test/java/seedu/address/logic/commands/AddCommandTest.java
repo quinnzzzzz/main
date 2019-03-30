@@ -17,6 +17,7 @@ import org.junit.rules.ExpectedException;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -26,6 +27,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.ProjectTitle;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.PersonBuilder;
@@ -162,6 +165,11 @@ public class AddCommandTest {
             throw new AssertionError("This method"
                     + " should not be called.");
         }
+        @Override
+        public boolean hasProject(Project project) {
+            throw new AssertionError("This method"
+                    + " should not be called.");
+        }
 
         @Override
         public boolean hasVolunteer(Volunteer volunteer) {
@@ -226,6 +234,12 @@ public class AddCommandTest {
         }
 
         @Override
+        public void assignBeneficiaryToProject(Beneficiary beneficiary, ProjectTitle projectTitle) {}
+
+        @Override
+        public void unassignBeneficiaryFromProject(Beneficiary beneficiary){}
+
+        @Override
         public boolean canUndoAddressBook() {
             throw new AssertionError("This method"
                     + " should not be called.");
@@ -258,6 +272,9 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyProperty<Project> selectedProjectProperty() { return null; }
+
+        @Override
         public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
             return null;
         }
@@ -273,7 +290,15 @@ public class AddCommandTest {
         }
 
         @Override
+        public Project getSelectedProject() { throw new AssertionError("This method should not be called.");}
+        @Override
         public void setSelectedPerson(Person person) {
+            throw new AssertionError("This method "
+                    + "should not be called.");
+        }
+
+        @Override
+        public void setSelectedProject(Project project) {
             throw new AssertionError("This method "
                     + "should not be called.");
         }
@@ -345,6 +370,8 @@ public class AddCommandTest {
             return false;
         }
 
+        @Override
+        public boolean checkBeneficiary (Index targetBeneficiaryIndex, ProjectTitle projectTitle) { return false; }
 
     }
 
