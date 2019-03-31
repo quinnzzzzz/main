@@ -18,10 +18,12 @@ import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.Email;
 import seedu.address.model.volunteer.EmergencyContact;
+import seedu.address.model.volunteer.Gender;
 import seedu.address.model.volunteer.MedicalCondition;
 import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
+import seedu.address.model.volunteer.Religion;
 import seedu.address.model.volunteer.Volunteer;
 
 
@@ -35,7 +37,9 @@ class JsonAdaptedVolunteer {
 
     private final String name;
     private final String age;
+    private final String gender;
     private final String race;
+    private final String religion;
     private final String phone;
     private final String address;
     private final String email;
@@ -50,7 +54,8 @@ class JsonAdaptedVolunteer {
      */
     @JsonCreator
     public JsonAdaptedVolunteer (@JsonProperty("name") String name,  @JsonProperty("age") String age,
-                                @JsonProperty("race") String race, @JsonProperty("phone") String phone,
+                                @JsonProperty("gender") String gender, @JsonProperty("race") String race,
+                                 @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("DietaryPreference") String dietarypreference,
                                 @JsonProperty("EmergencyContact") String emergencycontact,
@@ -58,7 +63,9 @@ class JsonAdaptedVolunteer {
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.age = age;
+        this.gender = gender;
         this.race = race;
+        this.religion = religion;
         this.phone = phone;
         this.address = address;
         this.email = email;
@@ -77,7 +84,9 @@ class JsonAdaptedVolunteer {
     public JsonAdaptedVolunteer(Volunteer source) {
         name = source.getName().fullName;
         age = source.getAge().ageOutput;
+        gender = source.getGender().genderOutput;
         race = source.getRace().raceOutput;
+        religion = source.getReligion().religionOutput;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -116,6 +125,14 @@ class JsonAdaptedVolunteer {
         }
         final Age modelAge = new Age(age);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Race.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
         if (race == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Race.class.getSimpleName()));
         }
@@ -123,6 +140,14 @@ class JsonAdaptedVolunteer {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Race modelRace = new Race(race);
+
+        if (religion == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Race.class.getSimpleName()));
+        }
+        if (!Religion.isValidReligion(religion)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Religion modelReligion = new Religion(religion);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -178,7 +203,8 @@ class JsonAdaptedVolunteer {
         final MedicalCondition modelMedicalCondition = new MedicalCondition(medicalcondition);
 
         final Set<Tag> modelTags = new HashSet<>(volunteerTags);
-        return new Volunteer(modelName, modelAge, modelRace, modelPhone, modelAddress, modelEmail,
+        return new Volunteer(modelName, modelAge, modelGender, modelRace, modelReligion, modelPhone,
+                modelAddress, modelEmail,
                 modelEmergencyContact, modelDietaryPreference, modelMedicalCondition, modelTags);
     }
 

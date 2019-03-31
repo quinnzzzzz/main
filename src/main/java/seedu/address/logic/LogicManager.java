@@ -109,11 +109,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyProperty<Person> selectedPersonProperty() {
-        return model.selectedPersonProperty();
-    }
-
-    @Override
     public ReadOnlyProperty<Project> selectedProjectProperty() { 
       return model.selectedProjectProperty();
     }
