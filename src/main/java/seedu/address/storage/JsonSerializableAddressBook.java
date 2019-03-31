@@ -94,7 +94,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedProject jsonAdaptedProject : projects) {
             Project project = jsonAdaptedProject.toModelType();
             if (addressBook.hasProject(project)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_VOLUNTEER);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
             }
             addressBook.addProject(project);
         }
