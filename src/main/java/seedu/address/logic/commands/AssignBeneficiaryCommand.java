@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_INDEX;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,8 +20,8 @@ public class AssignBeneficiaryCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a beneficiary to a project "
-            + "Only 1 beneficiary can be assigned to each project.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a beneficiary to a project, "
+            + "only 1 beneficiary can be assigned to each project.\n"
             + "Parameters: "
             + "[PROJECT_TITLE] "
             + "[INDEX]...\n"
@@ -51,7 +53,8 @@ public class AssignBeneficiaryCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        Beneficiary beneficiaryAssigned = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
+        List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
+        Beneficiary beneficiaryAssigned = lastShownList.get(targetBeneficiaryIndex.getZeroBased());
         if (model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject))== null){
             throw new CommandException("Project does not exist.");
         }
