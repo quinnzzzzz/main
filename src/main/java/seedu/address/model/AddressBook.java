@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
@@ -196,6 +197,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
         requireNonNull(editedBeneficiary);
 
+        Set<ProjectTitle> projectTitleList = target.getAttachedProjectLists();
+        projects.updateBeneficiary(editedBeneficiary, projectTitleList);
         beneficiaries.setBeneficiary(target, editedBeneficiary);
         indicateModified();
     }

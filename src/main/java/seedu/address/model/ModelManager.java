@@ -17,6 +17,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.volunteer.Volunteer;
@@ -462,7 +463,7 @@ public class ModelManager implements Model {
     @Override
     public void setSelectedBeneficiary(Beneficiary beneficiary) {
         if (beneficiary != null && !filteredBeneficiaries.contains(beneficiary)) {
-            throw new PersonNotFoundException();
+            throw new BeneficiaryNotFoundException();
         }
         selectedBeneficiary.setValue(beneficiary);
     }

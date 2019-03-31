@@ -4,9 +4,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 
 /**
@@ -19,6 +21,7 @@ public class Beneficiary {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private ProjectTitle p;
     private Set<ProjectTitle> attachedProjectList = new HashSet<>();
 
     // Data fields
@@ -33,6 +36,7 @@ public class Beneficiary {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.p = null;
     }
 
     public Name getName() {
@@ -50,7 +54,6 @@ public class Beneficiary {
     public Address getAddress() {
         return address;
     }
-
 
 
     /**
@@ -103,7 +106,8 @@ public class Beneficiary {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append(getAttachedProjectLists());
         return builder.toString();
     }
 
@@ -161,6 +165,10 @@ public class Beneficiary {
      */
     public void setProjectLists(Set<ProjectTitle> projectList) {
         this.attachedProjectList.addAll(projectList);
+    }
+
+    public void SetPT(ProjectTitle p) {
+        this.p = p;
     }
 }
 

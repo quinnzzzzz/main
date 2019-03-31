@@ -18,9 +18,10 @@ import seedu.address.model.volunteer.Volunteer;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project {
-    //    // Identity fields
+    // Identity fields
     private final ProjectTitle projectTitle;
     private final ProjectDate projectDate;
+
     private Complete complete;
     private Beneficiary beneficiary;
 
@@ -60,6 +61,7 @@ public class Project {
     }
 
     public Name getBeneficiaryName(){
+        if (beneficiary == null) return new Name("null");
         return beneficiary.getName();
     }
 
@@ -93,7 +95,6 @@ public class Project {
      * Returns true if both Projects have the same identity and data fields.
      * This defines a stronger notion of equality between two Projects.
      */
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -106,6 +107,14 @@ public class Project {
         Project otherProject = (Project) other;
         return otherProject.getProjectTitle().equals(getProjectTitle())
                 && otherProject.getProjectDate().equals(getProjectDate());
+    }
+
+    public void setBeneficiary (Beneficiary beneficiary) {
+        this.beneficiary = beneficiary;
+    }
+
+    public Beneficiary getBeneficiary () {
+        return beneficiary;
     }
 
     @Override
