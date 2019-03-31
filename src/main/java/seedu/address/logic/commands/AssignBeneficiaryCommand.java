@@ -3,10 +3,14 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_INDEX;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 
 /**
@@ -16,13 +20,14 @@ public class AssignBeneficiaryCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a beneficiary to a project "
-            + "More than 1 project can be assigned to each beneficiary.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a beneficiary to a project, "
+            + "only 1 beneficiary can be assigned to each project.\n"
             + "Parameters: "
             + "[PROJECT_TITLE] "
             + "[INDEX]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + "Old Folks Home ";
+            + "Project Sunshine"
+            + "1 ";
 
     public static final String MESSAGE_PARAMETERS = "[PROJECT_TITLE] "
             + PREFIX_INDEX + "INDEX ";
@@ -48,17 +53,21 @@ public class AssignBeneficiaryCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        if (model.checkBeneficiary(targetBeneficiaryIndex, targetProject)){
-            return new CommandResult(MESSAGE_DUPLICATE_BENEFICIARY);
+        List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
+        Beneficiary beneficiaryAssigned = lastShownList.get(targetBeneficiaryIndex.getZeroBased());
+        if (model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject))== null){
+            throw new CommandException("Project does not exist.");
         }
         else {
-            return new CommandResult(MESSAGE_DUPLICATE_BENEFICIARY);
+            Project projectToAssign = model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject)).get(0);
+            projectToAssign.setAssignedBeneficiary(beneficiaryAssigned);
+            return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
-    }
 
+    }
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
+        return other == this
                 || (other instanceof AssignBeneficiaryCommand // instanceof handles nulls
                 && this.targetProject.equals(((AssignBeneficiaryCommand) other).targetProject)) // state check
                 && this.targetBeneficiaryIndex.equals(((AssignBeneficiaryCommand) other).targetBeneficiaryIndex);

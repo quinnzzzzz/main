@@ -5,9 +5,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntaxProject.*;
 import static seedu.address.logic.parser.ParserUtilProject.UNSPECIFIED_FIELD;
 
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AssignBeneficiaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 
 /**
@@ -27,17 +31,17 @@ public class AssignBeneficiaryCommandParser implements Parser<AssignBeneficiaryC
 
         ProjectTitle projectTitle;
         try {
-            if (!argMultimap.getPreamble().isEmpty()) {
-                projectTitle = ParserUtilProject.parseProjectTitle(argMultimap.getPreamble());
+            if(!argMultimap.getPreamble().isEmpty()){
+                projectTitle = ParserUtilProject.parseProjectTitle(argMultimap.getValue(PREFIX_NAME).get());
             } else {
                 projectTitle = new ProjectTitle(UNSPECIFIED_FIELD);
             }
             Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
-            return new AssignBeneficiaryCommand(projectTitle, index);
-        } catch (ParseException pe) {
+            return new AssignBeneficiaryCommand(projectTitle,index);
+        } catch (IllegalValueException ive) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignBeneficiaryCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignBeneficiaryCommand.MESSAGE_USAGE), ive);
         }
     }
 }

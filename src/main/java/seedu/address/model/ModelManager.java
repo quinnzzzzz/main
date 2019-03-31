@@ -168,10 +168,10 @@ public class ModelManager implements Model {
         updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
     }
 
-    @Override
-    public boolean checkBeneficiary (Index targetBeneficiaryIndex, ProjectTitle projectTitle) {
-        return versionedAddressBook.checkBeneficiaryForProject(targetBeneficiaryIndex, projectTitle);
-    }
+//    @Override
+//    public boolean checkBeneficiary (ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
+//        return versionedAddressBook.checkBeneficiaryForProject(projectTitle,targetBeneficiaryIndex);
+//    }
 
     @Override
     public void addProject(Project project) {
@@ -200,6 +200,9 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateProject(Project targetProject, Project editedProject){}
+
+    @Override
     public void deleteVolunteer(Volunteer target) {
         versionedAddressBook.removeVolunteer(target);
     }
@@ -209,14 +212,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedVolunteer);
 
         versionedAddressBook.setVolunteer(target, editedVolunteer);
-    }
-    @Override
-    public void assignBeneficiaryToProject(Beneficiary beneficiary, ProjectTitle projectTitle) throws DuplicateBeneficiaryException {
-    }
-    @Override
-    public void unassignBeneficiaryFromProject(Beneficiary beneficiary) throws ProjectNotFoundException {
-//        addressBook.unassignBeneficiaryFromProject(beneficiary);
-//        indicateAddressBookChanged();
     }
     //=========== Filtered Volunteer List Accessors =============================================================
 

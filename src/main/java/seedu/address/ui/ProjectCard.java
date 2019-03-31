@@ -5,7 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
+import seedu.address.model.beneficiary.Name;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -32,6 +34,7 @@ public class ProjectCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label projectDate;
+
 
 
     public ProjectCard(Project project, int displayedIndex) {
