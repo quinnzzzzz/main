@@ -6,6 +6,7 @@ package seedu.address.logic.parser;
 public class CliSyntaxBeneficiary extends CliSyntax {
 
     /* Prefix definitions */
-
+    public static final Prefix PREFIX_INDEX = new Prefix("i/");
+    public static final Prefix ASSIGNED_PROJECT_TITLE = new Prefix("p/");
 
 }

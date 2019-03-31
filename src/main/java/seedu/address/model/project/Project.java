@@ -61,6 +61,7 @@ public class Project {
     }
 
     public Name getBeneficiaryName(){
+        if (beneficiary == null) return new Name("null");
         return beneficiary.getName();
     }
 

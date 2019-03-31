@@ -42,4 +42,8 @@ public class ProjectTitle {
     public String toString() {
         return fullTitle;
     }
+
+    public boolean equals(String otherTitle) {
+        return (!(otherTitle == null)) && (fullTitle.equals(otherTitle));
+    }
 }
