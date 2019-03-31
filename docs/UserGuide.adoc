@@ -64,7 +64,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * *`list`* : lists all contacts
 * **`addProject`** n/Project Sunshine d/20190320: adds a project named "Project Sunshine" in the project list.
-* **`deleteProject`**`Project Sunshine` : deletes the project portfolio with project title "Project Sunshine" in the current list
+* **`deleteProject`**`2` : deletes the 2nd project portfolio in the current list of projects.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -210,7 +210,7 @@ Returns any volunteer having names `Betsy`, `Tim`, or `John`
 === Deleting a project ： `deleteProject`
 
 Deletes the specified project from the application. +
-Format: `delete PROJECT_TITLE`
+Format: `deleteProject INDEX`
 
 ****
 * Deletes the project specified with 'PROJECT_TITLE'.
