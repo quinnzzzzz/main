@@ -31,7 +31,7 @@ public class AddBeneficiaryCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "New beneficiary added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This beneficiary already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_BENEFICIARY= "This beneficiary already exists in the address book";
 
     private final Beneficiary toAdd;
 
@@ -48,7 +48,7 @@ public class AddBeneficiaryCommand extends Command {
         requireNonNull(model);
 
         if (model.hasBeneficiary(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_BENEFICIARY);
         }
 
         model.addBeneficiary(toAdd);
@@ -59,7 +59,7 @@ public class AddBeneficiaryCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
+                || (other instanceof AddBeneficiaryCommand // instanceof handles nulls
                 && toAdd.equals(((AddBeneficiaryCommand) other).toAdd));
     }
 }

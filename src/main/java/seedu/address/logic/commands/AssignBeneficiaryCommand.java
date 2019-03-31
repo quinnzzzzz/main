@@ -71,16 +71,12 @@ public class AssignBeneficiaryCommand extends Command {
         else {
             Project projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
             projectToAssign.setAssignedBeneficiary(beneficiaryAssigned);
-            System.out.println(projectToAssign);
-            System.out.println(model.getFilteredProjectList().filtered(equalProjectTitle).get(0));
-            Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
-            beneficiary.addAttachedProject(targetProject);
-            beneficiary.SetPT(targetProject);
-            System.out.println(beneficiary);
-            System.out.println(model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased()));
+            if (!beneficiaryAssigned.hasProjectTitle(targetProject)) {
+                beneficiaryAssigned.addAttachedProject(targetProject);
+            }
+            model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
-
     }
     @Override
     public boolean equals(Object other) {

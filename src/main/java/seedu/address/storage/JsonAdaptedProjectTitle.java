@@ -29,7 +29,7 @@ class JsonAdaptedProjectTitle {
     }
 
     @JsonValue
-    public String getTagName() {
+    public String getProjectTitle() {
         return projectTitle;
     }
 
