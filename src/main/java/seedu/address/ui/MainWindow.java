@@ -32,6 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
+    private PersonListPanel personListPanel;
+    private ProjectListPanel projectListPanel;
     private VolunteerListPanel volunteerListPanel;
     private BeneficiaryListPanel beneficiaryListPanel;
     private ResultDisplay resultDisplay;
@@ -47,10 +49,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane volunteerListPanelPlaceholder;
+
 
     @FXML
-    private StackPane beneficiaryListPanelPlaceholder;
+    private StackPane projectListPanelPlaceholder;
+
+    @FXML
+    private StackPane beneficiaryListPanelPlacehoder;
+
+    @FXML
+    private StackPane volunteerListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -115,16 +123,21 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(logic.selectedPersonProperty());
+        browserPanel = new BrowserPanel(logic.selectedVolunteerProperty());
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
-        volunteerListPanel = new VolunteerListPanel(logic.getFilteredVolunteerList(), logic.selectedVolunteerProperty(),
-                logic::setSelectedVolunteer);
-        volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
 
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),
+                logic::setSelectedPerson);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+      
         beneficiaryListPanel = new BeneficiaryListPanel(logic.getFilteredBeneficiaryList(),
                 logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);
         beneficiaryListPanelPlaceholder.getChildren().add(beneficiaryListPanel.getRoot());
+
+        volunteerListPanel = new VolunteerListPanel(logic.getFilteredVolunteerList(),
+                logic.selectedVolunteerProperty(), logic::setSelectedVolunteer);
+        volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -178,10 +191,16 @@ public class MainWindow extends UiPart<Stage> {
 
     public VolunteerListPanel getVolunteerListPanel() {
         return volunteerListPanel;
+
     }
 
     public BeneficiaryListPanel getBeneficiaryListPanel() {
+
         return beneficiaryListPanel;
+    }
+
+    public  ProjectListPanel getProjectListPanel() {
+        return projectListPanel;
     }
 
     /**

@@ -1,21 +1,17 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_BENEFICIARY;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_PROJECT_TITLE;
-import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtilProject.parseProjectTitle;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Beneficiary;
-import seedu.address.model.project.Date;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddProjectCommand object
@@ -29,20 +25,17 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      */
     public AddProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_TITLE, PREFIX_DATE, PREFIX_BENEFICIARY, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_TITLE, PREFIX_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_TITLE, PREFIX_DATE, PREFIX_BENEFICIARY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_TITLE, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
 
-        ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap
-                .getValue(PREFIX_PROJECT_TITLE).get());
-        Date date = ParserUtilProject.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        Beneficiary beneficiary = ParserUtilProject.parseBeneficiary(argMultimap.getValue(PREFIX_BENEFICIARY).get());
-        Set<Tag> tagList = ParserUtilProject.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
+        ProjectDate projectDate = ParserUtilProject.parseProjectDate(argMultimap.getValue(PREFIX_DATE).get());
 
-        Project project = new Project(projectTitle, date, beneficiary, tagList);
+        Project project = new Project(projectTitle, projectDate);
 
         return new AddProjectCommand(project);
     }

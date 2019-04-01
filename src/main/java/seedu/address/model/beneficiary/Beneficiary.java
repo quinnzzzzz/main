@@ -51,6 +51,8 @@ public class Beneficiary {
         return address;
     }
 
+
+
     /**
      * Returns true if both Beneficiarys of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two Beneficiarys.
@@ -161,3 +163,4 @@ public class Beneficiary {
         this.attachedProjectList.addAll(projectList);
     }
 }
+

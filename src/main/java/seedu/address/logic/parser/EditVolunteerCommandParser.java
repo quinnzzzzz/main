@@ -13,11 +13,17 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 
 import seedu.address.logic.commands.EditVolunteerCommand;
 import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditVolunteerCommand object
@@ -27,6 +33,7 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
     /**
      * Parses the given {@code String} of arguments in the context of the EditVolunteerCommand
      * and returns an EditVolunteerCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditVolunteerCommand parse(String args) throws ParseException {
@@ -50,7 +57,6 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
             editVolunteerDescriptor.setName(
                     ParserUtilVolunteer.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editVolunteerDescriptor.setAge
                     (ParserUtilVolunteer.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
@@ -84,7 +90,6 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
             editVolunteerDescriptor.setMedicalCondition
                     (ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get()));
         }
-
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editVolunteerDescriptor.setAddress(
                     ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));

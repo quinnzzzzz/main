@@ -8,9 +8,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.person.Person;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
 
@@ -34,12 +34,13 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectList();
+
+    /** Returns an unmodifiable view of the filtered list of volunteers */
     ObservableList<Volunteer> getFilteredVolunteerList();
 
-    /** Returns an unmodifiable view of the filtered list of benficiaries */
+    /** Returns an unmodifiable view of the filtered list of beneficaries */
     ObservableList<Beneficiary> getFilteredBeneficiaryList();
 
     /**
@@ -63,16 +64,14 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+
     /**
      * Selected person in the filtered person list.
      * null if no person is selected.
      *
      * @see seedu.address.model.Model#selectedPersonProperty()
      */
-    ReadOnlyProperty<Person> selectedPersonProperty();
-
-    ReadOnlyProperty<Volunteer> selectedVolunteerProperty();
-
+    ReadOnlyProperty<Project> selectedProjectProperty();
     /**
      * Selected beneficiary in the filtered beneficiary list.
      * null if no beneficiary is selected.
@@ -82,13 +81,19 @@ public interface Logic {
     ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty();
 
     /**
+     * Selected volunteer in the filtered volunteer list.
+     * null if no volunteer is selected.
+     *
+     * @see Model#selectedVolunteerProperty()
+     */
+    ReadOnlyProperty<Volunteer> selectedVolunteerProperty();
+
+    /**
      * Sets the selected person in the filtered person list.
      *
      * @see seedu.address.model.Model#setSelectedPerson(Person)
      */
-    void setSelectedPerson(Person person);
-
-    void setSelectedVolunteer(Volunteer volunteer);
+    void setSelectedProject(Project project);
 
     /**
      * Sets the selected beneficiary in the filtered beneficiary list.
@@ -96,4 +101,11 @@ public interface Logic {
      * @see seedu.address.model.Model#setSelectedBeneficiary(Beneficiary)
      */
     void setSelectedBeneficiary(Beneficiary beneficiary);
+
+    /**
+     * Sets the selected beneficiary in the filtered volunteer list.
+     *
+     * @see seedu.address.model.Model#setSelectedVolunteer(Volunteer)
+     */
+    void setSelectedVolunteer(Volunteer volunteer);
 }

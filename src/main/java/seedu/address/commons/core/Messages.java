@@ -9,7 +9,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is inavlid";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "The project does not exist";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_INVALID_INDEX = "Beneficiary index provided is invalid";
 
     public static final String MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_BENEFICIARIES_LISTED_OVERVIEW = "%1$d persons listed!";

@@ -97,11 +97,6 @@ public class LogicManagerTest {
         assertHistoryCorrect(addCommand);
     }
 
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        thrown.expect(UnsupportedOperationException.class);
-        logic.getFilteredPersonList().remove(0);
-    }
 
     /**
      * Executes the command, confirms that no exceptions are thrown and that the result message is correct.
