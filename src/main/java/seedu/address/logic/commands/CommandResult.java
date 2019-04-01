@@ -17,15 +17,20 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Pop up for beneficiary summary command. */
+    private final boolean showBeneficiarySummary;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
-        this.exit = exit;
     }
 
+    public CommandResult(String feedbackToUser, boolean showBeneficiarySummary) {
+        this.showBeneficiarySummary = showBeneficiarySummary;
+    }
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.

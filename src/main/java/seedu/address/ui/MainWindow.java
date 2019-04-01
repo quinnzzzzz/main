@@ -169,6 +169,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /*@FXML
+    public void handleBeneficiarySummary() {
+        BeneficiaryStatsWindow
+    }*/
+
     void show() {
         primaryStage.show();
     }
