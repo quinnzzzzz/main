@@ -21,7 +21,6 @@ public class Beneficiary {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private ProjectTitle p;
     private Set<ProjectTitle> attachedProjectList = new HashSet<>();
 
     // Data fields
@@ -36,7 +35,6 @@ public class Beneficiary {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.p = null;
     }
 
     public Name getName() {
@@ -66,8 +64,9 @@ public class Beneficiary {
         }
 
         return otherBeneficiary != null
-                && otherBeneficiary.getName().equals(getName())
-                && (otherBeneficiary.getPhone().equals(getPhone()) || otherBeneficiary.getEmail().equals(getEmail()));
+                && (otherBeneficiary.getName().equals(getName())
+                || otherBeneficiary.getPhone().equals(getPhone())
+                || otherBeneficiary.getEmail().equals(getEmail()));
     }
 
     /**
@@ -86,9 +85,9 @@ public class Beneficiary {
 
         Beneficiary otherBeneficiary = (Beneficiary) other;
         return otherBeneficiary.getName().equals(getName())
-                && otherBeneficiary.getPhone().equals(getPhone())
-                && otherBeneficiary.getEmail().equals(getEmail())
-                && otherBeneficiary.getAddress().equals(getAddress());
+                || otherBeneficiary.getPhone().equals(getPhone())
+                || otherBeneficiary.getEmail().equals(getEmail())
+                || otherBeneficiary.getAddress().equals(getAddress());
     }
 
     @Override
@@ -107,6 +106,7 @@ public class Beneficiary {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append( "Attached Project List: ")
                 .append(getAttachedProjectLists());
         return builder.toString();
     }
@@ -165,10 +165,6 @@ public class Beneficiary {
      */
     public void setProjectLists(Set<ProjectTitle> projectList) {
         this.attachedProjectList.addAll(projectList);
-    }
-
-    public void SetPT(ProjectTitle p) {
-        this.p = p;
     }
 }
 

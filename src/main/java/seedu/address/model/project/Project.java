@@ -38,7 +38,7 @@ public class Project {
         this.projectDate = projectDate;
         //internal tags
         this.complete = complete;
-        this.beneficiaryAssigned = new Name("nil");;
+        this.beneficiaryAssigned = new Name("nil");
     }
 
     public Project(ProjectTitle projectTitle, ProjectDate projectDate, Name beneficiaryAssigned) {
@@ -49,6 +49,7 @@ public class Project {
         this.complete = new Complete(false);
         this.beneficiaryAssigned = beneficiaryAssigned;
     }
+  
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
@@ -85,16 +86,6 @@ public class Project {
         return complete.isComplete();
     }
 
-//    public void setAssignedBeneficiary(Name beneficiaryAssigned) {
-//        this.beneficiaryAssigned = beneficiaryAssigned;
-//    }
-//    public void setComplete() {
-//        this.complete = new Complete(true);
-//    }
-//
-//    public BeneficiaryAssigned getBeneficiaryAttached() {
-//
-//    }
     public void setBeneficiary (Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
         System.out.println(beneficiary);
