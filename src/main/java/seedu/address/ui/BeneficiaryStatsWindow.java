@@ -26,9 +26,9 @@ import seedu.address.model.project.ProjectTitle;
 /**
  * Controller for a help page
  */
-public class BeneficiaryStatsWindow extends UiPart<Stage> {
+public class BeneficiaryStatsWindow {
 
-    private TableView<SummarisedBeneficiary> table = new TableView<SummarisedBeneficiary>();
+    /*private TableView<SummarisedBeneficiary> table = new TableView<SummarisedBeneficiary>();
     private Stage stage;
     private static final Logger logger = LogsCenter.getLogger(BeneficiaryStatsWindow.class);
 
@@ -103,5 +103,5 @@ public class BeneficiaryStatsWindow extends UiPart<Stage> {
         public List<String> getProjectList() {
             return projectList;
         }
-    }
+    }*/
 }
