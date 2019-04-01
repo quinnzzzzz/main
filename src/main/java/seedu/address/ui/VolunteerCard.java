@@ -56,6 +56,7 @@ public class VolunteerCard extends UiPart<Region> {
     public VolunteerCard(Volunteer volunteer, int displayedIndex) {
         super(FXML);
         this.volunteer = volunteer;
+        System.out.println(volunteer);
         id.setText(displayedIndex + ". ");
         name.setText(volunteer.getName().fullName);
         age.setText("Age: " + volunteer.getAge().ageOutput);
