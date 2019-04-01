@@ -10,9 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  *
  */
 public class ProjectDate {
-    public static final String MESSAGE_PROJECT_DATE_CONSTRAINTS =
-            "Dates should only contain numbers in yyyymmdd format, and it should not be blank";
-    
+    public static final String MESSAGE_CONSTRAINTS =
+            "Dates should only contain numbers in yyyymmdd format, and it should not be blank.";
+    public static final String VALIDATION_REGEX = "\\d{8,}";
     public final String fullDate;
 
     /**
@@ -22,8 +22,17 @@ public class ProjectDate {
      */
     public ProjectDate(String projectDate) {
         requireNonNull(projectDate);
+        checkArgument(isValidDate(projectDate), MESSAGE_CONSTRAINTS);
         this.fullDate = projectDate;
     }
+
+    /**
+     * Returns true if a given string is a valid date.
+     */
+    public static boolean isValidDate(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     @Override
     public String toString() {
         return "Date: "+ fullDate;

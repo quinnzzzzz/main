@@ -18,9 +18,36 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-The VolunCHeer Application is for project managers or directors who require a system to keep track of their
-ongoing projects and the volunteer pool. This application allows the user to analyse and extract various data for
-easy management of projects.
+VolunCheer is a desktop application for project managers who wish to keep track of their ongoing / upcoming projects as
+well as their beneficiary and volunteer pool.
+
+You can also use VolunCHeer to filter out suitable volunteers based on their data stored in the system. VolunCHeer is
+The VolunCHeer Application is for project managers or directors who require a system to *keep track of their
+ongoing projects and the volunteer pool*. VolunCheer is optimised for users who prefer a *Command Line Interface (CLI)* while
+still being able to view important data on the *Graphical User Interface(GUI)*. VolunCHeer will save you the need for multiple documents
+and folders just to store volunteer/beneficiary information. It also removes the need to track large amount of volunteer data to fit selection criterias using traditional methods such
+as Excel.
+
+Wish to know more? Click on link:{https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/UserGuide.adoc#quick-start}/[Section 2. "Quick Start"] to get started.
+
+=== Overview
+
+Shown below is a quick overview of our VolunCHeer application.
++
+image::Ui.png[width="790"]
++
+
+1. Command Box:
+This is where you type your commands.
+
+2. Command Result:
+This shows the result of command execution, useful tips and error messages are also shown here.
+
+3. Project List:
+This shows the list of projects currently in VolunCHeer.
+
+4. Beneficiary List:
+This shows the list of beneficiaries currently in VolunCHeer.
 
 == Quick Start
 
@@ -36,8 +63,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the volunteer list.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
+* **`addProject`** n/Project Sunshine d/20190320: adds a project named "Project Sunshine" in the project list.
+* **`deleteProject`**`2` : deletes the 2nd project portfolio in the current list of projects.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -60,16 +87,16 @@ Format: `help`
 
 === Adding a project: `addProject`
 Adds a new project +
-Format: `addProject n/PROJECT_NAME d/DATE b/BENEFICIARY [t/TAG]...`
+Format: `addProject n/PROJECT_NAME d/DATE`
 
 ****
-* Please enter DATE in ddmmyy format
-* The specified 'BENEFICIARY' has to be added before adding the project
+* Please enter DATE in yyyymmdd format.
+* Project Title should not have duplicates in the project list.
 ****
 
 Examples:
 
-* `addProject n/Charity Run d/081219 b/Bright Primary School`
+* `addProject n/Charity Run d/081219`
 
 === Adding a volunteer: `addVolunteer`
 
@@ -96,7 +123,7 @@ Examples:
 === Adding a beneficiary: `addBeneficiary`
 
 Adds a beneficiary to the list of Beneficiaries +
-Format: `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER v/VOLUNTEERS_REQUIRED [t/TAG]...`
+Format: `addBeneficiary n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
 ****
 * "Add Successful!" message is prompted upon successfully adding a beneficiary
@@ -105,7 +132,17 @@ Format: `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER v/VOLUNTEERS_REQ
 
 Examples:
 
-* `addBeneficiary n/Sunshine Old Folks Home a/sunshine ave 5 e/sunny@oldfolks.sg p/67580392 v/20`
+* `addBeneficiary n/Sunshine Old Folks Home p/67580392 e/sunny@oldfolks.sg a/sunshine ave 5`
+
+=== Listing all projects : `listProject`
+
+Shows a list of all projects. +
+Format: `listProject`
+
+=== Listing all volunteers : `listBeneficiary`
+
+Shows a list of all Beneficiaries in the beneficiary pool. +
+Format: `listBeneficiary`
 
 === Listing all volunteers : `list`
 
@@ -115,7 +152,7 @@ Format: `list`
 === Editing a project : `editProject`
 
 Edits an existing project +
-Format: `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...`
+Format: `editProject PROJECT_NAME [n/NAME] [d/DATE]...`
 
 ****
 * Edits the project at the specified 'PROJECT_NAME'.
@@ -127,10 +164,8 @@ Format: `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...`
 
 Examples:
 
-* `editProject Charity Run d/010319` +
-Edits the date of the project to be '010319'.
-* `editProject Charity Run b/Sunshine Old Folks Home` +
-Edits the beneficiary of the Charity Run project to 'Sunshine Old Folks Home'
+* `editProject Charity Run d/20190301` +
+Edits the date of the project to be '20190301'.
 
 === Editing a volunteer : `editVolunteer`
 
@@ -175,11 +210,11 @@ Returns any volunteer having names `Betsy`, `Tim`, or `John`
 === Deleting a project ： `deleteProject`
 
 Deletes the specified project from the application. +
-Format: `delete PROJECT_TITLE`
+Format: `deleteProject INDEX`
 
 ****
 * Deletes the project specified with 'PROJECT_TITLE'.
-* The PROJECT_TITLE should match exactly, use 'listProjects' to view all projects if unsure.
+* The PROJECT_TITLE should match exactly, use 'listProject' to view all projects if unsure.
 * Error message is shown if the PROJECT_TITLE entered is invalid
 ****
 
@@ -223,6 +258,27 @@ Selects the 2nd volunteer in the volunteer list.
 * `find Betsy` +
 `select 1` +
 Selects the 1st volunteer in the results of the `find` command.
+
+=== Assigning a beneficiary to project: 'assign'
+
+Assigns a beneficiary identified by the index number used in the displayed beneficiary list to a project matched
+by project title entered.
+Format: `assign PROJECT_TITLE, i/INDEX`
+
+****
+* Assigns the beneficiary with index = "INDEX" to the project with title "PROJECT_TITLE".
+* Project attached will be shown on the specific beneficiary
+* There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
+* The index *must be a positive integer* `1, 2, 3, ...`
+****
+=== Mark project as complete: 'complete' --- coming soon
+
+Marks project with "PROJECT_TITLE" as complete
+Format: `complete PROJECT_TITEL`
+
+****
+* Once marked as complete, project title will be displayed in red colour font
+****
 
 === Assigning mapping index to each volunteer : `map`
 

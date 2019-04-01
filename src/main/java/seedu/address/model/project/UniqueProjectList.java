@@ -3,11 +3,17 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
@@ -26,6 +32,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 public class UniqueProjectList implements Iterable<Project> {
 
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
+    private Map<ProjectTitle, Project> projectTitleProjectHashtable = new HashMap<>();
     private final ObservableList<Project> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -47,6 +54,7 @@ public class UniqueProjectList implements Iterable<Project> {
             throw new DuplicateProjectException();
         }
         internalList.add(toAddProject);
+        projectTitleProjectHashtable.put(toAddProject.getProjectTitle(), toAddProject);
     }
 
     /**
@@ -67,6 +75,8 @@ public class UniqueProjectList implements Iterable<Project> {
         }
 
         internalList.set(index, editedProject);
+        projectTitleProjectHashtable.remove(target);
+        projectTitleProjectHashtable.put(editedProject.getProjectTitle(), editedProject);
     }
 
     /**
@@ -75,14 +85,23 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public void remove(Project toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        boolean success = internalList.remove(toRemove);
+        if (!success) {
             throw new ProjectNotFoundException();
+        }
+        else {
+            projectTitleProjectHashtable.remove(toRemove);
         }
     }
 
     public void setProjects(UniqueProjectList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        projectTitleProjectHashtable.clear();
+        for(Map.Entry<ProjectTitle, Project> entry
+                : replacement.projectTitleProjectHashtable.entrySet()) {
+            projectTitleProjectHashtable.put(entry.getKey(), entry.getValue());
+        }
     }
 
     /**
@@ -91,11 +110,16 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public void setProjects(List<Project> projects) {
         requireAllNonNull(projects);
-        if (!projectsAreUnique(projects)) {
+        boolean success = projectsAreUnique(projects);
+        if (!success) {
             throw new DuplicateProjectException();
         }
 
         internalList.setAll(projects);
+        projectTitleProjectHashtable.clear();
+        for(Project entry : projects) {
+            projectTitleProjectHashtable.put(entry.getProjectTitle(), entry);
+        }
     }
 
     /**

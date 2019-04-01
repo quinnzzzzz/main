@@ -85,6 +85,15 @@ public interface Model {
     boolean hasBeneficiary(Beneficiary beneficiary);
 
     /**
+     * Updates the Project status
+     * @param target
+     * @param editedStudent
+     * @throws DuplicateProjectException
+     * @throws ProjectNotFoundException
+     */
+    void setProject(Project target, Project editedStudent)
+            throws DuplicateProjectException, ProjectNotFoundException;
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -155,13 +164,7 @@ public interface Model {
     void updateFilteredProjectList(Predicate<Project> predicate);
 
     void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
-
-    /** Assign beneficiary to project */
-    void assignBeneficiaryToProject(Beneficiary beneficiary, ProjectTitle projectTitle)
-            throws DuplicateProjectException;
-
-    /** Un-assign beneficiary from project */
-    void unassignBeneficiaryFromProject(Beneficiary beneficiary) throws ProjectNotFoundException;
+    
 
     /**
      * Returns true if the model has previous address book states to restore.
@@ -296,5 +299,4 @@ public interface Model {
      */
     void addBeneficiary(Beneficiary beneficiary);
 
-    boolean checkBeneficiary (Index targetBeneficiaryIndex, ProjectTitle projectTitle);
 }

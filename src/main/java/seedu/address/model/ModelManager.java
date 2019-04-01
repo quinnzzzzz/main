@@ -18,12 +18,13 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.volunteer.Volunteer;
@@ -31,12 +32,11 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.project.Project;
-import seedu.address.model.volunteer.Volunteer;
 
 /**
  * Represents the in-memory model of the address book data.
  */
-public class ModelManager extends ComponentManager implements Model {
+public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final VersionedAddressBook versionedAddressBook;
@@ -146,10 +146,6 @@ public class ModelManager extends ComponentManager implements Model {
         requireNonNull(project);
         return versionedAddressBook.hasProject(project);
     }
-    /** Raises an event to indicate the model has changed */
-    private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(versionedAddressBook));
-    }
 
     @Override
     public void deletePerson(Person target) {
@@ -184,10 +180,10 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
     }
 
-    @Override
-    public boolean checkBeneficiary (Index targetBeneficiaryIndex, ProjectTitle projectTitle) {
-        return versionedAddressBook.checkBeneficiaryForProject(targetBeneficiaryIndex, projectTitle);
-    }
+//    @Override
+//    public boolean checkBeneficiary (ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
+//        return versionedAddressBook.checkBeneficiaryForProject(projectTitle,targetBeneficiaryIndex);
+//    }
 
     @Override
     public void addProject(Project project) {
@@ -216,6 +212,12 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void setProject(Project targetProject, Project editedProject){
+        requireNonNull(editedProject);
+        versionedAddressBook.setProject(targetProject, editedProject);
+    }
+
+    @Override
     public void deleteVolunteer(Volunteer target) {
         versionedAddressBook.removeVolunteer(target);
     }
@@ -225,14 +227,6 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(target, editedVolunteer);
 
         versionedAddressBook.setVolunteer(target, editedVolunteer);
-    }
-    @Override
-    public void assignBeneficiaryToProject(Beneficiary beneficiary, ProjectTitle projectTitle) throws DuplicateBeneficiaryException {
-    }
-    @Override
-    public void unassignBeneficiaryFromProject(Beneficiary beneficiary) throws ProjectNotFoundException {
-//        addressBook.unassignBeneficiaryFromProject(beneficiary);
-//        indicateAddressBookChanged();
     }
     //=========== Filtered Volunteer List Accessors =============================================================
 
@@ -496,7 +490,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void setSelectedBeneficiary(Beneficiary beneficiary) {
         if (beneficiary != null && !filteredBeneficiaries.contains(beneficiary)) {
-            throw new PersonNotFoundException();
+            throw new BeneficiaryNotFoundException();
         }
         selectedBeneficiary.setValue(beneficiary);
     }

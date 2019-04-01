@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
@@ -15,6 +16,8 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.UniqueVolunteerList;
 import seedu.address.model.volunteer.Volunteer;
 
@@ -81,8 +84,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Project> getProjectList() {
-        return projects.asUnmodifiableObservableList(); }
+    public ObservableList<Project> getProjectList() { return projects.asUnmodifiableObservableList(); }
 
     /**
      * Replaces the contents of the Beneficiary list with {@code beneficiaries}.
@@ -197,6 +199,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
         requireNonNull(editedBeneficiary);
 
+        Set<ProjectTitle> projectTitleList = target.getAttachedProjectLists();
+//        projects.updateBeneficiary(editedBeneficiary, projectTitleList);
         beneficiaries.setBeneficiary(target, editedBeneficiary);
         indicateModified();
     }
@@ -291,19 +295,27 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    public void setProject(Project target, Project edited)
+        throws DuplicateProjectException, ProjectNotFoundException {
+        requireNonNull(edited);
+        projects.setProject(target,edited);
+        }
+    }
+
     /**
      * command
      */
-    public boolean checkBeneficiaryForProject(Index targetBeneficiaryIndex, ProjectTitle projectTitle) {
-        Beneficiary beneficiary = beneficiaries.getBeneficiaryInIndex(targetBeneficiaryIndex);
-        Beneficiary beneficiaryCopy = beneficiary;
-        if (beneficiary.hasProjectTitle(projectTitle)) {
-            return true;
-        }
-        else {
-            beneficiary.addAttachedProject(projectTitle);
-            beneficiaries.setBeneficiary(beneficiaryCopy, beneficiary);
-        }
-        return false;
-    }
-}
+//    public boolean checkBeneficiaryForProject(ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
+//        Beneficiary beneficiary = beneficiaries.getBeneficiaryIndex(targetBeneficiaryIndex);
+//        Beneficiary beneficiaryCopy = beneficiary;
+//        if (beneficiary.hasProjectTitle(projectTitle)) {
+//            return true;
+//        }
+//        else {
+//            beneficiary.addAttachedProject(projectTitle);
+//            //project.attachBeneficiary(beneficiary.getName());
+//            beneficiaries.setBeneficiary(beneficiaryCopy, beneficiary);
+//        }
+//        return false;
+//    }
+//}
