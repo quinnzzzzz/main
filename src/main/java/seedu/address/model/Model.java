@@ -289,7 +289,7 @@ public interface Model {
      */
     public void mapAllVolunteer(MapObject map);
 
-
+    public void sortVolunteers();
 
     /**
      * Add Beneficiary.

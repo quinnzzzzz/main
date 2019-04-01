@@ -4,15 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -43,6 +48,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final FilteredList<Volunteer> filteredVolunteers;
     private final SimpleObjectProperty<Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
+    private SortedList<Volunteer> sortedVolunteers;
+
 
 
     private final FilteredList<Beneficiary> filteredBeneficiaries;
@@ -68,6 +75,8 @@ public class ModelManager extends ComponentManager implements Model {
 
         filteredVolunteers = new FilteredList<>(versionedAddressBook.getVolunteerList());
         filteredVolunteers.addListener(this::ensureSelectedVolunteerIsValid);
+
+
     }
 
     public ModelManager() {
@@ -392,6 +401,19 @@ public class ModelManager extends ComponentManager implements Model {
             volunteer.addPoints(checkRace(map, volunteer));
             volunteer.addPoints(checkMedical(map, volunteer));
         });
+    }
+
+    /**
+     * Sorts all volunteers in the (@code UniqueVolunteerList)
+     * and returns a (@code sortedList)
+     */
+    public void sortVolunteers() {
+        sortedVolunteers = versionedAddressBook.getVolunteerList().sorted(
+                (new Comparator<Volunteer>() {
+            public  int compare (Volunteer s1, Volunteer s2) {
+                return s2.getPoints() - s1.getPoints();
+            }
+        }));
     }
 
 
