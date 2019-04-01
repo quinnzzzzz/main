@@ -328,7 +328,7 @@ Format: `assign PROJECT_TITLE, i/INDEX`
 === Mark project as complete: 'complete' --- coming soon
 
 Marks project with "PROJECT_TITLE" as complete
-Format: `complete PROJECT_TITEL`
+Format: `complete PROJECT_TITLE`
 
 ****
 * Once marked as complete, project title will be displayed in red colour font
