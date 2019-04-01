@@ -16,6 +16,8 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.UniqueVolunteerList;
 import seedu.address.model.volunteer.Volunteer;
 
@@ -196,6 +198,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
         requireNonNull(editedBeneficiary);
+        Set<ProjectTitle> projectTitleList = target.getAttachedProjectLists();
+//        projects.updateBeneficiary(editedBeneficiary, projectTitleList);
         beneficiaries.setBeneficiary(target, editedBeneficiary);
         indicateModified();
     }
@@ -254,7 +258,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
-  
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -290,6 +294,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    public void setProject(Project target, Project edited)
+        throws DuplicateProjectException, ProjectNotFoundException {
+        requireNonNull(edited);
+        projects.setProject(target,edited);
+        }
+    }
+
     /**
      * command
      */
@@ -306,4 +317,4 @@ public class AddressBook implements ReadOnlyAddressBook {
 //        }
 //        return false;
 //    }
-}
+//}

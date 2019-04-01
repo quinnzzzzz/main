@@ -228,7 +228,7 @@ public class AddCommandTest {
 
         }
         @Override
-        public void updateProject(Project targetProject, Project editedProject){}
+        public void setProject(Project targetProject, Project editedProject){}
 
         @Override
         public boolean canUndoAddressBook() {

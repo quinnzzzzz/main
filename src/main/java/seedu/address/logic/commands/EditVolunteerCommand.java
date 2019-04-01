@@ -6,10 +6,12 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VOLUNTEERS;
 
@@ -31,10 +33,12 @@ import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.Email;
 import seedu.address.model.volunteer.EmergencyContact;
+import seedu.address.model.volunteer.Gender;
 import seedu.address.model.volunteer.MedicalCondition;
 import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
+import seedu.address.model.volunteer.Religion;
 import seedu.address.model.volunteer.Volunteer;
 
 
@@ -51,7 +55,9 @@ public class EditVolunteerCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_GENDER + "AGE] "
             + "[" + PREFIX_RACE + "RACE] "
+            + "[" + PREFIX_RELIGION + "AGE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_EMERGENCY_CONTACT + "NAME, RELATIONSHIP, PHONE] "
@@ -114,7 +120,9 @@ public class EditVolunteerCommand extends Command {
 
         Name updatedName = editVolunteerDescriptor.getName().orElse(volunteerToEdit.getName());
         Age updatedAge = editVolunteerDescriptor.getAge().orElse(volunteerToEdit.getAge());
+        Gender updatedGender = editVolunteerDescriptor.getGender().orElse(volunteerToEdit.getGender());
         Race updatedRace = editVolunteerDescriptor.getRace().orElse(volunteerToEdit.getRace());
+        Religion updatedReligion = editVolunteerDescriptor.getReligion().orElse(volunteerToEdit.getReligion());
         Phone updatedPhone = editVolunteerDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
         Email updatedEmail = editVolunteerDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
         Address updatedAddress = editVolunteerDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
@@ -126,8 +134,9 @@ public class EditVolunteerCommand extends Command {
                 editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
         Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
-        return new Volunteer(updatedName, updatedAge, updatedRace, updatedPhone, updatedAddress, updatedEmail,
-                updatedEmergencyContact, updatedDietaryPreference, updatedMedicalCondition, updatedTags);
+        return new Volunteer(updatedName, updatedAge, updatedGender, updatedRace, updatedReligion, updatedPhone,
+                updatedAddress, updatedEmail, updatedEmergencyContact, updatedDietaryPreference,
+                updatedMedicalCondition, updatedTags);
     }
 
     @Override
@@ -155,7 +164,9 @@ public class EditVolunteerCommand extends Command {
     public static class EditVolunteerDescriptor {
         private Name name;
         private Age age;
+        private Gender gender;
         private Race race;
+        private Religion religion;
         private Phone phone;
         private Address address;
         private Email email;
@@ -173,7 +184,9 @@ public class EditVolunteerCommand extends Command {
         public EditVolunteerDescriptor(EditVolunteerDescriptor toCopy) {
             setName(toCopy.name);
             setAge(toCopy.age);
+            setGender(toCopy.gender);
             setRace(toCopy.race);
+            setReligion(toCopy.religion);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
             setEmail(toCopy.email);
@@ -193,7 +206,6 @@ public class EditVolunteerCommand extends Command {
         public void setName(Name name) {
             this.name = name;
         }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
@@ -201,21 +213,32 @@ public class EditVolunteerCommand extends Command {
         public void setAge(Age age) {
             this.age = age;
         }
-
         public Optional<Age> getAge() {
             return Optional.ofNullable(age);
         }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
         public void setRace(Race race) {
             this.race = race;
         }
-
         public Optional<Race> getRace() {
             return Optional.ofNullable(race);
         }
+
+        public void setReligion(Religion religion) {
+            this.religion = religion;
+        }
+        public Optional<Religion> getReligion() { return Optional.ofNullable(religion); }
+
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
-
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
@@ -223,7 +246,6 @@ public class EditVolunteerCommand extends Command {
         public void setEmail(Email email) {
             this.email = email;
         }
-
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
@@ -231,21 +253,19 @@ public class EditVolunteerCommand extends Command {
         public void setAddress(Address address) {
             this.address = address;
         }
-
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+
         public void setEmergencyContact(EmergencyContact emergencycontact) {
             this.emergencycontact = emergencycontact;
         }
-
         public Optional<EmergencyContact> getEmergencyContact() {
             return Optional.ofNullable(emergencycontact);
         }
-        public void setDietaryPreference(DietaryPreference dietarypreference) {
-            this.dietarypreference = dietarypreference;
-        }
 
+        public void setDietaryPreference(DietaryPreference dietarypreference) {
+            this.dietarypreference = dietarypreference; }
         public Optional<DietaryPreference> getDietaryPreference() {
             return Optional.ofNullable(dietarypreference);
         }
@@ -253,7 +273,6 @@ public class EditVolunteerCommand extends Command {
         public void setMedicalCondition(MedicalCondition medicalcondition) {
             this.medicalcondition = medicalcondition;
         }
-
         public Optional<MedicalCondition> getMedicalCondition() {
             return Optional.ofNullable(medicalcondition);
         }
@@ -291,7 +310,9 @@ public class EditVolunteerCommand extends Command {
 
             return getName().equals(e.getName())
                     && getAge().equals(e.getAge())
+                    && getGender().equals(e.getGender())
                     && getRace().equals(e.getRace())
+                    && getReligion().equals(e.getReligion())
                     && getPhone().equals(e.getPhone())
                     && getAddress().equals(e.getAddress())
                     && getEmail().equals(e.getEmail())

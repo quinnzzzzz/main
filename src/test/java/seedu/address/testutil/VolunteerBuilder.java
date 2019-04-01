@@ -3,17 +3,19 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.volunteer.Name;
-import seedu.address.model.volunteer.Age;
-import seedu.address.model.volunteer.Race;
-import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Address;
-import seedu.address.model.volunteer.Email;
+import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
+import seedu.address.model.volunteer.Email;
 import seedu.address.model.volunteer.EmergencyContact;
+import seedu.address.model.volunteer.Gender;
 import seedu.address.model.volunteer.MedicalCondition;
+import seedu.address.model.volunteer.Name;
+import seedu.address.model.volunteer.Phone;
+import seedu.address.model.volunteer.Race;
+import seedu.address.model.volunteer.Religion;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.util.VolunteerSampleDataUtil;
 
 /**
@@ -23,7 +25,9 @@ public class VolunteerBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_AGE = "19";
+    public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_RACE = "American";;
+    public static final String DEFAULT_RELIGION = "Christian";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
@@ -33,11 +37,13 @@ public class VolunteerBuilder {
 
     private Name name;
     private Age age;
+    private Gender gender;
     private Race race;
+    private Religion religion;
     private Phone phone;
     private Address address;
     private Email email;
-    private EmergencyContact emergency_contact;
+    private EmergencyContact emergencycontact;
     private DietaryPreference dietarypreference;
     private MedicalCondition medicalcondition;
     private Set<Tag> tags;
@@ -45,11 +51,13 @@ public class VolunteerBuilder {
     public VolunteerBuilder() {
         name = new Name(DEFAULT_NAME);
         age = new Age(DEFAULT_AGE);
+        gender = new Gender(DEFAULT_GENDER);
         race = new Race(DEFAULT_RACE);
+        religion = new Religion(DEFAULT_RELIGION);
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         email = new Email(DEFAULT_EMAIL);
-        emergency_contact = new EmergencyContact(DEFAULT_EMERGENCY_CONTACT);
+        emergencycontact = new EmergencyContact(DEFAULT_EMERGENCY_CONTACT);
         dietarypreference = new DietaryPreference(DEFAULT_DIETARY_PREFERENCE);
         medicalcondition = new MedicalCondition(DEFAULT_MEDICAL_CONDITION);
         tags = new HashSet<>();
@@ -60,9 +68,16 @@ public class VolunteerBuilder {
      */
     public VolunteerBuilder(Volunteer volunteerToCopy) {
         name = volunteerToCopy.getName();
+        age = volunteerToCopy.getAge();
+        gender = volunteerToCopy.getGender();
+        race = volunteerToCopy.getRace();
+        religion = volunteerToCopy.getReligion();
         phone = volunteerToCopy.getPhone();
         email = volunteerToCopy.getEmail();
         address = volunteerToCopy.getAddress();
+        emergencycontact = volunteerToCopy.getEmergencyContact();
+        dietarypreference = volunteerToCopy.getDietaryPreference();
+        medicalcondition = volunteerToCopy.getMedicalCondition();
         tags = new HashSet<>(volunteerToCopy.getTags());
     }
 
@@ -85,8 +100,16 @@ public class VolunteerBuilder {
         this.age = new Age(age);
         return this;
     }
+    public VolunteerBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
     public VolunteerBuilder withRace(String race) {
         this.race = new Race(race);
+        return this;
+    }
+    public VolunteerBuilder withReligion(String religion) {
+        this.religion = new Religion(religion);
         return this;
     }
     public VolunteerBuilder withMedicalCondition(String medicalcondition) {
@@ -97,8 +120,8 @@ public class VolunteerBuilder {
         this.dietarypreference = new DietaryPreference(dietarypreference);
         return this;
     }
-    public VolunteerBuilder withEmergencyContact(String emergency_contact) {
-        this.emergency_contact = new EmergencyContact(emergency_contact);
+    public VolunteerBuilder withEmergencyContact(String emergencycontact) {
+        this.emergencycontact = new EmergencyContact(emergencycontact);
         return this;
     }
 
@@ -127,7 +150,8 @@ public class VolunteerBuilder {
     }
 
     public Volunteer build() {
-        return new Volunteer(name, age, race, phone, address, email, emergency_contact, dietarypreference, medicalcondition, tags);
+        return new Volunteer(name, age, gender, race, religion, phone, address, email,
+                emergencycontact, dietarypreference, medicalcondition, tags);
     }
 
 }

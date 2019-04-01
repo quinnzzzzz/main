@@ -34,6 +34,8 @@ public class ProjectCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label projectDate;
+    @FXML
+    private Label beneficiary;
 
 
 
@@ -43,6 +45,7 @@ public class ProjectCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         projectTitle.setText(project.getProjectTitle().fullTitle);
         projectDate.setText("Project Date: " + project.getProjectDate().fullDate);
+        beneficiary.setText("Beneficiary Assigned: " + project.getBeneficiaryAssigned().toString());
     }
 
     @Override
@@ -60,6 +63,5 @@ public class ProjectCard extends UiPart<Region> {
         // state check
         ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project);
-    }
+                && project.equals(card.project);}
 }

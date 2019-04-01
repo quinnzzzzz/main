@@ -23,7 +23,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 public class CompleteCommand extends Command {
     public static final String COMMAND_WORD = "complete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a project to completes. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Indicate a project as complete. "
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -45,9 +45,7 @@ public class CompleteCommand extends Command {
         requireAllNonNull(targetProject, editedProject);
 
         try {
-            model.updateProject(targetProject,editedProject);
-            Project p = model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject)).get(0);
-            p.setComplete();
+            model.setProject(targetProject,editedProject);
         } catch (ProjectNotFoundException pnfe) {
             throw new AssertionError("The target project cannot be missing");
         } catch (DuplicateProjectException e) {
@@ -55,21 +53,6 @@ public class CompleteCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedProject.getProjectTitle()));
-    }
-
-    /**
-     * Sets the {@code targetProject} of this command object
-     * @throws IllegalValueException if the projectIndex is invalid
-     */
-    private void setTargetProject(Model model) throws IllegalValueException {
-        assert targetProjectIndex != null;
-
-        List<Project> lastShownList = model.getFilteredProjectList();
-        if (model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject))== null) {
-            throw new IllegalValueException(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
-
-        targetProject = lastShownList.get(targetProjectIndex.getZeroBased());
     }
 
     @Override

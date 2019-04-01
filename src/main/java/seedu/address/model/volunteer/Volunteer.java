@@ -17,9 +17,12 @@ public class Volunteer {
     // Identity fields
     private final Name name;
     private final Age age;
+    private final Race race;
+    private final Gender gender;
+    private final Religion religion;
     private final Phone phone;
     private final Email email;
-    private final Race race;
+
 
     // Data fields
     private int points;
@@ -31,13 +34,15 @@ public class Volunteer {
     /**
      * Every field must be present and not null.
      */
-    public Volunteer(Name name, Age age, Race race, Phone phone, Address address, Email email,
+    public Volunteer(Name name, Age age, Gender gender, Race race, Religion religion, Phone phone, Address address, Email email,
                      EmergencyContact emergencycontact, DietaryPreference dietarypreference,
                      MedicalCondition medicalcondition , Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.age = age;
+        this.gender = gender;
         this.race = race;
+        this.religion = religion;
         this.phone = phone;
         this.address = address;
         this.email = email;
@@ -54,8 +59,14 @@ public class Volunteer {
     public Age getAge() {
         return age; }
 
+    public Gender getGender(){
+        return gender; }
+
     public Race getRace() {
         return race; }
+
+    public Religion getReligion(){
+        return religion; }
 
     public Phone getPhone() {
         return phone; }

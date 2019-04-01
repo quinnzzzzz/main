@@ -3,7 +3,7 @@ package seedu.address.model.volunteer;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Volunteer's medical condition in the address book.
+ * Represents a Volunteer's race in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRace(String)}
  */
 

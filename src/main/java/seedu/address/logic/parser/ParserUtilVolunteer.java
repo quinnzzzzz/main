@@ -15,10 +15,12 @@ import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
 import seedu.address.model.volunteer.Email;
 import seedu.address.model.volunteer.EmergencyContact;
+import seedu.address.model.volunteer.Gender;
 import seedu.address.model.volunteer.MedicalCondition;
 import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
+import seedu.address.model.volunteer.Religion;
 
 
 /**
@@ -187,6 +189,22 @@ public class ParserUtilVolunteer {
     }
 
     /**
+     * Parses a {@code String gender} into an {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    /**
      * Parses a {@code String race} into an {@code Race}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -201,4 +219,19 @@ public class ParserUtilVolunteer {
         }
         return new Race(trimmedRace);
     }
+    /**
+     * Parses a {@code String race} into an {@code Religion}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code religion} is invalid.
+     */
+    public static Religion parseReligion(String religion) throws ParseException {
+        requireNonNull(religion);
+        String trimmedReligion = religion.trim();
+        if (!Religion.isValidReligion(trimmedReligion)) {
+            throw new ParseException(Religion.MESSAGE_CONSTRAINTS);
+        }
+        return new Religion(trimmedReligion);
+    }
+
 }

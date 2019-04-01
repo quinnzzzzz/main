@@ -9,12 +9,15 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
 
 /**
  * Assigns a beneficiary to a project.
@@ -43,6 +46,9 @@ public class AssignBeneficiaryCommand extends Command {
 
     private final ProjectTitle targetProject;
     private final Index targetBeneficiaryIndex;
+    private final Name beneficiaryAssigned;
+    private Project editedProject;
+    private Project projectToAssign;
 
     /**
      * Creates an AssignBeneficiaryCommand to assign beneficiary to {@code Project}
@@ -53,31 +59,39 @@ public class AssignBeneficiaryCommand extends Command {
 
         this.targetProject = targetProject;
         this.targetBeneficiaryIndex = targetBeneficiary;
+        this.beneficiaryAssigned = new Name("Nil");
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
+
         if (targetBeneficiaryIndex.getZeroBased() >= lastShownList.size()) {
             System.out.println(lastShownList.size());
             throw new CommandException(Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
         }
-        Beneficiary beneficiaryAssigned = lastShownList.get(targetBeneficiaryIndex.getZeroBased());
+//        Beneficiary beneficiary = lastShownList.get(targetBeneficiaryIndex.getZeroBased());
         Predicate<Project> equalProjectTitle = x->x.getProjectTitle().equals(targetProject.toString());
         if (model.getFilteredProjectList().filtered(equalProjectTitle).size() == 0){
             throw new CommandException("Project does not exist.");
         }
         else {
-            Project projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-            projectToAssign.setAssignedBeneficiary(beneficiaryAssigned);
-            if (!beneficiaryAssigned.hasProjectTitle(targetProject)) {
-                beneficiaryAssigned.addAttachedProject(targetProject);
+            projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
+            Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
+            if (!beneficiary.hasProjectTitle(targetProject)) {
+                beneficiary.addAttachedProject(targetProject);
             }
+            Name beneficiaryAssigned = beneficiary.getName();
+            beneficiary.addAttachedProject(targetProject);
+            this.editedProject = new ProjectBuilder(this.projectToAssign).withBeneficiary(beneficiaryAssigned).build();
+            editedProject.setBeneficiary(beneficiaryAssigned);
+            model.setProject(projectToAssign,editedProject);
             model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
     }
+  
     @Override
     public boolean equals(Object other) {
         return other == this
