@@ -271,6 +271,14 @@ Format: `assign PROJECT_TITLE, i/INDEX`
 * There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
+=== Mark project as complete: 'complete' --- coming soon
+
+Marks project with "PROJECT_TITLE" as complete
+Format: `complete PROJECT_TITEL`
+
+****
+* Once marked as complete, project title will be displayed in red colour font
+****
 
 === Assigning mapping index to each volunteer : `map`
 
