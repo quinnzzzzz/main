@@ -88,7 +88,6 @@ public class Project {
 
     public void setBeneficiary (Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
-        System.out.println(beneficiary);
     }
 //
 //    public Name getBeneficiaryName(){

@@ -30,6 +30,7 @@ import seedu.address.logic.commands.ListVolunteerCommand;
 import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SummaryBeneficiaryCommand;
 import seedu.address.logic.commands.UndoCommand;
 
@@ -74,9 +75,6 @@ public class AddressBookParser {
         case SummaryBeneficiaryCommand.COMMAND_WORD:
             return new SummaryBeneficiaryCommand();
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
         case AssignBeneficiaryCommand.COMMAND_WORD:
             return new AssignBeneficiaryCommandParser().parse(arguments);
 
@@ -86,8 +84,8 @@ public class AddressBookParser {
         case EditVolunteerCommand.COMMAND_WORD:
             return new EditVolunteerCommandParser().parse(arguments);
 
-        case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser().parse(arguments);
+        //case SelectCommand.COMMAND_WORD:
+            //return new SelectCommandParser().parse(arguments);
 
         case DeleteBeneficiaryCommand.COMMAND_WORD:
             return new DeleteBeneficiaryCommandParser().parse(arguments);
@@ -113,7 +111,6 @@ public class AddressBookParser {
         case ListBeneficiaryCommand.COMMAND_WORD:
             return new ListBeneficiaryCommand();
 
-
         case ListVolunteerCommand.COMMAND_WORD:
             return new ListVolunteerCommand();
 
@@ -123,11 +120,11 @@ public class AddressBookParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case MapCommand.COMMAND_WORD:
-            return new MapCommandParser().parse(arguments);
+        //case MapCommand.COMMAND_WORD:
+            //return new MapCommandParser().parse(arguments);
 
-        case SortCommand.COMMAND_WORD:
-            return new SortCommand();
+        //case SortCommand.COMMAND_WORD:
+            //return new SortCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
