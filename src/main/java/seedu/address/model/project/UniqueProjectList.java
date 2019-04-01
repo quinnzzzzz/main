@@ -159,18 +159,4 @@ public class UniqueProjectList implements Iterable<Project> {
         }
         return true;
     }
-
-    /**
-     * when beneficiary inside project
-     * @param edittedBeneficiary
-     * @param projectTitleList
-     */
-    public void updateBeneficiary(Beneficiary edittedBeneficiary, Set<ProjectTitle> projectTitleList) {
-        for (ProjectTitle title: projectTitleList) {
-            Project p = projectTitleProjectHashtable.get(title);
-            Project p_copy = p;
-            p.setBeneficiary(edittedBeneficiary);
-            setProject(p_copy, p);
-        }
-    }
 }

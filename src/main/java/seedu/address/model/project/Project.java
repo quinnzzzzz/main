@@ -2,15 +2,11 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
 import java.util.Objects;
 
-import javafx.collections.ObservableList;
+import seedu.address.logic.commands.ProjectBuilder;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Name;
-import seedu.address.model.beneficiary.UniqueBeneficiaryList;
-import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
-import seedu.address.model.volunteer.Volunteer;
 
 
 /**
@@ -21,12 +17,11 @@ public class Project {
     // Identity fields
     private final ProjectTitle projectTitle;
     private final ProjectDate projectDate;
-
-    private Complete complete;
-    private Beneficiary beneficiary;
+    private final Complete complete;
+    private Name beneficiaryAssigned;
 
     /**
-     * Every field must be present and not null.
+     * When complete and beneficiaryAssigned info are not initialised.
      */
     public Project(ProjectTitle projectTitle, ProjectDate projectDate) {
         requireAllNonNull(projectTitle, projectDate);
@@ -34,14 +29,31 @@ public class Project {
         this.projectDate = projectDate;
         //internal tags
         this.complete = new Complete(false);
-        this.beneficiary = null;
+        this.beneficiaryAssigned = new Name("nil");
     }
 
-    public void setAssignedBeneficiary(Beneficiary beneficiaryAssigned) {
-        this.beneficiary = beneficiaryAssigned;
+    /**
+     * When beneficiaryAssigned is not initialised.
+     */
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate,Complete complete) {
+        requireAllNonNull(projectTitle, projectDate, complete);
+        this.projectTitle = projectTitle;
+        this.projectDate = projectDate;
+        //internal tags
+        this.complete = complete;
+        this.beneficiaryAssigned = new Name("nil");;
     }
-    public void setComplete() {
-        this.complete = new Complete(true);
+
+    /**
+     * Every field must be present and not null when all attributes can be passed in
+     */
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate,Complete complete, Beneficiary beneficiaryAssigned) {
+        requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned);
+        this.projectTitle = projectTitle;
+        this.projectDate = projectDate;
+        //internal tags
+        this.complete = complete;
+        this.beneficiaryAssigned = beneficiaryAssigned.getName();
     }
 
     public ProjectTitle getProjectTitle() {
@@ -56,23 +68,46 @@ public class Project {
         return complete;
     }
 
-    public Beneficiary getBeneficiaryAttached() {
-        return this.beneficiary;
+    public Name getBeneficiaryAssigned() {
+        return beneficiaryAssigned;
     }
 
-    public Name getBeneficiaryName(){
-        if (beneficiary == null) return new Name("null");
-        return beneficiary.getName();
+    /**
+     * Returns true if Project has completed, else returns false.
+     */
+    public boolean isComplete() {
+        return complete.isComplete();
     }
+
+//    public void setAssignedBeneficiary(Name beneficiaryAssigned) {
+//        this.beneficiaryAssigned = beneficiaryAssigned;
+//    }
+//    public void setComplete() {
+//        this.complete = new Complete(true);
+//    }
+//
+//    public BeneficiaryAssigned getBeneficiaryAttached() {
+//
+//    }
+//    public void setBeneficiary (Beneficiary beneficiary) {
+//        this.beneficiary = beneficiary;
+//    }
+//
+//    public Name getBeneficiaryName(){
+//        if (beneficiary == null) return new Name("null");
+//        return beneficiary.getName();
+//    }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectTitle())
-                .append(", ")
+                .append("Project Date: ")
                 .append(getProjectDate())
+                .append("Status ")
+                .append(getComplete())
                 .append(" Beneficiary: ")
-                .append(getBeneficiaryAttached())
+                .append(getBeneficiaryAssigned())
                 .append("\n");
         return builder.toString();
     }
@@ -87,8 +122,8 @@ public class Project {
         }
 
         return otherProject != null
-                && otherProject.getProjectTitle().equals(getProjectTitle())
-                && (otherProject.getProjectDate().equals(getProjectDate()));
+                || otherProject.getProjectTitle().equals(getProjectTitle())
+                || (otherProject.getProjectDate().equals(getProjectDate()));
     }
 
     /**
@@ -103,23 +138,14 @@ public class Project {
         if (!(other instanceof Project)) {
             return false;
         }
-
         Project otherProject = (Project) other;
         return otherProject.getProjectTitle().equals(getProjectTitle())
                 && otherProject.getProjectDate().equals(getProjectDate());
     }
 
-    public void setBeneficiary (Beneficiary beneficiary) {
-        this.beneficiary = beneficiary;
-    }
-
-    public Beneficiary getBeneficiary () {
-        return beneficiary;
-    }
-
     @Override
     public int hashCode() {
-        return Objects.hash(projectTitle,projectDate,complete,beneficiary);
+        return Objects.hash(projectTitle,projectDate,complete,beneficiaryAssigned);
     }
 }
 

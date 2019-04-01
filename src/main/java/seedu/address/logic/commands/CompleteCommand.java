@@ -40,14 +40,21 @@ public class CompleteCommand extends Command {
         this.targetProjectIndex = targetProjectIndex;
     }
 
+    protected void preprocessCommand(Model model) throws CommandException{
+        try{
+            setTargetProject(model);
+            createEditedProject();
+        } catch (IllegalValueException e) {
+            throw new CommandException(e.getMessage());
+        }
+    }
+
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireAllNonNull(targetProject, editedProject);
 
         try {
-            model.updateProject(targetProject,editedProject);
-            Project p = model.getFilteredProjectList().filtered(x -> x.getProjectTitle().equals(targetProject)).get(0);
-            p.setComplete();
+            model.setProject(targetProject,editedProject);
         } catch (ProjectNotFoundException pnfe) {
             throw new AssertionError("The target project cannot be missing");
         } catch (DuplicateProjectException e) {
@@ -57,6 +64,10 @@ public class CompleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedProject.getProjectTitle()));
     }
 
+    private void createEditedProject() {
+        assert targetProject != null;
+        editedProject = new ProjectBuilder(targetProject).withComplete(true).build();
+    }
     /**
      * Sets the {@code targetProject} of this command object
      * @throws IllegalValueException if the projectIndex is invalid

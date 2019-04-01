@@ -201,7 +201,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateProject(Project targetProject, Project editedProject){}
+    public void setProject(Project targetProject, Project editedProject){
+        requireNonNull(editedProject);
+        versionedAddressBook.setProject(targetProject, editedProject);
+    }
 
     @Override
     public void deleteVolunteer(Volunteer target) {
