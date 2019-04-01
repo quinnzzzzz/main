@@ -18,7 +18,7 @@ public class DeleteBeneficiaryCommandParser implements Parser<DeleteBeneficiaryC
      */
     public DeleteBeneficiaryCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtilBeneficiary.parseIndex(args);
             return new DeleteBeneficiaryCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

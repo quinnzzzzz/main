@@ -96,16 +96,71 @@ Examples:
 === Adding a beneficiary: `addBeneficiary`
 
 Adds a beneficiary to the list of Beneficiaries +
-Format: `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER v/VOLUNTEERS_REQUIRED [t/TAG]...`
+Format: `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER `
 
 ****
-* "Add Successful!" message is prompted upon successfully adding a beneficiary
-* To edit Beneficiary details, please remove the existing Beneficiary and add new one with addBeneficiary
+* "New beneficiary added: Orphanage Phone: 98765432 Email: Orphanage@example.com Address: 311, Clementi Ave 2,
+ #02-25Attached Project List: []" message is prompted upon successfully adding a beneficiary
 ****
 
 Examples:
 
-* `addBeneficiary n/Sunshine Old Folks Home a/sunshine ave 5 e/sunny@oldfolks.sg p/67580392 v/20`
+* `addBeneficiary n/Orphanage p/98765432 e/Orphanage@example.com a/311, Clementi Ave 2, #02-25`
+
+Consideration:
+
+* The beneficiary will be used to assign to a project, this means that the project will benefit this beneficiary,
+i.e. Orphanage Home, Nursing home, etc.
+* When add a new beneficiary, the project lists assigned to it will be empty. You can assign projects to it by assign
+command stated below.
+
+=== Editing a beneficiary: `editBeneficiary`
+
+Edits a beneficiary to the list of Beneficiaries +
+Format: `editBeneficiary  INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] `
+
+****
+* "Edited Beneficiary: Old Folk Home Phone: 91234567 Email: Orphanage@example.com Address: 311, Clementi Ave 2,
+ #02-25Attached Project List: []" message is prompted upon successfully editing a beneficiary
+****
+
+Examples:
+
+* `editBeneficiary 1 n/Old Folk Home p/91234567`
+
+Consideration:
+
+* When a beneficiary is edited, the data of the beneficiary in its attached projects is in sync, meaning that that data
+is automatically updated in the mentioned projects.
+
+=== Listing all beneficiary: `listBeneficiary`
+
+Shows a list of all Beneficiaries in the beneficiary pool. +
+Format: `listBeneficiary`
+
+Consideration:
+* The command can be used to get back to full list after several commands changing the list.
+
+=== Locating beneficiaries by name: `findBeneficiary`
+
+Finds beneficiaries whose names contain any of the given keywords. +
+Format: `findBeneficiary KEYWORD [MORE_KEYWORDS]`
+
+****
+* The search is case insensitive. e.g `orphanage` will match `Orphanage`
+* The order of the keywords does not matter. e.g. `Orphanage Nursing` will match `Nursing Orphanage`
+* Only the name is searched.
+* Only full words will be matched e.g. `Orphan` will not match `Orphanage`
+* beneficiaries matching at least one keyword will be returned (i.e. `OR` search). e.g. `Orphanage Nursing` will return
+ `Orphanage Rainbow`, `Nursing Home`
+****
+
+Examples:
+
+* `find John` +
+Returns `john` and `John Doe`
+* `find Betsy Tim John` +
+Returns any volunteer having names `Betsy`, `Tim`, or `John`
 
 === Listing all volunteers : `list`
 
