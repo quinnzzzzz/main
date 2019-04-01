@@ -101,13 +101,13 @@ Examples:
 === Adding a volunteer: `addVolunteer`
 
 Adds a volunteer to the volunteer pool +
-Format: `addVolunteer n/NAME y/AGE a/ADDRESS e/EMAIL p/PHONE_NUMBER g/EMERGENCY_CONTACT r/RACE d/DIETARY_PREFERENCE
-m/MEDICAL CONDITION [t/TAG]...`
+Format: `addVolunteer n/NAME y/AGE g/gender r/race rg/religion a/ADDRESS e/EMAIL p/PHONE_NUMBER
+ec/EMERGENCY_CONTACT dp/DIETARY_PREFERENCE m/MEDICAL CONDITION [t/TAG]...`
 
 ****
 * "Add Successful!" message is prompted upon successfully adding a volunteer
 * Otherwise, if the volunteer already exists, show edit option to update portfolio
-* Please enter 'NIL' for m/MEDICAL CONDITION if not applicable
+* Dietary Preference, Medical Condition is set to NIL by default
 ****
 
 [TIP]
@@ -115,10 +115,11 @@ A volunteer can have any number of tags (including 0)
 
 Examples:
 
-* `addVolunteer n/John Doe y/18 a/John street, block 123, #01-01 e/johnd@example.com p/98765432 g/98292998 r/chinese
-   d/vegetarian m/asthma`
-* `addVolunteer n/Sarah S y/22 a/betsy ave 6, 02-08 e/sarah08@example.com p/12345678 g/98299900 r/malay
-   d/muslim`
+* `addVolunteer n/John Doe y/18 g/male r/eurasian rg/nil a/John street, block 123, #01-01 e/johnd@example.com
+p/98765432 ec/Mary, Mother, 92221111 dp/vegetarian m/asthma`
+
+* `addVolunteer n/Sarah Soh y/22 g/female r/chinese rg/buddhist a/betsy ave 6, 02-08 e/sarah08@example.com
+p/92345678 ec/Johnny, Husband, 81234568
 
 === Adding a beneficiary: `addBeneficiary`
 
@@ -219,10 +220,13 @@ Edits the date of the project to be '20190301'.
 === Editing a volunteer : `editVolunteer`
 
 Edits an existing volunteer in the volunteer list. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [y/AGE] [g/GENDER] [r/RACE] [rg/RELIGION][p/PHONE] [a/ADDRESS] [e/EMAIL]
+[ec/EMERGENCYCONTACT] [dp/DIETARYPREFERENCE] [mc/MEDICALCONDITION] [[t/TAG]...`
 
 ****
-* Edits the volunteer at the specified `INDEX`. The index refers to the index number shown in the displayed volunteer list. The index *must be a positive integer* 1, 2, 3, ...
+* Edits the volunteer at the specified `INDEX`.
+The index refers to the index number shown in the displayed volunteer list.
+The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the volunteer will be removed i.e adding of tags is not cumulative.
@@ -246,7 +250,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* volunteers matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* volunteers matching at least one keyword will be returned (i.e. `OR` search).
+* e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 ****
 
 Examples:
