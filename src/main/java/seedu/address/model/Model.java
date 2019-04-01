@@ -164,7 +164,7 @@ public interface Model {
     void updateFilteredProjectList(Predicate<Project> predicate);
 
     void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
-    
+
 
     /**
      * Returns true if the model has previous address book states to restore.

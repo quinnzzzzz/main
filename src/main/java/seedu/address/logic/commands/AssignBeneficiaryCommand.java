@@ -91,7 +91,7 @@ public class AssignBeneficiaryCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
     }
-  
+
     @Override
     public boolean equals(Object other) {
         return other == this

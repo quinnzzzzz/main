@@ -49,7 +49,7 @@ public class Project {
         this.complete = new Complete(false);
         this.beneficiaryAssigned = beneficiaryAssigned;
     }
-  
+
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
@@ -108,7 +108,7 @@ public class Project {
                 .append("\n");
         return builder.toString();
     }
-    
+
     /**
      * Returns true if both Projects of the same projectTitle have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two Projects.
