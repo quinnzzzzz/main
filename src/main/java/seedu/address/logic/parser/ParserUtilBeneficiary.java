@@ -25,8 +25,8 @@ public class ParserUtilBeneficiary extends ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(trimmedName) || trimmedName.equals(new Name("null"))) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }

@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -25,6 +26,8 @@ import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Email;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.beneficiary.Phone;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -76,11 +79,19 @@ public class EditBeneficiaryCommand extends Command {
 
         Beneficiary beneficiaryToEdit = lastShownList.get(index.getZeroBased());
         Beneficiary editedBeneficiary = createEditedBeneficiary(beneficiaryToEdit, editBeneficiaryDescriptor);
+        editedBeneficiary.setProjectLists(beneficiaryToEdit.getAttachedProjectLists());
 
         if (!beneficiaryToEdit.isSameBeneficiary(editedBeneficiary) && model.hasBeneficiary(editedBeneficiary)) {
             throw new CommandException(MESSAGE_DUPLICATE_BENEFICIARY);
         }
 
+        for(ProjectTitle attachedProject: beneficiaryToEdit.getAttachedProjectLists()) {
+            Predicate<Project> equalProjectTitle = x->x.getProjectTitle().equals(attachedProject.toString());
+            if (model.getFilteredProjectList().filtered(equalProjectTitle).size() != 0) {
+                Project project = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
+                project.setAssignedBeneficiary(editedBeneficiary);
+            }
+        }
         model.setBeneficiary(beneficiaryToEdit, editedBeneficiary);
         model.updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);

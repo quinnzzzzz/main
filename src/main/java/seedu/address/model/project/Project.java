@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.parser.CliSyntaxBeneficiary;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
@@ -34,7 +35,7 @@ public class Project {
         this.projectDate = projectDate;
         //internal tags
         this.complete = new Complete(false);
-        this.beneficiary = null;
+        this.beneficiary = CliSyntaxBeneficiary.NULL_BENEFICIARY;
     }
 
     public void setAssignedBeneficiary(Beneficiary beneficiaryAssigned) {
@@ -61,7 +62,6 @@ public class Project {
     }
 
     public Name getBeneficiaryName(){
-        if (beneficiary == null) return new Name("null");
         return beneficiary.getName();
     }
 

@@ -196,9 +196,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
         requireNonNull(editedBeneficiary);
-
-        Set<ProjectTitle> projectTitleList = target.getAttachedProjectLists();
-        projects.updateBeneficiary(editedBeneficiary, projectTitleList);
         beneficiaries.setBeneficiary(target, editedBeneficiary);
         indicateModified();
     }
