@@ -53,7 +53,10 @@ public class ProjectBuilder {
         this.projectDate = new ProjectDate(projectDate);
         return this;
     }
-
+    public Project build() {
+        //System.out.println("in"+projectTitle);
+        return new Project(projectTitle,projectDate);
+    }
     /**
      * Sets the {@code ProjectTitle} of the {@code Project} that we are building.
      */
@@ -61,12 +64,10 @@ public class ProjectBuilder {
         this.complete = new Complete(complete);
         return this;
     }
-    public ProjectBuilder withBeneficiary(String beneficiary) {
-        this.beneficiaryAssigned = new Name(beneficiary);
-        //System.out.println(beneficiary);
+    public ProjectBuilder withBeneficiary(Name beneficiary) {
+        this.beneficiaryAssigned = beneficiary;
+       //System.out.println("check"+this.beneficiaryAssigned);
         return this;
     }
-    public Project build() {
-        return new Project(projectTitle,projectDate);
-    }
+
 }

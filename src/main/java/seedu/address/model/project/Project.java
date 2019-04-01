@@ -3,9 +3,6 @@ package seedu.address.model.project;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-
-import seedu.address.logic.commands.ProjectBuilder;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Name;
 
 
@@ -44,17 +41,26 @@ public class Project {
         this.beneficiaryAssigned = new Name("nil");;
     }
 
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate, Name beneficiaryAssigned) {
+        requireAllNonNull(projectTitle, projectDate, beneficiaryAssigned);
+        this.projectTitle = projectTitle;
+        this.projectDate = projectDate;
+        //internal tags
+        this.complete = new Complete(false);
+        this.beneficiaryAssigned = beneficiaryAssigned;
+    }
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
-    public Project(ProjectTitle projectTitle, ProjectDate projectDate,Complete complete, Beneficiary beneficiaryAssigned) {
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate,Complete complete, Name beneficiaryAssigned) {
         requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         //internal tags
         this.complete = complete;
-        this.beneficiaryAssigned = beneficiaryAssigned.getName();
+        this.beneficiaryAssigned = beneficiaryAssigned;
     }
+
 
     public ProjectTitle getProjectTitle() {
         return projectTitle;
@@ -89,9 +95,10 @@ public class Project {
 //    public BeneficiaryAssigned getBeneficiaryAttached() {
 //
 //    }
-//    public void setBeneficiary (Beneficiary beneficiary) {
-//        this.beneficiary = beneficiary;
-//    }
+    public void setBeneficiary (Name beneficiary) {
+        this.beneficiaryAssigned = beneficiary;
+        System.out.println(beneficiary);
+    }
 //
 //    public Name getBeneficiaryName(){
 //        if (beneficiary == null) return new Name("null");
@@ -122,7 +129,7 @@ public class Project {
         }
 
         return otherProject != null
-                || otherProject.getProjectTitle().equals(getProjectTitle())
+                && otherProject.getProjectTitle().equals(getProjectTitle())
                 || (otherProject.getProjectDate().equals(getProjectDate()));
     }
 
@@ -140,7 +147,7 @@ public class Project {
         }
         Project otherProject = (Project) other;
         return otherProject.getProjectTitle().equals(getProjectTitle())
-                && otherProject.getProjectDate().equals(getProjectDate());
+                || otherProject.getProjectDate().equals(getProjectDate());
     }
 
     @Override

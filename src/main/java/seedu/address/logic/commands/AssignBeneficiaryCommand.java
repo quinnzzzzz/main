@@ -17,6 +17,7 @@ import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
 
 /**
  * Assigns a beneficiary to a project.
@@ -47,6 +48,7 @@ public class AssignBeneficiaryCommand extends Command {
     private final Index targetBeneficiaryIndex;
     private final Name beneficiaryAssigned;
     private Project editedProject;
+    private Project projectToAssign;
 
     /**
      * Creates an AssignBeneficiaryCommand to assign beneficiary to {@code Project}
@@ -57,7 +59,7 @@ public class AssignBeneficiaryCommand extends Command {
 
         this.targetProject = targetProject;
         this.targetBeneficiaryIndex = targetBeneficiary;
-        this.beneficiaryAssigned = new Name("nil");
+        this.beneficiaryAssigned = new Name("Nil");
     }
 
     @Override
@@ -75,17 +77,15 @@ public class AssignBeneficiaryCommand extends Command {
             throw new CommandException("Project does not exist.");
         }
         else {
-            Project projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
+            projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
 //            System.out.println(projectToAssign);
 //            System.out.println(model.getFilteredProjectList().filtered(equalProjectTitle).get(0));
             Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
             Name beneficiaryAssigned = beneficiary.getName();
             beneficiary.addAttachedProject(targetProject);
             beneficiary.SetPT(targetProject);
-//          System.out.println(beneficiary);
-//            System.out.println(model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased()));
-//            System.out.println(beneficiaryAssigned.toString());
-            editedProject = new ProjectBuilder(projectToAssign).withBeneficiary(beneficiaryAssigned.toString()).build();
+            this.editedProject = new ProjectBuilder(this.projectToAssign).withBeneficiary(beneficiaryAssigned).build();
+            editedProject.setBeneficiary(beneficiaryAssigned);
             model.setProject(projectToAssign,editedProject);
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
