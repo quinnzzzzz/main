@@ -33,7 +33,11 @@ public class VolunteerCard extends UiPart<Region> {
     @FXML
     private Label age;
     @FXML
+    private Label gender;
+    @FXML
     private Label race;
+    @FXML
+    private Label religion;
     @FXML
     private Label phone;
     @FXML
@@ -55,7 +59,9 @@ public class VolunteerCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(volunteer.getName().fullName);
         age.setText("Age: " + volunteer.getAge().ageOutput);
+        gender.setText("Gender: " + volunteer.getGender().genderOutput);
         race.setText("Race: " + volunteer.getRace().raceOutput);
+        religion.setText("Religion: " + volunteer.getReligion().religionOutput);
         phone.setText("Phone: " + volunteer.getPhone().value);
         address.setText("Address: " + volunteer.getAddress().value);
         email.setText("Email: " + volunteer.getEmail().value);

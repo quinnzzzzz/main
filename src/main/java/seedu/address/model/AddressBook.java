@@ -259,7 +259,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
-  
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
