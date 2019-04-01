@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_PROJECT_TITLE;
-import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_TAG;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;

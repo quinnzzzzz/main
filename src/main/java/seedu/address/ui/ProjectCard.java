@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 import seedu.address.model.beneficiary.Name;
 
@@ -28,23 +29,23 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label title;
+    private Label projectTitle;
     @FXML
     private Label id;
     @FXML
-    private Label date;
+    private Label projectDate;
     @FXML
     private Label beneficiary;
-    @FXML
-    private FlowPane tags;
+
+
 
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
-        title.setText(project.getProjectTitle().fullTitle);
-        date.setText(project.getProjectDate().fullDate);
-       // beneficiary.setText(beneficiary.getName().Name);
+        projectTitle.setText(project.getProjectTitle().fullTitle);
+        projectDate.setText("Project Date: " + project.getProjectDate().fullDate);
+        beneficiary.setText("Beneficiary Assigned: " + project.getBeneficiaryAssigned().toString());
     }
 
     @Override
@@ -62,6 +63,5 @@ public class ProjectCard extends UiPart<Region> {
         // state check
         ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project);
-    }
+                && project.equals(card.project);}
 }

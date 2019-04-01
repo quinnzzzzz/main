@@ -91,7 +91,7 @@ public interface Logic {
     /**
      * Sets the selected person in the filtered person list.
      *
-     * @see seedu.address.model.Model#setSelectedPerson(Person)
+     * @see seedu.address.model.Model#setSelectedProject(Project)
      */
     void setSelectedProject(Project project);
 

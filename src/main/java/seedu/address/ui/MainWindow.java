@@ -1,14 +1,29 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -16,6 +31,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.project.ProjectTitle;
+import seedu.address.logic.commands.SummaryBeneficiaryCommand.SummarisedBeneficiary;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,7 +50,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
-    private PersonListPanel personListPanel;
     private ProjectListPanel projectListPanel;
     private VolunteerListPanel volunteerListPanel;
     private BeneficiaryListPanel beneficiaryListPanel;
@@ -49,13 +66,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-
-
-    @FXML
     private StackPane projectListPanelPlaceholder;
 
     @FXML
-    private StackPane beneficiaryListPanelPlacehoder;
+    private StackPane beneficiaryListPanelPlaceholder;
 
     @FXML
     private StackPane volunteerListPanelPlaceholder;
@@ -125,19 +139,17 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         browserPanel = new BrowserPanel(logic.selectedVolunteerProperty());
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
-
-
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),
-                logic::setSelectedPerson);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
       
         beneficiaryListPanel = new BeneficiaryListPanel(logic.getFilteredBeneficiaryList(),
                 logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);
-        beneficiaryListPanelPlaceholder.getChildren().add(beneficiaryListPanel.getRoot());
 
         volunteerListPanel = new VolunteerListPanel(logic.getFilteredVolunteerList(),
                 logic.selectedVolunteerProperty(), logic::setSelectedVolunteer);
         volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
+
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(),
+                logic.selectedProjectProperty(),logic::setSelectedProject);
+        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -173,6 +185,56 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleBeneficiarySummary() {
+        Stage stage = new Stage();
+        TableView<SummarisedBeneficiary> table = new TableView<SummarisedBeneficiary>();
+        List<Beneficiary> beneficiaryList = logic.getFilteredBeneficiaryList();
+        List<SummarisedBeneficiary> data0 = new ArrayList<>();
+        for (Beneficiary beneficiary: beneficiaryList) {
+            data0.add(new SummarisedBeneficiary(beneficiary));
+        }
+        final ObservableList<SummarisedBeneficiary> data = FXCollections.observableArrayList(data0);
+        Scene scene = new Scene(new Group());
+        stage.setTitle("VolunCheer");
+        stage.setWidth(1200);
+        stage.setHeight(700);
+
+        final Label label = new Label("Beneficiary Summary Table");
+        label.setFont(new Font("Arial", 20));
+
+        table.setEditable(true);
+
+        TableColumn firstNameCol = new TableColumn("Beneficiary Name");
+        firstNameCol.setMinWidth(100);
+        firstNameCol.setCellValueFactory(
+                new PropertyValueFactory<SummarisedBeneficiary, String>("name"));
+
+        TableColumn lastNameCol = new TableColumn("No. Projects");
+        lastNameCol.setMinWidth(100);
+        lastNameCol.setCellValueFactory(
+                new PropertyValueFactory<SummarisedBeneficiary, String>("numberOfProjects"));
+
+        TableColumn emailCol = new TableColumn("List of attached projects");
+        emailCol.setMinWidth(800);
+        emailCol.setCellValueFactory(
+                new PropertyValueFactory<SummarisedBeneficiary, List<String>>("projectList"));
+
+        table.setItems(data);
+        table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
+
+        final VBox vbox = new VBox();
+        vbox.setSpacing(5);
+        vbox.setPadding(new Insets(10, 0, 0, 10));
+        vbox.getChildren().addAll(label, table);
+
+        ((Group) scene.getRoot()).getChildren().addAll(vbox);
+
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -195,7 +257,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public BeneficiaryListPanel getBeneficiaryListPanel() {
-
         return beneficiaryListPanel;
     }
 
@@ -220,6 +281,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowBeneficiarySummary()) {
+                handleBeneficiarySummary();
+                commandResult.resetShowBeneficiarySummary();
             }
 
             return commandResult;

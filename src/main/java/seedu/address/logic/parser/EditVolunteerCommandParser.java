@@ -7,10 +7,12 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
 import java.util.Collection;
@@ -39,7 +41,8 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
     public EditVolunteerCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AGE, PREFIX_RACE, PREFIX_PHONE, PREFIX_ADDRESS,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AGE, PREFIX_GENDER, PREFIX_RACE, PREFIX_RELIGION,
+                        PREFIX_PHONE, PREFIX_ADDRESS,
                         PREFIX_EMAIL, PREFIX_EMERGENCY_CONTACT, PREFIX_DIETARY_PREFERENCE, PREFIX_MEDICAL_CONDITION,
                         PREFIX_TAG);
 
@@ -61,9 +64,17 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
             editVolunteerDescriptor.setAge
                     (ParserUtilVolunteer.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
         }
+        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
+            editVolunteerDescriptor.setGender
+                    (ParserUtilVolunteer.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+        }
         if (argMultimap.getValue(PREFIX_RACE).isPresent()) {
             editVolunteerDescriptor.setRace
                     (ParserUtilVolunteer.parseRace(argMultimap.getValue(PREFIX_RACE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_RELIGION).isPresent()) {
+            editVolunteerDescriptor.setReligion
+                    (ParserUtilVolunteer.parseReligion(argMultimap.getValue(PREFIX_RELIGION).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editVolunteerDescriptor.setPhone(

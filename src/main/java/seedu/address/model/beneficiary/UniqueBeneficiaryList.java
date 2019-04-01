@@ -71,7 +71,7 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
         internalList.set(index, editedBeneficiary);
     }
 
-    public Beneficiary getBeneficiaryInIndex (Index targetIndex) {
+    public Beneficiary getBeneficiaryIndex (Index targetIndex) {
         return internalList.get(targetIndex.getZeroBased());
     }
 

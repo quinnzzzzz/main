@@ -12,10 +12,13 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private boolean showHelp = false;
 
     /** The application should exit. */
-    private final boolean exit;
+    private boolean exit = false;
+
+    /** Pop up for beneficiary summary command. */
+    private boolean showBeneficiarySummary = false;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -23,8 +26,18 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
-        this.exit = exit;
     }
+
+    public CommandResult(String feedbackToUser, boolean showBeneficiarySummary) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showBeneficiarySummary = showBeneficiarySummary;
+    }
+
+    public boolean isShowBeneficiarySummary() {
+        return showBeneficiarySummary;
+    }
+
+    public void resetShowBeneficiarySummary() {showBeneficiarySummary = false;}
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
