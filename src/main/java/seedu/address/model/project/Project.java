@@ -14,7 +14,7 @@ public class Project {
     // Identity fields
     private final ProjectTitle projectTitle;
     private final ProjectDate projectDate;
-    private final Complete complete;
+    private Complete complete;
     private Name beneficiaryAssigned;
 
     /**
@@ -97,10 +97,8 @@ public class Project {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectTitle())
-                .append("Project Date: ")
+                .append(" Project Date: ")
                 .append(getProjectDate())
-                .append("Status ")
-                .append(getComplete())
                 .append(" Beneficiary: ")
                 .append(getBeneficiaryAssigned())
                 .append("\n");

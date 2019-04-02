@@ -44,6 +44,10 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         id.setText(displayedIndex + ". ");
         projectTitle.setText(project.getProjectTitle().fullTitle);
+        if (project.isComplete()) {
+//            System.out.println(project.isComplete());
+            projectTitle.setStyle("-fx-font-family: Segoe UI Semibold; -fx-font-size: 15pt; -fx-text-fill: #FF0000;");
+        }
         projectDate.setText("Project Date: " + project.getProjectDate().fullDate);
         beneficiary.setText("Beneficiary Assigned: " + project.getBeneficiaryAssigned().toString());
     }

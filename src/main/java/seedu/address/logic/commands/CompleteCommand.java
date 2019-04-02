@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.compare;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -48,7 +49,10 @@ public class CompleteCommand extends Command {
         }
         Project targetProject = lastShownList.get(targetProjectIndex.getZeroBased());
         Project editedProject = new ProjectBuilder(targetProject).withComplete(true).build();
+//        editedProject.setComplete(true);
         model.setProject(targetProject,editedProject);
+        //targetProject.isComplete();
+//        System.out.println(targetProject.isComplete());
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedProject.getProjectTitle()));
     }
