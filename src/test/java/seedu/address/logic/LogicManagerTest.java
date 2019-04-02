@@ -62,20 +62,7 @@ public class LogicManagerTest {
         assertHistoryCorrect(invalidCommand);
     }
 
-    @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        assertHistoryCorrect(deleteCommand);
-    }
-
-    @Test
-    public void execute_validCommand_success() {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-        assertHistoryCorrect(listCommand);
-    }
-
+    /*
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() throws Exception {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
@@ -96,6 +83,7 @@ public class LogicManagerTest {
         assertCommandBehavior(CommandException.class, addCommand, expectedMessage, expectedModel);
         assertHistoryCorrect(addCommand);
     }
+    */
 
 
     /**

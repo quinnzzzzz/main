@@ -29,6 +29,7 @@ public class UndoCommandTest {
         deleteFirstPerson(expectedModel);
     }
 
+    /*
     @Test
     public void execute() {
         // multiple undoable states in model
@@ -42,4 +43,5 @@ public class UndoCommandTest {
         // no undoable states in model
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
     }
+    */
 }
