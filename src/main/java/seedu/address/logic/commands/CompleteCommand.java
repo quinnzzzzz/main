@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.compare;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
 
 import java.util.List;
 
 import javax.sql.rowset.Predicate;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
@@ -28,30 +31,29 @@ public class CompleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Project added to completes: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
 
     private final Index targetProjectIndex;
 
-    private Project targetProject;
-    private Project editedProject;
-
-    public CompleteCommand(Index targetProjectIndex) {
-        requireNonNull(targetProjectIndex);
-        this.targetProjectIndex = targetProjectIndex;
+    public CompleteCommand(Index targetProject) {
+        requireNonNull(targetProject);
+        this.targetProjectIndex = targetProject;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        requireAllNonNull(targetProject, editedProject);
+        requireAllNonNull(model);
+        List<Project> lastShownList = model.getFilteredProjectList();
 
-        try {
-            model.setProject(targetProject,editedProject);
-        } catch (ProjectNotFoundException pnfe) {
-            throw new AssertionError("The target project cannot be missing");
-        } catch (DuplicateProjectException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
+        if(targetProjectIndex.getZeroBased() >= lastShownList.size()){
+            throw new CommandException(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
-
+        Project targetProject = lastShownList.get(targetProjectIndex.getZeroBased());
+        Project editedProject = new ProjectBuilder(targetProject).withComplete(true).build();
+//        editedProject.setComplete(true);
+        model.setProject(targetProject,editedProject);
+        //targetProject.isComplete();
+//        System.out.println(targetProject.isComplete());
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedProject.getProjectTitle()));
     }
 

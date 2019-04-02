@@ -27,6 +27,7 @@ import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.ProjectTitle;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
@@ -146,7 +147,6 @@ public class ModelManager implements Model {
         requireNonNull(project);
         return versionedAddressBook.hasProject(project);
     }
-
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
@@ -190,7 +190,6 @@ public class ModelManager implements Model {
         versionedAddressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
-
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);

@@ -14,6 +14,7 @@ import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.AssignBeneficiaryCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CompleteCommand;
 import seedu.address.logic.commands.DeleteBeneficiaryCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
@@ -119,6 +120,9 @@ public class AddressBookParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+            case CompleteCommand.COMMAND_WORD:
+                return new CompleteCommandParser().parse(arguments);
 
         //case MapCommand.COMMAND_WORD:
             //return new MapCommandParser().parse(arguments);
