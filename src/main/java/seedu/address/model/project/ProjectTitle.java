@@ -43,7 +43,15 @@ public class ProjectTitle {
         return fullTitle;
     }
 
-    public boolean equals(String otherTitle) {
-        return (!(otherTitle == null)) && (fullTitle.equals(otherTitle));
+    @Override
+    public int hashCode() {
+        return fullTitle.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ProjectTitle// instanceof handles nulls
+                && fullTitle.equals(((ProjectTitle) other).fullTitle)); // state check
     }
 }
