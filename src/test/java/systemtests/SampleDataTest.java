@@ -42,10 +42,4 @@ public class SampleDataTest extends AddressBookSystemTest {
             throw new AssertionError(ioe);
         }
     }
-
-    @Test
-    public void addressBook_dataFileDoesNotExist_loadSampleData() {
-        Person[] expectedList = SampleDataUtil.getSamplePersons();
-        assertListMatching(getPersonListPanel(), expectedList);
-    }
 }

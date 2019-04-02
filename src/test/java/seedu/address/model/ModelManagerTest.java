@@ -149,6 +149,7 @@ public class ModelManagerTest {
         assertEquals(ALICE, modelManager.getSelectedPerson());
     }
 
+    /*
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
@@ -185,4 +186,5 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
+    */
 }
