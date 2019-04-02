@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 = Zhu Hui - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
@@ -16,15 +14,14 @@ VolunCHeer is a multifunctional project management application for Project Manag
 == Summary of contributions
 
 * *Major enhancement*: added *Volunteer Base Class with additional parameters such as race, gender, religion etc.*
-** What it does: It 
+** What it does:
 ** Justification: It is important as it is our main function of the program
 ** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
-* *Minor enhancement*: .
+* *Minor enhancement*:
 
 * *Code contributed*: [https://github.com/cs2113-ay1819s2-t08-1/main/tree/master/src/main/java/seedu/address/model/volunteer[Functional code]] [https://github.com[Test code]]
-
 * *Other contributions*:
 
 ** UI interface:
@@ -58,4 +55,3 @@ include::../DeveloperGuide.adoc[tag=undoredo]
 
 include::../DeveloperGuide.adoc[tag=dataencryption]
 
->>>>>>> master
