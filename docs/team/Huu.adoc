@@ -15,13 +15,14 @@ VolunCHeer is a multifunctional project management application for Project Manag
 
 * *Major enhancement*: added *Beneficiary Base Class
 ** What it does: It is important as it is one of our main functions of the program.
-** Justification:
+** Justification: 
 ** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
 * *Minor enhancement*: BeneficiarySummary
 
-* *Code contributed*: [https://github.com/cs2113-ay1819s2-t08-1/main/tree/master/src/main/java/seedu/address/model/Beneficiary[Functional code]] [https://github.com[Test code]]
+* *Code contributed*: [https://github.com/cs2113-ay1819s2-t08-1/main/tree/master/src/main/java/seedu/address/model/Beneficiary[Functional code]] [https://github.com[Test code]] 
+
 * *Other contributions*:
 
 ** Lead Developer: Ensure code quality
