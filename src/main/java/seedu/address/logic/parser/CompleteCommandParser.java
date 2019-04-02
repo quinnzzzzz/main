@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -18,12 +19,10 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public CompleteCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
+        requireNonNull(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,PREFIX_INDEX);
+
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
             return new CompleteCommand(index);
-        } catch (IllegalValueException ive) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompleteCommand.MESSAGE_USAGE));
-        }
     }
 }

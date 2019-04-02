@@ -71,9 +71,7 @@ public class Project {
         return projectDate;
     }
 
-    public Complete getComplete() {
-        return complete;
-    }
+    public Complete getComplete() { return complete; }
 
     public Name getBeneficiaryAssigned() {
         return beneficiaryAssigned;
