@@ -85,9 +85,6 @@ public class AddressBookParser {
         case EditVolunteerCommand.COMMAND_WORD:
             return new EditVolunteerCommandParser().parse(arguments);
 
-        //case SelectCommand.COMMAND_WORD:
-            //return new SelectCommandParser().parse(arguments);
-
         case DeleteBeneficiaryCommand.COMMAND_WORD:
             return new DeleteBeneficiaryCommandParser().parse(arguments);
 

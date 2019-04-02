@@ -72,6 +72,7 @@ public class JsonAddressBookStorageTest {
         readAddressBook("invalidAndValidPersonAddressBook.json");
     }
 
+    /*
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.getRoot().toPath().resolve("TempAddressBook.json");
@@ -97,6 +98,7 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
     }
+    */
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
