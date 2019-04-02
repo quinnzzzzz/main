@@ -66,10 +66,10 @@ public class AssignBeneficiaryCommand extends Command {
         List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
 
         if (targetBeneficiaryIndex.getZeroBased() >= lastShownList.size()) {
-            System.out.println(lastShownList.size());
+            //System.out.println(lastShownList.size());
             throw new CommandException(Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
         }
-//        Beneficiary beneficiary = lastShownList.get(targetBeneficiaryIndex.getZeroBased());
+       //Beneficiary beneficiary = lastShownList.get(targetBeneficiaryIndex.getZeroBased());
         Predicate<Project> equalProjectTitle = x->x.getProjectTitle().equals(targetProject);
         if (model.getFilteredProjectList().filtered(equalProjectTitle).size() == 0){
             throw new CommandException("Project does not exist.");

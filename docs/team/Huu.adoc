@@ -80,8 +80,10 @@ https://github.com/cs2113-ay1819s2-t08-1/main[#43]
 https://github.com/cs2113-ay1819s2-t08-1/main[#43]
 
 
+
 * *Code contributed*: My code contribution can be viewed
 [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=huu&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false[here]]
+
 
 * *Other contributions*:
 
@@ -95,7 +97,6 @@ https://github.com/cs2113-ay1819s2-t08-1/main[#43]
 *** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
 
 == Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
@@ -114,4 +115,3 @@ include::../UserGuide.adoc[tag=editBeneficiary]
 include::../DeveloperGuide.adoc[tag=undoredo]
 
 include::../DeveloperGuide.adoc[tag=dataencryption]
-
