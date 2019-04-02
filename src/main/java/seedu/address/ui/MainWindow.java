@@ -140,7 +140,6 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         browserPanel = new BrowserPanel(logic.selectedVolunteerProperty());
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
-      
         beneficiaryListPanel = new BeneficiaryListPanel(logic.getFilteredBeneficiaryList(),
                 logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);
         beneficiaryListPanelPlaceholder.getChildren().add(beneficiaryListPanel.getRoot());
