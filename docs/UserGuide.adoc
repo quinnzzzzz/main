@@ -267,9 +267,9 @@ Deletes the specified project from the application. +
 Format: `deleteProject INDEX`
 
 ****
-* Deletes the project specified with 'PROJECT_TITLE'.
-* The PROJECT_TITLE should match exactly, use 'listProject' to view all projects if unsure.
-* Error message is shown if the PROJECT_TITLE entered is invalid
+* Deletes the project at index "INDEX".
+* The INDEX refers to the index of the project in the project list, use 'listProject' to view all projects if unsure.
+* Error message is shown if the INDEX entered is invalid
 ****
 
 === Deleting a volunteer : `deleteVolunteer`
@@ -325,10 +325,11 @@ Format: `assign PROJECT_TITLE, i/INDEX`
 * There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
-=== Mark project as complete: 'complete' --- coming soon
+=== Mark project as complete: 'complete'
 
-Marks project with "PROJECT_TITLE" as complete
-Format: `complete PROJECT_TITLE`
+Marks project with at index "INDEX" as complete.
+
+Format: `complete i/INDEX`
 
 ****
 * Once marked as complete, project title will be displayed in red colour font
