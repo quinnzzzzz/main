@@ -1,0 +1,111 @@
+= Zhao Jun Ru - Project Portfolio
+:site-section: AboutUs
+:imagesDir: C:\Users\Quinn\Desktop\Y2S2\CS2113T\Project\AddressBook4\docs\images\quinnzzzzz.png
+:stylesDir: ../stylesheets
+
+== PROJECT: VolunCHeer V1.3
+
+---
+
+== Overview
+
+VolunCheer is a desktop application for project managers who wish to keep track of their ongoing / upcoming projects as well as their beneficiary and volunteer pool.
+
+== Summary of contributions
+
+* *Major enhancement*: implemented *addProject command whereby it adds a new Project to the VolunCHeer application*
+** What it does: allows the user to add in a new project with attributes "Project Title" and "Project Date" to keep track of current projects on hand.
+** Justification: This forms the basis of the VolunCHeer application whereby the aim is to manage and organise projects better and save users form the hustle of paper works.
+** Highlights: This enhancement was built on the existing add command with some variation in the attributes presented. The implementation was relatively easy but relevant features pertaining to the specific projects requires more in-depth knowledge and analysis of design alternatives. The User Interface is adjusted accordingly as well to show
+    execution of commands and the relevant result.
+** Relevant features/enhancements:
+    1. Assign Beneficiary *allows the user to assign a existing beneficiary to the project selected*
+       - Justification: A beneficiary is usually attached to a project and beneficiary details are very important and usually tracked in a separate document / file. Thus we decide to keep Beneficiary information as a separate list and assigned to the project when required such that it can be managed separately.
+       - Highlights: This enhancement requires data from both the project list as well as the beneficiary list, there was thus some difficulty trying to implement the command. Many adjustments had to be made to keep the project class and beneficiary class independent.
+    2. Complete project *allows the user to mark a project as completed in the project list* this is indicated by a colour change - to red for the project title.
+       - Justification: This is thought to be a useful feature as project managers would want to keep track of what are the ongoing projects while still have a copy of their completed projects.
+       - Highlights: This enhancement indicates a change of status of the specified project, it is a simple yet useful feature for the user.
+
+* *Minor enhancement*: Edit project and Delete project commands are inherited from addressbook and successfully implemented on the project class.
+
+* *Other contributions*:
+
+** Project management:
+*** Managed setting up of Milestones v1.2 and v1.3
+*** Managed deadlines and submissions
+*** Managed releases `v1.3` on GitHub
+** Documentation:
+*** Did the UserGuide for v1.1: https://github.com/cs2113-ay1819s2-t08-1/main/pull/6[#6]
+*** Subsequent updates of documents on individual features.
+//** Community:
+//*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+//*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
+//*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
+//*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+//** Tools:
+//*** Integrated a third party library (Natty) to the project (https://github.com[#42])
+//*** Integrated a new Github plugin (CircleCI) to the team repo
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+=== Adding a project: `addProject`
+Adds a new project +
+Format: `addProject n/PROJECT_NAME d/DATE`
+
+****
+* Please enter DATE in yyyymmdd format.
+* Project Title should not have duplicates in the project list.
+****
+
+Examples:
+
+* `addProject n/Charity Run d/081219`
+
+
+=== Deleting a project ： `deleteProject`
+
+Deletes the specified project from the application. +
+Format: `deleteProject INDEX`
+
+****
+* Deletes the project at index "INDEX".
+* The INDEX refers to the index of the project in the project list, use 'listProject' to view all projects if unsure.
+* Error message is shown if the INDEX entered is invalid
+****
+
+=== Assigning a beneficiary to project: 'assign'
+
+Assigns a beneficiary identified by the index number used in the displayed beneficiary list to a project matched
+by project title entered.
+Format: `assign PROJECT_TITLE, i/INDEX`
+
+****
+* Assigns the beneficiary with index = "INDEX" to the project with title "PROJECT_TITLE".
+* Project attached will be shown on the specific beneficiary
+* There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
+* The index *must be a positive integer* `1, 2, 3, ...`
+****
+
+//
+//
+//== Contributions to the Developer Guide
+//
+//|===
+//|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+//|===
+//
+//include::../DeveloperGuide.adoc[tag=undoredo]
+//
+//include::../DeveloperGuide.adoc[tag=dataencryption]
+//
+//
+//== PROJECT: PowerPointLabs
+//
+//---
+//
+//_{Optionally, you may include other projects in your portfolio.}_

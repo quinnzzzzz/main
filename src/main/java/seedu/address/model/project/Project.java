@@ -14,7 +14,7 @@ public class Project {
     // Identity fields
     private final ProjectTitle projectTitle;
     private final ProjectDate projectDate;
-    private final Complete complete;
+    private Complete complete;
     private Name beneficiaryAssigned;
 
     /**
@@ -49,7 +49,7 @@ public class Project {
         this.complete = new Complete(false);
         this.beneficiaryAssigned = beneficiaryAssigned;
     }
-  
+
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
@@ -71,9 +71,7 @@ public class Project {
         return projectDate;
     }
 
-    public Complete getComplete() {
-        return complete;
-    }
+    public Complete getComplete() { return complete; }
 
     public Name getBeneficiaryAssigned() {
         return beneficiaryAssigned;
@@ -88,7 +86,6 @@ public class Project {
 
     public void setBeneficiary (Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
-        System.out.println(beneficiary);
     }
 //
 //    public Name getBeneficiaryName(){
@@ -100,16 +97,14 @@ public class Project {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectTitle())
-                .append("Project Date: ")
+                .append(" Project Date: ")
                 .append(getProjectDate())
-                .append("Status ")
-                .append(getComplete())
                 .append(" Beneficiary: ")
                 .append(getBeneficiaryAssigned())
                 .append("\n");
         return builder.toString();
     }
-    
+
     /**
      * Returns true if both Projects of the same projectTitle have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two Projects.

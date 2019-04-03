@@ -144,6 +144,7 @@ public class AddCommandTest {
                     + "should not be called.");
         }
 
+
         @Override
         public void addProject(Project project) {
             throw new AssertionError("This method should not be called.");
@@ -170,6 +171,9 @@ public class AddCommandTest {
             throw new AssertionError("This method"
                     + " should not be called.");
         }
+
+        @Override
+        public void sortVolunteers(){};
 
         @Override
         public boolean hasVolunteer(Volunteer volunteer) {

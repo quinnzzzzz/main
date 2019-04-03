@@ -7,7 +7,33 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddBeneficiaryCommand;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddProjectCommand;
+import seedu.address.logic.commands.AddVolunteerCommand;
+import seedu.address.logic.commands.AssignBeneficiaryCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CompleteCommand;
+import seedu.address.logic.commands.DeleteBeneficiaryCommand;
+import seedu.address.logic.commands.DeleteProjectCommand;
+import seedu.address.logic.commands.DeleteVolunteerCommand;
+import seedu.address.logic.commands.EditBeneficiaryCommand;
+import seedu.address.logic.commands.EditVolunteerCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindBeneficiaryCommand;
+import seedu.address.logic.commands.FindVolunteerCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ListBeneficiaryCommand;
+import seedu.address.logic.commands.ListProjectCommand;
+import seedu.address.logic.commands.ListVolunteerCommand;
+import seedu.address.logic.commands.MapCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SummaryBeneficiaryCommand;
+import seedu.address.logic.commands.UndoCommand;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -50,9 +76,6 @@ public class AddressBookParser {
         case SummaryBeneficiaryCommand.COMMAND_WORD:
             return new SummaryBeneficiaryCommand();
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
         case AssignBeneficiaryCommand.COMMAND_WORD:
             return new AssignBeneficiaryCommandParser().parse(arguments);
 
@@ -62,8 +85,8 @@ public class AddressBookParser {
         case EditVolunteerCommand.COMMAND_WORD:
             return new EditVolunteerCommandParser().parse(arguments);
 
-        case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser().parse(arguments);
+        //case SelectCommand.COMMAND_WORD:
+            //return new SelectCommandParser().parse(arguments);
 
         case DeleteBeneficiaryCommand.COMMAND_WORD:
             return new DeleteBeneficiaryCommandParser().parse(arguments);
@@ -89,7 +112,6 @@ public class AddressBookParser {
         case ListBeneficiaryCommand.COMMAND_WORD:
             return new ListBeneficiaryCommand();
 
-
         case ListVolunteerCommand.COMMAND_WORD:
             return new ListVolunteerCommand();
 
@@ -98,6 +120,9 @@ public class AddressBookParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+            case CompleteCommand.COMMAND_WORD:
+                return new CompleteCommandParser().parse(arguments);
 
         case MapCommand.COMMAND_WORD:
             return new MapCommandParser().parse(arguments);

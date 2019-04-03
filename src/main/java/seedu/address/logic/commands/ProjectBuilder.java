@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
@@ -20,13 +18,6 @@ public class ProjectBuilder {
     private ProjectDate projectDate;
     private Complete complete;
     private Name beneficiaryAssigned;
-
-    public ProjectBuilder(){
-        projectTitle = new ProjectTitle(DEFAULT_PROJECT_TITLE);
-        projectDate = new ProjectDate(DEFAULT_PROJECT_DATE);
-        complete = new Complete(DEFAULT_COMPLETE);
-        beneficiaryAssigned = new Name("Nil");
-    }
 
     /**
      * Initialises the ProjectBuilder with the data of {@code projectToCopy}.
@@ -55,7 +46,7 @@ public class ProjectBuilder {
     }
     public Project build() {
         //System.out.println("in"+projectTitle);
-        return new Project(projectTitle,projectDate);
+        return new Project(projectTitle,projectDate,complete,beneficiaryAssigned);
     }
     /**
      * Sets the {@code ProjectTitle} of the {@code Project} that we are building.

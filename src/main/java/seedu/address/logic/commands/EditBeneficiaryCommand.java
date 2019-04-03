@@ -89,7 +89,7 @@ public class EditBeneficiaryCommand extends Command {
             Predicate<Project> equalProjectTitle = x->x.getProjectTitle().equals(attachedProject.toString());
             if (model.getFilteredProjectList().filtered(equalProjectTitle).size() != 0) {
                 Project project = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-                project.setAssignedBeneficiary(editedBeneficiary);
+                project.setBeneficiary(editedBeneficiary.getName());
             }
         }
         model.setBeneficiary(beneficiaryToEdit, editedBeneficiary);

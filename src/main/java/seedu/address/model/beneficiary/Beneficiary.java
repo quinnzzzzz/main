@@ -21,7 +21,7 @@ public class Beneficiary {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private Set<ProjectTitle> attachedProjectList = new HashSet<>();
+    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
 
     // Data fields
     private final Address address;
@@ -133,7 +133,9 @@ public class Beneficiary {
      */
     public void deleteAttachedProject(ProjectTitle title) {
         if (this.attachedProjectList.contains(title)) {
+            System.out.println(this.attachedProjectList);
             this.attachedProjectList.remove(title);
+            System.out.println(this.attachedProjectList);
         }
     }
 

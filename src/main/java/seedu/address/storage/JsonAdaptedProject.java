@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
+import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
@@ -83,7 +83,7 @@ class JsonAdaptedProject {
         final Complete complete = new Complete(this.complete);
         final Name modelBeneficiaryAssigned = new Name(beneficiaryAssigned);
 
-        Project project = new Project(modelProjectTitle, modelProjectDate);
+        Project project = new Project(modelProjectTitle, modelProjectDate, complete, modelBeneficiaryAssigned);
 
         return project;
     }

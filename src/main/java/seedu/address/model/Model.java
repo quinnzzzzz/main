@@ -87,11 +87,11 @@ public interface Model {
     /**
      * Updates the Project status
      * @param target
-     * @param editedStudent
+     * @param editedProject
      * @throws DuplicateProjectException
      * @throws ProjectNotFoundException
      */
-    void setProject(Project target, Project editedStudent)
+    void setProject(Project target, Project editedProject)
             throws DuplicateProjectException, ProjectNotFoundException;
     /**
      * Deletes the given person.
@@ -137,7 +137,6 @@ public interface Model {
      * as another existing Beneficiary in the address book.
      */
     void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
-
     /**
      * Returns an unmodifiable view of the filtered person list
      */
@@ -164,7 +163,7 @@ public interface Model {
     void updateFilteredProjectList(Predicate<Project> predicate);
 
     void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
-    
+
 
     /**
      * Returns true if the model has previous address book states to restore.

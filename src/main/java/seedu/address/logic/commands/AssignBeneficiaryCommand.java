@@ -46,7 +46,6 @@ public class AssignBeneficiaryCommand extends Command {
 
     private final ProjectTitle targetProject;
     private final Index targetBeneficiaryIndex;
-    private final Name beneficiaryAssigned;
     private Project editedProject;
     private Project projectToAssign;
 
@@ -59,7 +58,6 @@ public class AssignBeneficiaryCommand extends Command {
 
         this.targetProject = targetProject;
         this.targetBeneficiaryIndex = targetBeneficiary;
-        this.beneficiaryAssigned = new Name("Nil");
     }
 
     @Override
@@ -68,16 +66,26 @@ public class AssignBeneficiaryCommand extends Command {
         List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
 
         if (targetBeneficiaryIndex.getZeroBased() >= lastShownList.size()) {
-            System.out.println(lastShownList.size());
+            //System.out.println(lastShownList.size());
             throw new CommandException(Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
         }
-//        Beneficiary beneficiary = lastShownList.get(targetBeneficiaryIndex.getZeroBased());
-        Predicate<Project> equalProjectTitle = x->x.getProjectTitle().equals(targetProject.toString());
+       //Beneficiary beneficiary = lastShownList.get(targetBeneficiaryIndex.getZeroBased());
+        Predicate<Project> equalProjectTitle = x->x.getProjectTitle().equals(targetProject);
         if (model.getFilteredProjectList().filtered(equalProjectTitle).size() == 0){
             throw new CommandException("Project does not exist.");
         }
         else {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
+            if (projectToAssign.getBeneficiaryAssigned().toString() != "nil"
+                && model.getFilteredBeneficiaryList().filtered(
+                    x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0) {
+                Beneficiary oldBeneficiary = model.getFilteredBeneficiaryList().filtered(
+                        x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).get(0);
+                oldBeneficiary.deleteAttachedProject(projectToAssign.getProjectTitle());
+                System.out.println(oldBeneficiary);
+                System.out.println(model.getFilteredBeneficiaryList().filtered(
+                        x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).get(0));
+            }
             Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
             if (!beneficiary.hasProjectTitle(targetProject)) {
                 beneficiary.addAttachedProject(targetProject);
@@ -91,7 +99,7 @@ public class AssignBeneficiaryCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
     }
-  
+
     @Override
     public boolean equals(Object other) {
         return other == this
