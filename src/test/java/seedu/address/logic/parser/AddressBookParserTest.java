@@ -16,9 +16,10 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddressBookParserTest {
-    private final AddressBookParser parser = new AddressBookParser();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_help() throws Exception {

@@ -27,7 +27,7 @@ public class VolunteerBuilder {
     public static final String DEFAULT_AGE = "19";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_RACE = "American";
-    ;
+
     public static final String DEFAULT_RELIGION = "Christian";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
@@ -98,36 +98,71 @@ public class VolunteerBuilder {
         return this;
     }
 
+    /**
+     * build with age.
+     * @param age
+     * @return
+     */
     public VolunteerBuilder withAge(String age) {
         this.age = new Age(age);
         return this;
     }
 
+    /**
+     * guild with gender.
+     * @param gender
+     * @return
+     */
     public VolunteerBuilder withGender(String gender) {
         this.gender = new Gender(gender);
         return this;
     }
 
+    /**
+     * build with race.
+     * @param race
+     * @return
+     */
     public VolunteerBuilder withRace(String race) {
         this.race = new Race(race);
         return this;
     }
 
+    /**
+     * build with religion
+     * @param religion
+     * @return
+     */
     public VolunteerBuilder withReligion(String religion) {
         this.religion = new Religion(religion);
         return this;
     }
 
+    /**
+     * build.
+     * @param medicalcondition
+     * @return
+     */
     public VolunteerBuilder withMedicalCondition(String medicalcondition) {
         this.medicalcondition = new MedicalCondition(medicalcondition);
         return this;
     }
 
+    /**
+     * build.
+     * @param dietarypreference
+     * @return
+     */
     public VolunteerBuilder withDietaryPreference(String dietarypreference) {
         this.dietarypreference = new DietaryPreference(dietarypreference);
         return this;
     }
 
+    /**
+     * build.
+     * @param emergencycontact
+     * @return
+     */
     public VolunteerBuilder withEmergencyContact(String emergencycontact) {
         this.emergencycontact = new EmergencyContact(emergencycontact);
         return this;
@@ -157,6 +192,10 @@ public class VolunteerBuilder {
         return this;
     }
 
+    /**
+     * build
+     * @return
+     */
     public Volunteer build() {
         return new Volunteer(name, age, gender, race, religion, phone, address, email,
             emergencycontact, dietarypreference, medicalcondition, tags);

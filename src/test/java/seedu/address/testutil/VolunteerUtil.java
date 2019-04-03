@@ -60,9 +60,12 @@ public class VolunteerUtil {
         descriptor.getRace().ifPresent(race -> sb.append(PREFIX_RACE).append(race.raceOutput).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getEmergencyContact().ifPresent(emergency_contact -> sb.append(PREFIX_EMERGENCY_CONTACT).append(emergency_contact.value).append(" "));
-        descriptor.getDietaryPreference().ifPresent(dietary_preference -> sb.append(PREFIX_DIETARY_PREFERENCE).append(dietary_preference.restriction).append(" "));
-        descriptor.getMedicalCondition().ifPresent(medicalcondition -> sb.append(PREFIX_MEDICAL_CONDITION).append(medicalcondition.status).append(" "));
+        descriptor.getEmergencyContact().ifPresent(emergency_contact -> sb.append(PREFIX_EMERGENCY_CONTACT)
+            .append(emergency_contact.value).append(" "));
+        descriptor.getDietaryPreference().ifPresent(dietary_preference -> sb.append(PREFIX_DIETARY_PREFERENCE)
+            .append(dietary_preference.restriction).append(" "));
+        descriptor.getMedicalCondition().ifPresent(medicalcondition -> sb.append(PREFIX_MEDICAL_CONDITION)
+            .append(medicalcondition.status).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
