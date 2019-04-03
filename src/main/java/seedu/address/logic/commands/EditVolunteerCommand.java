@@ -93,7 +93,7 @@ public class EditVolunteerCommand extends Command {
      * edited with {@code editVolunteerDescriptor}.
      */
     private static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-                                                   EditVolunteerDescriptor editVolunteerDescriptor) {
+            EditVolunteerDescriptor editVolunteerDescriptor) {
         assert volunteerToEdit != null;
 
         Name updatedName = editVolunteerDescriptor.getName().orElse(volunteerToEdit.getName());

@@ -19,7 +19,7 @@ public class Assert {
      * {@see assertThrows(Class < ? extends Throwable >, VoidCallable }
      */
     public static void assertThrows(Class<? extends Throwable> expectedException, String expectedMessage,
-                                    VoidCallable callable) {
+            VoidCallable callable) {
         try {
             callable.call();
         } catch (Throwable actualException) {

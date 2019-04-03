@@ -59,82 +59,83 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddProjectCommand.COMMAND_WORD:
-                return new AddProjectCommandParser().parse(arguments);
+        case AddProjectCommand.COMMAND_WORD:
+            return new AddProjectCommandParser().parse(arguments);
 
-            case AddBeneficiaryCommand.COMMAND_WORD:
-                return new AddBeneficiaryCommandParser().parse(arguments);
+        case AddBeneficiaryCommand.COMMAND_WORD:
+            return new AddBeneficiaryCommandParser().parse(arguments);
 
-            case AddVolunteerCommand.COMMAND_WORD:
-                return new AddVolunteerCommandParser().parse(arguments);
+        case AddVolunteerCommand.COMMAND_WORD:
+            return new AddVolunteerCommandParser().parse(arguments);
 
-            case SummaryBeneficiaryCommand.COMMAND_WORD:
-                return new SummaryBeneficiaryCommand();
+        case SummaryBeneficiaryCommand.COMMAND_WORD:
+            return new SummaryBeneficiaryCommand();
 
-            case AssignBeneficiaryCommand.COMMAND_WORD:
-                return new AssignBeneficiaryCommandParser().parse(arguments);
+        case AssignBeneficiaryCommand.COMMAND_WORD:
+            return new AssignBeneficiaryCommandParser().parse(arguments);
 
-            case EditBeneficiaryCommand.COMMAND_WORD:
-                return new EditBeneficiaryCommandParser().parse(arguments);
+        case EditBeneficiaryCommand.COMMAND_WORD:
+            return new EditBeneficiaryCommandParser().parse(arguments);
 
-            case EditVolunteerCommand.COMMAND_WORD:
-                return new EditVolunteerCommandParser().parse(arguments);
+        case EditVolunteerCommand.COMMAND_WORD:
+            return new EditVolunteerCommandParser().parse(arguments);
 
-            case DeleteBeneficiaryCommand.COMMAND_WORD:
-                return new DeleteBeneficiaryCommandParser().parse(arguments);
+        case DeleteBeneficiaryCommand.COMMAND_WORD:
+            return new DeleteBeneficiaryCommandParser().parse(arguments);
 
-            case DeleteProjectCommand.COMMAND_WORD:
-                return new DeleteProjectCommandParser().parse(arguments);
+        case DeleteProjectCommand.COMMAND_WORD:
+            return new DeleteProjectCommandParser().parse(arguments);
 
-            case DeleteVolunteerCommand.COMMAND_WORD:
-                return new DeleteVolunteerCommandParser().parse(arguments);
+        case DeleteVolunteerCommand.COMMAND_WORD:
+            return new DeleteVolunteerCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindBeneficiaryCommand.COMMAND_WORD:
-                return new FindBeneficiaryCommandParser().parse(arguments);
+        case FindBeneficiaryCommand.COMMAND_WORD:
+            return new FindBeneficiaryCommandParser().parse(arguments);
 
-            case FindVolunteerCommand.COMMAND_WORD:
-                return new FindVolunteerCommandParser().parse(arguments);
+        case FindVolunteerCommand.COMMAND_WORD:
+            return new FindVolunteerCommandParser().parse(arguments);
 
-            case ListProjectCommand.COMMAND_WORD:
-                return new ListProjectCommand();
+        case ListProjectCommand.COMMAND_WORD:
+            return new ListProjectCommand();
 
-            case ListBeneficiaryCommand.COMMAND_WORD:
-                return new ListBeneficiaryCommand();
+        case ListBeneficiaryCommand.COMMAND_WORD:
+            return new ListBeneficiaryCommand();
 
-            case ListVolunteerCommand.COMMAND_WORD:
-                return new ListVolunteerCommand();
+        case ListVolunteerCommand.COMMAND_WORD:
+            return new ListVolunteerCommand();
 
-            case HistoryCommand.COMMAND_WORD:
-                return new HistoryCommand();
+        case HistoryCommand.COMMAND_WORD:
+            return new HistoryCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case SelectVolunteerCommand.COMMAND_WORD:
-                return new SelectVolunteerCommandParser().parse(arguments);
-            case CompleteCommand.COMMAND_WORD:
-                return new CompleteCommandParser().parse(arguments);
+        case SelectVolunteerCommand.COMMAND_WORD:
+            return new SelectVolunteerCommandParser().parse(arguments);
 
-            //case MapCommand.COMMAND_WORD:
-            //return new MapCommandParser().parse(arguments);
+        case CompleteCommand.COMMAND_WORD:
+            return new CompleteCommandParser().parse(arguments);
 
-            //case SortCommand.COMMAND_WORD:
-            //return new SortCommand();
+        //case MapCommand.COMMAND_WORD:
+        //return new MapCommandParser().parse(arguments);
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        //case SortCommand.COMMAND_WORD:
+        //return new SortCommand();
 
-            case UndoCommand.COMMAND_WORD:
-                return new UndoCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case RedoCommand.COMMAND_WORD:
-                return new RedoCommand();
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

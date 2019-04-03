@@ -51,13 +51,13 @@ class JsonAdaptedVolunteer {
      */
     @JsonCreator
     public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("age") String age,
-                                @JsonProperty("gender") String gender, @JsonProperty("race") String race,
-                                @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
-                                @JsonProperty("email") String email, @JsonProperty("address") String address,
-                                @JsonProperty("DietaryPreference") String dietarypreference,
-                                @JsonProperty("EmergencyContact") String emergencycontact,
-                                @JsonProperty("MedicalCondition") String medicalcondition,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("gender") String gender, @JsonProperty("race") String race,
+            @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("DietaryPreference") String dietarypreference,
+            @JsonProperty("EmergencyContact") String emergencycontact,
+            @JsonProperty("MedicalCondition") String medicalcondition,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.age = age;
         this.gender = gender;
