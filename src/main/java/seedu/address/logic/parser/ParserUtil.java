@@ -1,12 +1,8 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -36,8 +32,7 @@ public class ParserUtil {
     public static boolean isValidInt(String testingString) {
         try {
             Integer.parseInt(testingString);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
         return true;

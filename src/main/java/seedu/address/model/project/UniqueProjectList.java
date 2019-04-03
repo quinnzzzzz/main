@@ -88,8 +88,7 @@ public class UniqueProjectList implements Iterable<Project> {
         boolean success = internalList.remove(toRemove);
         if (!success) {
             throw new ProjectNotFoundException();
-        }
-        else {
+        } else {
             projectTitleProjectHashtable.remove(toRemove);
         }
     }
@@ -98,7 +97,7 @@ public class UniqueProjectList implements Iterable<Project> {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         projectTitleProjectHashtable.clear();
-        for(Map.Entry<ProjectTitle, Project> entry
+        for (Map.Entry<ProjectTitle, Project> entry
                 : replacement.projectTitleProjectHashtable.entrySet()) {
             projectTitleProjectHashtable.put(entry.getKey(), entry.getValue());
         }
@@ -117,7 +116,7 @@ public class UniqueProjectList implements Iterable<Project> {
 
         internalList.setAll(projects);
         projectTitleProjectHashtable.clear();
-        for(Project entry : projects) {
+        for (Project entry : projects) {
             projectTitleProjectHashtable.put(entry.getProjectTitle(), entry);
         }
     }

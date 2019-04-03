@@ -31,7 +31,7 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
                     CompleteCommand.MESSAGE_USAGE));
         }
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-            return new CompleteCommand(index);
+        return new CompleteCommand(index);
     }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

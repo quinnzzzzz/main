@@ -15,17 +15,11 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 
 import seedu.address.logic.commands.EditVolunteerCommand;
 import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditVolunteerCommand object
@@ -61,49 +55,50 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
                     ParserUtilVolunteer.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
-            editVolunteerDescriptor.setAge
-                    (ParserUtilVolunteer.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
+            editVolunteerDescriptor
+                .setAge(ParserUtilVolunteer.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
         }
         if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
-            editVolunteerDescriptor.setGender
-                    (ParserUtilVolunteer.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+            editVolunteerDescriptor
+                .setGender(ParserUtilVolunteer.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
         }
         if (argMultimap.getValue(PREFIX_RACE).isPresent()) {
-            editVolunteerDescriptor.setRace
-                    (ParserUtilVolunteer.parseRace(argMultimap.getValue(PREFIX_RACE).get()));
+            editVolunteerDescriptor
+                .setRace(ParserUtilVolunteer.parseRace(argMultimap.getValue(PREFIX_RACE).get()));
         }
         if (argMultimap.getValue(PREFIX_RELIGION).isPresent()) {
-            editVolunteerDescriptor.setReligion
-                    (ParserUtilVolunteer.parseReligion(argMultimap.getValue(PREFIX_RELIGION).get()));
+            editVolunteerDescriptor
+                .setReligion(ParserUtilVolunteer.parseReligion(argMultimap.getValue(PREFIX_RELIGION).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editVolunteerDescriptor.setPhone(
-                    ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editVolunteerDescriptor
+                .setPhone(ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editVolunteerDescriptor.setAddress
-                    (ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editVolunteerDescriptor
+                .setAddress(ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editVolunteerDescriptor.setEmail(
-                    ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editVolunteerDescriptor
+                .setEmail(ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).isPresent()) {
-            editVolunteerDescriptor.setEmergencyContact
-                    (ParserUtilVolunteer.parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get()));
+            editVolunteerDescriptor
+                .setEmergencyContact(ParserUtilVolunteer
+                    .parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get()));
         }
         if (argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).isPresent()) {
             editVolunteerDescriptor.setDietaryPreference
-                    (ParserUtilVolunteer.parseDietaryPreference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get()));
+                (ParserUtilVolunteer.parseDietaryPreference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get()));
         }
         if (argMultimap.getValue(PREFIX_MEDICAL_CONDITION).isPresent()) {
             editVolunteerDescriptor.setMedicalCondition
-                    (ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get()));
+                (ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editVolunteerDescriptor.setAddress(
-                    ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+                ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
 
         return new EditVolunteerCommand(index, editVolunteerDescriptor);

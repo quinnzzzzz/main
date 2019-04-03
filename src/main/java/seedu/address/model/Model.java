@@ -6,15 +6,13 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 
-import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * The API of the Model component.

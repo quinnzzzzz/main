@@ -130,6 +130,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return beneficiaries.contains(beneficiary);
     }
 
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     */
     public boolean hasProject(Project project) {
         requireNonNull(project);
         return projects.contains(project);
@@ -198,8 +201,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
         requireNonNull(editedBeneficiary);
-        Set<ProjectTitle> projectTitleList = target.getAttachedProjectLists();
-//        projects.updateBeneficiary(editedBeneficiary, projectTitleList);
         beneficiaries.setBeneficiary(target, editedBeneficiary);
         indicateModified();
     }

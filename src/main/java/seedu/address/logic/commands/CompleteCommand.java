@@ -1,24 +1,16 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.compare;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
 
 import java.util.List;
 
-import javax.sql.rowset.Predicate;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.exceptions.DuplicateProjectException;
-import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
  * Add a project to completes
@@ -44,15 +36,12 @@ public class CompleteCommand extends Command {
         requireAllNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
 
-        if(targetProjectIndex.getZeroBased() >= lastShownList.size()){
+        if (targetProjectIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
         Project targetProject = lastShownList.get(targetProjectIndex.getZeroBased());
         Project editedProject = new ProjectBuilder(targetProject).withComplete(true).build();
-//        editedProject.setComplete(true);
-        model.setProject(targetProject,editedProject);
-        //targetProject.isComplete();
-//        System.out.println(targetProject.isComplete());
+        model.setProject(targetProject, editedProject);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedProject.getProjectTitle()));
     }

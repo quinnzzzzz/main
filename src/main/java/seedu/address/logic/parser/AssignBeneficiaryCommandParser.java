@@ -4,16 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.ASSIGNED_PROJECT_TITLE;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_INDEX;
-import static seedu.address.logic.parser.ParserUtilProject.UNSPECIFIED_FIELD;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AssignBeneficiaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 
 /**
@@ -33,14 +29,15 @@ public class AssignBeneficiaryCommandParser implements Parser<AssignBeneficiaryC
 
         if (!arePrefixesPresent(argMultimap, ASSIGNED_PROJECT_TITLE, PREFIX_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignBeneficiaryCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AssignBeneficiaryCommand.MESSAGE_USAGE));
         }
 
         ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap
                 .getValue(ASSIGNED_PROJECT_TITLE).get());
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
-        return new AssignBeneficiaryCommand(projectTitle,index);
+        return new AssignBeneficiaryCommand(projectTitle, index);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.ParserUtil.isValidInt;
 
 import javafx.util.Pair;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.MapObject;
@@ -65,14 +64,14 @@ public class MapCommandParser implements Parser<MapCommand> {
         //TODO: write input checks on the criteria for all
         if (!argMultimap.getAllValues(PREFIX_YEAR).isEmpty()) {
             criteriaHolder = argMultimap.getValue(PREFIX_YEAR).get();
-            prefixPoints = isValidInt(criteriaHolder.substring(0, 1)) ?
-                    Integer.parseInt(criteriaHolder.substring(0, 1)) : -1;
+            prefixPoints = isValidInt(criteriaHolder.substring(0, 1))
+                    ? Integer.parseInt(criteriaHolder.substring(0, 1)) : -1;
             if (prefixPoints == -1) {
                 return null;
             }
             yearOperator = criteriaHolder.substring(1, 2);
             prefixCriteria = criteriaHolder.substring(2, criteriaHolder.length());
-            if (notValidAgePair(yearOperator, prefixCriteria)){
+            if (notValidAgePair(yearOperator, prefixCriteria)) {
                 return null;
             }
             localAgePair = new Pair<>(prefixPoints, Integer.parseInt(prefixCriteria));
@@ -108,7 +107,7 @@ public class MapCommandParser implements Parser<MapCommand> {
      */
     public boolean notValidAgePair(String comparator, String year) {
 
-        if(comparator.contains("<") || comparator.contains(">") || comparator.contains("=")) {
+        if (comparator.contains("<") || comparator.contains(">") || comparator.contains("=")) {
             if (isValidInt(year)) {
                 return false;
             }
