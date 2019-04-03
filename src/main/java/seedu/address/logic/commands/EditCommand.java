@@ -75,7 +75,7 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit!=null;
+        assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
@@ -111,7 +111,7 @@ public class EditCommand extends Command {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other==this) {
+        if (other == this) {
             return true;
         }
 
@@ -197,7 +197,7 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
-            return (tags!=null) ? Optional.of(Collections.unmodifiableSet(tags)):Optional.empty();
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         /**
@@ -205,13 +205,13 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags!=null) ? new HashSet<>(tags):null;
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
-            if (other==this) {
+            if (other == this) {
                 return true;
             }
 

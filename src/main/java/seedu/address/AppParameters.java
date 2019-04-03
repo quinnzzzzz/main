@@ -26,11 +26,11 @@ public class AppParameters {
         Map<String, String> namedParameters = parameters.getNamed();
 
         String configPathParameter = namedParameters.get("config");
-        if (configPathParameter!=null && !FileUtil.isValidPath(configPathParameter)) {
+        if (configPathParameter != null && !FileUtil.isValidPath(configPathParameter)) {
             logger.warning("Invalid config path " + configPathParameter + ". Using default config path.");
             configPathParameter = null;
         }
-        appParameters.setConfigPath(configPathParameter!=null ? Paths.get(configPathParameter):null);
+        appParameters.setConfigPath(configPathParameter != null ? Paths.get(configPathParameter) : null);
 
         return appParameters;
     }
@@ -45,7 +45,7 @@ public class AppParameters {
 
     @Override
     public boolean equals(Object other) {
-        if (other==this) {
+        if (other == this) {
             return true;
         }
 

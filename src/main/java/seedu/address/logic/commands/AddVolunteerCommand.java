@@ -81,7 +81,7 @@ public class AddVolunteerCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof AddVolunteerCommand // instanceof handles nulls
             && toAdd.equals(((AddVolunteerCommand) other).toAdd));
     }

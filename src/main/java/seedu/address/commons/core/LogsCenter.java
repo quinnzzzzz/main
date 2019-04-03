@@ -53,7 +53,7 @@ public class LogsCenter {
      * Creates a Logger for the given class name.
      */
     public static <T> Logger getLogger(Class<T> clazz) {
-        if (clazz==null) {
+        if (clazz == null) {
             return Logger.getLogger("");
         }
         return getLogger(clazz.getSimpleName());
@@ -64,7 +64,7 @@ public class LogsCenter {
      * Creates the {@code consoleHandler} if it is null.
      */
     private static void addConsoleHandler(Logger logger) {
-        if (consoleHandler==null) {
+        if (consoleHandler == null) {
             consoleHandler = createConsoleHandler();
         }
         logger.addHandler(consoleHandler);
@@ -84,7 +84,7 @@ public class LogsCenter {
      */
     private static void addFileHandler(Logger logger) {
         try {
-            if (fileHandler==null) {
+            if (fileHandler == null) {
                 fileHandler = createFileHandler();
             }
             logger.addHandler(fileHandler);

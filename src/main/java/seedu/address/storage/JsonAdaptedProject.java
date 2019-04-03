@@ -28,7 +28,7 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("project title") String projectTitle, @JsonProperty("project date") String projectDate,
-        @JsonProperty("complete") String complete, @JsonProperty("attached beneficiary") String beneficiaryAssigned) {
+                              @JsonProperty("complete") String complete, @JsonProperty("attached beneficiary") String beneficiaryAssigned) {
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         this.complete = complete;
@@ -52,7 +52,7 @@ class JsonAdaptedProject {
      */
     public Project toModelType() throws IllegalValueException {
 
-        if (projectTitle==null) {
+        if (projectTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectTitle.class.getSimpleName()));
         }
         if (!ProjectTitle.isValidName(projectTitle)) {
@@ -60,7 +60,7 @@ class JsonAdaptedProject {
         }
         final ProjectTitle modelProjectTitle = new ProjectTitle(projectTitle);
 
-        if (projectDate==null) {
+        if (projectDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectDate.class.getSimpleName()));
         }
         if (!ProjectDate.isValidDate(projectDate)) {
@@ -68,7 +68,7 @@ class JsonAdaptedProject {
         }
         final ProjectDate modelProjectDate = new ProjectDate(projectDate);
 
-        if (complete==null) {
+        if (complete == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Complete.class.getSimpleName()));
         }
         if (!Complete.isValidBoolean(complete)) {
@@ -76,7 +76,7 @@ class JsonAdaptedProject {
         }
         final Complete modelComplete = new Complete(complete);
 
-        if (beneficiaryAssigned==null) {
+        if (beneficiaryAssigned == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         final Complete complete = new Complete(this.complete);

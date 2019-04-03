@@ -65,11 +65,11 @@ public class Person {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson==this) {
+        if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson!=null
+        return otherPerson != null
             && otherPerson.getName().equals(getName())
             && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
@@ -80,7 +80,7 @@ public class Person {
      */
     @Override
     public boolean equals(Object other) {
-        if (other==this) {
+        if (other == this) {
             return true;
         }
 

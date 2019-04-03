@@ -34,8 +34,8 @@ public class Volunteer {
      * Every field must be present and not null.
      */
     public Volunteer(Name name, Age age, Gender gender, Race race, Religion religion, Phone phone, Address address, Email email,
-        EmergencyContact emergencycontact, DietaryPreference dietarypreference,
-        MedicalCondition medicalcondition, Set<Tag> tags) {
+                     EmergencyContact emergencycontact, DietaryPreference dietarypreference,
+                     MedicalCondition medicalcondition, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.age = age;
@@ -109,11 +109,11 @@ public class Volunteer {
      * This defines a weaker notion of equality between two volunteers.
      */
     public boolean isSameVolunteer(Volunteer otherVolunteer) { //change later
-        if (otherVolunteer==this) {
+        if (otherVolunteer == this) {
             return true;
         }
 
-        return otherVolunteer!=null
+        return otherVolunteer != null
             && otherVolunteer.getName().equals(getName())
             && (otherVolunteer.getPhone().equals(getPhone()) || otherVolunteer.getEmail().equals(getEmail()));
     }
@@ -145,7 +145,7 @@ public class Volunteer {
      */
     @Override
     public boolean equals(Object other) {
-        if (other==this) {
+        if (other == this) {
             return true;
         }
 

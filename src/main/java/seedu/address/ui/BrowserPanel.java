@@ -39,7 +39,7 @@ public class BrowserPanel extends UiPart<Region> {
 
         // Load volunteer page when selected volunteer changes.
         selectedVolunteer.addListener((observable, oldValue, newValue) -> {
-            if (newValue==null) {
+            if (newValue == null) {
                 loadDefaultPage();
                 return;
             }

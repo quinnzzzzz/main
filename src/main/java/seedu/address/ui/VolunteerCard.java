@@ -74,7 +74,7 @@ public class VolunteerCard extends UiPart<Region> {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other==this) {
+        if (other == this) {
             return true;
         }
 

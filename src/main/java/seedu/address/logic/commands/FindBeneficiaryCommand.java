@@ -37,7 +37,7 @@ public class FindBeneficiaryCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof FindBeneficiaryCommand // instanceof handles nulls
             && predicate.equals(((FindBeneficiaryCommand) other).predicate)); // state check
     }

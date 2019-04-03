@@ -48,9 +48,9 @@ public class CompleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof CompleteCommand // instanceof handles null
-            && ((CompleteCommand) other).targetProjectIndex==this.targetProjectIndex);
+            && ((CompleteCommand) other).targetProjectIndex == this.targetProjectIndex);
 
     }
 }

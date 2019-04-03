@@ -62,7 +62,7 @@ public class FileUtil {
     public static void createParentDirsOfFile(Path file) throws IOException {
         Path parentDir = file.getParent();
 
-        if (parentDir!=null) {
+        if (parentDir != null) {
             Files.createDirectories(parentDir);
         }
     }

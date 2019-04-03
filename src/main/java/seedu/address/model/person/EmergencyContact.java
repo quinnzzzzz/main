@@ -38,7 +38,7 @@ public class EmergencyContact {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof EmergencyContact // instanceof handles nulls
             && value.equals(((EmergencyContact) other).value)); // state check
     }

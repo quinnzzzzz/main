@@ -50,7 +50,7 @@ public class ProjectTitle {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof ProjectTitle// instanceof handles nulls
             && fullTitle.equals(((ProjectTitle) other).fullTitle)); // state check
     }

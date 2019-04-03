@@ -21,7 +21,7 @@ public class Prefix {
 
     @Override
     public int hashCode() {
-        return prefix==null ? 0:prefix.hashCode();
+        return prefix == null ? 0 : prefix.hashCode();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Prefix {
         if (!(obj instanceof Prefix)) {
             return false;
         }
-        if (obj==this) {
+        if (obj == this) {
             return true;
         }
 

@@ -25,7 +25,7 @@ public class VolunteerListPanel extends UiPart<Region> {
 
 
     public VolunteerListPanel(ObservableList<Volunteer> volunteerList, ObservableValue<Volunteer> selectedVolunteer,
-        Consumer<Volunteer> onSelectedVolunteerChange) {
+                              Consumer<Volunteer> onSelectedVolunteerChange) {
         super(FXML);
         volunteerListView.setItems(volunteerList);
         volunteerListView.setCellFactory(listView -> new VolunteerListViewCell());
@@ -42,7 +42,7 @@ public class VolunteerListPanel extends UiPart<Region> {
                 return;
             }
 
-            if (newValue==null) {
+            if (newValue == null) {
                 volunteerListView.getSelectionModel().clearSelection();
             } else {
                 int index = volunteerListView.getItems().indexOf(newValue);
@@ -60,7 +60,7 @@ public class VolunteerListPanel extends UiPart<Region> {
         protected void updateItem(Volunteer volunteer, boolean empty) {
             super.updateItem(volunteer, empty);
 
-            if (empty || volunteer==null) {
+            if (empty || volunteer == null) {
                 setGraphic(null);
                 setText(null);
             } else {

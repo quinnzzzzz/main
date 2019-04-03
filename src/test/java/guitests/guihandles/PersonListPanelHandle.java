@@ -32,7 +32,7 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Person>> {
     public PersonCardHandle getHandleToSelectedCard() {
         List<Person> selectedPersonList = getRootNode().getSelectionModel().getSelectedItems();
 
-        if (selectedPersonList.size()!=1) {
+        if (selectedPersonList.size() != 1) {
             throw new AssertionError("Person list size expected 1.");
         }
 
@@ -130,7 +130,7 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Person>> {
     public void rememberSelectedPersonCard() {
         List<Person> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
 
-        if (selectedItems.size()==0) {
+        if (selectedItems.size() == 0) {
             lastRememberedSelectedPersonCard = Optional.empty();
         } else {
             lastRememberedSelectedPersonCard = Optional.of(selectedItems.get(0));
@@ -144,7 +144,7 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Person>> {
     public boolean isSelectedPersonCardChanged() {
         List<Person> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
 
-        if (selectedItems.size()==0) {
+        if (selectedItems.size() == 0) {
             return lastRememberedSelectedPersonCard.isPresent();
         } else {
             return !lastRememberedSelectedPersonCard.isPresent()

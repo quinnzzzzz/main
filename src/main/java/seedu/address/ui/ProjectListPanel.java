@@ -25,8 +25,8 @@ public class ProjectListPanel extends UiPart<Region> {
 
 
     public ProjectListPanel(ObservableList<Project> projectList,
-        ObservableValue<Project> selectedProject,
-        Consumer<Project> onSelectedProjectChange) {
+                            ObservableValue<Project> selectedProject,
+                            Consumer<Project> onSelectedProjectChange) {
         super(FXML);
         projectListView.setItems(projectList);
         projectListView.setCellFactory(listView -> new ProjectListViewCell());
@@ -43,7 +43,7 @@ public class ProjectListPanel extends UiPart<Region> {
                 return;
             }
 
-            if (newValue==null) {
+            if (newValue == null) {
                 projectListView.getSelectionModel().clearSelection();
             } else {
                 int index = projectListView.getItems().indexOf(newValue);
@@ -61,7 +61,7 @@ public class ProjectListPanel extends UiPart<Region> {
         protected void updateItem(Project project, boolean empty) {
             super.updateItem(project, empty);
 
-            if (empty || project==null) {
+            if (empty || project == null) {
                 setGraphic(null);
                 setText(null);
             } else {

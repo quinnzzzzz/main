@@ -59,7 +59,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public boolean equals(Object other) {
-        if (other==this) {
+        if (other == this) {
             return true;
         }
         if (!(other instanceof UserPrefs)) { //this handles null as well.

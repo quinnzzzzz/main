@@ -38,7 +38,7 @@ public class MedicalCondition {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof seedu.address.model.volunteer.MedicalCondition // instanceof handles nulls
             && status.equals(((seedu.address.model.volunteer.MedicalCondition) other).status)); // state check
     }

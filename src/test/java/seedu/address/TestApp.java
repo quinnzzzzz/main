@@ -41,7 +41,7 @@ public class TestApp extends MainApp {
         this.saveFileLocation = saveFileLocation;
 
         // If some initial local data has been provided, write those to the file
-        if (initialDataSupplier.get()!=null) {
+        if (initialDataSupplier.get() != null) {
             JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(saveFileLocation);
             try {
                 jsonAddressBookStorage.saveAddressBook(initialDataSupplier.get());

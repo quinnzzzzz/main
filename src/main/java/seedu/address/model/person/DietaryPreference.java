@@ -36,7 +36,7 @@ public class DietaryPreference {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof DietaryPreference // instanceof handles nulls
             && restriction.equals(((DietaryPreference) other).restriction)); // state check
     }
