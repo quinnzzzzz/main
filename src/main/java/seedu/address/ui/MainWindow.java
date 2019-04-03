@@ -183,6 +183,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * open summary table window.
+     */
     @FXML
     public void handleBeneficiarySummary() {
         Stage stage = new Stage();

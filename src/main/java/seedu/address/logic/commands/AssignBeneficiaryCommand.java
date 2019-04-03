@@ -74,7 +74,7 @@ public class AssignBeneficiaryCommand extends Command {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
             if (projectToAssign.getBeneficiaryAssigned().toString() != "nil"
                 && model.getFilteredBeneficiaryList().filtered(
-                x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0) {
+                    x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0) {
                 Beneficiary oldBeneficiary = model.getFilteredBeneficiaryList()
                     .filtered(x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).get(0);
                 oldBeneficiary.deleteAttachedProject(projectToAssign.getProjectTitle());
