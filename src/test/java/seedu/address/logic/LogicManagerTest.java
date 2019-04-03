@@ -121,7 +121,7 @@ public class LogicManagerTest {
      * - {@code expectedModel}'s address book was saved to the storage file.
      */
     private void assertCommandBehavior(Class<?> expectedException, String inputCommand,
-                                       String expectedMessage, Model expectedModel) {
+            String expectedMessage, Model expectedModel) {
 
         try {
             CommandResult result = logic.execute(inputCommand);

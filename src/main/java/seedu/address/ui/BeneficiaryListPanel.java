@@ -25,8 +25,8 @@ public class BeneficiaryListPanel extends UiPart<Region> {
 
 
     public BeneficiaryListPanel(ObservableList<Beneficiary> beneficiaryList,
-                                ObservableValue<Beneficiary> selectedBeneficiary,
-                                Consumer<Beneficiary> onSelectedBeneficiaryChange) {
+            ObservableValue<Beneficiary> selectedBeneficiary,
+            Consumer<Beneficiary> onSelectedBeneficiaryChange) {
         super(FXML);
         beneficiaryListView.setItems(beneficiaryList);
         beneficiaryListView.setCellFactory(listView -> new BeneficiaryListViewCell());

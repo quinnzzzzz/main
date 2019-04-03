@@ -25,7 +25,7 @@ public class VolunteerListPanel extends UiPart<Region> {
 
 
     public VolunteerListPanel(ObservableList<Volunteer> volunteerList, ObservableValue<Volunteer> selectedVolunteer,
-                              Consumer<Volunteer> onSelectedVolunteerChange) {
+            Consumer<Volunteer> onSelectedVolunteerChange) {
         super(FXML);
         volunteerListView.setItems(volunteerList);
         volunteerListView.setCellFactory(listView -> new VolunteerListViewCell());

@@ -73,7 +73,7 @@ public class EditBeneficiaryCommand extends Command {
      * edited with {@code editBeneficiaryDescriptor}.
      */
     private static Beneficiary createEditedBeneficiary(Beneficiary beneficiaryToEdit,
-                                                       EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
+            EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
         assert beneficiaryToEdit != null;
 
         Name updatedName = editBeneficiaryDescriptor.getName().orElse(beneficiaryToEdit.getName());

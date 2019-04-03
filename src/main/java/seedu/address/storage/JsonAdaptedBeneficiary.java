@@ -35,8 +35,8 @@ class JsonAdaptedBeneficiary {
      */
     @JsonCreator
     public JsonAdaptedBeneficiary(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                                  @JsonProperty("email") String email, @JsonProperty("address") String address,
-                                  @JsonProperty("attachedProjects") List<JsonAdaptedProjectTitle> attachedProjects) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("attachedProjects") List<JsonAdaptedProjectTitle> attachedProjects) {
         this.name = name;
         this.phone = phone;
         this.email = email;

@@ -67,7 +67,7 @@ public class StringUtilTest {
     }
 
     private void assertExceptionThrown(Class<? extends Throwable> exceptionClass, String sentence, String word,
-                                       Optional<String> errorMessage) {
+            Optional<String> errorMessage) {
         thrown.expect(exceptionClass);
         errorMessage.ifPresent(message -> thrown.expectMessage(message));
         StringUtil.containsWordIgnoreCase(sentence, word);

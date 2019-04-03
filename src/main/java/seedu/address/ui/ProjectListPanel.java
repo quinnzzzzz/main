@@ -25,8 +25,8 @@ public class ProjectListPanel extends UiPart<Region> {
 
 
     public ProjectListPanel(ObservableList<Project> projectList,
-                            ObservableValue<Project> selectedProject,
-                            Consumer<Project> onSelectedProjectChange) {
+            ObservableValue<Project> selectedProject,
+            Consumer<Project> onSelectedProjectChange) {
         super(FXML);
         projectListView.setItems(projectList);
         projectListView.setCellFactory(listView -> new ProjectListViewCell());

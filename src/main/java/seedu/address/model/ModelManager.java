@@ -321,26 +321,26 @@ public class ModelManager implements Model {
     public int checkAge(MapObject map, Volunteer currentVol) {
         switch (map.getComparator()) {
 
-            case "<":
-                if (Integer.parseInt(currentVol.getAge().toString()) < map.getAgePair().getValue()) {
-                    return map.getAgePair().getKey();
-                }
-                break;
+        case "<":
+            if (Integer.parseInt(currentVol.getAge().toString()) < map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
 
-            case ">":
-                if (Integer.parseInt(currentVol.getAge().toString()) > map.getAgePair().getValue()) {
-                    return map.getAgePair().getKey();
-                }
-                break;
+        case ">":
+            if (Integer.parseInt(currentVol.getAge().toString()) > map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
 
-            case "=":
-                if (Integer.parseInt(currentVol.getAge().toString()) == map.getAgePair().getValue()) {
-                    return map.getAgePair().getKey();
-                }
-                break;
+        case "=":
+            if (Integer.parseInt(currentVol.getAge().toString()) == map.getAgePair().getValue()) {
+                return map.getAgePair().getKey();
+            }
+            break;
 
-            default:
-                return 0;
+        default:
+            return 0;
         }
         return 0;
     }

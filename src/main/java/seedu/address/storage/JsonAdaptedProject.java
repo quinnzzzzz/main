@@ -28,7 +28,7 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("project title") String projectTitle, @JsonProperty("project date") String projectDate,
-                              @JsonProperty("complete") String complete, @JsonProperty("attached beneficiary") String beneficiaryAssigned) {
+            @JsonProperty("complete") String complete, @JsonProperty("attached beneficiary") String beneficiaryAssigned) {
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         this.complete = complete;
