@@ -19,10 +19,10 @@ public class SummaryBeneficiaryCommand extends Command {
     public static final String COMMAND_WORD = "summaryBeneficiary";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Summary statistics details of beneficiary list "
-            + "based on projects attached to them";
+        + "based on projects attached to them";
 
     public static final String MESSAGE_SUMMARY_BENEFICIARY_SUCCESS = "Beneficiaries are summarised, and shown on "
-            + "pop up table";
+        + "pop up table";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {

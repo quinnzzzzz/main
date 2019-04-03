@@ -34,7 +34,7 @@ public class Config {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
+        if (other==this) {
             return true;
         }
         if (!(other instanceof Config)) { //this handles null as well.
@@ -44,7 +44,7 @@ public class Config {
         Config o = (Config) other;
 
         return Objects.equals(logLevel, o.logLevel)
-                && Objects.equals(userPrefsFilePath, o.userPrefsFilePath);
+            && Objects.equals(userPrefsFilePath, o.userPrefsFilePath);
     }
 
     @Override

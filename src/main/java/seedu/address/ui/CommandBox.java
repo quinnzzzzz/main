@@ -62,7 +62,7 @@ public class CommandBox extends UiPart<Region> {
      * if there exists a previous input in {@code historySnapshot}
      */
     private void navigateToPreviousInput() {
-        assert historySnapshot != null;
+        assert historySnapshot!=null;
         if (!historySnapshot.hasPrevious()) {
             return;
         }
@@ -75,7 +75,7 @@ public class CommandBox extends UiPart<Region> {
      * if there exists a next input in {@code historySnapshot}
      */
     private void navigateToNextInput() {
-        assert historySnapshot != null;
+        assert historySnapshot!=null;
         if (!historySnapshot.hasNext()) {
             return;
         }

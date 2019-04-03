@@ -73,7 +73,7 @@ public class VersionedAddressBook extends AddressBook {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other == this) {
+        if (other==this) {
             return true;
         }
 
@@ -86,8 +86,8 @@ public class VersionedAddressBook extends AddressBook {
 
         // state check
         return super.equals(otherVersionedAddressBook)
-                && addressBookStateList.equals(otherVersionedAddressBook.addressBookStateList)
-                && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
+            && addressBookStateList.equals(otherVersionedAddressBook.addressBookStateList)
+            && currentStatePointer==otherVersionedAddressBook.currentStatePointer;
     }
 
     /**

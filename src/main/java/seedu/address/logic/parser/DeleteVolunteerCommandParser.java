@@ -23,7 +23,7 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
             return new DeleteVolunteerCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVolunteerCommand.MESSAGE_USAGE), pe);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVolunteerCommand.MESSAGE_USAGE), pe);
         }
     }
 

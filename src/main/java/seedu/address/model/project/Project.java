@@ -100,11 +100,11 @@ public class Project {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectTitle())
-                .append(" Project Date: ")
-                .append(getProjectDate())
-                .append(" Beneficiary: ")
-                .append(getBeneficiaryAssigned())
-                .append("\n");
+            .append(" Project Date: ")
+            .append(getProjectDate())
+            .append(" Beneficiary: ")
+            .append(getBeneficiaryAssigned())
+            .append("\n");
         return builder.toString();
     }
 
@@ -113,13 +113,13 @@ public class Project {
      * This defines a weaker notion of equality between two Projects.
      */
     public boolean isSameProject(Project otherProject) {
-        if (otherProject == this) {
+        if (otherProject==this) {
             return true;
         }
 
-        return otherProject != null
-                && otherProject.getProjectTitle().equals(getProjectTitle())
-                || (otherProject.getProjectDate().equals(getProjectDate()));
+        return otherProject!=null
+            && otherProject.getProjectTitle().equals(getProjectTitle())
+            || (otherProject.getProjectDate().equals(getProjectDate()));
     }
 
     /**
@@ -127,7 +127,7 @@ public class Project {
      * This defines a stronger notion of equality between two Projects.
      */
     public boolean equals(Object other) {
-        if (other == this) {
+        if (other==this) {
             return true;
         }
 
@@ -136,7 +136,7 @@ public class Project {
         }
         Project otherProject = (Project) other;
         return otherProject.getProjectTitle().equals(getProjectTitle())
-                || otherProject.getProjectDate().equals(getProjectDate());
+            || otherProject.getProjectDate().equals(getProjectDate());
     }
 
     @Override

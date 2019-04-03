@@ -74,7 +74,7 @@ public class VolunteerCard extends UiPart<Region> {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other == this) {
+        if (other==this) {
             return true;
         }
 
@@ -86,6 +86,6 @@ public class VolunteerCard extends UiPart<Region> {
         // state check
         VolunteerCard card = (VolunteerCard) other;
         return id.getText().equals(card.id.getText())
-                && volunteer.equals(card.volunteer);
+            && volunteer.equals(card.volunteer);
     }
 }

@@ -32,13 +32,13 @@ public class AssignBeneficiaryCommandParser implements Parser<AssignBeneficiaryC
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ASSIGNED_PROJECT_TITLE, PREFIX_INDEX);
 
         if (!arePrefixesPresent(argMultimap, ASSIGNED_PROJECT_TITLE, PREFIX_INDEX)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AssignBeneficiaryCommand.MESSAGE_USAGE));
+                AssignBeneficiaryCommand.MESSAGE_USAGE));
         }
 
         ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap
-                .getValue(ASSIGNED_PROJECT_TITLE).get());
+            .getValue(ASSIGNED_PROJECT_TITLE).get());
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         return new AssignBeneficiaryCommand(projectTitle, index);

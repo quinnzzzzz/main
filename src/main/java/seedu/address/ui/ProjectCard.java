@@ -51,7 +51,7 @@ public class ProjectCard extends UiPart<Region> {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other == this) {
+        if (other==this) {
             return true;
         }
 
@@ -63,6 +63,6 @@ public class ProjectCard extends UiPart<Region> {
         // state check
         ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project);
+            && project.equals(card.project);
     }
 }

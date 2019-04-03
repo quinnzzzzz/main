@@ -16,9 +16,9 @@ public class FindVolunteerCommand extends Command {
     public static final String COMMAND_WORD = "findVolunteer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all volunteers whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -31,13 +31,13 @@ public class FindVolunteerCommand extends Command {
         requireNonNull(model);
         model.updateFilteredVolunteerList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_VOLUNTEERS_LISTED_OVERVIEW, model.getFilteredVolunteerList().size()));
+            String.format(Messages.MESSAGE_VOLUNTEERS_LISTED_OVERVIEW, model.getFilteredVolunteerList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindVolunteerCommand // instanceof handles nulls
-                && predicate.equals(((FindVolunteerCommand) other).predicate)); // state check
+        return other==this // short circuit if same object
+            || (other instanceof FindVolunteerCommand // instanceof handles nulls
+            && predicate.equals(((FindVolunteerCommand) other).predicate)); // state check
     }
 }

@@ -56,14 +56,14 @@ public class Beneficiary {
      * This defines a weaker notion of equality between two Beneficiarys.
      */
     public boolean isSameBeneficiary(Beneficiary otherBeneficiary) {
-        if (otherBeneficiary == this) {
+        if (otherBeneficiary==this) {
             return true;
         }
 
-        return otherBeneficiary != null
-                && (otherBeneficiary.getName().equals(getName())
-                || otherBeneficiary.getPhone().equals(getPhone())
-                || otherBeneficiary.getEmail().equals(getEmail()));
+        return otherBeneficiary!=null
+            && (otherBeneficiary.getName().equals(getName())
+            || otherBeneficiary.getPhone().equals(getPhone())
+            || otherBeneficiary.getEmail().equals(getEmail()));
     }
 
     /**
@@ -72,7 +72,7 @@ public class Beneficiary {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
+        if (other==this) {
             return true;
         }
 
@@ -82,9 +82,9 @@ public class Beneficiary {
 
         Beneficiary otherBeneficiary = (Beneficiary) other;
         return otherBeneficiary.getName().equals(getName())
-                || otherBeneficiary.getPhone().equals(getPhone())
-                || otherBeneficiary.getEmail().equals(getEmail())
-                || otherBeneficiary.getAddress().equals(getAddress());
+            || otherBeneficiary.getPhone().equals(getPhone())
+            || otherBeneficiary.getEmail().equals(getEmail())
+            || otherBeneficiary.getAddress().equals(getAddress());
     }
 
     @Override
@@ -97,14 +97,14 @@ public class Beneficiary {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append("Attached Project List: ")
-                .append(getAttachedProjectLists());
+            .append(" Phone: ")
+            .append(getPhone())
+            .append(" Email: ")
+            .append(getEmail())
+            .append(" Address: ")
+            .append(getAddress())
+            .append("Attached Project List: ")
+            .append(getAttachedProjectLists());
         return builder.toString();
     }
 

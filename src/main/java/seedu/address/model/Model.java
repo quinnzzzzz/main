@@ -91,7 +91,7 @@ public interface Model {
      * @throws ProjectNotFoundException
      */
     void setProject(Project target, Project editedProject)
-            throws DuplicateProjectException, ProjectNotFoundException;
+        throws DuplicateProjectException, ProjectNotFoundException;
 
     /**
      * Deletes the given person.

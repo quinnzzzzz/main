@@ -19,9 +19,9 @@ public class SelectVolunteerCommand extends Command {
     public static final String COMMAND_WORD = "selectVolunteer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Selects the volunteer identified by the index number used in the displayed volunteer list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+        + ": Selects the volunteer identified by the index number used in the displayed volunteer list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SELECT_VOLUNTEER_SUCCESS = "Selected Volunteer: %1$s";
 
@@ -48,8 +48,8 @@ public class SelectVolunteerCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof SelectVolunteerCommand // instanceof handles nulls
-                && targetIndex.equals(((SelectVolunteerCommand) other).targetIndex)); // state check
+        return other==this // short circuit if same object
+            || (other instanceof SelectVolunteerCommand // instanceof handles nulls
+            && targetIndex.equals(((SelectVolunteerCommand) other).targetIndex)); // state check
     }
 }

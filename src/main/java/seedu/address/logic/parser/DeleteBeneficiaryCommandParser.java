@@ -23,7 +23,7 @@ public class DeleteBeneficiaryCommandParser implements Parser<DeleteBeneficiaryC
             return new DeleteBeneficiaryCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBeneficiaryCommand.MESSAGE_USAGE), pe);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBeneficiaryCommand.MESSAGE_USAGE), pe);
         }
     }
 

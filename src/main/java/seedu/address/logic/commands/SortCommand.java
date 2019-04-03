@@ -17,10 +17,10 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts and presents a list of volunteers who best fulfill "
-            + "the criteria given in the map command, up to the number specified in this command.\n"
-            + "Parameters: MAX_NUMBER\n"
-            + "Example: sort 10";
+        + ": Sorts and presents a list of volunteers who best fulfill "
+        + "the criteria given in the map command, up to the number specified in this command.\n"
+        + "Parameters: MAX_NUMBER\n"
+        + "Example: sort 10";
     private int maxVol;
 
 

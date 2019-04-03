@@ -39,9 +39,9 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-            @JsonProperty("beneficiaries") List<JsonAdaptedBeneficiary> beneficiaries,
-            @JsonProperty("volunteers") List<JsonAdaptedVolunteer> volunteers,
-            @JsonProperty("projects") List<JsonAdaptedProject> projects) {
+        @JsonProperty("beneficiaries") List<JsonAdaptedBeneficiary> beneficiaries,
+        @JsonProperty("volunteers") List<JsonAdaptedVolunteer> volunteers,
+        @JsonProperty("projects") List<JsonAdaptedProject> projects) {
         this.persons.addAll(persons);
         this.beneficiaries.addAll(beneficiaries);
         this.volunteers.addAll(volunteers);
@@ -56,11 +56,11 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         beneficiaries.addAll(source.getBeneficiaryList().stream().map(JsonAdaptedBeneficiary::new)
-                .collect(Collectors.toList()));
+            .collect(Collectors.toList()));
         volunteers.addAll(source.getVolunteerList().stream().map(JsonAdaptedVolunteer::new)
-                .collect(Collectors.toList()));
+            .collect(Collectors.toList()));
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new)
-                .collect(Collectors.toList()));
+            .collect(Collectors.toList()));
     }
 
     /**

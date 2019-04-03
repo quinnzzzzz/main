@@ -45,7 +45,7 @@ public class VolunteerUtil {
         sb.append(PREFIX_DIETARY_PREFERENCE + volunteer.getDietaryPreference().restriction + " ");
         sb.append(PREFIX_MEDICAL_CONDITION + volunteer.getMedicalCondition().status + " ");
         volunteer.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }

@@ -38,12 +38,12 @@ public class AddBeneficiaryCommandParser implements Parser<AddBeneficiaryCommand
      */
     public AddBeneficiaryCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddBeneficiaryCommand.MESSAGE_USAGE));
+                AddBeneficiaryCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtilBeneficiary.parseName(argMultimap.getValue(PREFIX_NAME).get());

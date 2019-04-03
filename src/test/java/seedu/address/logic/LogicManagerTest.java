@@ -121,7 +121,7 @@ public class LogicManagerTest {
      * - {@code expectedModel}'s address book was saved to the storage file.
      */
     private void assertCommandBehavior(Class<?> expectedException, String inputCommand,
-            String expectedMessage, Model expectedModel) {
+        String expectedMessage, Model expectedModel) {
 
         try {
             CommandResult result = logic.execute(inputCommand);
@@ -143,7 +143,7 @@ public class LogicManagerTest {
         try {
             CommandResult result = logic.execute(HistoryCommand.COMMAND_WORD);
             String expectedMessage = String.format(
-                    HistoryCommand.MESSAGE_SUCCESS, String.join("\n", expectedCommands));
+                HistoryCommand.MESSAGE_SUCCESS, String.join("\n", expectedCommands));
             assertEquals(expectedMessage, result.getFeedbackToUser());
         } catch (ParseException | CommandException e) {
             throw new AssertionError("Parsing and execution of HistoryCommand.COMMAND_WORD should succeed.", e);

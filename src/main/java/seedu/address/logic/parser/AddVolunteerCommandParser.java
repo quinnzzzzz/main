@@ -55,27 +55,27 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
      */
     public AddVolunteerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AGE, PREFIX_GENDER, PREFIX_RACE, PREFIX_RELIGION,
-                        PREFIX_PHONE, PREFIX_ADDRESS,
-                        PREFIX_EMAIL, PREFIX_EMERGENCY_CONTACT, PREFIX_DIETARY_PREFERENCE, PREFIX_MEDICAL_CONDITION,
-                        PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AGE, PREFIX_GENDER, PREFIX_RACE, PREFIX_RELIGION,
+                PREFIX_PHONE, PREFIX_ADDRESS,
+                PREFIX_EMAIL, PREFIX_EMERGENCY_CONTACT, PREFIX_DIETARY_PREFERENCE, PREFIX_MEDICAL_CONDITION,
+                PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_AGE, PREFIX_GENDER, PREFIX_RACE, PREFIX_PHONE,
-                PREFIX_ADDRESS,
-                PREFIX_EMAIL, PREFIX_EMERGENCY_CONTACT)
-                || !argMultimap.getPreamble().isEmpty()) {
+            PREFIX_ADDRESS,
+            PREFIX_EMAIL, PREFIX_EMERGENCY_CONTACT)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVolunteerCommand.MESSAGE_USAGE));
         }
         if (!arePrefixesPresent(argMultimap, PREFIX_RELIGION)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             argMultimap.put(PREFIX_RELIGION, "nil");
         }
         if (!arePrefixesPresent(argMultimap, PREFIX_DIETARY_PREFERENCE)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             argMultimap.put(PREFIX_DIETARY_PREFERENCE, "nil");
         }
         if (!arePrefixesPresent(argMultimap, PREFIX_MEDICAL_CONDITION)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             argMultimap.put(PREFIX_MEDICAL_CONDITION, "nil");
         }
 
@@ -88,16 +88,16 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         Address address = ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Email email = ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         EmergencyContact emergencycontact =
-                ParserUtilVolunteer.parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
+            ParserUtilVolunteer.parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
         MedicalCondition medicalcondition =
-                ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get());
+            ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get());
         DietaryPreference dietarypreference =
-                ParserUtilVolunteer.parseDietaryPreference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get());
+            ParserUtilVolunteer.parseDietaryPreference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get());
         Set<Tag> tagList =
-                ParserUtilVolunteer.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            ParserUtilVolunteer.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Volunteer volunteer = new Volunteer(name, age, gender, race, religion, phone, address, email, emergencycontact,
-                dietarypreference, medicalcondition, tagList);
+            dietarypreference, medicalcondition, tagList);
 
         return new AddVolunteerCommand(volunteer);
     }

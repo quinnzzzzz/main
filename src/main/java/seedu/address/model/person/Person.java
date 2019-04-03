@@ -65,13 +65,13 @@ public class Person {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+        if (otherPerson==this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+        return otherPerson!=null
+            && otherPerson.getName().equals(getName())
+            && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -80,7 +80,7 @@ public class Person {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
+        if (other==this) {
             return true;
         }
 
@@ -90,10 +90,10 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            && otherPerson.getAddress().equals(getAddress())
+            && otherPerson.getTags().equals(getTags());
     }
 
     @Override
@@ -106,13 +106,13 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
+            .append(" Phone: ")
+            .append(getPhone())
+            .append(" Email: ")
+            .append(getEmail())
+            .append(" Address: ")
+            .append(getAddress())
+            .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

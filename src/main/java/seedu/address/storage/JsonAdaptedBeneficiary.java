@@ -35,13 +35,13 @@ class JsonAdaptedBeneficiary {
      */
     @JsonCreator
     public JsonAdaptedBeneficiary(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("attachedProjects") List<JsonAdaptedProjectTitle> attachedProjects) {
+        @JsonProperty("email") String email, @JsonProperty("address") String address,
+        @JsonProperty("attachedProjects") List<JsonAdaptedProjectTitle> attachedProjects) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (attachedProjects != null) {
+        if (attachedProjects!=null) {
             this.attachedProjects.addAll(attachedProjects);
         }
     }
@@ -55,8 +55,8 @@ class JsonAdaptedBeneficiary {
         email = source.getEmail().value;
         address = source.getAddress().value;
         attachedProjects.addAll(source.getAttachedProjectLists().stream()
-                .map(JsonAdaptedProjectTitle::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedProjectTitle::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -70,7 +70,7 @@ class JsonAdaptedBeneficiary {
             projectTitleList.add(projectTitle.toModelType());
         }
 
-        if (name == null) {
+        if (name==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
@@ -78,7 +78,7 @@ class JsonAdaptedBeneficiary {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
+        if (phone==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
@@ -86,7 +86,7 @@ class JsonAdaptedBeneficiary {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
+        if (email==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
@@ -94,7 +94,7 @@ class JsonAdaptedBeneficiary {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
+        if (address==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {

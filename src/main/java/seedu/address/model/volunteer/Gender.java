@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender should be only M or F";
+        "Gender should be only M or F";
 
     /*
      * the gender parameter must be m or f
@@ -46,9 +46,9 @@ public class Gender {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.volunteer.Gender // instanceof handles nulls
-                && genderOutput.equals(((seedu.address.model.volunteer.Gender) other).genderOutput)); // state check
+        return other==this // short circuit if same object
+            || (other instanceof seedu.address.model.volunteer.Gender // instanceof handles nulls
+            && genderOutput.equals(((seedu.address.model.volunteer.Gender) other).genderOutput)); // state check
     }
 
     @Override

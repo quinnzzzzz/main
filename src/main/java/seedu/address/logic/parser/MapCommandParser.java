@@ -22,7 +22,7 @@ public class MapCommandParser implements Parser<MapCommand> {
      */
     private static boolean noPrefixes(ArgumentMultimap argMultimap) {
         if (argMultimap.getAllValues(PREFIX_YEAR).isEmpty() && argMultimap.getAllValues(PREFIX_RACE).isEmpty()
-                && argMultimap.getAllValues(PREFIX_MEDICAL).isEmpty()) {
+            && argMultimap.getAllValues(PREFIX_MEDICAL).isEmpty()) {
             return true;
         }
         return false;
@@ -36,13 +36,13 @@ public class MapCommandParser implements Parser<MapCommand> {
      */
     public MapCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_YEAR, PREFIX_RACE, PREFIX_MEDICAL);
+            ArgumentTokenizer.tokenize(args, PREFIX_YEAR, PREFIX_RACE, PREFIX_MEDICAL);
 
         if (noPrefixes(argMultimap) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MapCommand.MESSAGE_USAGE));
         }
         MapObject newMap = parseCriteria(argMultimap);
-        if (newMap == null) {
+        if (newMap==null) {
             throw new ParseException(String.format(MESSAGE_INVALID_AGE_FORMAT, MapCommand.MESSAGE_USAGE));
         }
         return new MapCommand(newMap);
@@ -65,8 +65,8 @@ public class MapCommandParser implements Parser<MapCommand> {
         if (!argMultimap.getAllValues(PREFIX_YEAR).isEmpty()) {
             criteriaHolder = argMultimap.getValue(PREFIX_YEAR).get();
             prefixPoints = isValidInt(criteriaHolder.substring(0, 1))
-                    ? Integer.parseInt(criteriaHolder.substring(0, 1)) : -1;
-            if (prefixPoints == -1) {
+                ? Integer.parseInt(criteriaHolder.substring(0, 1)):-1;
+            if (prefixPoints==-1) {
                 return null;
             }
             yearOperator = criteriaHolder.substring(1, 2);

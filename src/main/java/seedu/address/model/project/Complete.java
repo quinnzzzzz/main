@@ -41,9 +41,9 @@ public class Complete {
 
     @Override
     public boolean equals(Object obj) {
-        return obj == this // short circuit if same object
-                || obj instanceof Complete
-                && value.equals(((Complete) obj).value);
+        return obj==this // short circuit if same object
+            || obj instanceof Complete
+            && value.equals(((Complete) obj).value);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class UniqueProjectList implements Iterable<Project> {
 
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
     private final ObservableList<Project> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
     private Map<ProjectTitle, Project> projectTitleProjectHashtable = new HashMap<>();
 
     /**
@@ -62,7 +62,7 @@ public class UniqueProjectList implements Iterable<Project> {
         requireAllNonNull(target, editedProject);
 
         int index = internalList.indexOf(target);
-        if (index == -1) {
+        if (index==-1) {
             throw new ProjectNotFoundException();
         }
 
@@ -94,7 +94,7 @@ public class UniqueProjectList implements Iterable<Project> {
         internalList.setAll(replacement.internalList);
         projectTitleProjectHashtable.clear();
         for (Map.Entry<ProjectTitle, Project> entry
-                : replacement.projectTitleProjectHashtable.entrySet()) {
+            : replacement.projectTitleProjectHashtable.entrySet()) {
             projectTitleProjectHashtable.put(entry.getKey(), entry.getValue());
         }
     }
@@ -131,9 +131,9 @@ public class UniqueProjectList implements Iterable<Project> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueProjectList // instanceof handles nulls
-                && internalList.equals(((UniqueProjectList) other).internalList));
+        return other==this // short circuit if same object
+            || (other instanceof UniqueProjectList // instanceof handles nulls
+            && internalList.equals(((UniqueProjectList) other).internalList));
     }
 
     @Override

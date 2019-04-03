@@ -47,7 +47,7 @@ import seedu.address.ui.CommandBox;
 public abstract class AddressBookSystemTest {
     private static final List<String> COMMAND_BOX_DEFAULT_STYLE = Arrays.asList("text-input", "text-field");
     private static final List<String> COMMAND_BOX_ERROR_STYLE =
-            Arrays.asList("text-input", "text-field", CommandBox.ERROR_STYLE_CLASS);
+        Arrays.asList("text-input", "text-field", CommandBox.ERROR_STYLE_CLASS);
     @ClassRule
     public static ClockRule clockRule = new ClockRule();
     private MainWindowHandle mainWindowHandle;
@@ -169,7 +169,7 @@ public abstract class AddressBookSystemTest {
      * and the person list panel displays the persons in the model correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
-            Model expectedModel) {
+        Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
         assertEquals(new AddressBook(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
@@ -275,7 +275,7 @@ public abstract class AddressBookSystemTest {
         assertListMatching(getPersonListPanel(), getModel().getFilteredPersonList());
         assertEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
-                getStatusBarFooter().getSaveLocation());
+            getStatusBarFooter().getSaveLocation());
         assertEquals(SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());
     }
 

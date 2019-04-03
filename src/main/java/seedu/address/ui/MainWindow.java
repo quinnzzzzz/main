@@ -138,15 +138,15 @@ public class MainWindow extends UiPart<Stage> {
         browserPanel = new BrowserPanel(logic.selectedVolunteerProperty());
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
         beneficiaryListPanel = new BeneficiaryListPanel(logic.getFilteredBeneficiaryList(),
-                logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);
+            logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);
         beneficiaryListPanelPlaceholder.getChildren().add(beneficiaryListPanel.getRoot());
 
         volunteerListPanel = new VolunteerListPanel(logic.getFilteredVolunteerList(),
-                logic.selectedVolunteerProperty(), logic::setSelectedVolunteer);
+            logic.selectedVolunteerProperty(), logic::setSelectedVolunteer);
         volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
 
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(),
-                logic.selectedProjectProperty(), logic::setSelectedProject);
+            logic.selectedProjectProperty(), logic::setSelectedProject);
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -165,7 +165,7 @@ public class MainWindow extends UiPart<Stage> {
     private void setWindowDefaultSize(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
-        if (guiSettings.getWindowCoordinates() != null) {
+        if (guiSettings.getWindowCoordinates()!=null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
@@ -206,17 +206,17 @@ public class MainWindow extends UiPart<Stage> {
         TableColumn firstNameCol = new TableColumn("Beneficiary Name");
         firstNameCol.setMinWidth(100);
         firstNameCol.setCellValueFactory(
-                new PropertyValueFactory<SummarisedBeneficiary, String>("name"));
+            new PropertyValueFactory<SummarisedBeneficiary, String>("name"));
 
         TableColumn lastNameCol = new TableColumn("No. Projects");
         lastNameCol.setMinWidth(100);
         lastNameCol.setCellValueFactory(
-                new PropertyValueFactory<SummarisedBeneficiary, String>("numberOfProjects"));
+            new PropertyValueFactory<SummarisedBeneficiary, String>("numberOfProjects"));
 
         TableColumn emailCol = new TableColumn("List of attached projects");
         emailCol.setMinWidth(800);
         emailCol.setCellValueFactory(
-                new PropertyValueFactory<SummarisedBeneficiary, List<String>>("projectList"));
+            new PropertyValueFactory<SummarisedBeneficiary, List<String>>("projectList"));
 
         table.setItems(data);
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
@@ -243,7 +243,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

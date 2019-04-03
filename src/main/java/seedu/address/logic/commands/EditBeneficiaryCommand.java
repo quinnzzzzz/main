@@ -38,16 +38,16 @@ public class EditBeneficiaryCommand extends Command {
     public static final String COMMAND_WORD = "editBeneficiary";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the beneficiary identified "
-            + "by the index number used in the displayed beneficiary list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "by the index number used in the displayed beneficiary list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_BENEFICIARY_SUCCESS = "Edited Beneficiary: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -73,8 +73,8 @@ public class EditBeneficiaryCommand extends Command {
      * edited with {@code editBeneficiaryDescriptor}.
      */
     private static Beneficiary createEditedBeneficiary(Beneficiary beneficiaryToEdit,
-            EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
-        assert beneficiaryToEdit != null;
+        EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
+        assert beneficiaryToEdit!=null;
 
         Name updatedName = editBeneficiaryDescriptor.getName().orElse(beneficiaryToEdit.getName());
         Phone updatedPhone = editBeneficiaryDescriptor.getPhone().orElse(beneficiaryToEdit.getPhone());
@@ -103,7 +103,7 @@ public class EditBeneficiaryCommand extends Command {
 
         for (ProjectTitle attachedProject : beneficiaryToEdit.getAttachedProjectLists()) {
             Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(attachedProject.toString());
-            if (model.getFilteredProjectList().filtered(equalProjectTitle).size() != 0) {
+            if (model.getFilteredProjectList().filtered(equalProjectTitle).size()!=0) {
                 Project project = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
                 project.setBeneficiary(editedBeneficiary.getName());
             }
@@ -118,7 +118,7 @@ public class EditBeneficiaryCommand extends Command {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other == this) {
+        if (other==this) {
             return true;
         }
 
@@ -130,7 +130,7 @@ public class EditBeneficiaryCommand extends Command {
         // state check
         EditBeneficiaryCommand e = (EditBeneficiaryCommand) other;
         return index.equals(e.index)
-                && editBeneficiaryDescriptor.equals(e.editBeneficiaryDescriptor);
+            && editBeneficiaryDescriptor.equals(e.editBeneficiaryDescriptor);
     }
 
     /**
@@ -204,7 +204,7 @@ public class EditBeneficiaryCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+            return (tags!=null) ? Optional.of(Collections.unmodifiableSet(tags)):Optional.empty();
         }
 
         /**
@@ -212,13 +212,13 @@ public class EditBeneficiaryCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = (tags!=null) ? new HashSet<>(tags):null;
         }
 
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
-            if (other == this) {
+            if (other==this) {
                 return true;
             }
 
@@ -231,10 +231,10 @@ public class EditBeneficiaryCommand extends Command {
             EditBeneficiaryDescriptor e = (EditBeneficiaryDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                && getPhone().equals(e.getPhone())
+                && getEmail().equals(e.getEmail())
+                && getAddress().equals(e.getAddress())
+                && getTags().equals(e.getTags());
         }
     }
 }

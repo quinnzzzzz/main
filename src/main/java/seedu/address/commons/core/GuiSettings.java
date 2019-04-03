@@ -38,12 +38,12 @@ public class GuiSettings implements Serializable {
     }
 
     public Point getWindowCoordinates() {
-        return windowCoordinates != null ? new Point(windowCoordinates) : null;
+        return windowCoordinates!=null ? new Point(windowCoordinates):null;
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
+        if (other==this) {
             return true;
         }
         if (!(other instanceof GuiSettings)) { //this handles null as well.
@@ -52,9 +52,9 @@ public class GuiSettings implements Serializable {
 
         GuiSettings o = (GuiSettings) other;
 
-        return windowWidth == o.windowWidth
-                && windowHeight == o.windowHeight
-                && Objects.equals(windowCoordinates, o.windowCoordinates);
+        return windowWidth==o.windowWidth
+            && windowHeight==o.windowHeight
+            && Objects.equals(windowCoordinates, o.windowCoordinates);
     }
 
     @Override
