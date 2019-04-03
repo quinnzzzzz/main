@@ -309,7 +309,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setSelectedVolunteer(Volunteer volunteer) {
-        if (volunteer!=null && !filteredVolunteers.contains(volunteer)) {
+        if (volunteer != null && !filteredVolunteers.contains(volunteer)) {
             selectedVolunteer.setValue(volunteer);
         }
     }
@@ -334,7 +334,7 @@ public class ModelManager implements Model {
             break;
 
         case "=":
-            if (Integer.parseInt(currentVol.getAge().toString())==map.getAgePair().getValue()) {
+            if (Integer.parseInt(currentVol.getAge().toString()) == map.getAgePair().getValue()) {
                 return map.getAgePair().getKey();
             }
             break;
@@ -398,13 +398,13 @@ public class ModelManager implements Model {
      */
     private void ensureSelectedVolunteerIsValid(ListChangeListener.Change<? extends Volunteer> change) {
         while (change.next()) {
-            if (selectedVolunteer.getValue()==null) {
+            if (selectedVolunteer.getValue() == null) {
                 // null is always a valid selected volunteer, so we do not need to check that it is valid anymore.
                 return;
             }
 
             boolean wasSelectedVolunteerReplaced =
-                change.wasReplaced() && change.getAddedSize()==change.getRemovedSize()
+                change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
                     && change.getRemoved().contains(selectedVolunteer.getValue());
             if (wasSelectedVolunteerReplaced) {
                 // Update selectedVolunteer to its new value.
@@ -418,7 +418,7 @@ public class ModelManager implements Model {
             if (wasSelectedVolunteerRemoved) {
                 // Select the volunteer that came before it in the list,
                 // or clear the selection if there is no such volunteer.
-                selectedVolunteer.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1):null);
+                selectedVolunteer.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }
@@ -447,7 +447,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setSelectedPerson(Person person) {
-        if (person!=null && !filteredPersons.contains(person)) {
+        if (person != null && !filteredPersons.contains(person)) {
             throw new PersonNotFoundException();
         }
         selectedPerson.setValue(person);
@@ -460,7 +460,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setSelectedProject(Project project) {
-        if (project!=null && !filteredProjects.contains(project)) {
+        if (project != null && !filteredProjects.contains(project)) {
             throw new PersonNotFoundException();
         }
         selectedProject.setValue(project);
@@ -473,7 +473,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setSelectedBeneficiary(Beneficiary beneficiary) {
-        if (beneficiary!=null && !filteredBeneficiaries.contains(beneficiary)) {
+        if (beneficiary != null && !filteredBeneficiaries.contains(beneficiary)) {
             throw new BeneficiaryNotFoundException();
         }
         selectedBeneficiary.setValue(beneficiary);
@@ -484,13 +484,13 @@ public class ModelManager implements Model {
      */
     private void ensureSelectedBeneficiaryIsValid(ListChangeListener.Change<? extends Beneficiary> change) {
         while (change.next()) {
-            if (selectedBeneficiary.getValue()==null) {
+            if (selectedBeneficiary.getValue() == null) {
                 // null is always a valid selected person, so we do not need to check that it is valid anymore.
                 return;
             }
 
             boolean wasSelectedBeneficiaryReplaced = change.wasReplaced()
-                && change.getAddedSize()==change.getRemovedSize()
+                && change.getAddedSize() == change.getRemovedSize()
                 && change.getRemoved().contains(selectedBeneficiary.getValue());
             if (wasSelectedBeneficiaryReplaced) {
                 // Update selectedPerson to its new value.
@@ -505,7 +505,7 @@ public class ModelManager implements Model {
             if (wasSelectedBeneficiaryRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
-                selectedBeneficiary.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1):null);
+                selectedBeneficiary.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }
@@ -515,12 +515,12 @@ public class ModelManager implements Model {
      */
     private void ensureSelectedPersonIsValid(ListChangeListener.Change<? extends Person> change) {
         while (change.next()) {
-            if (selectedPerson.getValue()==null) {
+            if (selectedPerson.getValue() == null) {
                 // null is always a valid selected person, so we do not need to check that it is valid anymore.
                 return;
             }
 
-            boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize()==change.getRemovedSize()
+            boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
                 && change.getRemoved().contains(selectedPerson.getValue());
             if (wasSelectedPersonReplaced) {
                 // Update selectedPerson to its new value.
@@ -534,7 +534,7 @@ public class ModelManager implements Model {
             if (wasSelectedPersonRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
-                selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1):null);
+                selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }
@@ -544,12 +544,12 @@ public class ModelManager implements Model {
      */
     private void ensureSelectedProjectIsValid(ListChangeListener.Change<? extends Project> change) {
         while (change.next()) {
-            if (selectedProject.getValue()==null) {
+            if (selectedProject.getValue() == null) {
                 // null is always a valid selected person, so we do not need to check that it is valid anymore.
                 return;
             }
 
-            boolean wasSelectedProjectReplaced = change.wasReplaced() && change.getAddedSize()==change
+            boolean wasSelectedProjectReplaced = change.wasReplaced() && change.getAddedSize() == change
                 .getRemovedSize()
                 && change.getRemoved().contains(selectedProject.getValue());
             if (wasSelectedProjectReplaced) {
@@ -564,7 +564,7 @@ public class ModelManager implements Model {
             if (wasSelectedProjectRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
-                selectedProject.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1):null);
+                selectedProject.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }
@@ -572,7 +572,7 @@ public class ModelManager implements Model {
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
-        if (obj==this) {
+        if (obj == this) {
             return true;
         }
 

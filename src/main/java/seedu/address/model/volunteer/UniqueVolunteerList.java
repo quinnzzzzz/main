@@ -60,7 +60,7 @@ public class UniqueVolunteerList implements Iterable<Volunteer> {
         requireAllNonNull(target, editedVolunteer);
 
         int index = internalList.indexOf(target);
-        if (index==-1) {
+        if (index == -1) {
             throw new VolunteerNotFoundException();
         }
 
@@ -114,7 +114,7 @@ public class UniqueVolunteerList implements Iterable<Volunteer> {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof seedu.address.model.volunteer.UniqueVolunteerList // instanceof handles nulls
             && internalList.equals(((seedu.address.model.volunteer.UniqueVolunteerList) other).internalList));
     }

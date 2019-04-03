@@ -19,7 +19,7 @@ public class Assert {
      * {@see assertThrows(Class < ? extends Throwable >, VoidCallable }
      */
     public static void assertThrows(Class<? extends Throwable> expectedException, String expectedMessage,
-        VoidCallable callable) {
+                                    VoidCallable callable) {
         try {
             callable.call();
         } catch (Throwable actualException) {
@@ -28,7 +28,7 @@ public class Assert {
             if (!actualException.getClass().isAssignableFrom(expectedException)) {
                 errorMessage = String.format("Expected exception thrown: %s, actual: %s",
                     expectedException.getName(), actualException.getClass().getName());
-            } else if (expectedMessage!=null && !expectedMessage.equals(actualException.getMessage())) {
+            } else if (expectedMessage != null && !expectedMessage.equals(actualException.getMessage())) {
                 errorMessage = String.format(
                     "Expected message thrown: %s, actual: %s", expectedMessage, actualException.getMessage());
             } else {

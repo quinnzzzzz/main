@@ -62,7 +62,7 @@ public class UniqueProjectList implements Iterable<Project> {
         requireAllNonNull(target, editedProject);
 
         int index = internalList.indexOf(target);
-        if (index==-1) {
+        if (index == -1) {
             throw new ProjectNotFoundException();
         }
 
@@ -131,7 +131,7 @@ public class UniqueProjectList implements Iterable<Project> {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof UniqueProjectList // instanceof handles nulls
             && internalList.equals(((UniqueProjectList) other).internalList));
     }

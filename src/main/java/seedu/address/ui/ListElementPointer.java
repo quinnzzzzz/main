@@ -98,7 +98,7 @@ public class ListElementPointer {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other==this) {
+        if (other == this) {
             return true;
         }
 
@@ -109,6 +109,6 @@ public class ListElementPointer {
 
         // state check
         ListElementPointer iterator = (ListElementPointer) other;
-        return list.equals(iterator.list) && index==iterator.index;
+        return list.equals(iterator.list) && index == iterator.index;
     }
 }

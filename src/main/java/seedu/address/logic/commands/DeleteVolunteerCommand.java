@@ -48,7 +48,7 @@ public class DeleteVolunteerCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof DeleteVolunteerCommand // instanceof handles nulls
             && targetIndex.equals(((DeleteVolunteerCommand) other).targetIndex)); // state check
     }

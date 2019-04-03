@@ -68,13 +68,13 @@ public class AssignBeneficiaryCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
         }
         Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(targetProject);
-        if (model.getFilteredProjectList().filtered(equalProjectTitle).size()==0) {
+        if (model.getFilteredProjectList().filtered(equalProjectTitle).size() == 0) {
             throw new CommandException("Project does not exist.");
         } else {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-            if (projectToAssign.getBeneficiaryAssigned().toString()!="nil"
+            if (projectToAssign.getBeneficiaryAssigned().toString() != "nil"
                 && model.getFilteredBeneficiaryList().filtered(
-                x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size()!=0) {
+                x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0) {
                 Beneficiary oldBeneficiary = model.getFilteredBeneficiaryList()
                     .filtered(x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).get(0);
                 oldBeneficiary.deleteAttachedProject(projectToAssign.getProjectTitle());
@@ -95,7 +95,7 @@ public class AssignBeneficiaryCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other==this
+        return other == this
             || (other instanceof AssignBeneficiaryCommand // instanceof handles nulls
             && this.targetProject.equals(((AssignBeneficiaryCommand) other).targetProject)); // state check;
     }

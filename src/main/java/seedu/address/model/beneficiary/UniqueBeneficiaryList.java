@@ -60,7 +60,7 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
         requireAllNonNull(target, editedBeneficiary);
 
         int index = internalList.indexOf(target);
-        if (index==-1) {
+        if (index == -1) {
             throw new BeneficiaryNotFoundException();
         }
 
@@ -132,7 +132,7 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof UniqueBeneficiaryList // instanceof handles nulls
             && internalList.equals(((UniqueBeneficiaryList) other).internalList));
     }

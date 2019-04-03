@@ -93,8 +93,8 @@ public class EditVolunteerCommand extends Command {
      * edited with {@code editVolunteerDescriptor}.
      */
     private static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-        EditVolunteerDescriptor editVolunteerDescriptor) {
-        assert volunteerToEdit!=null;
+                                                   EditVolunteerDescriptor editVolunteerDescriptor) {
+        assert volunteerToEdit != null;
 
         Name updatedName = editVolunteerDescriptor.getName().orElse(volunteerToEdit.getName());
         Age updatedAge = editVolunteerDescriptor.getAge().orElse(volunteerToEdit.getAge());
@@ -142,7 +142,7 @@ public class EditVolunteerCommand extends Command {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other==this) {
+        if (other == this) {
             return true;
         }
 
@@ -298,7 +298,7 @@ public class EditVolunteerCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
-            return (tags!=null) ? Optional.of(Collections.unmodifiableSet(tags)):Optional.empty();
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         /**
@@ -306,13 +306,13 @@ public class EditVolunteerCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags!=null) ? new HashSet<>(tags):null;
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
-            if (other==this) {
+            if (other == this) {
                 return true;
             }
 

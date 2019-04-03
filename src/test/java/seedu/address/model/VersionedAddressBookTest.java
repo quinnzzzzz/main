@@ -246,9 +246,9 @@ public class VersionedAddressBookTest {
      * and states after {@code versionedAddressBook#currentStatePointer} is equal to {@code expectedStatesAfterPointer}.
      */
     private void assertAddressBookListStatus(VersionedAddressBook versionedAddressBook,
-        List<ReadOnlyAddressBook> expectedStatesBeforePointer,
-        ReadOnlyAddressBook expectedCurrentState,
-        List<ReadOnlyAddressBook> expectedStatesAfterPointer) {
+                                             List<ReadOnlyAddressBook> expectedStatesBeforePointer,
+                                             ReadOnlyAddressBook expectedCurrentState,
+                                             List<ReadOnlyAddressBook> expectedStatesAfterPointer) {
         // check state currently pointing at is correct
         assertEquals(new AddressBook(versionedAddressBook), expectedCurrentState);
 
@@ -281,7 +281,7 @@ public class VersionedAddressBookTest {
      * {@code VersionedAddressBook#currentStatePointer} at the end of list.
      */
     private VersionedAddressBook prepareAddressBookList(ReadOnlyAddressBook... addressBookStates) {
-        assertFalse(addressBookStates.length==0);
+        assertFalse(addressBookStates.length == 0);
 
         VersionedAddressBook versionedAddressBook = new VersionedAddressBook(addressBookStates[0]);
         for (int i = 1; i < addressBookStates.length; i++) {

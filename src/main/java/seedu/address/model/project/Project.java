@@ -113,11 +113,11 @@ public class Project {
      * This defines a weaker notion of equality between two Projects.
      */
     public boolean isSameProject(Project otherProject) {
-        if (otherProject==this) {
+        if (otherProject == this) {
             return true;
         }
 
-        return otherProject!=null
+        return otherProject != null
             && otherProject.getProjectTitle().equals(getProjectTitle())
             || (otherProject.getProjectDate().equals(getProjectDate()));
     }
@@ -127,7 +127,7 @@ public class Project {
      * This defines a stronger notion of equality between two Projects.
      */
     public boolean equals(Object other) {
-        if (other==this) {
+        if (other == this) {
             return true;
         }
 

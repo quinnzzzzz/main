@@ -51,7 +51,7 @@ public class AddProjectCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof AddProjectCommand // instanceof handles nulls
             && toAdd.equals(((AddProjectCommand) other).toAdd));
     }

@@ -38,7 +38,7 @@ public class CommandHistory {
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
-        if (obj==this) {
+        if (obj == this) {
             return true;
         }
 

@@ -46,7 +46,7 @@ public class Version implements Comparable<Version> {
         return new Version(Integer.parseInt(versionMatcher.group(1)),
             Integer.parseInt(versionMatcher.group(2)),
             Integer.parseInt(versionMatcher.group(3)),
-            versionMatcher.group(4)==null ? false:true);
+            versionMatcher.group(4) == null ? false : true);
     }
 
     public int getMajor() {
@@ -67,21 +67,21 @@ public class Version implements Comparable<Version> {
 
     @JsonValue
     public String toString() {
-        return String.format("V%d.%d.%d%s", major, minor, patch, isEarlyAccess ? "ea":"");
+        return String.format("V%d.%d.%d%s", major, minor, patch, isEarlyAccess ? "ea" : "");
     }
 
     @Override
     public int compareTo(Version other) {
-        if (major!=other.major) {
+        if (major != other.major) {
             return major - other.major;
         }
-        if (minor!=other.minor) {
+        if (minor != other.minor) {
             return minor - other.minor;
         }
-        if (patch!=other.patch) {
+        if (patch != other.patch) {
             return patch - other.patch;
         }
-        if (isEarlyAccess==other.isEarlyAccess()) {
+        if (isEarlyAccess == other.isEarlyAccess()) {
             return 0;
         }
         if (isEarlyAccess) {
@@ -92,7 +92,7 @@ public class Version implements Comparable<Version> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj==null) {
+        if (obj == null) {
             return false;
         }
         if (!(obj instanceof Version)) {
@@ -100,7 +100,7 @@ public class Version implements Comparable<Version> {
         }
         final Version other = (Version) obj;
 
-        return compareTo(other)==0;
+        return compareTo(other) == 0;
     }
 
     @Override

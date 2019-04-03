@@ -45,7 +45,7 @@ public class Age {
 
     @Override
     public boolean equals(Object other) {
-        return other==this // short circuit if same object
+        return other == this // short circuit if same object
             || (other instanceof seedu.address.model.person.Age // instanceof handles nulls
             && ageOutput.equals(((seedu.address.model.person.Age) other).ageOutput)); // state check
     }
