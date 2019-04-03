@@ -88,12 +88,12 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
                     .parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get()));
         }
         if (argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).isPresent()) {
-            editVolunteerDescriptor.setDietaryPreference
-            (ParserUtilVolunteer.parseDietaryPreference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get()));
+            editVolunteerDescriptor.setDietaryPreference(ParserUtilVolunteer
+                .parseDietaryPreference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get()));
         }
         if (argMultimap.getValue(PREFIX_MEDICAL_CONDITION).isPresent()) {
-            editVolunteerDescriptor.setMedicalCondition
-            (ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get()));
+            editVolunteerDescriptor.setMedicalCondition(ParserUtilVolunteer
+                .parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editVolunteerDescriptor.setAddress(
