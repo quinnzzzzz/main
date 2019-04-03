@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
 import seedu.address.model.beneficiary.Name;
 
 
@@ -32,7 +33,7 @@ public class Project {
     /**
      * When beneficiaryAssigned is not initialised.
      */
-    public Project(ProjectTitle projectTitle, ProjectDate projectDate,Complete complete) {
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete) {
         requireAllNonNull(projectTitle, projectDate, complete);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
@@ -53,7 +54,7 @@ public class Project {
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
-    public Project(ProjectTitle projectTitle, ProjectDate projectDate,Complete complete, Name beneficiaryAssigned) {
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete, Name beneficiaryAssigned) {
         requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
@@ -138,7 +139,7 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectTitle,projectDate,complete,beneficiaryAssigned);
+        return Objects.hash(projectTitle, projectDate, complete, beneficiaryAssigned);
     }
 }
 

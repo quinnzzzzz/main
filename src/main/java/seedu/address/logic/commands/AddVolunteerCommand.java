@@ -20,11 +20,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.volunteer.Volunteer;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.volunteer.Volunteer;
-
 
 /**
  * Adds a volunteer to the address book.
@@ -38,7 +33,7 @@ public class AddVolunteerCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_AGE + "AGE "
-            + PREFIX_GENDER +"GENDER "
+            + PREFIX_GENDER + "GENDER "
             + PREFIX_RACE + "RACE "
             + PREFIX_RELIGION + "RELIGION "
             + PREFIX_PHONE + "PHONE "

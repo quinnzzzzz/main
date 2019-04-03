@@ -33,18 +33,21 @@ public class CommandResult {
         this.showBeneficiarySummary = showBeneficiarySummary;
     }
 
-    public boolean isShowBeneficiarySummary() {
-        return showBeneficiarySummary;
-    }
-
-    public void resetShowBeneficiarySummary() {showBeneficiarySummary = false;}
-
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
+    }
+
+
+    public boolean isShowBeneficiarySummary() {
+        return showBeneficiarySummary;
+    }
+
+    public void resetShowBeneficiarySummary() {
+        showBeneficiarySummary = false;
     }
 
     public String getFeedbackToUser() {

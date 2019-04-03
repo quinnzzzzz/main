@@ -30,6 +30,9 @@ public class SummaryBeneficiaryCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUMMARY_BENEFICIARY_SUCCESS), true);
     }
 
+    /**
+     * Class to do summary of beneficiary
+     */
     public static class SummarisedBeneficiary {
 
         private final String name;

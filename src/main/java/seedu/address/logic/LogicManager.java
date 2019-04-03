@@ -16,8 +16,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.storage.Storage;
 
 /**
@@ -110,7 +110,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyProperty<Project> selectedProjectProperty() {
-      return model.selectedProjectProperty();
+        return model.selectedProjectProperty();
     }
 
     public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
@@ -123,7 +123,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void setSelectedProject(Project project) { model.setSelectedProject(project); }
+    public void setSelectedProject(Project project) {
+        model.setSelectedProject(project);
+    }
 
     @Override
     public ReadOnlyProperty<Volunteer> selectedVolunteerProperty() {

@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -13,26 +11,19 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
-//import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.project.exceptions.DuplicateProjectException;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
-import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -180,11 +171,6 @@ public class ModelManager implements Model {
         updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
     }
 
-//    @Override
-//    public boolean checkBeneficiary (ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
-//        return versionedAddressBook.checkBeneficiaryForProject(projectTitle,targetBeneficiaryIndex);
-//    }
-
     @Override
     public void addProject(Project project) {
         versionedAddressBook.addProject(project);
@@ -211,7 +197,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setProject(Project targetProject, Project editedProject){
+    public void setProject(Project targetProject, Project editedProject) {
         requireNonNull(editedProject);
         versionedAddressBook.setProject(targetProject, editedProject);
     }
@@ -413,7 +399,7 @@ public class ModelManager implements Model {
     /**
      * Ensures {@code selectedVolunteer} is a valid volunteer in {@code filteredVolunteers}.
      */
-    private void ensureSelectedVolunteerIsValid(ListChangeListener.Change<? extends Volunteer> change) {
+    private void ensureSelectedVolunteerIsValid (ListChangeListener.Change<? extends Volunteer> change) {
         while (change.next()) {
             if (selectedVolunteer.getValue() == null) {
                 // null is always a valid selected volunteer, so we do not need to check that it is valid anymore.
@@ -421,8 +407,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedVolunteerReplaced =
-                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedVolunteer.getValue());
+                change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                && change.getRemoved().contains(selectedVolunteer.getValue());
             if (wasSelectedVolunteerReplaced) {
                 // Update selectedVolunteer to its new value.
                 int index = change.getRemoved().indexOf(selectedVolunteer.getValue());
@@ -431,7 +417,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedVolunteerRemoved = change.getRemoved().stream()
-                    .anyMatch(removedVolunteer -> selectedVolunteer.getValue().isSameVolunteer(removedVolunteer));
+                .anyMatch(removedVolunteer -> selectedVolunteer.getValue().isSameVolunteer(removedVolunteer));
             if (wasSelectedVolunteerRemoved) {
                 // Select the volunteer that came before it in the list,
                 // or clear the selection if there is no such volunteer.
@@ -448,7 +434,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyProperty<Project> selectedProjectProperty() {return selectedProject; }
+    public ReadOnlyProperty<Project> selectedProjectProperty() {
+        return selectedProject;
+    }
 
     @Override
     public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
@@ -564,8 +552,9 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedProjectReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedProject.getValue());
+            boolean wasSelectedProjectReplaced = change.wasReplaced() && change.getAddedSize() == change
+                .getRemovedSize()
+                && change.getRemoved().contains(selectedProject.getValue());
             if (wasSelectedProjectReplaced) {
                 // Update selectedProject to its new value.
                 int index = change.getRemoved().indexOf(selectedProject.getValue());
@@ -574,7 +563,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedProjectRemoved = change.getRemoved().stream()
-                    .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
+                .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
             if (wasSelectedProjectRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.

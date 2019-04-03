@@ -1,13 +1,14 @@
 //@@author
 package seedu.address.logic.commands;
 
-
+import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.CommandHistory;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
+
 
 /**
  * Sorts the current list of volunteers and returns a list of volunteers

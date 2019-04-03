@@ -1,13 +1,14 @@
 package seedu.address.logic.commands;
 
-import java.util.List;
-
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
 
+/**
+ * Build Project
+ */
 public class ProjectBuilder {
 
     public static final String DEFAULT_PROJECT_TITLE = "Project Title";
@@ -44,9 +45,13 @@ public class ProjectBuilder {
         this.projectDate = new ProjectDate(projectDate);
         return this;
     }
+
+    /**
+     *
+     * @return a project
+     */
     public Project build() {
-        //System.out.println("in"+projectTitle);
-        return new Project(projectTitle,projectDate,complete,beneficiaryAssigned);
+        return new Project(projectTitle, projectDate, complete, beneficiaryAssigned);
     }
     /**
      * Sets the {@code ProjectTitle} of the {@code Project} that we are building.
@@ -55,9 +60,14 @@ public class ProjectBuilder {
         this.complete = new Complete(complete);
         return this;
     }
+
+    /**
+     *
+     * @param beneficiary
+     * @return ProjectBuilder
+     */
     public ProjectBuilder withBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
-       //System.out.println("check"+this.beneficiaryAssigned);
         return this;
     }
 

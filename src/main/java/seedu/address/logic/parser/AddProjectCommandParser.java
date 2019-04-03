@@ -9,8 +9,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
 
 /**
@@ -32,7 +32,8 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
 
-        ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
+        ProjectTitle projectTitle = ParserUtilProject
+            .parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
         ProjectDate projectDate = ParserUtilProject.parseProjectDate(argMultimap.getValue(PREFIX_DATE).get());
 
         Project project = new Project(projectTitle, projectDate);
