@@ -7,31 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-import seedu.address.logic.commands.AddBeneficiaryCommand;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.AddVolunteerCommand;
-import seedu.address.logic.commands.AssignBeneficiaryCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteBeneficiaryCommand;
-import seedu.address.logic.commands.DeleteProjectCommand;
-import seedu.address.logic.commands.DeleteVolunteerCommand;
-import seedu.address.logic.commands.EditBeneficiaryCommand;
-import seedu.address.logic.commands.EditVolunteerCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindBeneficiaryCommand;
-import seedu.address.logic.commands.FindVolunteerCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.HistoryCommand;
-import seedu.address.logic.commands.ListBeneficiaryCommand;
-import seedu.address.logic.commands.ListProjectCommand;
-import seedu.address.logic.commands.ListVolunteerCommand;
-import seedu.address.logic.commands.MapCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.SelectCommand;
-import seedu.address.logic.commands.SummaryBeneficiaryCommand;
-import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.*;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 

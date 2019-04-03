@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -40,15 +41,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         volunteers = new UniqueVolunteerList();
         persons = new UniquePersonList();
         projects = new UniqueProjectList();
         beneficiaries = new UniqueBeneficiaryList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -73,6 +74,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.projects.setProjects(projects);
         indicateModified();
     }
+
     @Override
     public ObservableList<Beneficiary> getBeneficiaryList() {
         return beneficiaries.asUnmodifiableObservableList();
@@ -84,7 +86,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Project> getProjectList() { return projects.asUnmodifiableObservableList(); }
+    public ObservableList<Project> getProjectList() {
+        return projects.asUnmodifiableObservableList();
+    }
 
     /**
      * Replaces the contents of the Beneficiary list with {@code beneficiaries}.
@@ -94,6 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.beneficiaries.setBeneficiaries(beneficiaries);
         indicateModified();
     }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -114,6 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
+
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the address book.
      */
@@ -161,6 +167,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.addProject(r);
         indicateModified();
     }
+
     /**
      * Adds a beneficiary to the address book.
      * The beneficiary must not already exist in the address book.
@@ -203,6 +210,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         beneficiaries.setBeneficiary(target, editedBeneficiary);
         indicateModified();
     }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -211,6 +219,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
         indicateModified();
     }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -220,6 +229,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.remove(key);
         indicateModified();
     }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -295,12 +305,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void setProject(Project target, Project edited)
-        throws DuplicateProjectException, ProjectNotFoundException {
+            throws DuplicateProjectException, ProjectNotFoundException {
         requireNonNull(edited);
-        projects.setProject(target,edited);
-        }
+        projects.setProject(target, edited);
     }
 
+
+    public void sortVolunteers() {
+        volunteers.sortByPoints();
+    }
+
+}
     /**
      * command
      */

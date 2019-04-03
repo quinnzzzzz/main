@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
-import seedu.address.commons.core.ComponentManager;
+//import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -401,13 +401,9 @@ public class ModelManager implements Model {
      * Sorts all volunteers in the (@code UniqueVolunteerList)
      * and returns a (@code sortedList)
      */
+
     public void sortVolunteers() {
-        sortedVolunteers = versionedAddressBook.getVolunteerList().sorted(
-                (new Comparator<Volunteer>() {
-            public  int compare (Volunteer s1, Volunteer s2) {
-                return s2.getPoints() - s1.getPoints();
-            }
-        }));
+        versionedAddressBook.sortVolunteers();
     }
 
 
