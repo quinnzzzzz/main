@@ -23,8 +23,17 @@ import seedu.address.model.beneficiary.Phone;
 public class AddBeneficiaryCommandParser implements Parser<AddBeneficiaryCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddBeneficiaryCommand parse(String args) throws ParseException {
@@ -45,14 +54,6 @@ public class AddBeneficiaryCommandParser implements Parser<AddBeneficiaryCommand
         Beneficiary beneficiary = new Beneficiary(name, phone, email, address);
 
         return new AddBeneficiaryCommand(beneficiary);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

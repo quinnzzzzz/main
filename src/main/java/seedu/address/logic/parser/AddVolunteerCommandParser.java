@@ -19,9 +19,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 import seedu.address.model.tag.Tag;
-
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
@@ -36,15 +34,23 @@ import seedu.address.model.volunteer.Religion;
 import seedu.address.model.volunteer.Volunteer;
 
 
-
 /**
  * Parses input arguments and creates a new AddVolunteerCommand object
  */
 public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the AddVolunteerCommand
      * and returns an AddVolunteerCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddVolunteerCommand parse(String args) throws ParseException {
@@ -94,14 +100,6 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
                 dietarypreference, medicalcondition, tagList);
 
         return new AddVolunteerCommand(volunteer);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

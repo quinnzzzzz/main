@@ -72,7 +72,9 @@ public class Project {
         return projectDate;
     }
 
-    public Complete getComplete() { return complete; }
+    public Complete getComplete() {
+        return complete;
+    }
 
     public Name getBeneficiaryAssigned() {
         return beneficiaryAssigned;
@@ -85,7 +87,7 @@ public class Project {
         return complete.isComplete();
     }
 
-    public void setBeneficiary (Name beneficiary) {
+    public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
     }
 //

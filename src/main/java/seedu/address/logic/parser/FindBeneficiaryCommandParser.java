@@ -16,6 +16,7 @@ public class FindBeneficiaryCommandParser implements Parser<FindBeneficiaryComma
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindBeneficiaryCommand parse(String args) throws ParseException {

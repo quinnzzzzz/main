@@ -8,10 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
-
+import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
-import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.Volunteer;
 
 /**
@@ -27,14 +26,14 @@ public interface Model {
     Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -58,19 +57,20 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /**
      * Returns the AddressBook
      */
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setAddressBook(ReadOnlyAddressBook addressBook);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -84,6 +84,7 @@ public interface Model {
 
     /**
      * Updates the Project status
+     *
      * @param target
      * @param editedProject
      * @throws DuplicateProjectException
@@ -91,6 +92,7 @@ public interface Model {
      */
     void setProject(Project target, Project editedProject)
             throws DuplicateProjectException, ProjectNotFoundException;
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -102,6 +104,7 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deleteProject(Project target);
+
     /**
      * Deletes the given beneficiary.
      * The beneficiary must exist in the address book.
@@ -135,22 +138,27 @@ public interface Model {
      * as another existing Beneficiary in the address book.
      */
     void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
+
     /**
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Person> getFilteredPersonList();
+
     /**
      * Returns an unmodifiable view of the filtered beneficiary list
      */
     ObservableList<Beneficiary> getFilteredBeneficiaryList();
+
     /**
      * Returns an unmodifiable view of the filtered volunteer list
      */
     ObservableList<Volunteer> getFilteredVolunteerList();
+
     /**
      * Returns an unmodifiable view of the filtered project list
      */
     ObservableList<Project> getFilteredProjectList();
+
     /**
      * Updates the filter of the filtered Beneficiary list to filter by the given {@code predicate}.
      *
@@ -212,14 +220,18 @@ public interface Model {
      */
     Beneficiary getSelectedBeneficiary();
 
+    void setSelectedBeneficiary(Beneficiary beneficiary);
+
     Person getSelectedPerson();
-    Project getSelectedProject();
+
     /**
      * Sets the selected person in the filtered person list.
      */
     void setSelectedPerson(Person person);
+
+    Project getSelectedProject();
+
     void setSelectedProject(Project project);
-    void setSelectedBeneficiary (Beneficiary beneficiary);
 
     //Volunteers
     boolean hasVolunteer(Volunteer volunteer);
@@ -256,6 +268,7 @@ public interface Model {
      */
 
     Volunteer getSelectedVolunteer();
+
     /**
      * Sets the selected volunteer in the filtered volunteer list.
      */

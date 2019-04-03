@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: mutable; is valid as declared in {@link #isValidGender(String)}
  */
 
-public class Gender{
+public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Gender should be only M or F";

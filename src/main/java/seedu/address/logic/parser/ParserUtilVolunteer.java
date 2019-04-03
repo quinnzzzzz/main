@@ -33,6 +33,7 @@ public class ParserUtilVolunteer {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -130,6 +131,7 @@ public class ParserUtilVolunteer {
         }
         return tagSet;
     }
+
     /**
      * Parses a {@code String emergencycontact} into an {@code EmergencyContact}.
      * Leading and trailing whitespaces will be trimmed.
@@ -144,6 +146,7 @@ public class ParserUtilVolunteer {
         }
         return new EmergencyContact(trimmedEmergencyContact);
     }
+
     /**
      * Parses a {@code String medicalcondition} into an {@code MedicalCondition}.
      * Leading and trailing whitespaces will be trimmed.
@@ -158,6 +161,7 @@ public class ParserUtilVolunteer {
         }
         return new MedicalCondition(trimmedMedicalCondition);
     }
+
     /**
      * Parses a {@code String dietarypreference} into an {@code DietaryPreference}.
      * Leading and trailing whitespaces will be trimmed.
@@ -172,6 +176,7 @@ public class ParserUtilVolunteer {
         }
         return new DietaryPreference(trimmedDietaryPreference);
     }
+
     /**
      * Parses a {@code String age} into an {@code Age}.
      * Leading and trailing whitespaces will be trimmed.
@@ -219,6 +224,7 @@ public class ParserUtilVolunteer {
         }
         return new Race(trimmedRace);
     }
+
     /**
      * Parses a {@code String race} into an {@code Religion}.
      * Leading and trailing whitespaces will be trimmed.

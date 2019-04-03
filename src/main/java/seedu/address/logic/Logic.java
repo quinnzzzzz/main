@@ -20,10 +20,11 @@ import seedu.address.model.volunteer.Volunteer;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
+     * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
@@ -34,13 +35,19 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of projects */
+    /**
+     * Returns an unmodifiable view of the filtered list of projects
+     */
     ObservableList<Project> getFilteredProjectList();
 
-    /** Returns an unmodifiable view of the filtered list of volunteers */
+    /**
+     * Returns an unmodifiable view of the filtered list of volunteers
+     */
     ObservableList<Volunteer> getFilteredVolunteerList();
 
-    /** Returns an unmodifiable view of the filtered list of beneficaries */
+    /**
+     * Returns an unmodifiable view of the filtered list of beneficaries
+     */
     ObservableList<Beneficiary> getFilteredBeneficiaryList();
 
     /**
@@ -72,6 +79,7 @@ public interface Logic {
      * @see seedu.address.model.Model#selectedPersonProperty()
      */
     ReadOnlyProperty<Project> selectedProjectProperty();
+
     /**
      * Selected beneficiary in the filtered beneficiary list.
      * null if no beneficiary is selected.

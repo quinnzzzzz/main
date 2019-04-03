@@ -6,7 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * This is the Date for the project
  * format is yyyymmdd
- *
  */
 public class ProjectDate {
     public static final String MESSAGE_CONSTRAINTS =

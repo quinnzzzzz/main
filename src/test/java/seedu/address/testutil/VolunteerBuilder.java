@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.VolunteerSampleDataUtil;
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
@@ -14,9 +16,7 @@ import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.Religion;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.model.util.VolunteerSampleDataUtil;
 
 /**
  * A utility class to help with building Volunteer objects.
@@ -26,12 +26,13 @@ public class VolunteerBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_AGE = "19";
     public static final String DEFAULT_GENDER = "F";
-    public static final String DEFAULT_RACE = "American";;
+    public static final String DEFAULT_RACE = "American";
+    ;
     public static final String DEFAULT_RELIGION = "Christian";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_EMERGENCY_CONTACT= "Mary 98125555";
+    public static final String DEFAULT_EMERGENCY_CONTACT = "Mary 98125555";
     public static final String DEFAULT_DIETARY_PREFERENCE = "Alice Pauline";
     public static final String DEFAULT_MEDICAL_CONDITION = "NIL";
 
@@ -92,34 +93,41 @@ public class VolunteerBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Volunteer} that we are building.
      */
-    public VolunteerBuilder withTags(String ... tags) {
+    public VolunteerBuilder withTags(String... tags) {
         this.tags = VolunteerSampleDataUtil.getTagSet(tags);
         return this;
     }
+
     public VolunteerBuilder withAge(String age) {
         this.age = new Age(age);
         return this;
     }
+
     public VolunteerBuilder withGender(String gender) {
         this.gender = new Gender(gender);
         return this;
     }
+
     public VolunteerBuilder withRace(String race) {
         this.race = new Race(race);
         return this;
     }
+
     public VolunteerBuilder withReligion(String religion) {
         this.religion = new Religion(religion);
         return this;
     }
+
     public VolunteerBuilder withMedicalCondition(String medicalcondition) {
-        this.medicalcondition= new MedicalCondition(medicalcondition);
+        this.medicalcondition = new MedicalCondition(medicalcondition);
         return this;
     }
+
     public VolunteerBuilder withDietaryPreference(String dietarypreference) {
         this.dietarypreference = new DietaryPreference(dietarypreference);
         return this;
     }
+
     public VolunteerBuilder withEmergencyContact(String emergencycontact) {
         this.emergencycontact = new EmergencyContact(emergencycontact);
         return this;

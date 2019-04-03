@@ -17,6 +17,10 @@ import seedu.address.model.project.ProjectTitle;
  */
 public class AssignBeneficiaryCommandParser implements Parser<AssignBeneficiaryCommand> {
 
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the AssignBeneficiaryCommand
      * and returns an AssignBeneficiaryCommand object for execution.
@@ -30,7 +34,7 @@ public class AssignBeneficiaryCommandParser implements Parser<AssignBeneficiaryC
         if (!arePrefixesPresent(argMultimap, ASSIGNED_PROJECT_TITLE, PREFIX_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AssignBeneficiaryCommand.MESSAGE_USAGE));
+                    AssignBeneficiaryCommand.MESSAGE_USAGE));
         }
 
         ProjectTitle projectTitle = ParserUtilProject.parseProjectTitle(argMultimap
@@ -38,10 +42,6 @@ public class AssignBeneficiaryCommandParser implements Parser<AssignBeneficiaryC
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         return new AssignBeneficiaryCommand(projectTitle, index);
-    }
-
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
 

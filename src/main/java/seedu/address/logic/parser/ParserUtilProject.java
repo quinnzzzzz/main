@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
 
@@ -44,6 +44,7 @@ public class ParserUtilProject extends ParserUtil {
         }
         return new ProjectTitle(trimmedProjectTitle);
     }
+
     /**
      * Parses a {@code Optional<String> value} into the specified value or {@code UNSPECIFIED_FIELD} if is empty
      */

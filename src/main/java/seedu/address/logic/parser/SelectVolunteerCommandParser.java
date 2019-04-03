@@ -14,6 +14,7 @@ public class SelectVolunteerCommandParser implements Parser<SelectVolunteerComma
     /**
      * Parses the given {@code String} of arguments in the context of the SelectVolunteerCommand
      * and returns an SelectVolunteerCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public SelectVolunteerCommand parse(String args) throws ParseException {

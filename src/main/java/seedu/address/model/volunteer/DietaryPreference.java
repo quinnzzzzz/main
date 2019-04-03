@@ -13,9 +13,9 @@ public class DietaryPreference {
     public static final String MESSAGE_CONSTRAINTS = "Dietary Preference should not contain numbers";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String restriction;
+
     /**
      * Constructs a {@code DietaryPreference}.
-     *
      */
     public DietaryPreference(String dietarypreference) {
         requireNonNull(dietarypreference);
@@ -38,9 +38,9 @@ public class DietaryPreference {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof seedu.address.model.volunteer.DietaryPreference
-            // instanceof handles nulls
-            && restriction.equals(((seedu.address.model.volunteer.DietaryPreference) other).restriction));
+                || (other instanceof seedu.address.model.volunteer.DietaryPreference
+                // instanceof handles nulls
+                && restriction.equals(((seedu.address.model.volunteer.DietaryPreference) other).restriction));
         // state check
     }
 

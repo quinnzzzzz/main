@@ -13,8 +13,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
-import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.Volunteer;
 
 /**

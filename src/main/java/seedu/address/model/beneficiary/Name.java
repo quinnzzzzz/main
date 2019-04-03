@@ -31,10 +31,6 @@ public class Name {
         fullName = name;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
     /**
      * Returns true if a given string is a valid name.
      */
@@ -42,6 +38,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getFullName() {
+        return fullName;
+    }
 
     @Override
     public String toString() {

@@ -16,6 +16,7 @@ public class FindVolunteerCommandParser implements Parser<FindVolunteerCommand> 
     /**
      * Parses the given {@code String} of arguments in the context of the FindVolunteerCommand
      * and returns an FindVolunteerCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindVolunteerCommand parse(String args) throws ParseException {

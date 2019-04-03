@@ -27,9 +27,8 @@ public class StatusBarFooterTest extends GuiUnitTest {
 
     private static final Clock originalClock = StatusBarFooter.getClock();
     private static final Clock injectedClock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
-
-    private StatusBarFooterHandle statusBarFooterHandle;
     private final AddressBook addressBook = new AddressBook();
+    private StatusBarFooterHandle statusBarFooterHandle;
 
     @BeforeClass
     public static void setUpBeforeClass() {

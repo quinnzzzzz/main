@@ -57,7 +57,8 @@ public class TypicalVolunteers {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalVolunteers() {} // prevents instantiation
+    private TypicalVolunteers() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical volunteers.
