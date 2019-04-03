@@ -227,7 +227,9 @@ public class MainWindow extends UiPart<Stage> {
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table); ((Group)scene.getRoot()).getChildren().addAll(vbox);
+        vbox.getChildren().addAll(label, table);
+        Group g = (Group) scene.getRoot();
+        g.getChildren().addAll(vbox);
         stage.setScene(scene);
         stage.show();
 
