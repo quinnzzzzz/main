@@ -268,10 +268,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons))
-                && projects.equals(((AddressBook) other).projects);
+        return other==this // short circuit if same object
+            || (other instanceof AddressBook // instanceof handles nulls
+            && persons.equals(((AddressBook) other).persons))
+            && projects.equals(((AddressBook) other).projects);
     }
 
     @Override
@@ -302,7 +302,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void setProject(Project target, Project edited)
-            throws DuplicateProjectException, ProjectNotFoundException {
+        throws DuplicateProjectException, ProjectNotFoundException {
         requireNonNull(edited);
         projects.setProject(target, edited);
     }

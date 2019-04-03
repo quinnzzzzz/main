@@ -23,11 +23,11 @@ public class MapObject {
      * at least one field must be present and not null.
      */
     public MapObject(Pair<Integer, Integer> agePair, String comparator,
-            Pair<Integer, String> racePair, Pair<Integer, String> medicalPair) {
-        this.agePair = (agePair.getKey() != 0) ? agePair : nullAgePair;
-        this.comparator = (agePair.getKey() != 0) ? comparator : nullComparator;
-        this.racePair = (racePair.getKey() != 0) ? racePair : nullRacePair;
-        this.medicalPair = (medicalPair.getKey() != 0) ? medicalPair : nullMedicalPair;
+        Pair<Integer, String> racePair, Pair<Integer, String> medicalPair) {
+        this.agePair = (agePair.getKey()!=0) ? agePair:nullAgePair;
+        this.comparator = (agePair.getKey()!=0) ? comparator:nullComparator;
+        this.racePair = (racePair.getKey()!=0) ? racePair:nullRacePair;
+        this.medicalPair = (medicalPair.getKey()!=0) ? medicalPair:nullMedicalPair;
     }
 
     public String getComparator() {

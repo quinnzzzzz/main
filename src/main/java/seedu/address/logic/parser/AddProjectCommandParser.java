@@ -33,15 +33,15 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      */
     public AddProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_TITLE, PREFIX_DATE);
+            ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_TITLE, PREFIX_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_TITLE, PREFIX_DATE)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
 
         ProjectTitle projectTitle = ParserUtilProject
-                .parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
+            .parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
         ProjectDate projectDate = ParserUtilProject.parseProjectDate(argMultimap.getValue(PREFIX_DATE).get());
 
         Project project = new Project(projectTitle, projectDate);

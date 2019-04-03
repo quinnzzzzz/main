@@ -49,7 +49,7 @@ public class ParserUtilProject extends ParserUtil {
      * Parses a {@code Optional<String> value} into the specified value or {@code UNSPECIFIED_FIELD} if is empty
      */
     public static Optional<String> parseValue(Optional<String> value, String messageConstraints)
-            throws IllegalValueException {
+        throws IllegalValueException {
         if (value.isPresent() && value.get().equals(UNSPECIFIED_FIELD)) {
             throw new IllegalValueException(messageConstraints);
         } else {

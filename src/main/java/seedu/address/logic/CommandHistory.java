@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 public class CommandHistory {
     private final ObservableList<String> userInputHistory = FXCollections.observableArrayList();
     private final ObservableList<String> unmodifiableUserInputHistory =
-            FXCollections.unmodifiableObservableList(userInputHistory);
+        FXCollections.unmodifiableObservableList(userInputHistory);
 
     public CommandHistory() {
     }
@@ -38,7 +38,7 @@ public class CommandHistory {
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
-        if (obj == this) {
+        if (obj==this) {
             return true;
         }
 

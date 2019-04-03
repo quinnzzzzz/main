@@ -28,7 +28,7 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
 
     private final ObservableList<Beneficiary> internalList = FXCollections.observableArrayList();
     private final ObservableList<Beneficiary> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent Beneficiary as the given argument.
@@ -60,7 +60,7 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
         requireAllNonNull(target, editedBeneficiary);
 
         int index = internalList.indexOf(target);
-        if (index == -1) {
+        if (index==-1) {
             throw new BeneficiaryNotFoundException();
         }
 
@@ -132,9 +132,9 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueBeneficiaryList // instanceof handles nulls
-                && internalList.equals(((UniqueBeneficiaryList) other).internalList));
+        return other==this // short circuit if same object
+            || (other instanceof UniqueBeneficiaryList // instanceof handles nulls
+            && internalList.equals(((UniqueBeneficiaryList) other).internalList));
     }
 
     @Override

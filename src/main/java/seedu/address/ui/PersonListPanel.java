@@ -24,7 +24,7 @@ public class PersonListPanel extends UiPart<Region> {
     private ListView<Person> personListView;
 
     public PersonListPanel(ObservableList<Person> personList, ObservableValue<Person> selectedPerson,
-            Consumer<Person> onSelectedPersonChange) {
+        Consumer<Person> onSelectedPersonChange) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 return;
             }
 
-            if (newValue == null) {
+            if (newValue==null) {
                 personListView.getSelectionModel().clearSelection();
             } else {
                 int index = personListView.getItems().indexOf(newValue);
@@ -59,7 +59,7 @@ public class PersonListPanel extends UiPart<Region> {
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
 
-            if (empty || person == null) {
+            if (empty || person==null) {
                 setGraphic(null);
                 setText(null);
             } else {

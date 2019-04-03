@@ -51,13 +51,13 @@ class JsonAdaptedVolunteer {
      */
     @JsonCreator
     public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("age") String age,
-            @JsonProperty("gender") String gender, @JsonProperty("race") String race,
-            @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("DietaryPreference") String dietarypreference,
-            @JsonProperty("EmergencyContact") String emergencycontact,
-            @JsonProperty("MedicalCondition") String medicalcondition,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        @JsonProperty("gender") String gender, @JsonProperty("race") String race,
+        @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
+        @JsonProperty("email") String email, @JsonProperty("address") String address,
+        @JsonProperty("DietaryPreference") String dietarypreference,
+        @JsonProperty("EmergencyContact") String emergencycontact,
+        @JsonProperty("MedicalCondition") String medicalcondition,
+        @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -70,7 +70,7 @@ class JsonAdaptedVolunteer {
         this.dietarypreference = dietarypreference;
         this.medicalcondition = medicalcondition;
 
-        if (tagged != null) {
+        if (tagged!=null) {
             this.tagged.addAll(tagged);
         }
     }
@@ -91,8 +91,8 @@ class JsonAdaptedVolunteer {
         dietarypreference = source.getDietaryPreference().restriction;
         medicalcondition = source.getMedicalCondition().status;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -106,7 +106,7 @@ class JsonAdaptedVolunteer {
             volunteerTags.add(tag.toModelType());
         }
 
-        if (name == null) {
+        if (name==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
@@ -114,7 +114,7 @@ class JsonAdaptedVolunteer {
         }
         final Name modelName = new Name(name);
 
-        if (age == null) {
+        if (age==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
         if (!Age.isValidAge(age)) {
@@ -122,7 +122,7 @@ class JsonAdaptedVolunteer {
         }
         final Age modelAge = new Age(age);
 
-        if (gender == null) {
+        if (gender==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Race.class.getSimpleName()));
         }
         if (!Gender.isValidGender(gender)) {
@@ -130,7 +130,7 @@ class JsonAdaptedVolunteer {
         }
         final Gender modelGender = new Gender(gender);
 
-        if (race == null) {
+        if (race==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Race.class.getSimpleName()));
         }
         if (!Race.isValidRace(race)) {
@@ -138,7 +138,7 @@ class JsonAdaptedVolunteer {
         }
         final Race modelRace = new Race(race);
 
-        if (religion == null) {
+        if (religion==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Race.class.getSimpleName()));
         }
         if (!Religion.isValidReligion(religion)) {
@@ -146,7 +146,7 @@ class JsonAdaptedVolunteer {
         }
         final Religion modelReligion = new Religion(religion);
 
-        if (phone == null) {
+        if (phone==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
@@ -155,7 +155,7 @@ class JsonAdaptedVolunteer {
         final Phone modelPhone = new Phone(phone);
 
 
-        if (address == null) {
+        if (address==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
@@ -163,7 +163,7 @@ class JsonAdaptedVolunteer {
         }
         final Address modelAddress = new Address(address);
 
-        if (email == null) {
+        if (email==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
@@ -171,28 +171,28 @@ class JsonAdaptedVolunteer {
         }
         final Email modelEmail = new Email(email);
 
-        if (emergencycontact == null) {
+        if (emergencycontact==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    EmergencyContact.class.getSimpleName()));
+                EmergencyContact.class.getSimpleName()));
         }
         if (!EmergencyContact.isValidEmergencyContact(emergencycontact)) {
             throw new IllegalValueException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
         final EmergencyContact modelEmergencyContact = new EmergencyContact
-                (emergencycontact);
+            (emergencycontact);
 
-        if (dietarypreference == null) {
+        if (dietarypreference==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DietaryPreference.class.getSimpleName()));
+                DietaryPreference.class.getSimpleName()));
         }
         if (!DietaryPreference.isValidDietaryPreference(dietarypreference)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final DietaryPreference modelDietaryPreference = new DietaryPreference(dietarypreference);
 
-        if (medicalcondition == null) {
+        if (medicalcondition==null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    MedicalCondition.class.getSimpleName()));
+                MedicalCondition.class.getSimpleName()));
         }
         if (!MedicalCondition.isValidMedicalCondition(medicalcondition)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -201,8 +201,8 @@ class JsonAdaptedVolunteer {
 
         final Set<Tag> modelTags = new HashSet<>(volunteerTags);
         return new Volunteer(modelName, modelAge, modelGender, modelRace, modelReligion, modelPhone,
-                modelAddress, modelEmail,
-                modelEmergencyContact, modelDietaryPreference, modelMedicalCondition, modelTags);
+            modelAddress, modelEmail,
+            modelEmergencyContact, modelDietaryPreference, modelMedicalCondition, modelTags);
     }
 
 }

@@ -50,24 +50,24 @@ public class EditVolunteerCommand extends Command {
     public static final String COMMAND_WORD = "editVolunteer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the volunteer identified "
-            + "by the index number used in the displayed volunteer list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_AGE + "AGE] "
-            + "[" + PREFIX_GENDER + "AGE] "
-            + "[" + PREFIX_RACE + "RACE] "
-            + "[" + PREFIX_RELIGION + "AGE] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_EMERGENCY_CONTACT + "NAME, RELATIONSHIP, PHONE] "
-            + "[" + PREFIX_DIETARY_PREFERENCE + "PREFERENCE] "
-            + "[" + PREFIX_MEDICAL_CONDITION + "STATUS] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "by the index number used in the displayed volunteer list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_AGE + "AGE] "
+        + "[" + PREFIX_GENDER + "AGE] "
+        + "[" + PREFIX_RACE + "RACE] "
+        + "[" + PREFIX_RELIGION + "AGE] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_EMERGENCY_CONTACT + "NAME, RELATIONSHIP, PHONE] "
+        + "[" + PREFIX_DIETARY_PREFERENCE + "PREFERENCE] "
+        + "[" + PREFIX_MEDICAL_CONDITION + "STATUS] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_VOLUNTEER_SUCCESS = "Edited Volunteer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -93,8 +93,8 @@ public class EditVolunteerCommand extends Command {
      * edited with {@code editVolunteerDescriptor}.
      */
     private static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-            EditVolunteerDescriptor editVolunteerDescriptor) {
-        assert volunteerToEdit != null;
+        EditVolunteerDescriptor editVolunteerDescriptor) {
+        assert volunteerToEdit!=null;
 
         Name updatedName = editVolunteerDescriptor.getName().orElse(volunteerToEdit.getName());
         Age updatedAge = editVolunteerDescriptor.getAge().orElse(volunteerToEdit.getAge());
@@ -105,16 +105,16 @@ public class EditVolunteerCommand extends Command {
         Email updatedEmail = editVolunteerDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
         Address updatedAddress = editVolunteerDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
         EmergencyContact updatedEmergencyContact =
-                editVolunteerDescriptor.getEmergencyContact().orElse(volunteerToEdit.getEmergencyContact());
+            editVolunteerDescriptor.getEmergencyContact().orElse(volunteerToEdit.getEmergencyContact());
         DietaryPreference updatedDietaryPreference =
-                editVolunteerDescriptor.getDietaryPreference().orElse(volunteerToEdit.getDietaryPreference());
+            editVolunteerDescriptor.getDietaryPreference().orElse(volunteerToEdit.getDietaryPreference());
         MedicalCondition updatedMedicalCondition =
-                editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
+            editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
         Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
         return new Volunteer(updatedName, updatedAge, updatedGender, updatedRace, updatedReligion, updatedPhone,
-                updatedAddress, updatedEmail, updatedEmergencyContact, updatedDietaryPreference,
-                updatedMedicalCondition, updatedTags);
+            updatedAddress, updatedEmail, updatedEmergencyContact, updatedDietaryPreference,
+            updatedMedicalCondition, updatedTags);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class EditVolunteerCommand extends Command {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        if (other == this) {
+        if (other==this) {
             return true;
         }
 
@@ -154,7 +154,7 @@ public class EditVolunteerCommand extends Command {
         // state check
         EditVolunteerCommand e = (EditVolunteerCommand) other;
         return index.equals(e.index)
-                && editVolunteerDescriptor.equals(e.editVolunteerDescriptor);
+            && editVolunteerDescriptor.equals(e.editVolunteerDescriptor);
     }
 
     /**
@@ -298,7 +298,7 @@ public class EditVolunteerCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+            return (tags!=null) ? Optional.of(Collections.unmodifiableSet(tags)):Optional.empty();
         }
 
         /**
@@ -306,13 +306,13 @@ public class EditVolunteerCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = (tags!=null) ? new HashSet<>(tags):null;
         }
 
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
-            if (other == this) {
+            if (other==this) {
                 return true;
             }
 
@@ -325,17 +325,17 @@ public class EditVolunteerCommand extends Command {
             EditVolunteerDescriptor e = (EditVolunteerDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getAge().equals(e.getAge())
-                    && getGender().equals(e.getGender())
-                    && getRace().equals(e.getRace())
-                    && getReligion().equals(e.getReligion())
-                    && getPhone().equals(e.getPhone())
-                    && getAddress().equals(e.getAddress())
-                    && getEmail().equals(e.getEmail())
-                    && getEmergencyContact().equals(e.getEmergencyContact())
-                    && getDietaryPreference().equals(e.getDietaryPreference())
-                    && getMedicalCondition().equals(e.getMedicalCondition())
-                    && getTags().equals(e.getTags());
+                && getAge().equals(e.getAge())
+                && getGender().equals(e.getGender())
+                && getRace().equals(e.getRace())
+                && getReligion().equals(e.getReligion())
+                && getPhone().equals(e.getPhone())
+                && getAddress().equals(e.getAddress())
+                && getEmail().equals(e.getEmail())
+                && getEmergencyContact().equals(e.getEmergencyContact())
+                && getDietaryPreference().equals(e.getDietaryPreference())
+                && getMedicalCondition().equals(e.getMedicalCondition())
+                && getTags().equals(e.getTags());
         }
     }
 }

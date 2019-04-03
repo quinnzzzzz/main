@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ProjectDate {
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should only contain numbers in yyyymmdd format, and it should not be blank.";
+        "Dates should only contain numbers in yyyymmdd format, and it should not be blank.";
     public static final String VALIDATION_REGEX = "\\d{8,}";
     public final String fullDate;
 

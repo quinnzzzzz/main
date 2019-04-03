@@ -23,7 +23,7 @@ public class SelectVolunteerCommandParser implements Parser<SelectVolunteerComma
             return new SelectVolunteerCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectVolunteerCommand.MESSAGE_USAGE), pe);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectVolunteerCommand.MESSAGE_USAGE), pe);
         }
     }
 }

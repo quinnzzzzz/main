@@ -26,7 +26,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -57,7 +57,7 @@ public class UniquePersonList implements Iterable<Person> {
         requireAllNonNull(target, editedPerson);
 
         int index = internalList.indexOf(target);
-        if (index == -1) {
+        if (index==-1) {
             throw new PersonNotFoundException();
         }
 
@@ -111,9 +111,9 @@ public class UniquePersonList implements Iterable<Person> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                && internalList.equals(((UniquePersonList) other).internalList));
+        return other==this // short circuit if same object
+            || (other instanceof UniquePersonList // instanceof handles nulls
+            && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override

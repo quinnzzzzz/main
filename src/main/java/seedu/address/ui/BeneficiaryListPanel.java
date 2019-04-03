@@ -25,8 +25,8 @@ public class BeneficiaryListPanel extends UiPart<Region> {
 
 
     public BeneficiaryListPanel(ObservableList<Beneficiary> beneficiaryList,
-            ObservableValue<Beneficiary> selectedBeneficiary,
-            Consumer<Beneficiary> onSelectedBeneficiaryChange) {
+        ObservableValue<Beneficiary> selectedBeneficiary,
+        Consumer<Beneficiary> onSelectedBeneficiaryChange) {
         super(FXML);
         beneficiaryListView.setItems(beneficiaryList);
         beneficiaryListView.setCellFactory(listView -> new BeneficiaryListViewCell());
@@ -43,7 +43,7 @@ public class BeneficiaryListPanel extends UiPart<Region> {
                 return;
             }
 
-            if (newValue == null) {
+            if (newValue==null) {
                 beneficiaryListView.getSelectionModel().clearSelection();
             } else {
                 int index = beneficiaryListView.getItems().indexOf(newValue);
@@ -61,7 +61,7 @@ public class BeneficiaryListPanel extends UiPart<Region> {
         protected void updateItem(Beneficiary beneficiary, boolean empty) {
             super.updateItem(beneficiary, empty);
 
-            if (empty || beneficiary == null) {
+            if (empty || beneficiary==null) {
                 setGraphic(null);
                 setText(null);
             } else {

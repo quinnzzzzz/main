@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Age {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Age should be comprised of only positive numbers";
+        "Age should be comprised of only positive numbers";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -45,9 +45,9 @@ public class Age {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Age // instanceof handles nulls
-                && ageOutput.equals(((seedu.address.model.person.Age) other).ageOutput)); // state check
+        return other==this // short circuit if same object
+            || (other instanceof seedu.address.model.person.Age // instanceof handles nulls
+            && ageOutput.equals(((seedu.address.model.person.Age) other).ageOutput)); // state check
     }
 
     @Override

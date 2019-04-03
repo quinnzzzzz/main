@@ -57,11 +57,11 @@ public class VersionTest {
         // Tests equality
         one = new Version(0, 0, 0, true);
         another = new Version(0, 0, 0, true);
-        assertTrue(one.compareTo(another) == 0);
+        assertTrue(one.compareTo(another)==0);
 
         one = new Version(11, 12, 13, false);
         another = new Version(11, 12, 13, false);
-        assertTrue(one.compareTo(another) == 0);
+        assertTrue(one.compareTo(another)==0);
 
         // Tests different patch
         one = new Version(0, 0, 5, false);
@@ -133,7 +133,7 @@ public class VersionTest {
     }
 
     private void verifyVersionParsedCorrectly(String versionString,
-            int major, int minor, int patch, boolean isEarlyAccess) {
+        int major, int minor, int patch, boolean isEarlyAccess) {
         assertEquals(new Version(major, minor, patch, isEarlyAccess), Version.fromString(versionString));
     }
 }

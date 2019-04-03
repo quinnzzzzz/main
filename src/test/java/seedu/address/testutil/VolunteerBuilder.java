@@ -159,7 +159,7 @@ public class VolunteerBuilder {
 
     public Volunteer build() {
         return new Volunteer(name, age, gender, race, religion, phone, address, email,
-                emergencycontact, dietarypreference, medicalcondition, tags);
+            emergencycontact, dietarypreference, medicalcondition, tags);
     }
 
 }
