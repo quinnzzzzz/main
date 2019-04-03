@@ -33,8 +33,8 @@ public class Volunteer {
     /**
      * Every field must be present and not null.
      */
-    public Volunteer(Name name, Age age, Gender gender, Race race, Religion religion, Phone phone, Address address, Email email,
-                     EmergencyContact emergencycontact, DietaryPreference dietarypreference,
+    public Volunteer(Name name, Age age, Gender gender, Race race, Religion religion, Phone phone, Address address,
+                     Email email, EmergencyContact emergencycontact, DietaryPreference dietarypreference,
                      MedicalCondition medicalcondition, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;

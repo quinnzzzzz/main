@@ -178,8 +178,7 @@ class JsonAdaptedVolunteer {
         if (!EmergencyContact.isValidEmergencyContact(emergencycontact)) {
             throw new IllegalValueException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
-        final EmergencyContact modelEmergencyContact = new EmergencyContact
-            (emergencycontact);
+        final EmergencyContact modelEmergencyContact = new EmergencyContact(emergencycontact);
 
         if (dietarypreference == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

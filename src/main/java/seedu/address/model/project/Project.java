@@ -90,11 +90,6 @@ public class Project {
     public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
     }
-//
-//    public Name getBeneficiaryName(){
-//        if (beneficiary == null) return new Name("null");
-//        return beneficiary.getName();
-//    }
 
     @Override
     public String toString() {
