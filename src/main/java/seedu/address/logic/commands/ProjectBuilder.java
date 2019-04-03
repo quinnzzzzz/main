@@ -47,12 +47,12 @@ public class ProjectBuilder {
     }
 
     /**
-     *
      * @return a project
      */
     public Project build() {
         return new Project(projectTitle, projectDate, complete, beneficiaryAssigned);
     }
+
     /**
      * Sets the {@code ProjectTitle} of the {@code Project} that we are building.
      */
@@ -62,7 +62,6 @@ public class ProjectBuilder {
     }
 
     /**
-     *
      * @param beneficiary
      * @return ProjectBuilder
      */

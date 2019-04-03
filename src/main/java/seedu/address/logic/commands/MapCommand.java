@@ -8,7 +8,6 @@ import seedu.address.model.MapObject;
 import seedu.address.model.Model;
 
 
-
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  */
@@ -32,7 +31,6 @@ public class MapCommand extends Command {
         requireNonNull(newMap);
         map = newMap;
     }
-
 
 
     @Override

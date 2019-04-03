@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

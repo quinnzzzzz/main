@@ -15,7 +15,6 @@ public class DietaryPreference {
 
     /**
      * Constructs a {@code DietaryPreference}.
-     *
      */
     public DietaryPreference(String dietaryPreference) {
         requireNonNull(dietaryPreference);

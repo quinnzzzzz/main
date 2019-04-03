@@ -19,10 +19,9 @@ public class Beneficiary {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
-
     // Data fields
     private final Address address;
+    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
 
     /**
      * Every field must be present and not null.
@@ -56,7 +55,7 @@ public class Beneficiary {
      * Returns true if both Beneficiarys of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two Beneficiarys.
      */
-    public boolean isSameBeneficiary (Beneficiary otherBeneficiary) {
+    public boolean isSameBeneficiary(Beneficiary otherBeneficiary) {
         if (otherBeneficiary == this) {
             return true;
         }
@@ -98,14 +97,14 @@ public class Beneficiary {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-            .append(" Phone: ")
-            .append(getPhone())
-            .append(" Email: ")
-            .append(getEmail())
-            .append(" Address: ")
-            .append(getAddress())
-            .append( "Attached Project List: ")
-            .append(getAttachedProjectLists());
+                .append(" Phone: ")
+                .append(getPhone())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Address: ")
+                .append(getAddress())
+                .append("Attached Project List: ")
+                .append(getAttachedProjectLists());
         return builder.toString();
     }
 
@@ -152,8 +151,10 @@ public class Beneficiary {
         return this.attachedProjectList.contains(projectTitle);
     }
 
-    /**.
+    /**
+     * .
      * Get method for attached project list.
+     *
      * @return a set of project titles.
      */
     public Set<ProjectTitle> getAttachedProjectLists() {

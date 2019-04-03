@@ -77,7 +77,7 @@ public class EditVolunteerCommand extends Command {
     private final EditVolunteerDescriptor editVolunteerDescriptor;
 
     /**
-     * @param index of the volunteer in the filtered volunteer list to edit
+     * @param index                   of the volunteer in the filtered volunteer list to edit
      * @param editVolunteerDescriptor details to edit the volunteer with
      */
     public EditVolunteerCommand(Index index, EditVolunteerDescriptor editVolunteerDescriptor) {
@@ -86,28 +86,6 @@ public class EditVolunteerCommand extends Command {
 
         this.index = index;
         this.editVolunteerDescriptor = new EditVolunteerDescriptor(editVolunteerDescriptor);
-    }
-
-    @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        requireNonNull(model);
-        List<Volunteer> lastShownList = model.getFilteredVolunteerList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
-        }
-
-        Volunteer volunteerToEdit = lastShownList.get(index.getZeroBased());
-        Volunteer editedVolunteer = createEditedVolunteer(volunteerToEdit, editVolunteerDescriptor);
-
-        if (!volunteerToEdit.isSameVolunteer(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
-            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
-        }
-
-        model.setVolunteer(volunteerToEdit, editedVolunteer);
-        model.updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
     }
 
     /**
@@ -137,6 +115,28 @@ public class EditVolunteerCommand extends Command {
         return new Volunteer(updatedName, updatedAge, updatedGender, updatedRace, updatedReligion, updatedPhone,
                 updatedAddress, updatedEmail, updatedEmergencyContact, updatedDietaryPreference,
                 updatedMedicalCondition, updatedTags);
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
+        List<Volunteer> lastShownList = model.getFilteredVolunteerList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
+        }
+
+        Volunteer volunteerToEdit = lastShownList.get(index.getZeroBased());
+        Volunteer editedVolunteer = createEditedVolunteer(volunteerToEdit, editVolunteerDescriptor);
+
+        if (!volunteerToEdit.isSameVolunteer(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
+            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
+        }
+
+        model.setVolunteer(volunteerToEdit, editedVolunteer);
+        model.updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
+        model.commitAddressBook();
+        return new CommandResult(String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
     }
 
     @Override
@@ -175,7 +175,8 @@ public class EditVolunteerCommand extends Command {
         private MedicalCondition medicalcondition;
         private Set<Tag> tags;
 
-        public EditVolunteerDescriptor() {}
+        public EditVolunteerDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -203,85 +204,92 @@ public class EditVolunteerCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
         public void setName(Name name) {
             this.name = name;
         }
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+
+        public Optional<Age> getAge() {
+            return Optional.ofNullable(age);
         }
 
         public void setAge(Age age) {
             this.age = age;
         }
-        public Optional<Age> getAge() {
-            return Optional.ofNullable(age);
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
         }
 
         public void setGender(Gender gender) {
             this.gender = gender;
         }
-        public Optional<Gender> getGender() {
-            return Optional.ofNullable(gender);
+
+        public Optional<Race> getRace() {
+            return Optional.ofNullable(race);
         }
 
         public void setRace(Race race) {
             this.race = race;
         }
-        public Optional<Race> getRace() {
-            return Optional.ofNullable(race);
+
+        public Optional<Religion> getReligion() {
+            return Optional.ofNullable(religion);
         }
 
         public void setReligion(Religion religion) {
             this.religion = religion;
         }
-        public Optional<Religion> getReligion() { return Optional.ofNullable(religion); }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
 
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         public void setEmail(Email email) {
             this.email = email;
         }
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
         }
 
         public void setAddress(Address address) {
             this.address = address;
         }
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+
+        public Optional<EmergencyContact> getEmergencyContact() {
+            return Optional.ofNullable(emergencycontact);
         }
 
         public void setEmergencyContact(EmergencyContact emergencycontact) {
             this.emergencycontact = emergencycontact;
         }
-        public Optional<EmergencyContact> getEmergencyContact() {
-            return Optional.ofNullable(emergencycontact);
-        }
 
-        public void setDietaryPreference(DietaryPreference dietarypreference) {
-            this.dietarypreference = dietarypreference; }
         public Optional<DietaryPreference> getDietaryPreference() {
             return Optional.ofNullable(dietarypreference);
         }
 
-        public void setMedicalCondition(MedicalCondition medicalcondition) {
-            this.medicalcondition = medicalcondition;
+        public void setDietaryPreference(DietaryPreference dietarypreference) {
+            this.dietarypreference = dietarypreference;
         }
+
         public Optional<MedicalCondition> getMedicalCondition() {
             return Optional.ofNullable(medicalcondition);
         }
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+
+        public void setMedicalCondition(MedicalCondition medicalcondition) {
+            this.medicalcondition = medicalcondition;
         }
 
         /**
@@ -291,6 +299,14 @@ public class EditVolunteerCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override

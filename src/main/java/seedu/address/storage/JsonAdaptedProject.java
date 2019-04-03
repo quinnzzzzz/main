@@ -7,8 +7,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.ProjectDate;
+import seedu.address.model.project.ProjectTitle;
 
 
 /**
@@ -28,8 +28,7 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("project title") String projectTitle, @JsonProperty("project date") String projectDate,
-                                  @JsonProperty("complete") String complete, @JsonProperty("attached beneficiary") String beneficiaryAssigned)
-                                  {
+                              @JsonProperty("complete") String complete, @JsonProperty("attached beneficiary") String beneficiaryAssigned) {
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         this.complete = complete;

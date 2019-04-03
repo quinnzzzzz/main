@@ -4,16 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
@@ -24,7 +20,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
  * projects uses Project#isSameProject(Project) for equality so as to ensure that the project being added or updated is
  * unique in terms of identity in the UniqueProjectList. However, the removal of a project uses Project#equals(Object)
  * so as to ensure that the project with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Project#isSameProject(Project)
@@ -32,9 +28,9 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 public class UniqueProjectList implements Iterable<Project> {
 
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
-    private Map<ProjectTitle, Project> projectTitleProjectHashtable = new HashMap<>();
     private final ObservableList<Project> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private Map<ProjectTitle, Project> projectTitleProjectHashtable = new HashMap<>();
 
     /**
      * Returns true if the list contains an equivalent project as the given argument.

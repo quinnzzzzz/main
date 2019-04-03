@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.CompleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -19,11 +18,12 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the CompleteCommand
      * and returns an CompleteCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public CompleteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,PREFIX_INDEX);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {

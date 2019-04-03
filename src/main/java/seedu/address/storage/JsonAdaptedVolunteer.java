@@ -10,9 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-
 import seedu.address.model.tag.Tag;
-
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
@@ -25,7 +23,6 @@ import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.Religion;
 import seedu.address.model.volunteer.Volunteer;
-
 
 
 /**
@@ -53,9 +50,9 @@ class JsonAdaptedVolunteer {
      * Constructs a {@code JsonAdaptedVolunteer} with the given volunteer details.
      */
     @JsonCreator
-    public JsonAdaptedVolunteer (@JsonProperty("name") String name,  @JsonProperty("age") String age,
+    public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("age") String age,
                                 @JsonProperty("gender") String gender, @JsonProperty("race") String race,
-                                 @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
+                                @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("DietaryPreference") String dietarypreference,
                                 @JsonProperty("EmergencyContact") String emergencycontact,

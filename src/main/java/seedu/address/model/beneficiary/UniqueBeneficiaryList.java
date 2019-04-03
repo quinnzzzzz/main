@@ -19,7 +19,7 @@ import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
  * that the Beneficiary being added or updated is unique in terms of identity in the UniqueBeneficiaryList. However,
  * the removal of a Beneficiary uses Beneficiary#equals(Object) so as to ensure that the Beneficiary with exactly
  * the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Beneficiary#isSameBeneficiary(Beneficiary)
@@ -71,7 +71,7 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
         internalList.set(index, editedBeneficiary);
     }
 
-    public Beneficiary getBeneficiaryIndex (Index targetIndex) {
+    public Beneficiary getBeneficiaryIndex(Index targetIndex) {
         return internalList.get(targetIndex.getZeroBased());
     }
 
@@ -103,6 +103,7 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
 
         internalList.setAll(beneficiaries);
     }
+
     /**
      * Returns true if {@code beneficiaries} contains only unique beneficiaries.
      */

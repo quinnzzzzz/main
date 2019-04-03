@@ -17,7 +17,6 @@ public class MedicalCondition {
 
     /**
      * Constructs a {@code MedicalCondition}.
-     *
      */
     public MedicalCondition(String medicalcondition) {
         requireNonNull(medicalcondition);

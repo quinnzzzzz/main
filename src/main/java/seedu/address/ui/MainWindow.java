@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -29,12 +27,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.SummaryBeneficiaryCommand.SummarisedBeneficiary;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.project.ProjectTitle;
-import seedu.address.logic.commands.SummaryBeneficiaryCommand.SummarisedBeneficiary;
-import seedu.address.model.volunteer.Volunteer;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -106,6 +102,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -149,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
         volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
 
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(),
-                logic.selectedProjectProperty(),logic::setSelectedProject);
+                logic.selectedProjectProperty(), logic::setSelectedProject);
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -192,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
         TableView<SummarisedBeneficiary> table = new TableView<SummarisedBeneficiary>();
         List<Beneficiary> beneficiaryList = logic.getFilteredBeneficiaryList();
         List<SummarisedBeneficiary> data0 = new ArrayList<>();
-        for (Beneficiary beneficiary: beneficiaryList) {
+        for (Beneficiary beneficiary : beneficiaryList) {
             data0.add(new SummarisedBeneficiary(beneficiary));
         }
         final ObservableList<SummarisedBeneficiary> data = FXCollections.observableArrayList(data0);
@@ -261,7 +258,7 @@ public class MainWindow extends UiPart<Stage> {
         return beneficiaryListPanel;
     }
 
-    public  ProjectListPanel getProjectListPanel() {
+    public ProjectListPanel getProjectListPanel() {
         return projectListPanel;
     }
 

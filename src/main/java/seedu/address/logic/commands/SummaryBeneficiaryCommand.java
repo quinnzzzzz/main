@@ -41,7 +41,7 @@ public class SummaryBeneficiaryCommand extends Command {
 
         public SummarisedBeneficiary(Beneficiary beneficiary) {
             this.name = beneficiary.getName().fullName;
-            for (ProjectTitle project: beneficiary.getAttachedProjectLists()) {
+            for (ProjectTitle project : beneficiary.getAttachedProjectLists()) {
                 this.projectList.add(project.fullTitle);
             }
             this.numberOfProjects = Integer.toString(this.projectList.size());

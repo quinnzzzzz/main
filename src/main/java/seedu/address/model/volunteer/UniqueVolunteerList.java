@@ -18,7 +18,7 @@ import seedu.address.model.volunteer.exceptions.VolunteerNotFoundException;
  * so as to ensure that the volunteer being added or updated is unique in terms of identity in the
  * UniqueVolunteerList. However, the removal of a volunteer uses Volunteer#equals(Object) so
  * as to ensure that the volunteer with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Volunteer#isSameVolunteer(Volunteer)

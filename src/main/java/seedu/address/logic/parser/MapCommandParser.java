@@ -18,8 +18,20 @@ import seedu.address.model.MapObject;
 public class MapCommandParser implements Parser<MapCommand> {
 
     /**
+     * Returns true if the argMultimap contains any valid prefixes.
+     */
+    private static boolean noPrefixes(ArgumentMultimap argMultimap) {
+        if (argMultimap.getAllValues(PREFIX_YEAR).isEmpty() && argMultimap.getAllValues(PREFIX_RACE).isEmpty()
+                && argMultimap.getAllValues(PREFIX_MEDICAL).isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the MapCommand
      * and returns an MapCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public MapCommand parse(String args) throws ParseException {
@@ -35,18 +47,6 @@ public class MapCommandParser implements Parser<MapCommand> {
         }
         return new MapCommand(newMap);
     }
-
-    /**
-     * Returns true if the argMultimap contains any valid prefixes.
-     */
-    private static boolean noPrefixes(ArgumentMultimap argMultimap) {
-        if (argMultimap.getAllValues(PREFIX_YEAR).isEmpty() && argMultimap.getAllValues(PREFIX_RACE).isEmpty()
-                && argMultimap.getAllValues(PREFIX_MEDICAL).isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
 
     /**
      * Splits tokens into proper data for MapCommand() to handle

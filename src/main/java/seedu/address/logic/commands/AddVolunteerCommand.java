@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;

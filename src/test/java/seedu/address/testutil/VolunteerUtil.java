@@ -2,21 +2,21 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * A utility class for Volunteer.
@@ -45,7 +45,7 @@ public class VolunteerUtil {
         sb.append(PREFIX_DIETARY_PREFERENCE + volunteer.getDietaryPreference().restriction + " ");
         sb.append(PREFIX_MEDICAL_CONDITION + volunteer.getMedicalCondition().status + " ");
         volunteer.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }

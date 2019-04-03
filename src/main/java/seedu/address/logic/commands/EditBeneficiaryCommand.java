@@ -57,7 +57,7 @@ public class EditBeneficiaryCommand extends Command {
     private final EditBeneficiaryDescriptor editBeneficiaryDescriptor;
 
     /**
-     * @param index of the beneficiary in the filtered beneficiary list to edit
+     * @param index                     of the beneficiary in the filtered beneficiary list to edit
      * @param editBeneficiaryDescriptor details to edit the beneficiary with
      */
     public EditBeneficiaryCommand(Index index, EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
@@ -66,6 +66,22 @@ public class EditBeneficiaryCommand extends Command {
 
         this.index = index;
         this.editBeneficiaryDescriptor = new EditBeneficiaryDescriptor(editBeneficiaryDescriptor);
+    }
+
+    /**
+     * Creates and returns a {@code Beneficiary} with the details of {@code beneficiaryToEdit}
+     * edited with {@code editBeneficiaryDescriptor}.
+     */
+    private static Beneficiary createEditedBeneficiary(Beneficiary beneficiaryToEdit,
+                                                       EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
+        assert beneficiaryToEdit != null;
+
+        Name updatedName = editBeneficiaryDescriptor.getName().orElse(beneficiaryToEdit.getName());
+        Phone updatedPhone = editBeneficiaryDescriptor.getPhone().orElse(beneficiaryToEdit.getPhone());
+        Email updatedEmail = editBeneficiaryDescriptor.getEmail().orElse(beneficiaryToEdit.getEmail());
+        Address updatedAddress = editBeneficiaryDescriptor.getAddress().orElse(beneficiaryToEdit.getAddress());
+
+        return new Beneficiary(updatedName, updatedPhone, updatedEmail, updatedAddress);
     }
 
     @Override
@@ -85,8 +101,8 @@ public class EditBeneficiaryCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_BENEFICIARY);
         }
 
-        for(ProjectTitle attachedProject: beneficiaryToEdit.getAttachedProjectLists()) {
-            Predicate<Project> equalProjectTitle = x->x.getProjectTitle().equals(attachedProject.toString());
+        for (ProjectTitle attachedProject : beneficiaryToEdit.getAttachedProjectLists()) {
+            Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(attachedProject.toString());
             if (model.getFilteredProjectList().filtered(equalProjectTitle).size() != 0) {
                 Project project = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
                 project.setBeneficiary(editedBeneficiary.getName());
@@ -97,22 +113,6 @@ public class EditBeneficiaryCommand extends Command {
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_BENEFICIARY_SUCCESS, editedBeneficiary));
-    }
-
-    /**
-     * Creates and returns a {@code Beneficiary} with the details of {@code beneficiaryToEdit}
-     * edited with {@code editBeneficiaryDescriptor}.
-     */
-    private static Beneficiary createEditedBeneficiary(Beneficiary beneficiaryToEdit,
-                                                       EditBeneficiaryDescriptor editBeneficiaryDescriptor) {
-        assert beneficiaryToEdit != null;
-
-        Name updatedName = editBeneficiaryDescriptor.getName().orElse(beneficiaryToEdit.getName());
-        Phone updatedPhone = editBeneficiaryDescriptor.getPhone().orElse(beneficiaryToEdit.getPhone());
-        Email updatedEmail = editBeneficiaryDescriptor.getEmail().orElse(beneficiaryToEdit.getEmail());
-        Address updatedAddress = editBeneficiaryDescriptor.getAddress().orElse(beneficiaryToEdit.getAddress());
-
-        return new Beneficiary(updatedName, updatedPhone, updatedEmail, updatedAddress);
     }
 
     @Override
@@ -144,7 +144,8 @@ public class EditBeneficiaryCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditBeneficiaryDescriptor() {}
+        public EditBeneficiaryDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -165,44 +166,36 @@ public class EditBeneficiaryCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
         }
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setAddress(Address address) {
+            this.address = address;
         }
 
         /**
@@ -212,6 +205,14 @@ public class EditBeneficiaryCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override

@@ -14,6 +14,7 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteVolunteerCommand
      * and returns an DeleteVolunteerCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteVolunteerCommand parse(String args) throws ParseException {
