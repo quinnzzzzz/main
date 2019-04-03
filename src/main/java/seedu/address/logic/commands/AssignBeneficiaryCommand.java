@@ -35,7 +35,7 @@ public class AssignBeneficiaryCommand extends Command {
             + "[INDEX]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "Project Sunshine"
-            + "1 ";
+            + "i/1 ";
 
     public static final String MESSAGE_PARAMETERS = ASSIGNED_PROJECT_TITLE + "[PROJECT_TITLE] "
             + PREFIX_INDEX + "INDEX ";

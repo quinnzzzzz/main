@@ -28,7 +28,7 @@ public class CompleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Indicate a project as complete. "
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " i/1";
 
     public static final String MESSAGE_SUCCESS = "Project added to completes: %1$s";
 
