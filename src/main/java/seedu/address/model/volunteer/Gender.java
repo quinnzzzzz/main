@@ -21,9 +21,8 @@ public class Gender {
     public final String genderOutput;
 
     /**
-     * Constructs a {@code Gender).
-     *
-     * @param gender A valid gender.
+     * Gender constructor
+     * @param gender
      */
     public Gender(String gender) {
         requireNonNull(gender);
