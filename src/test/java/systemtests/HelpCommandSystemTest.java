@@ -71,7 +71,7 @@ public class HelpCommandSystemTest extends AddressBookSystemTest {
         executeCommand(HelpCommand.COMMAND_WORD);
 
         assertEquals(1, guiRobot.getNumberOfWindowsShown(HelpWindowHandle.HELP_WINDOW_TITLE));
-    }/*
+    }*/
 
     /**
      * Asserts that the help window is open, and closes it after checking.

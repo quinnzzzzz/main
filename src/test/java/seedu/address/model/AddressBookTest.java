@@ -25,10 +25,10 @@ import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
-
-    private final AddressBook addressBook = new AddressBook();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private final AddressBook addressBook = new AddressBook();
 
     @Test
     public void constructor() {

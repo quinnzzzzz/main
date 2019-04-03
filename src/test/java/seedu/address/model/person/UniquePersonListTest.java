@@ -21,9 +21,10 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private final UniquePersonList uniquePersonList = new UniquePersonList();
 
     @Test
     public void contains_nullPerson_throwsNullPointerException() {
