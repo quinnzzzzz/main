@@ -9,13 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class MedicalCondition {
     //field
     public static final String MESSAGE_CONSTRAINTS =
-            "Medical Conditions should not contain numbers";
+        "Medical Conditions should not contain numbers";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String status;
 
     /**
      * Constructs a {@code MedicalCondition}.
-     *
      */
     public MedicalCondition(String medicalCondition) {
         requireNonNull(medicalCondition);
@@ -38,8 +37,8 @@ public class MedicalCondition {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MedicalCondition // instanceof handles nulls
-                && status.equals(((MedicalCondition) other).status)); // state check
+            || (other instanceof MedicalCondition // instanceof handles nulls
+            && status.equals(((MedicalCondition) other).status)); // state check
     }
 
     @Override

@@ -4,16 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
@@ -24,7 +20,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
  * projects uses Project#isSameProject(Project) for equality so as to ensure that the project being added or updated is
  * unique in terms of identity in the UniqueProjectList. However, the removal of a project uses Project#equals(Object)
  * so as to ensure that the project with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Project#isSameProject(Project)
@@ -32,9 +28,9 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 public class UniqueProjectList implements Iterable<Project> {
 
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
-    private Map<ProjectTitle, Project> projectTitleProjectHashtable = new HashMap<>();
     private final ObservableList<Project> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
+    private Map<ProjectTitle, Project> projectTitleProjectHashtable = new HashMap<>();
 
     /**
      * Returns true if the list contains an equivalent project as the given argument.
@@ -88,8 +84,7 @@ public class UniqueProjectList implements Iterable<Project> {
         boolean success = internalList.remove(toRemove);
         if (!success) {
             throw new ProjectNotFoundException();
-        }
-        else {
+        } else {
             projectTitleProjectHashtable.remove(toRemove);
         }
     }
@@ -98,8 +93,8 @@ public class UniqueProjectList implements Iterable<Project> {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         projectTitleProjectHashtable.clear();
-        for(Map.Entry<ProjectTitle, Project> entry
-                : replacement.projectTitleProjectHashtable.entrySet()) {
+        for (Map.Entry<ProjectTitle, Project> entry
+            : replacement.projectTitleProjectHashtable.entrySet()) {
             projectTitleProjectHashtable.put(entry.getKey(), entry.getValue());
         }
     }
@@ -117,7 +112,7 @@ public class UniqueProjectList implements Iterable<Project> {
 
         internalList.setAll(projects);
         projectTitleProjectHashtable.clear();
-        for(Project entry : projects) {
+        for (Project entry : projects) {
             projectTitleProjectHashtable.put(entry.getProjectTitle(), entry);
         }
     }
@@ -137,8 +132,8 @@ public class UniqueProjectList implements Iterable<Project> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueProjectList // instanceof handles nulls
-                && internalList.equals(((UniqueProjectList) other).internalList));
+            || (other instanceof UniqueProjectList // instanceof handles nulls
+            && internalList.equals(((UniqueProjectList) other).internalList));
     }
 
     @Override

@@ -9,13 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class DietaryPreference {
     //field
     public static final String MESSAGE_CONSTRAINTS =
-            "Dietary Preference should not contain numbers";
+        "Dietary Preference should not contain numbers";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String restriction;
 
     /**
      * Constructs a {@code DietaryPreference}.
-     *
      */
     public DietaryPreference(String dietaryPreference) {
         requireNonNull(dietaryPreference);
@@ -38,8 +37,8 @@ public class DietaryPreference {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DietaryPreference // instanceof handles nulls
-                && restriction.equals(((DietaryPreference) other).restriction)); // state check
+            || (other instanceof DietaryPreference // instanceof handles nulls
+            && restriction.equals(((DietaryPreference) other).restriction)); // state check
     }
 
     @Override

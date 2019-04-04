@@ -55,8 +55,8 @@ class JsonAdaptedBeneficiary {
         email = source.getEmail().value;
         address = source.getAddress().value;
         attachedProjects.addAll(source.getAttachedProjectLists().stream()
-                .map(JsonAdaptedProjectTitle::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedProjectTitle::new)
+            .collect(Collectors.toList()));
     }
 
     /**

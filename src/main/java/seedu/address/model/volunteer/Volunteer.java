@@ -22,21 +22,20 @@ public class Volunteer {
     private final Religion religion;
     private final Phone phone;
     private final Email email;
-
-
-    // Data fields
-    private int points;
     private final EmergencyContact emergencycontact;
     private final Address address;
     private final DietaryPreference dietarypreference;
     private final MedicalCondition medicalcondition;
     private final Set<Tag> tags = new HashSet<>();
+    // Data fields
+    private int points;
+
     /**
      * Every field must be present and not null.
      */
-    public Volunteer(Name name, Age age, Gender gender, Race race, Religion religion, Phone phone, Address address, Email email,
-                     EmergencyContact emergencycontact, DietaryPreference dietarypreference,
-                     MedicalCondition medicalcondition , Set<Tag> tags) {
+    public Volunteer(Name name, Age age, Gender gender, Race race, Religion religion, Phone phone, Address address,
+                     Email email, EmergencyContact emergencycontact, DietaryPreference dietarypreference,
+                     MedicalCondition medicalcondition, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.age = age;
@@ -52,39 +51,50 @@ public class Volunteer {
         this.medicalcondition = medicalcondition;
         this.points = 0;
     }
+
     public Name getName() {
         return name;
     }
 
     public Age getAge() {
-        return age; }
+        return age;
+    }
 
-    public Gender getGender(){
-        return gender; }
+    public Gender getGender() {
+        return gender;
+    }
 
     public Race getRace() {
-        return race; }
+        return race;
+    }
 
-    public Religion getReligion(){
-        return religion; }
+    public Religion getReligion() {
+        return religion;
+    }
 
     public Phone getPhone() {
-        return phone; }
+        return phone;
+    }
 
     public Email getEmail() {
-        return email; }
+        return email;
+    }
 
     public Address getAddress() {
-        return address; }
+        return address;
+    }
 
     public DietaryPreference getDietaryPreference() {
-        return dietarypreference; }
+        return dietarypreference;
+    }
 
     public EmergencyContact getEmergencyContact() {
-        return emergencycontact; }
+        return emergencycontact;
+    }
 
     public MedicalCondition getMedicalCondition() {
-        return medicalcondition; }
+        return medicalcondition;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -104,8 +114,8 @@ public class Volunteer {
         }
 
         return otherVolunteer != null
-                && otherVolunteer.getName().equals(getName())
-                && (otherVolunteer.getPhone().equals(getPhone()) || otherVolunteer.getEmail().equals(getEmail()));
+            && otherVolunteer.getName().equals(getName())
+            && (otherVolunteer.getPhone().equals(getPhone()) || otherVolunteer.getEmail().equals(getEmail()));
     }
 
     /**
@@ -125,7 +135,7 @@ public class Volunteer {
     /**
      * Resets (@code points)
      */
-    public void resetPoints(){
+    public void resetPoints() {
         points = 0;
     }
 
@@ -145,53 +155,52 @@ public class Volunteer {
 
         Volunteer otherVolunteer = (Volunteer) other;
         return otherVolunteer.getName().equals(getName())
-                && otherVolunteer.getAge().equals(getAge())
-                && otherVolunteer.getRace().equals(getRace())
-                && otherVolunteer.getPhone().equals(getPhone())
-                && otherVolunteer.getAddress().equals(getAddress())
-                && otherVolunteer.getEmail().equals(getEmail())
-                && otherVolunteer.getDietaryPreference().equals(getDietaryPreference())
-                && otherVolunteer.getMedicalCondition().equals(getMedicalCondition())
-                && otherVolunteer.getEmergencyContact().equals(getEmergencyContact())
-                && otherVolunteer.getTags().equals(getTags());
+            && otherVolunteer.getAge().equals(getAge())
+            && otherVolunteer.getRace().equals(getRace())
+            && otherVolunteer.getPhone().equals(getPhone())
+            && otherVolunteer.getAddress().equals(getAddress())
+            && otherVolunteer.getEmail().equals(getEmail())
+            && otherVolunteer.getDietaryPreference().equals(getDietaryPreference())
+            && otherVolunteer.getMedicalCondition().equals(getMedicalCondition())
+            && otherVolunteer.getEmergencyContact().equals(getEmergencyContact())
+            && otherVolunteer.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() { //To change later***
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, race, age, phone, address, email,
-                emergencycontact, dietarypreference, medicalcondition, tags);
+            emergencycontact, dietarypreference, medicalcondition, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Age: ")
-                .append(getAge())
-                .append(" Gender: ")
-                .append(getGender())
-                .append(" Race: ")
-                .append(getRace())
-                .append(" Religion: ")
-                .append(getReligion())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append("Medical Condition: ")
-                .append(getMedicalCondition())
-                .append("Emergency Contact: ")
-                .append(getEmergencyContact())
-                .append ("Dietary Preference: ")
-                .append(getDietaryPreference())
-                .append(" Tags: ");
+            .append(" Age: ")
+            .append(getAge())
+            .append(" Gender: ")
+            .append(getGender())
+            .append(" Race: ")
+            .append(getRace())
+            .append(" Religion: ")
+            .append(getReligion())
+            .append(" Phone: ")
+            .append(getPhone())
+            .append(" Email: ")
+            .append(getEmail())
+            .append(" Address: ")
+            .append(getAddress())
+            .append("Medical Condition: ")
+            .append(getMedicalCondition())
+            .append("Emergency Contact: ")
+            .append(getEmergencyContact())
+            .append("Dietary Preference: ")
+            .append(getDietaryPreference())
+            .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
-
 
 
 }

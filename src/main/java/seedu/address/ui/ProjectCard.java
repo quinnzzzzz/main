@@ -2,12 +2,9 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
-import seedu.address.model.beneficiary.Name;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -38,14 +35,12 @@ public class ProjectCard extends UiPart<Region> {
     private Label beneficiary;
 
 
-
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
         projectTitle.setText(project.getProjectTitle().fullTitle);
         if (project.isComplete()) {
-//            System.out.println(project.isComplete());
             projectTitle.setStyle("-fx-font-family: Segoe UI Semibold; -fx-font-size: 15pt; -fx-text-fill: #FF0000;");
         }
         projectDate.setText("Project Date: " + project.getProjectDate().fullDate);
@@ -67,5 +62,6 @@ public class ProjectCard extends UiPart<Region> {
         // state check
         ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project);}
+            && project.equals(card.project);
+    }
 }

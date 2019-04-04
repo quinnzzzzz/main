@@ -4,11 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
 
 /**
@@ -21,10 +19,9 @@ public class Beneficiary {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
-
     // Data fields
     private final Address address;
+    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
 
     /**
      * Every field must be present and not null.
@@ -64,9 +61,9 @@ public class Beneficiary {
         }
 
         return otherBeneficiary != null
-                && (otherBeneficiary.getName().equals(getName())
-                || otherBeneficiary.getPhone().equals(getPhone())
-                || otherBeneficiary.getEmail().equals(getEmail()));
+            && (otherBeneficiary.getName().equals(getName())
+            || otherBeneficiary.getPhone().equals(getPhone())
+            || otherBeneficiary.getEmail().equals(getEmail()));
     }
 
     /**
@@ -85,9 +82,9 @@ public class Beneficiary {
 
         Beneficiary otherBeneficiary = (Beneficiary) other;
         return otherBeneficiary.getName().equals(getName())
-                || otherBeneficiary.getPhone().equals(getPhone())
-                || otherBeneficiary.getEmail().equals(getEmail())
-                || otherBeneficiary.getAddress().equals(getAddress());
+            || otherBeneficiary.getPhone().equals(getPhone())
+            || otherBeneficiary.getEmail().equals(getEmail())
+            || otherBeneficiary.getAddress().equals(getAddress());
     }
 
     @Override
@@ -100,14 +97,14 @@ public class Beneficiary {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append( "Attached Project List: ")
-                .append(getAttachedProjectLists());
+            .append(" Phone: ")
+            .append(getPhone())
+            .append(" Email: ")
+            .append(getEmail())
+            .append(" Address: ")
+            .append(getAddress())
+            .append("Attached Project List: ")
+            .append(getAttachedProjectLists());
         return builder.toString();
     }
 
@@ -154,8 +151,10 @@ public class Beneficiary {
         return this.attachedProjectList.contains(projectTitle);
     }
 
-    /**.
+    /**
+     * .
      * Get method for attached project list.
+     *
      * @return a set of project titles.
      */
     public Set<ProjectTitle> getAttachedProjectLists() {

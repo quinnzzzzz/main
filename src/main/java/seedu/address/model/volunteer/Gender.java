@@ -8,10 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: mutable; is valid as declared in {@link #isValidGender(String)}
  */
 
-public class Gender{
+public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender should be only M or F";
+        "Gender should be only M or F";
 
     /*
      * the gender parameter must be m or f
@@ -21,9 +21,8 @@ public class Gender{
     public final String genderOutput;
 
     /**
-     * Constructs a {@code Gender).
-     *
-     * @param gender A valid gender.
+     * Gender constructor
+     * @param gender
      */
     public Gender(String gender) {
         requireNonNull(gender);
@@ -47,8 +46,8 @@ public class Gender{
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.volunteer.Gender // instanceof handles nulls
-                && genderOutput.equals(((seedu.address.model.volunteer.Gender) other).genderOutput)); // state check
+            || (other instanceof seedu.address.model.volunteer.Gender // instanceof handles nulls
+            && genderOutput.equals(((seedu.address.model.volunteer.Gender) other).genderOutput)); // state check
     }
 
     @Override

@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -13,26 +11,18 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-
-//import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.project.exceptions.DuplicateProjectException;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
-import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -44,17 +34,14 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Project> filteredProjects;
-    private final SimpleObjectProperty<Project> selectedProject= new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Project> selectedProject = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
 
     private final FilteredList<Volunteer> filteredVolunteers;
     private final SimpleObjectProperty<Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
-    private SortedList<Volunteer> sortedVolunteers;
-
-
-
     private final FilteredList<Beneficiary> filteredBeneficiaries;
     private final SimpleObjectProperty<Beneficiary> selectedBeneficiary = new SimpleObjectProperty<>();
+    private SortedList<Volunteer> sortedVolunteers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -87,14 +74,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -122,13 +109,13 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        versionedAddressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return versionedAddressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return versionedAddressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        versionedAddressBook.resetData(addressBook);
     }
 
     @Override
@@ -142,11 +129,13 @@ public class ModelManager implements Model {
         requireNonNull(beneficiary);
         return versionedAddressBook.hasBeneficiary(beneficiary);
     }
+
     @Override
     public boolean hasProject(Project project) {
         requireNonNull(project);
         return versionedAddressBook.hasProject(project);
     }
+
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
@@ -180,16 +169,12 @@ public class ModelManager implements Model {
         updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
     }
 
-//    @Override
-//    public boolean checkBeneficiary (ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
-//        return versionedAddressBook.checkBeneficiaryForProject(projectTitle,targetBeneficiaryIndex);
-//    }
-
     @Override
     public void addProject(Project project) {
         versionedAddressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -211,7 +196,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setProject(Project targetProject, Project editedProject){
+    public void setProject(Project targetProject, Project editedProject) {
         requireNonNull(editedProject);
         versionedAddressBook.setProject(targetProject, editedProject);
     }
@@ -330,12 +315,11 @@ public class ModelManager implements Model {
     }
 
 
-
     /**
      * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
     public int checkAge(MapObject map, Volunteer currentVol) {
-        switch(map.getComparator()) {
+        switch (map.getComparator()) {
 
         case "<":
             if (Integer.parseInt(currentVol.getAge().toString()) < map.getAgePair().getValue()) {
@@ -401,9 +385,8 @@ public class ModelManager implements Model {
      * and returns a (@code sortedList)
      */
     public void sortVolunteers() {
-        sortedVolunteers = versionedAddressBook.getVolunteerList().sorted(
-                (new Comparator<Volunteer>() {
-            public  int compare (Volunteer s1, Volunteer s2) {
+        sortedVolunteers = versionedAddressBook.getVolunteerList().sorted((new Comparator<Volunteer>() {
+            public int compare(Volunteer s1, Volunteer s2) {
                 return s2.getPoints() - s1.getPoints();
             }
         }));
@@ -421,7 +404,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedVolunteerReplaced =
-                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
                     && change.getRemoved().contains(selectedVolunteer.getValue());
             if (wasSelectedVolunteerReplaced) {
                 // Update selectedVolunteer to its new value.
@@ -431,7 +414,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedVolunteerRemoved = change.getRemoved().stream()
-                    .anyMatch(removedVolunteer -> selectedVolunteer.getValue().isSameVolunteer(removedVolunteer));
+                .anyMatch(removedVolunteer -> selectedVolunteer.getValue().isSameVolunteer(removedVolunteer));
             if (wasSelectedVolunteerRemoved) {
                 // Select the volunteer that came before it in the list,
                 // or clear the selection if there is no such volunteer.
@@ -448,7 +431,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyProperty<Project> selectedProjectProperty() {return selectedProject; }
+    public ReadOnlyProperty<Project> selectedProjectProperty() {
+        return selectedProject;
+    }
 
     @Override
     public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
@@ -461,16 +446,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Project getSelectedProject() {
-        return selectedProject.getValue();
-    }
-    @Override
-    public Beneficiary getSelectedBeneficiary() {
-        return selectedBeneficiary.getValue();
-    }
-
-
-    @Override
     public void setSelectedPerson(Person person) {
         if (person != null && !filteredPersons.contains(person)) {
             throw new PersonNotFoundException();
@@ -479,11 +454,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setSelectedProject (Project project) {
+    public Project getSelectedProject() {
+        return selectedProject.getValue();
+    }
+
+    @Override
+    public void setSelectedProject(Project project) {
         if (project != null && !filteredProjects.contains(project)) {
             throw new PersonNotFoundException();
         }
         selectedProject.setValue(project);
+    }
+
+    @Override
+    public Beneficiary getSelectedBeneficiary() {
+        return selectedBeneficiary.getValue();
     }
 
     @Override
@@ -505,8 +490,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedBeneficiaryReplaced = change.wasReplaced()
-                    && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedBeneficiary.getValue());
+                && change.getAddedSize() == change.getRemovedSize()
+                && change.getRemoved().contains(selectedBeneficiary.getValue());
             if (wasSelectedBeneficiaryReplaced) {
                 // Update selectedPerson to its new value.
                 int index = change.getRemoved().indexOf(selectedBeneficiary.getValue());
@@ -515,8 +500,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedBeneficiaryRemoved = change.getRemoved().stream()
-                    .anyMatch(removedBeneficiary -> selectedBeneficiary.getValue()
-                            .isSameBeneficiary(removedBeneficiary));
+                .anyMatch(removedBeneficiary -> selectedBeneficiary.getValue()
+                    .isSameBeneficiary(removedBeneficiary));
             if (wasSelectedBeneficiaryRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
@@ -536,7 +521,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedPerson.getValue());
+                && change.getRemoved().contains(selectedPerson.getValue());
             if (wasSelectedPersonReplaced) {
                 // Update selectedPerson to its new value.
                 int index = change.getRemoved().indexOf(selectedPerson.getValue());
@@ -545,7 +530,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedPersonRemoved = change.getRemoved().stream()
-                    .anyMatch(removedPerson -> selectedPerson.getValue().isSamePerson(removedPerson));
+                .anyMatch(removedPerson -> selectedPerson.getValue().isSamePerson(removedPerson));
             if (wasSelectedPersonRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
@@ -564,8 +549,9 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedProjectReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedProject.getValue());
+            boolean wasSelectedProjectReplaced = change.wasReplaced() && change.getAddedSize() == change
+                .getRemovedSize()
+                && change.getRemoved().contains(selectedProject.getValue());
             if (wasSelectedProjectReplaced) {
                 // Update selectedProject to its new value.
                 int index = change.getRemoved().indexOf(selectedProject.getValue());
@@ -574,7 +560,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedProjectRemoved = change.getRemoved().stream()
-                    .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
+                .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
             if (wasSelectedProjectRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
@@ -582,6 +568,7 @@ public class ModelManager implements Model {
             }
         }
     }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -597,11 +584,11 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return versionedAddressBook.equals(other.versionedAddressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && filteredProjects.equals(other.filteredProjects)
-                && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
-               // && Objects.equals(selectedProject.get(), other,selectedProject.get());
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons)
+            && filteredProjects.equals(other.filteredProjects)
+            && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
+        // && Objects.equals(selectedProject.get(), other,selectedProject.get());
     }
 
 }

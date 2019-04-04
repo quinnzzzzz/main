@@ -3,18 +3,15 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
@@ -48,7 +45,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         beneficiaries = new UniqueBeneficiaryList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -73,6 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.projects.setProjects(projects);
         indicateModified();
     }
+
     @Override
     public ObservableList<Beneficiary> getBeneficiaryList() {
         return beneficiaries.asUnmodifiableObservableList();
@@ -84,7 +83,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Project> getProjectList() { return projects.asUnmodifiableObservableList(); }
+    public ObservableList<Project> getProjectList() {
+        return projects.asUnmodifiableObservableList();
+    }
 
     /**
      * Replaces the contents of the Beneficiary list with {@code beneficiaries}.
@@ -94,6 +95,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.beneficiaries.setBeneficiaries(beneficiaries);
         indicateModified();
     }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -114,6 +116,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
+
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the address book.
      */
@@ -130,6 +133,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return beneficiaries.contains(beneficiary);
     }
 
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     */
     public boolean hasProject(Project project) {
         requireNonNull(project);
         return projects.contains(project);
@@ -161,6 +167,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.addProject(r);
         indicateModified();
     }
+
     /**
      * Adds a beneficiary to the address book.
      * The beneficiary must not already exist in the address book.
@@ -198,11 +205,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
         requireNonNull(editedBeneficiary);
-        Set<ProjectTitle> projectTitleList = target.getAttachedProjectLists();
-//        projects.updateBeneficiary(editedBeneficiary, projectTitleList);
         beneficiaries.setBeneficiary(target, editedBeneficiary);
         indicateModified();
     }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -211,6 +217,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
         indicateModified();
     }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -220,6 +227,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.remove(key);
         indicateModified();
     }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -262,9 +270,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons))
-                && projects.equals(((AddressBook) other).projects);
+            || (other instanceof AddressBook // instanceof handles nulls
+            && persons.equals(((AddressBook) other).persons))
+            && projects.equals(((AddressBook) other).projects);
     }
 
     @Override
@@ -297,13 +305,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setProject(Project target, Project edited)
         throws DuplicateProjectException, ProjectNotFoundException {
         requireNonNull(edited);
-        projects.setProject(target,edited);
-        }
+        projects.setProject(target, edited);
     }
+}
 
-    /**
-     * command
-     */
+/**
+ * command
+ */
 //    public boolean checkBeneficiaryForProject(ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
 //        Beneficiary beneficiary = beneficiaries.getBeneficiaryIndex(targetBeneficiaryIndex);
 //        Beneficiary beneficiaryCopy = beneficiary;

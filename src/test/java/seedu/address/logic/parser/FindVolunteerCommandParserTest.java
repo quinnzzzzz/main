@@ -18,14 +18,14 @@ public class FindVolunteerCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, FindVolunteerCommand.MESSAGE_USAGE));
+            MESSAGE_INVALID_COMMAND_FORMAT, FindVolunteerCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindVolunteerCommand() {
         // no leading and trailing whitespaces
         FindVolunteerCommand expectedFindVolunteerCommand =
-                new FindVolunteerCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+            new FindVolunteerCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindVolunteerCommand);
 
         // multiple whitespaces between keywords

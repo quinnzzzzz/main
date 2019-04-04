@@ -23,6 +23,7 @@ public class Complete {
 
     /**
      * Returns true if a given string is a valid boolean string.
+     *
      * @param test
      */
     public static Boolean isValidBoolean(String test) {
@@ -41,8 +42,8 @@ public class Complete {
     @Override
     public boolean equals(Object obj) {
         return obj == this // short circuit if same object
-                || obj instanceof Complete
-                && value.equals(((Complete) obj).value);
+            || obj instanceof Complete
+            && value.equals(((Complete) obj).value);
     }
 
     @Override

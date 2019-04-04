@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EmergencyContact {
     //field
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+        "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -39,8 +39,8 @@ public class EmergencyContact {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EmergencyContact // instanceof handles nulls
-                && value.equals(((EmergencyContact) other).value)); // state check
+            || (other instanceof EmergencyContact // instanceof handles nulls
+            && value.equals(((EmergencyContact) other).value)); // state check
     }
 
     @Override

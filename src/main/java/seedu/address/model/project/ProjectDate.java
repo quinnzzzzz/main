@@ -1,17 +1,15 @@
 package seedu.address.model.project;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * This is the Date for the project
  * format is yyyymmdd
- *
  */
 public class ProjectDate {
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should only contain numbers in yyyymmdd format, and it should not be blank.";
+        "Dates should only contain numbers in yyyymmdd format, and it should not be blank.";
     public static final String VALIDATION_REGEX = "\\d{8,}";
     public final String fullDate;
 
@@ -35,6 +33,6 @@ public class ProjectDate {
 
     @Override
     public String toString() {
-        return "Date: "+ fullDate;
+        return "Date: " + fullDate;
     }
 }

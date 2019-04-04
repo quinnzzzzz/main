@@ -64,6 +64,6 @@ public class BeneficiaryCard extends UiPart<Region> {
         // state check
         BeneficiaryCard card = (BeneficiaryCard) other;
         return id.getText().equals(card.id.getText())
-                && beneficiary.equals(card.beneficiary);
+            && beneficiary.equals(card.beneficiary);
     }
 }

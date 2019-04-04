@@ -2,21 +2,21 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
-import seedu.address.model.volunteer.Volunteer;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * A utility class for Volunteer.
@@ -60,9 +60,12 @@ public class VolunteerUtil {
         descriptor.getRace().ifPresent(race -> sb.append(PREFIX_RACE).append(race.raceOutput).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getEmergencyContact().ifPresent(emergency_contact -> sb.append(PREFIX_EMERGENCY_CONTACT).append(emergency_contact.value).append(" "));
-        descriptor.getDietaryPreference().ifPresent(dietary_preference -> sb.append(PREFIX_DIETARY_PREFERENCE).append(dietary_preference.restriction).append(" "));
-        descriptor.getMedicalCondition().ifPresent(medicalcondition -> sb.append(PREFIX_MEDICAL_CONDITION).append(medicalcondition.status).append(" "));
+        descriptor.getEmergencyContact().ifPresent(emergency_contact -> sb.append(PREFIX_EMERGENCY_CONTACT)
+            .append(emergency_contact.value).append(" "));
+        descriptor.getDietaryPreference().ifPresent(dietary_preference -> sb.append(PREFIX_DIETARY_PREFERENCE)
+            .append(dietary_preference.restriction).append(" "));
+        descriptor.getMedicalCondition().ifPresent(medicalcondition -> sb.append(PREFIX_MEDICAL_CONDITION)
+            .append(medicalcondition.status).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

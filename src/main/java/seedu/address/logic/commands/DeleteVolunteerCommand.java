@@ -19,9 +19,9 @@ public class DeleteVolunteerCommand extends Command {
     public static final String COMMAND_WORD = "deleteVolunteer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the volunteer identified by the index number used in the displayed volunteer list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+        + ": Deletes the volunteer identified by the index number used in the displayed volunteer list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_VOLUNTEER_SUCCESS = "Deleted Volunteer: %1$s";
 
@@ -49,7 +49,7 @@ public class DeleteVolunteerCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteVolunteerCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteVolunteerCommand) other).targetIndex)); // state check
+            || (other instanceof DeleteVolunteerCommand // instanceof handles nulls
+            && targetIndex.equals(((DeleteVolunteerCommand) other).targetIndex)); // state check
     }
 }

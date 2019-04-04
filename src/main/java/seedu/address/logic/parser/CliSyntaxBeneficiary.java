@@ -15,5 +15,5 @@ public class CliSyntaxBeneficiary extends CliSyntax {
     public static final Prefix PREFIX_INDEX = new Prefix("i/");
     public static final Prefix ASSIGNED_PROJECT_TITLE = new Prefix("p/");
     public static final Beneficiary NULL_BENEFICIARY = new Beneficiary(new Name("null"), new Phone("12345678"),
-            new Email("null@null.com"), new Address("null"));
+        new Email("null@null.com"), new Address("null"));
 }

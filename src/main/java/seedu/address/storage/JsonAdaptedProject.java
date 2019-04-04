@@ -7,8 +7,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.ProjectDate;
+import seedu.address.model.project.ProjectTitle;
 
 
 /**
@@ -27,9 +27,10 @@ class JsonAdaptedProject {
      * Constructs a {@code JsonAdaptedProject} with the given project details.
      */
     @JsonCreator
-    public JsonAdaptedProject(@JsonProperty("project title") String projectTitle, @JsonProperty("project date") String projectDate,
-                                  @JsonProperty("complete") String complete, @JsonProperty("attached beneficiary") String beneficiaryAssigned)
-                                  {
+    public JsonAdaptedProject(@JsonProperty("project title") String projectTitle,
+                              @JsonProperty("project date") String projectDate,
+                              @JsonProperty("complete") String complete,
+                              @JsonProperty("attached beneficiary") String beneficiaryAssigned) {
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         this.complete = complete;
@@ -54,7 +55,8 @@ class JsonAdaptedProject {
     public Project toModelType() throws IllegalValueException {
 
         if (projectTitle == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectTitle.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ProjectTitle.class.getSimpleName()));
         }
         if (!ProjectTitle.isValidName(projectTitle)) {
             throw new IllegalValueException(ProjectTitle.MESSAGE_PROJECT_TITLE_CONSTRAINTS);
@@ -62,7 +64,8 @@ class JsonAdaptedProject {
         final ProjectTitle modelProjectTitle = new ProjectTitle(projectTitle);
 
         if (projectDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ProjectDate.class.getSimpleName()));
         }
         if (!ProjectDate.isValidDate(projectDate)) {
             throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
@@ -70,7 +73,8 @@ class JsonAdaptedProject {
         final ProjectDate modelProjectDate = new ProjectDate(projectDate);
 
         if (complete == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Complete.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Complete.class.getSimpleName()));
         }
         if (!Complete.isValidBoolean(complete)) {
             throw new IllegalValueException(Complete.MESSAGE_CONSTRAINTS);

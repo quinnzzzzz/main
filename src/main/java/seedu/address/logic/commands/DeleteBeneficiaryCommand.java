@@ -19,14 +19,14 @@ public class DeleteBeneficiaryCommand extends Command {
     public static final String COMMAND_WORD = "deleteBeneficiary";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the beneficiary identified by the index number used in the displayed beneficiary list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+        + ": Deletes the beneficiary identified by the index number used in the displayed beneficiary list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_BENEFICIARY_SUCCESS = "Deleted Beneficiary: %1$s";
 
     public static final String MESSAGE_BENEFICIARY_HAS_PROJECTS_ATTACHED = "%1$s has this/these projects: %2$s"
-            + " attached to it, please delete them before delete the beneficiary.";
+        + " attached to it, please delete them before delete the beneficiary.";
 
     private final Index targetIndex;
 
@@ -46,8 +46,8 @@ public class DeleteBeneficiaryCommand extends Command {
         Beneficiary beneficiaryToDelete = lastShownList.get(targetIndex.getZeroBased());
         if (beneficiaryToDelete.hasAttachedProjects()) {
             throw new CommandException(String.format(MESSAGE_BENEFICIARY_HAS_PROJECTS_ATTACHED,
-                    beneficiaryToDelete.getName(),
-                    beneficiaryToDelete.getAttachedProjectLists()));
+                beneficiaryToDelete.getName(),
+                beneficiaryToDelete.getAttachedProjectLists()));
         }
 
         model.deleteBeneficiary(beneficiaryToDelete);
@@ -58,7 +58,7 @@ public class DeleteBeneficiaryCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteBeneficiaryCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteBeneficiaryCommand) other).targetIndex)); // state check
+            || (other instanceof DeleteBeneficiaryCommand // instanceof handles nulls
+            && targetIndex.equals(((DeleteBeneficiaryCommand) other).targetIndex)); // state check
     }
 }

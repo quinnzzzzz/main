@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ProjectTitle {
 
     public static final String MESSAGE_PROJECT_TITLE_CONSTRAINTS =
-            "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -51,7 +51,7 @@ public class ProjectTitle {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ProjectTitle// instanceof handles nulls
-                && fullTitle.equals(((ProjectTitle) other).fullTitle)); // state check
+            || (other instanceof ProjectTitle// instanceof handles nulls
+            && fullTitle.equals(((ProjectTitle) other).fullTitle)); // state check
     }
 }

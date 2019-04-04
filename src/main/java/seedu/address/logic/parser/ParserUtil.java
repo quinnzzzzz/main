@@ -1,12 +1,8 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -19,6 +15,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -30,14 +27,12 @@ public class ParserUtil {
     }
 
     /**
-     *
      * checks @param testingString and returns true if the string can be converted to an integer
      */
     public static boolean isValidInt(String testingString) {
         try {
             Integer.parseInt(testingString);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
         return true;

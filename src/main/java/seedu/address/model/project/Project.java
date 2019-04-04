@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
 import seedu.address.model.beneficiary.Name;
 
 
@@ -32,7 +33,7 @@ public class Project {
     /**
      * When beneficiaryAssigned is not initialised.
      */
-    public Project(ProjectTitle projectTitle, ProjectDate projectDate,Complete complete) {
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete) {
         requireAllNonNull(projectTitle, projectDate, complete);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
@@ -53,7 +54,7 @@ public class Project {
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
-    public Project(ProjectTitle projectTitle, ProjectDate projectDate,Complete complete, Name beneficiaryAssigned) {
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete, Name beneficiaryAssigned) {
         requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
@@ -71,7 +72,9 @@ public class Project {
         return projectDate;
     }
 
-    public Complete getComplete() { return complete; }
+    public Complete getComplete() {
+        return complete;
+    }
 
     public Name getBeneficiaryAssigned() {
         return beneficiaryAssigned;
@@ -84,24 +87,19 @@ public class Project {
         return complete.isComplete();
     }
 
-    public void setBeneficiary (Name beneficiary) {
+    public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
     }
-//
-//    public Name getBeneficiaryName(){
-//        if (beneficiary == null) return new Name("null");
-//        return beneficiary.getName();
-//    }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectTitle())
-                .append(" Project Date: ")
-                .append(getProjectDate())
-                .append(" Beneficiary: ")
-                .append(getBeneficiaryAssigned())
-                .append("\n");
+            .append(" Project Date: ")
+            .append(getProjectDate())
+            .append(" Beneficiary: ")
+            .append(getBeneficiaryAssigned())
+            .append("\n");
         return builder.toString();
     }
 
@@ -115,8 +113,8 @@ public class Project {
         }
 
         return otherProject != null
-                && otherProject.getProjectTitle().equals(getProjectTitle())
-                || (otherProject.getProjectDate().equals(getProjectDate()));
+            && otherProject.getProjectTitle().equals(getProjectTitle())
+            || (otherProject.getProjectDate().equals(getProjectDate()));
     }
 
     /**
@@ -133,12 +131,12 @@ public class Project {
         }
         Project otherProject = (Project) other;
         return otherProject.getProjectTitle().equals(getProjectTitle())
-                || otherProject.getProjectDate().equals(getProjectDate());
+            || otherProject.getProjectDate().equals(getProjectDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectTitle,projectDate,complete,beneficiaryAssigned);
+        return Objects.hash(projectTitle, projectDate, complete, beneficiaryAssigned);
     }
 }
 
