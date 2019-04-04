@@ -20,7 +20,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    private final List<String> history; 
+    private final List<String> history;
     private ListElementPointer historySnapshot;
 
     @FXML
