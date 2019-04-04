@@ -22,7 +22,7 @@ import seedu.address.model.project.ProjectTitle;
  */
 public class AssignBeneficiaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "assign";
+    public static final String COMMAND_WORD = "assignB";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a beneficiary to a project, "
             + "only 1 beneficiary can be assigned to each project.\n"
