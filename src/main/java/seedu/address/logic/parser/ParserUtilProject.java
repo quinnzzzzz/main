@@ -9,9 +9,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+<<<<<<< HEAD
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+=======
+import seedu.address.commons.exceptions.IllegalValueException;
+>>>>>>> master
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
@@ -51,6 +55,7 @@ public class ParserUtilProject extends ParserUtil {
         }
         return new ProjectTitle(trimmedProjectTitle);
     }
+
     /**
      * Parses {@code String oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing
      * whitespaces will be trimmed.

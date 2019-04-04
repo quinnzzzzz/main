@@ -31,7 +31,10 @@ public class Volunteer {
     private final Set<Tag> tags = new HashSet<>();
     // Data fields
     private int points;
+<<<<<<< HEAD
     private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
+=======
+>>>>>>> master
 
     /**
      * Every field must be present and not null.

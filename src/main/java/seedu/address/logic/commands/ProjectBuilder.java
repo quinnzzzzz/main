@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import java.util.List;
-
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
