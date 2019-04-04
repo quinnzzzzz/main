@@ -10,9 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-
 import seedu.address.model.tag.Tag;
-
 import seedu.address.model.volunteer.Address;
 import seedu.address.model.volunteer.Age;
 import seedu.address.model.volunteer.DietaryPreference;
@@ -25,7 +23,6 @@ import seedu.address.model.volunteer.Phone;
 import seedu.address.model.volunteer.Race;
 import seedu.address.model.volunteer.Religion;
 import seedu.address.model.volunteer.Volunteer;
-
 
 
 /**
@@ -53,9 +50,9 @@ class JsonAdaptedVolunteer {
      * Constructs a {@code JsonAdaptedVolunteer} with the given volunteer details.
      */
     @JsonCreator
-    public JsonAdaptedVolunteer (@JsonProperty("name") String name,  @JsonProperty("age") String age,
+    public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("age") String age,
                                 @JsonProperty("gender") String gender, @JsonProperty("race") String race,
-                                 @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
+                                @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("DietaryPreference") String dietarypreference,
                                 @JsonProperty("EmergencyContact") String emergencycontact,
@@ -94,8 +91,8 @@ class JsonAdaptedVolunteer {
         dietarypreference = source.getDietaryPreference().restriction;
         medicalcondition = source.getMedicalCondition().status;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -176,17 +173,16 @@ class JsonAdaptedVolunteer {
 
         if (emergencycontact == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    EmergencyContact.class.getSimpleName()));
+                EmergencyContact.class.getSimpleName()));
         }
         if (!EmergencyContact.isValidEmergencyContact(emergencycontact)) {
             throw new IllegalValueException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
-        final EmergencyContact modelEmergencyContact = new EmergencyContact
-                (emergencycontact);
+        final EmergencyContact modelEmergencyContact = new EmergencyContact(emergencycontact);
 
         if (dietarypreference == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DietaryPreference.class.getSimpleName()));
+                DietaryPreference.class.getSimpleName()));
         }
         if (!DietaryPreference.isValidDietaryPreference(dietarypreference)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -195,7 +191,7 @@ class JsonAdaptedVolunteer {
 
         if (medicalcondition == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    MedicalCondition.class.getSimpleName()));
+                MedicalCondition.class.getSimpleName()));
         }
         if (!MedicalCondition.isValidMedicalCondition(medicalcondition)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -204,8 +200,8 @@ class JsonAdaptedVolunteer {
 
         final Set<Tag> modelTags = new HashSet<>(volunteerTags);
         return new Volunteer(modelName, modelAge, modelGender, modelRace, modelReligion, modelPhone,
-                modelAddress, modelEmail,
-                modelEmergencyContact, modelDietaryPreference, modelMedicalCondition, modelTags);
+            modelAddress, modelEmail,
+            modelEmergencyContact, modelDietaryPreference, modelMedicalCondition, modelTags);
     }
 
 }

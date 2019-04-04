@@ -14,6 +14,7 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteVolunteerCommand
      * and returns an DeleteVolunteerCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteVolunteerCommand parse(String args) throws ParseException {
@@ -22,7 +23,7 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
             return new DeleteVolunteerCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVolunteerCommand.MESSAGE_USAGE), pe);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVolunteerCommand.MESSAGE_USAGE), pe);
         }
     }
 

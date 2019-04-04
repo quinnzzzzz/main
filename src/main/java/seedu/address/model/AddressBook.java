@@ -4,18 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.UniqueBeneficiaryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
@@ -136,6 +133,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return beneficiaries.contains(beneficiary);
     }
 
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     */
     public boolean hasProject(Project project) {
         requireNonNull(project);
         return projects.contains(project);
@@ -205,8 +205,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
         requireNonNull(editedBeneficiary);
-        Set<ProjectTitle> projectTitleList = target.getAttachedProjectLists();
-//        projects.updateBeneficiary(editedBeneficiary, projectTitleList);
         beneficiaries.setBeneficiary(target, editedBeneficiary);
         indicateModified();
     }
@@ -272,9 +270,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons))
-                && projects.equals(((AddressBook) other).projects);
+            || (other instanceof AddressBook // instanceof handles nulls
+            && persons.equals(((AddressBook) other).persons))
+            && projects.equals(((AddressBook) other).projects);
     }
 
     @Override
@@ -313,12 +311,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void sortVolunteers() {
         volunteers.sortByPoints();
+
     }
 
+
 }
-    /**
-     * command
-     */
 //    public boolean checkBeneficiaryForProject(ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
 //        Beneficiary beneficiary = beneficiaries.getBeneficiaryIndex(targetBeneficiaryIndex);
 //        Beneficiary beneficiaryCopy = beneficiary;

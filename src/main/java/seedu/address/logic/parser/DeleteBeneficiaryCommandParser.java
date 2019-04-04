@@ -14,6 +14,7 @@ public class DeleteBeneficiaryCommandParser implements Parser<DeleteBeneficiaryC
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteBeneficiaryCommand
      * and returns an DeleteBeneficiaryCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteBeneficiaryCommand parse(String args) throws ParseException {
@@ -22,7 +23,7 @@ public class DeleteBeneficiaryCommandParser implements Parser<DeleteBeneficiaryC
             return new DeleteBeneficiaryCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBeneficiaryCommand.MESSAGE_USAGE), pe);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBeneficiaryCommand.MESSAGE_USAGE), pe);
         }
     }
 

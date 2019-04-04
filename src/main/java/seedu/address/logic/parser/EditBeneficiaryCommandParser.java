@@ -21,12 +21,13 @@ public class EditBeneficiaryCommandParser implements Parser<EditBeneficiaryComma
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditBeneficiaryCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
@@ -34,7 +35,7 @@ public class EditBeneficiaryCommandParser implements Parser<EditBeneficiaryComma
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditBeneficiaryCommand.MESSAGE_USAGE), pe);
+                EditBeneficiaryCommand.MESSAGE_USAGE), pe);
         }
 
         EditBeneficiaryDescriptor editBeneficiaryDescriptor = new EditBeneficiaryDescriptor();
@@ -43,15 +44,15 @@ public class EditBeneficiaryCommandParser implements Parser<EditBeneficiaryComma
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editBeneficiaryDescriptor.setPhone(ParserUtilBeneficiary.parsePhone(argMultimap
-                    .getValue(PREFIX_PHONE).get()));
+                .getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editBeneficiaryDescriptor.setEmail(ParserUtilBeneficiary.parseEmail(argMultimap
-                    .getValue(PREFIX_EMAIL).get()));
+                .getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editBeneficiaryDescriptor.setAddress(ParserUtilBeneficiary.parseAddress(argMultimap
-                    .getValue(PREFIX_ADDRESS).get()));
+                .getValue(PREFIX_ADDRESS).get()));
         }
 
         if (!editBeneficiaryDescriptor.isAnyFieldEdited()) {

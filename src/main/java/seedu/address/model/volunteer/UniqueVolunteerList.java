@@ -19,7 +19,7 @@ import seedu.address.model.volunteer.exceptions.VolunteerNotFoundException;
  * so as to ensure that the volunteer being added or updated is unique in terms of identity in the
  * UniqueVolunteerList. However, the removal of a volunteer uses Volunteer#equals(Object) so
  * as to ensure that the volunteer with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Volunteer#isSameVolunteer(Volunteer)
@@ -30,7 +30,7 @@ public class UniqueVolunteerList implements Iterable<Volunteer> {
 
     private final ObservableList<Volunteer> internalList = FXCollections.observableArrayList();
     private final ObservableList<Volunteer> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent volunteer as the given argument.
@@ -125,8 +125,8 @@ public class UniqueVolunteerList implements Iterable<Volunteer> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.volunteer.UniqueVolunteerList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.volunteer.UniqueVolunteerList) other).internalList));
+            || (other instanceof seedu.address.model.volunteer.UniqueVolunteerList // instanceof handles nulls
+            && internalList.equals(((seedu.address.model.volunteer.UniqueVolunteerList) other).internalList));
     }
 
     @Override

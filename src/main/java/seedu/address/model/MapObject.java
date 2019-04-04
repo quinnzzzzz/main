@@ -8,17 +8,16 @@ import javafx.util.Pair;
  */
 public class MapObject {
 
-    //pair field for points ranking and criteria
-    private Pair<Integer, Integer> agePair = new Pair<>(0, 0);
-    private Pair<Integer, String> racePair = new Pair<>(0, "");
-    private Pair<Integer, String> medicalPair = new Pair<>(0, "");
-    private String comparator;
-
     //empty pairs for nil criterion
     private final Pair<Integer, Integer> nullAgePair = new Pair<>(0, 0);
     private final Pair<Integer, String> nullRacePair = new Pair<>(0, "");
     private final Pair<Integer, String> nullMedicalPair = new Pair<>(0, "");
     private final String nullComparator = "";
+    //pair field for points ranking and criteria
+    private Pair<Integer, Integer> agePair = new Pair<>(0, 0);
+    private Pair<Integer, String> racePair = new Pair<>(0, "");
+    private Pair<Integer, String> medicalPair = new Pair<>(0, "");
+    private String comparator;
 
     /**
      * at least one field must be present and not null.

@@ -19,10 +19,10 @@ public class SummaryBeneficiaryCommand extends Command {
     public static final String COMMAND_WORD = "summaryBeneficiary";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Summary statistics details of beneficiary list "
-            + "based on projects attached to them";
+        + "based on projects attached to them";
 
     public static final String MESSAGE_SUMMARY_BENEFICIARY_SUCCESS = "Beneficiaries are summarised, and shown on "
-            + "pop up table";
+        + "pop up table";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
@@ -30,6 +30,9 @@ public class SummaryBeneficiaryCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUMMARY_BENEFICIARY_SUCCESS), true);
     }
 
+    /**
+     * Class to do summary of beneficiary
+     */
     public static class SummarisedBeneficiary {
 
         private final String name;
@@ -38,7 +41,7 @@ public class SummaryBeneficiaryCommand extends Command {
 
         public SummarisedBeneficiary(Beneficiary beneficiary) {
             this.name = beneficiary.getName().fullName;
-            for (ProjectTitle project: beneficiary.getAttachedProjectLists()) {
+            for (ProjectTitle project : beneficiary.getAttachedProjectLists()) {
                 this.projectList.add(project.fullTitle);
             }
             this.numberOfProjects = Integer.toString(this.projectList.size());

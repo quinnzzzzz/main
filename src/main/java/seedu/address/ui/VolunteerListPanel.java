@@ -7,12 +7,9 @@ import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.volunteer.Volunteer;
 
@@ -27,9 +24,8 @@ public class VolunteerListPanel extends UiPart<Region> {
     private ListView<Volunteer> volunteerListView;
 
 
-
     public VolunteerListPanel(ObservableList<Volunteer> volunteerList, ObservableValue<Volunteer> selectedVolunteer,
-            Consumer<Volunteer> onSelectedVolunteerChange) {
+                              Consumer<Volunteer> onSelectedVolunteerChange) {
         super(FXML);
         volunteerListView.setItems(volunteerList);
         volunteerListView.setCellFactory(listView -> new VolunteerListViewCell());

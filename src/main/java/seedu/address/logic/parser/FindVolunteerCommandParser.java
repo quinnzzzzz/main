@@ -16,13 +16,14 @@ public class FindVolunteerCommandParser implements Parser<FindVolunteerCommand> 
     /**
      * Parses the given {@code String} of arguments in the context of the FindVolunteerCommand
      * and returns an FindVolunteerCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindVolunteerCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindVolunteerCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindVolunteerCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");

@@ -56,7 +56,6 @@ public class VolunteerCard extends UiPart<Region> {
     public VolunteerCard(Volunteer volunteer, int displayedIndex) {
         super(FXML);
         this.volunteer = volunteer;
-        System.out.println(volunteer);
         id.setText(displayedIndex + ". ");
         name.setText(volunteer.getName().fullName);
         age.setText("Age: " + volunteer.getAge().ageOutput);
@@ -87,6 +86,6 @@ public class VolunteerCard extends UiPart<Region> {
         // state check
         VolunteerCard card = (VolunteerCard) other;
         return id.getText().equals(card.id.getText())
-                && volunteer.equals(card.volunteer);
+            && volunteer.equals(card.volunteer);
     }
 }

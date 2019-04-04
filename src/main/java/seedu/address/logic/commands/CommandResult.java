@@ -11,13 +11,19 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private boolean showHelp = false;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private boolean exit = false;
 
-    /** Pop up for beneficiary summary command. */
+    /**
+     * Pop up for beneficiary summary command.
+     */
     private boolean showBeneficiarySummary = false;
 
     /**
@@ -33,18 +39,21 @@ public class CommandResult {
         this.showBeneficiarySummary = showBeneficiarySummary;
     }
 
-    public boolean isShowBeneficiarySummary() {
-        return showBeneficiarySummary;
-    }
-
-    public void resetShowBeneficiarySummary() {showBeneficiarySummary = false;}
-
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
+    }
+
+
+    public boolean isShowBeneficiarySummary() {
+        return showBeneficiarySummary;
+    }
+
+    public void resetShowBeneficiarySummary() {
+        showBeneficiarySummary = false;
     }
 
     public String getFeedbackToUser() {
@@ -72,8 +81,8 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+            && showHelp == otherCommandResult.showHelp
+            && exit == otherCommandResult.exit;
     }
 
     @Override

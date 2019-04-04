@@ -50,24 +50,24 @@ public class EditVolunteerCommand extends Command {
     public static final String COMMAND_WORD = "editVolunteer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the volunteer identified "
-            + "by the index number used in the displayed volunteer list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_AGE + "AGE] "
-            + "[" + PREFIX_GENDER + "AGE] "
-            + "[" + PREFIX_RACE + "RACE] "
-            + "[" + PREFIX_RELIGION + "AGE] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_EMERGENCY_CONTACT + "NAME, RELATIONSHIP, PHONE] "
-            + "[" + PREFIX_DIETARY_PREFERENCE + "PREFERENCE] "
-            + "[" + PREFIX_MEDICAL_CONDITION + "STATUS] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "by the index number used in the displayed volunteer list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_AGE + "AGE] "
+        + "[" + PREFIX_GENDER + "AGE] "
+        + "[" + PREFIX_RACE + "RACE] "
+        + "[" + PREFIX_RELIGION + "AGE] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_EMERGENCY_CONTACT + "NAME, RELATIONSHIP, PHONE] "
+        + "[" + PREFIX_DIETARY_PREFERENCE + "PREFERENCE] "
+        + "[" + PREFIX_MEDICAL_CONDITION + "STATUS] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_VOLUNTEER_SUCCESS = "Edited Volunteer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -77,7 +77,7 @@ public class EditVolunteerCommand extends Command {
     private final EditVolunteerDescriptor editVolunteerDescriptor;
 
     /**
-     * @param index of the volunteer in the filtered volunteer list to edit
+     * @param index                   of the volunteer in the filtered volunteer list to edit
      * @param editVolunteerDescriptor details to edit the volunteer with
      */
     public EditVolunteerCommand(Index index, EditVolunteerDescriptor editVolunteerDescriptor) {
@@ -86,6 +86,35 @@ public class EditVolunteerCommand extends Command {
 
         this.index = index;
         this.editVolunteerDescriptor = new EditVolunteerDescriptor(editVolunteerDescriptor);
+    }
+
+    /**
+     * Creates and returns a {@code Volunteer} with the details of {@code volunteerToEdit}
+     * edited with {@code editVolunteerDescriptor}.
+     */
+    private static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
+                                                   EditVolunteerDescriptor editVolunteerDescriptor) {
+        assert volunteerToEdit != null;
+
+        Name updatedName = editVolunteerDescriptor.getName().orElse(volunteerToEdit.getName());
+        Age updatedAge = editVolunteerDescriptor.getAge().orElse(volunteerToEdit.getAge());
+        Gender updatedGender = editVolunteerDescriptor.getGender().orElse(volunteerToEdit.getGender());
+        Race updatedRace = editVolunteerDescriptor.getRace().orElse(volunteerToEdit.getRace());
+        Religion updatedReligion = editVolunteerDescriptor.getReligion().orElse(volunteerToEdit.getReligion());
+        Phone updatedPhone = editVolunteerDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
+        Email updatedEmail = editVolunteerDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
+        Address updatedAddress = editVolunteerDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
+        EmergencyContact updatedEmergencyContact =
+            editVolunteerDescriptor.getEmergencyContact().orElse(volunteerToEdit.getEmergencyContact());
+        DietaryPreference updatedDietaryPreference =
+            editVolunteerDescriptor.getDietaryPreference().orElse(volunteerToEdit.getDietaryPreference());
+        MedicalCondition updatedMedicalCondition =
+            editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
+        Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
+
+        return new Volunteer(updatedName, updatedAge, updatedGender, updatedRace, updatedReligion, updatedPhone,
+            updatedAddress, updatedEmail, updatedEmergencyContact, updatedDietaryPreference,
+            updatedMedicalCondition, updatedTags);
     }
 
     @Override
@@ -110,35 +139,6 @@ public class EditVolunteerCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
     }
 
-    /**
-     * Creates and returns a {@code Volunteer} with the details of {@code volunteerToEdit}
-     * edited with {@code editVolunteerDescriptor}.
-     */
-    private static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-                                                   EditVolunteerDescriptor editVolunteerDescriptor) {
-        assert volunteerToEdit != null;
-
-        Name updatedName = editVolunteerDescriptor.getName().orElse(volunteerToEdit.getName());
-        Age updatedAge = editVolunteerDescriptor.getAge().orElse(volunteerToEdit.getAge());
-        Gender updatedGender = editVolunteerDescriptor.getGender().orElse(volunteerToEdit.getGender());
-        Race updatedRace = editVolunteerDescriptor.getRace().orElse(volunteerToEdit.getRace());
-        Religion updatedReligion = editVolunteerDescriptor.getReligion().orElse(volunteerToEdit.getReligion());
-        Phone updatedPhone = editVolunteerDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
-        Email updatedEmail = editVolunteerDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
-        Address updatedAddress = editVolunteerDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
-        EmergencyContact updatedEmergencyContact =
-                editVolunteerDescriptor.getEmergencyContact().orElse(volunteerToEdit.getEmergencyContact());
-        DietaryPreference updatedDietaryPreference =
-                editVolunteerDescriptor.getDietaryPreference().orElse(volunteerToEdit.getDietaryPreference());
-        MedicalCondition updatedMedicalCondition =
-                editVolunteerDescriptor.getMedicalCondition().orElse(volunteerToEdit.getMedicalCondition());
-        Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
-
-        return new Volunteer(updatedName, updatedAge, updatedGender, updatedRace, updatedReligion, updatedPhone,
-                updatedAddress, updatedEmail, updatedEmergencyContact, updatedDietaryPreference,
-                updatedMedicalCondition, updatedTags);
-    }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -154,7 +154,7 @@ public class EditVolunteerCommand extends Command {
         // state check
         EditVolunteerCommand e = (EditVolunteerCommand) other;
         return index.equals(e.index)
-                && editVolunteerDescriptor.equals(e.editVolunteerDescriptor);
+            && editVolunteerDescriptor.equals(e.editVolunteerDescriptor);
     }
 
     /**
@@ -175,7 +175,8 @@ public class EditVolunteerCommand extends Command {
         private MedicalCondition medicalcondition;
         private Set<Tag> tags;
 
-        public EditVolunteerDescriptor() {}
+        public EditVolunteerDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -203,85 +204,92 @@ public class EditVolunteerCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
         public void setName(Name name) {
             this.name = name;
         }
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+
+        public Optional<Age> getAge() {
+            return Optional.ofNullable(age);
         }
 
         public void setAge(Age age) {
             this.age = age;
         }
-        public Optional<Age> getAge() {
-            return Optional.ofNullable(age);
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
         }
 
         public void setGender(Gender gender) {
             this.gender = gender;
         }
-        public Optional<Gender> getGender() {
-            return Optional.ofNullable(gender);
+
+        public Optional<Race> getRace() {
+            return Optional.ofNullable(race);
         }
 
         public void setRace(Race race) {
             this.race = race;
         }
-        public Optional<Race> getRace() {
-            return Optional.ofNullable(race);
+
+        public Optional<Religion> getReligion() {
+            return Optional.ofNullable(religion);
         }
 
         public void setReligion(Religion religion) {
             this.religion = religion;
         }
-        public Optional<Religion> getReligion() { return Optional.ofNullable(religion); }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
 
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         public void setEmail(Email email) {
             this.email = email;
         }
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
         }
 
         public void setAddress(Address address) {
             this.address = address;
         }
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+
+        public Optional<EmergencyContact> getEmergencyContact() {
+            return Optional.ofNullable(emergencycontact);
         }
 
         public void setEmergencyContact(EmergencyContact emergencycontact) {
             this.emergencycontact = emergencycontact;
         }
-        public Optional<EmergencyContact> getEmergencyContact() {
-            return Optional.ofNullable(emergencycontact);
-        }
 
-        public void setDietaryPreference(DietaryPreference dietarypreference) {
-            this.dietarypreference = dietarypreference; }
         public Optional<DietaryPreference> getDietaryPreference() {
             return Optional.ofNullable(dietarypreference);
         }
 
-        public void setMedicalCondition(MedicalCondition medicalcondition) {
-            this.medicalcondition = medicalcondition;
+        public void setDietaryPreference(DietaryPreference dietarypreference) {
+            this.dietarypreference = dietarypreference;
         }
+
         public Optional<MedicalCondition> getMedicalCondition() {
             return Optional.ofNullable(medicalcondition);
         }
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+
+        public void setMedicalCondition(MedicalCondition medicalcondition) {
+            this.medicalcondition = medicalcondition;
         }
 
         /**
@@ -291,6 +299,14 @@ public class EditVolunteerCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override
@@ -309,17 +325,17 @@ public class EditVolunteerCommand extends Command {
             EditVolunteerDescriptor e = (EditVolunteerDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getAge().equals(e.getAge())
-                    && getGender().equals(e.getGender())
-                    && getRace().equals(e.getRace())
-                    && getReligion().equals(e.getReligion())
-                    && getPhone().equals(e.getPhone())
-                    && getAddress().equals(e.getAddress())
-                    && getEmail().equals(e.getEmail())
-                    && getEmergencyContact().equals(e.getEmergencyContact())
-                    && getDietaryPreference().equals(e.getDietaryPreference())
-                    && getMedicalCondition().equals(e.getMedicalCondition())
-                    && getTags().equals(e.getTags());
+                && getAge().equals(e.getAge())
+                && getGender().equals(e.getGender())
+                && getRace().equals(e.getRace())
+                && getReligion().equals(e.getReligion())
+                && getPhone().equals(e.getPhone())
+                && getAddress().equals(e.getAddress())
+                && getEmail().equals(e.getEmail())
+                && getEmergencyContact().equals(e.getEmergencyContact())
+                && getDietaryPreference().equals(e.getDietaryPreference())
+                && getMedicalCondition().equals(e.getMedicalCondition())
+                && getTags().equals(e.getTags());
         }
     }
 }

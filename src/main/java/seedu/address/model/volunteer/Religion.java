@@ -45,8 +45,8 @@ public class Religion {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.volunteer.Religion // instanceof handles nulls
-                && religionOutput.equals(((seedu.address.model.volunteer.Religion) other).religionOutput)); // state check
+            || (other instanceof seedu.address.model.volunteer.Religion // instanceof handles nulls
+            && religionOutput.equals(((seedu.address.model.volunteer.Religion) other).religionOutput)); // state check
     }
 
     @Override
