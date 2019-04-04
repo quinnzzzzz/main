@@ -103,7 +103,6 @@ public class Project {
     public List<Volunteer> getVolunteerList() {
         return volunteerList;
     }
-
     /**
      * Returns true if Project has completed, else returns false.
      */
@@ -111,10 +110,10 @@ public class Project {
         return complete.isComplete();
     }
     /**
-     * Replace the default Volunteer List.
+     * Add volunteer into Volunteer List.
      */
-    public void addAttachedVolunteer(List<Volunteer> volunteerList){
-        this.volunteerList = volunteerList;
+    public void addAttachedVolunteer(Volunteer volunteer){
+        this.volunteerList.add(volunteer);
     }
 
     public void setBeneficiary(Name beneficiary) {

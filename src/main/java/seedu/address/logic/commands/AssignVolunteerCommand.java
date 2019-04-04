@@ -68,7 +68,7 @@ public class AssignVolunteerCommand extends Command {
         String successfulVolunteerAssignedMessage = new String();
         requireNonNull(model);
         List<Volunteer> lastShownList = model.getFilteredVolunteerList();
-        System.out.println("testing");
+//        System.out.println("size is" + lastShownList.size());
         Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(targetProject);
         if (model.getFilteredProjectList().filtered(equalProjectTitle).size() == 0) {
             throw new CommandException("Project does not exist.");
@@ -77,27 +77,30 @@ public class AssignVolunteerCommand extends Command {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
             if(requiredVolunteers == 1){
                 volunteersToAssign = lastShownList.subList(0,1);
-                System.out.println("test");
-                System.out.println(volunteersToAssign.get(0).getName());
+//                System.out.println(volunteersToAssign.get(0).getName());
             }
             else {
                 if(requiredVolunteers > lastShownList.size()){
-                    System.out.println("testing");
                     throw new CommandException(Messages.MESSAGE_NOT_ENOUGH_VOLUNTEERS);
                 }
+                if(requiredVolunteers == lastShownList.size()){
+                    volunteersToAssign = lastShownList;
+                }
                 else {
-                    volunteersToAssign = lastShownList.subList(0, requiredVolunteers);
-                    System.out.println(volunteersToAssign.get(0).getName());
+                    volunteersToAssign = lastShownList.subList(0, (requiredVolunteers+1));
+//                    System.out.println(volunteersToAssign.get(0).getName());
                     for(Volunteer volunteer : volunteersToAssign) {
                         if (!volunteer.hasProjectTitle(targetProject)) {
                             volunteer.addAttachedProject(targetProject);
                         }
+                        editedProject.addAttachedVolunteer(volunteer);
                     }
                 }
             }
         }
-            this.editedProject = new ProjectBuilder(this.projectToAssign).withVolunteer(volunteersToAssign).build();
-            editedProject.addAttachedVolunteer(volunteersToAssign);
+            //this.editedProject = new ProjectBuilder(this.projectToAssign).withVolunteer(volunteersToAssign).build();
+//            System.out.println(editedProject.getProjectTitle().toString());
+//            System.out.println(editedProject.getVolunteerList().size());
             model.setProject(projectToAssign, editedProject);
             model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS));
