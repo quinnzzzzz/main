@@ -4,10 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-<<<<<<< HEAD
 import java.util.Comparator;
-=======
->>>>>>> master
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -316,12 +313,7 @@ public class ModelManager implements Model {
             selectedVolunteer.setValue(volunteer);
         }
     }
-
-<<<<<<< HEAD
-
-=======
     //@@author articstranger
->>>>>>> master
     /**
      * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
@@ -393,16 +385,13 @@ public class ModelManager implements Model {
      */
 
     public void sortVolunteers() {
-<<<<<<< HEAD
         sortedVolunteers = versionedAddressBook.getVolunteerList().sorted((new Comparator<Volunteer>() {
             public int compare(Volunteer s1, Volunteer s2) {
                 return s2.getPoints() - s1.getPoints();
             }
         }));
-=======
-        versionedAddressBook.sortVolunteers();
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
->>>>>>> master
+//        versionedAddressBook.sortVolunteers();
+//        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
 

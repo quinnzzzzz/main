@@ -5,13 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-<<<<<<< HEAD
-=======
-
-import seedu.address.model.beneficiary.Name;
->>>>>>> master
-
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.volunteer.Volunteer;
 
@@ -79,13 +72,8 @@ public class Project {
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
-<<<<<<< HEAD
     public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete, Name beneficiaryAssigned, List<Volunteer> volunteerList) {
         requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned, volunteerList);
-=======
-    public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete, Name beneficiaryAssigned) {
-        requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned);
->>>>>>> master
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         //internal tags
@@ -129,12 +117,9 @@ public class Project {
     public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
     }
-<<<<<<< HEAD
     public void setVolunteerList(List<Volunteer> volunteerList) {
         this.volunteerList.addAll(volunteerList);
     }
-=======
->>>>>>> master
 
     public String isVolunteerAttached(){
         if(!(volunteerList.size() == 0)){
@@ -151,11 +136,6 @@ public class Project {
             .append(getProjectDate())
             .append(" Beneficiary: ")
             .append(getBeneficiaryAssigned())
-<<<<<<< HEAD
-                .append(" Volunteers Attached: ")
-                .append(isVolunteerAttached())
-=======
->>>>>>> master
             .append("\n");
         return builder.toString();
     }

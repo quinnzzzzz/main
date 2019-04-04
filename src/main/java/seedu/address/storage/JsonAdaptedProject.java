@@ -15,11 +15,7 @@ import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
-<<<<<<< HEAD
 import seedu.address.model.volunteer.Volunteer;
-=======
->>>>>>> master
-
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -41,12 +37,8 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(@JsonProperty("project title") String projectTitle,
                               @JsonProperty("project date") String projectDate,
                               @JsonProperty("complete") String complete,
-<<<<<<< HEAD
                               @JsonProperty("attached beneficiary") String beneficiaryAssigned,
                               @JsonProperty("attached volunteers") List<JsonAdaptedVolunteer> attachedVolunteers){
-=======
-                              @JsonProperty("attached beneficiary") String beneficiaryAssigned) {
->>>>>>> master
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         this.complete = complete;

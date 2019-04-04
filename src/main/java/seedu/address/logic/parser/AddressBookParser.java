@@ -124,8 +124,8 @@ public class AddressBookParser {
         case CompleteCommand.COMMAND_WORD:
             return new CompleteCommandParser().parse(arguments);
 
-        case MapCommand.COMMAND_WORD:
-            return new MapCommandParser().parse(arguments);
+//        case MapCommand.COMMAND_WORD:
+//            return new MapCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommand();
