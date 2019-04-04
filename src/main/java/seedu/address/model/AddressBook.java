@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Comparator;
 import java.util.List;
 
 import javafx.beans.InvalidationListener;
@@ -38,7 +37,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         volunteers = new UniqueVolunteerList();
         persons = new UniquePersonList();
         projects = new UniqueProjectList();
@@ -308,10 +308,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.setProject(target, edited);
     }
 
-
+    //@@author articstranger
+    /**
+     * Sorts all volunteers by their points
+     */
     public void sortVolunteers() {
         volunteers.sortByPoints();
-
+        indicateModified();
     }
 
 
