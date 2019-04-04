@@ -307,7 +307,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(edited);
         projects.setProject(target, edited);
     }
+}
 
+<<<<<<< HEAD
+/**
+ * command
+ */
+=======
     //@@author articstranger
     /**
      * Sorts all volunteers by their points
@@ -319,6 +325,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
 }
+>>>>>>> master
 //    public boolean checkBeneficiaryForProject(ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
 //        Beneficiary beneficiary = beneficiaries.getBeneficiaryIndex(targetBeneficiaryIndex);
 //        Beneficiary beneficiaryCopy = beneficiary;

@@ -2,9 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+<<<<<<< HEAD
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
+=======
+import seedu.address.commons.exceptions.IllegalValueException;
+>>>>>>> master
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
@@ -43,6 +54,25 @@ public class ParserUtilProject extends ParserUtil {
             throw new ParseException(ProjectTitle.MESSAGE_PROJECT_TITLE_CONSTRAINTS);
         }
         return new ProjectTitle(trimmedProjectTitle);
+    }
+
+    /**
+     * Parses {@code String oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing
+     * whitespaces will be trimmed.
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        String trimmedIndexes = oneBasedIndexes.trim();
+
+        String[] splitOneBasedIndexes = trimmedIndexes.split("\\s+");
+
+        Set<String> uniqueIndexes = new HashSet<>(Arrays.asList(splitOneBasedIndexes));
+
+        List<Index> indexList = new ArrayList<>();
+
+        for (String index : uniqueIndexes) {
+            indexList.add(parseIndex(index));
+        }
+        return indexList;
     }
 
     /**

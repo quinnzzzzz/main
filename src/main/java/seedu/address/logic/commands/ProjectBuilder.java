@@ -5,6 +5,7 @@ import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * Build Project
@@ -19,6 +20,7 @@ public class ProjectBuilder {
     private ProjectDate projectDate;
     private Complete complete;
     private Name beneficiaryAssigned;
+    private List<Volunteer> volunteerList;
 
     /**
      * Initialises the ProjectBuilder with the data of {@code projectToCopy}.
@@ -28,6 +30,7 @@ public class ProjectBuilder {
         projectDate = projectToCopy.getProjectDate();
         complete = projectToCopy.getComplete();
         beneficiaryAssigned = projectToCopy.getBeneficiaryAssigned();
+        volunteerList = projectToCopy.getVolunteerList();
     }
 
     /**
@@ -50,7 +53,7 @@ public class ProjectBuilder {
      * @return a project
      */
     public Project build() {
-        return new Project(projectTitle, projectDate, complete, beneficiaryAssigned);
+        return new Project(projectTitle, projectDate, complete, beneficiaryAssigned, volunteerList);
     }
 
     /**
@@ -67,6 +70,14 @@ public class ProjectBuilder {
      */
     public ProjectBuilder withBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
+        return this;
+    }
+    /**
+     * @param volunteerList
+     * @return ProjectBuilder
+     */
+    public ProjectBuilder withVolunteer(List<Volunteer> volunteerList) {
+        this.volunteerList = volunteerList;
         return this;
     }
 
