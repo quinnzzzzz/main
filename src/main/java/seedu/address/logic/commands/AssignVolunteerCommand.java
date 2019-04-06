@@ -77,14 +77,15 @@ public class AssignVolunteerCommand extends Command {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
             if(requiredVolunteers == 1){
                 volunteersToAssign = lastShownList.subList(0,1);
-//                System.out.println(volunteersToAssign.get(0).getName());
+//               System.out.println(volunteersToAssign.get(0).getName());
             }
             else {
                 if(requiredVolunteers > lastShownList.size()){
                     throw new CommandException(Messages.MESSAGE_NOT_ENOUGH_VOLUNTEERS);
                 }
-                if(requiredVolunteers == lastShownList.size()){
+                else if(requiredVolunteers == lastShownList.size()){
                     volunteersToAssign = lastShownList;
+//                    System.out.println(volunteersToAssign.get(0).getName());
                 }
                 else {
                     volunteersToAssign = lastShownList.subList(0, (requiredVolunteers+1));
@@ -98,10 +99,11 @@ public class AssignVolunteerCommand extends Command {
                 }
             }
         }
-            //this.editedProject = new ProjectBuilder(this.projectToAssign).withVolunteer(volunteersToAssign).build();
+            this.editedProject = new ProjectBuilder(this.projectToAssign).withVolunteer(volunteersToAssign).build();
 //            System.out.println(editedProject.getProjectTitle().toString());
 //            System.out.println(editedProject.getVolunteerList().size());
             model.setProject(projectToAssign, editedProject);
+//            System.out.println(volunteersToAssign.get(1).getName());
             model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
