@@ -89,7 +89,7 @@ public class ProjectDate {
         int testDay = Integer.parseInt(dateFormats[DAY_INDEX]);
         int testMonth = Integer.parseInt(dateFormats[MONTH_INDEX]);
         int testYear = Integer.parseInt(dateFormats[YEAR_INDEX]);
-        return LocalDate.of(testYear, testMonth,testDay);
+        return LocalDate.of(testYear, testMonth, testDay);
     }
 
     public int getDay() {

@@ -66,7 +66,7 @@ public class AssignVolunteerCommand extends Command {
         else {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
             if (requiredVolunteers == 1) {
-                volunteersToAssign = lastShownList.subList(0,1);
+                volunteersToAssign = lastShownList.subList(0, 1);
             }
             else {
                 if (requiredVolunteers > lastShownList.size()) {
@@ -76,7 +76,7 @@ public class AssignVolunteerCommand extends Command {
                     volunteersToAssign = lastShownList;
                 }
                 else {
-                    volunteersToAssign = lastShownList.subList(0, (requiredVolunteers+1));
+                    volunteersToAssign = lastShownList.subList(0, (requiredVolunteers + 1));
                     for (Volunteer volunteer : volunteersToAssign) {
                         if (!volunteer.hasProjectTitle(targetProject)) {
                             volunteer.addAttachedProject(targetProject);

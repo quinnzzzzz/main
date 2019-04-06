@@ -112,10 +112,9 @@ public class Project {
     /**
      * Add volunteer into Volunteer List.
      */
-    public void addAttachedVolunteer(Volunteer volunteer){
+    public void addAttachedVolunteer(Volunteer volunteer) {
         this.volunteerList.add(volunteer);
     }
-
     public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
     }
@@ -123,8 +122,12 @@ public class Project {
         this.volunteerList.addAll(volunteerList);
     }
 
+    /**
+     * Check if there is {@code volunteer} attached to the project
+     * @return true if {@code volunteerList is not empty}
+     */
     public String isVolunteerAttached() {
-        if(!(volunteerList.size() == 0)){
+        if (!(volunteerList.size() == 0)) {
             return "true";
         }
         else {
