@@ -47,8 +47,8 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             ProjectDate projectDate = ParserUtilProject.parseProjectDate(argMultimap.getValue(PREFIX_DATE).get());
             Project project = new Project(projectTitle, projectDate);
             return new AddProjectCommand(project);
-        }catch (IllegalValueException ive){
-            throw new ParseException(ive.getMessage(),ive);
+        } catch (IllegalValueException ive) {
+            throw new ParseException(ive.getMessage(), ive);
         }
     }
 

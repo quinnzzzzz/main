@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,7 +36,7 @@ class JsonAdaptedProject {
                               @JsonProperty("project date") String projectDate,
                               @JsonProperty("complete") String complete,
                               @JsonProperty("attached beneficiary") String beneficiaryAssigned,
-                              @JsonProperty("attached volunteers") List<JsonAdaptedVolunteer> attachedVolunteers){
+                              @JsonProperty("attached volunteers") List<JsonAdaptedVolunteer> attachedVolunteers) {
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         this.complete = complete;

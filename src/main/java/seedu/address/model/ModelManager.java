@@ -390,10 +390,9 @@ public class ModelManager implements Model {
                 return s2.getPoints() - s1.getPoints();
             }
         }));
-//        versionedAddressBook.sortVolunteers();
-//        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        versionedAddressBook.sortVolunteers();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
-
 
     /**
      * Ensures {@code selectedVolunteer} is a valid volunteer in {@code filteredVolunteers}.

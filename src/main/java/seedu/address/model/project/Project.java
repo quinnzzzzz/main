@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.volunteer.Volunteer;
 
@@ -67,12 +68,13 @@ public class Project {
         //internal tags
         this.complete = new Complete(false);
         this.beneficiaryAssigned = new Name("nil");
-        this.volunteerList =volunteerList;
+        this.volunteerList = volunteerList;
     }
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
-    public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete, Name beneficiaryAssigned, List<Volunteer> volunteerList) {
+    public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete, Name beneficiaryAssigned,
+                    List<Volunteer> volunteerList) {
         requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned, volunteerList);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
@@ -80,7 +82,7 @@ public class Project {
         this.complete = complete;
         this.beneficiaryAssigned = beneficiaryAssigned;
         this.volunteerList = volunteerList;
-}
+    }
 
     public ProjectTitle getProjectTitle() {
         return projectTitle;
@@ -121,13 +123,15 @@ public class Project {
         this.volunteerList.addAll(volunteerList);
     }
 
-    public String isVolunteerAttached(){
+    public String isVolunteerAttached() {
         if(!(volunteerList.size() == 0)){
             return "true";
         }
-        else
+        else {
             return "false";
+        }
     }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

@@ -77,8 +77,8 @@ public class AddressBookParser {
         case AssignBeneficiaryCommand.COMMAND_WORD:
             return new AssignBeneficiaryCommandParser().parse(arguments);
 
-            case AssignVolunteerCommand.COMMAND_WORD:
-                return new AssignVolunteerCommandParser().parse(arguments);
+        case AssignVolunteerCommand.COMMAND_WORD:
+            return new AssignVolunteerCommandParser().parse(arguments);
 
         case EditBeneficiaryCommand.COMMAND_WORD:
             return new EditBeneficiaryCommandParser().parse(arguments);
