@@ -22,19 +22,18 @@ import seedu.address.model.project.ProjectTitle;
 public class ParserUtilProject extends ParserUtil {
 
     public static final String UNSPECIFIED_FIELD = "<UNSPECIFIED>";
-
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws IllegalValueException if the specified index is invalid (not non-zero unsigned integer).
+     * Parses a project date
      */
-    /**
-     * parse project date
-     */
-    public static ProjectDate parseProjectDate(String projectDate) throws ParseException {
+    public static ProjectDate parseProjectDate(String projectDate) throws IllegalValueException {
         requireNonNull(projectDate);
-        return new ProjectDate(projectDate);
+        String trimmedProjectDate = projectDate.trim();
+        if (!ProjectDate.isValidDate(trimmedProjectDate)) {
+            throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectDate(trimmedProjectDate);
     }
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.

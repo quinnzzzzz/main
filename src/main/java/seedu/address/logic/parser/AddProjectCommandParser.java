@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_PROJECT_TITLE;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Project;
@@ -40,13 +41,15 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
 
-        ProjectTitle projectTitle = ParserUtilProject
-            .parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
-        ProjectDate projectDate = ParserUtilProject.parseProjectDate(argMultimap.getValue(PREFIX_DATE).get());
-
-        Project project = new Project(projectTitle, projectDate);
-
-        return new AddProjectCommand(project);
+        try {
+            ProjectTitle projectTitle = ParserUtilProject
+                    .parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
+            ProjectDate projectDate = ParserUtilProject.parseProjectDate(argMultimap.getValue(PREFIX_DATE).get());
+            Project project = new Project(projectTitle, projectDate);
+            return new AddProjectCommand(project);
+        }catch (IllegalValueException ive){
+            throw new ParseException(ive.getMessage(),ive);
+        }
     }
 
 }
