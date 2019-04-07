@@ -34,8 +34,7 @@ public class DeleteBeneficiaryCommandTest {
         Beneficiary beneficiaryToDelete = model.getFilteredBeneficiaryList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteBeneficiaryCommand.MESSAGE_DELETE_BENEFICIARY_SUCCESS,
-            beneficiaryToDelete);
+        String expectedMessage = String.format(DeleteBeneficiaryCommand.MESSAGE_DELETE_BENEFICIARY_SUCCESS, beneficiaryToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteBeneficiary(beneficiaryToDelete);
@@ -49,8 +48,7 @@ public class DeleteBeneficiaryCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBeneficiaryList().size() + 1);
         DeleteBeneficiaryCommand deleteCommand = new DeleteBeneficiaryCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, commandHistory,
-            Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -60,8 +58,7 @@ public class DeleteBeneficiaryCommandTest {
         Beneficiary beneficiaryToDelete = model.getFilteredBeneficiaryList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteBeneficiaryCommand deleteCommand = new DeleteBeneficiaryCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteBeneficiaryCommand.MESSAGE_DELETE_BENEFICIARY_SUCCESS,
-            beneficiaryToDelete);
+        String expectedMessage = String.format(DeleteBeneficiaryCommand.MESSAGE_DELETE_BENEFICIARY_SUCCESS, beneficiaryToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteBeneficiary(beneficiaryToDelete);
@@ -81,8 +78,7 @@ public class DeleteBeneficiaryCommandTest {
 
         DeleteBeneficiaryCommand deleteCommand = new DeleteBeneficiaryCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, commandHistory,
-            Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -111,8 +107,7 @@ public class DeleteBeneficiaryCommandTest {
         DeleteBeneficiaryCommand deleteCommand = new DeleteBeneficiaryCommand(outOfBoundIndex);
 
         // execution failed -> address book state not added into model
-        assertCommandFailure(deleteCommand, model, commandHistory,
-            Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
 
         // single address book state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
@@ -139,12 +134,10 @@ public class DeleteBeneficiaryCommandTest {
         // delete -> deletes second beneficiary in unfiltered beneficiary list / first beneficiary in filtered beneficiary list
         deleteCommand.execute(model, commandHistory);
 
-
-        // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiaries
+        // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiarys
         expectedModel.undoAddressBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
-        Beneficiary b = model.getFilteredBeneficiaryList().get(INDEX_FIRST_PERSON.getZeroBased());
-        assertNotEquals(beneficiaryToDelete, model.getFilteredBeneficiaryList().get(INDEX_FIRST_PERSON.getZeroBased()));
+
         // redo -> deletes same second beneficiary in unfiltered beneficiary list
         expectedModel.redoAddressBook();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
