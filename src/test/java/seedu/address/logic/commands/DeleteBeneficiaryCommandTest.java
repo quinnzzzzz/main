@@ -165,6 +165,11 @@ public class DeleteBeneficiaryCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
+    @Test
+    public void execute_invalidDelete_haveAttachedProjeccts() throws Exception {
+        
+    }
+
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
