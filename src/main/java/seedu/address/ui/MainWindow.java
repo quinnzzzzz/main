@@ -206,23 +206,23 @@ public class MainWindow extends UiPart<Stage> {
 
         table.setEditable(true);
 
-        TableColumn firstNameCol = new TableColumn("Beneficiary Name");
-        firstNameCol.setMinWidth(100);
-        firstNameCol.setCellValueFactory(
+        TableColumn nameCol = new TableColumn("Beneficiary Name");
+        nameCol.setMinWidth(100);
+        nameCol.setCellValueFactory(
             new PropertyValueFactory<SummarisedBeneficiary, String>("name"));
 
-        TableColumn lastNameCol = new TableColumn("No. Projects");
-        lastNameCol.setMinWidth(100);
-        lastNameCol.setCellValueFactory(
+        TableColumn numProjectCol = new TableColumn("No. Projects");
+        numProjectCol.setMinWidth(100);
+        numProjectCol.setCellValueFactory(
             new PropertyValueFactory<SummarisedBeneficiary, String>("numberOfProjects"));
 
-        TableColumn emailCol = new TableColumn("List of attached projects");
-        emailCol.setMinWidth(800);
-        emailCol.setCellValueFactory(
+        TableColumn projListCol = new TableColumn("List of attached projects");
+        projListCol.setMinWidth(800);
+        projListCol.setCellValueFactory(
             new PropertyValueFactory<SummarisedBeneficiary, List<String>>("projectList"));
 
         table.setItems(data);
-        table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
+        table.getColumns().addAll(nameCol, numProjectCol, projListCol);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
@@ -232,7 +232,6 @@ public class MainWindow extends UiPart<Stage> {
         g.getChildren().addAll(vbox);
         stage.setScene(scene);
         stage.show();
-
     }
 
     void show() {
