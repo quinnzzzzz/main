@@ -82,9 +82,9 @@ public class Beneficiary {
 
         Beneficiary otherBeneficiary = (Beneficiary) other;
         return otherBeneficiary.getName().equals(getName())
-            || otherBeneficiary.getPhone().equals(getPhone())
-            || otherBeneficiary.getEmail().equals(getEmail())
-            || otherBeneficiary.getAddress().equals(getAddress());
+            && otherBeneficiary.getPhone().equals(getPhone())
+            && otherBeneficiary.getEmail().equals(getEmail())
+            && otherBeneficiary.getAddress().equals(getAddress());
     }
 
     @Override
