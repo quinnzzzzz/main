@@ -307,7 +307,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(edited);
         projects.setProject(target, edited);
     }
-
     //@@author articstranger
     /**
      * Sorts all volunteers by their points
@@ -316,8 +315,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         volunteers.sortByPoints();
         indicateModified();
     }
-
-
 }
 //    public boolean checkBeneficiaryForProject(ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
 //        Beneficiary beneficiary = beneficiaries.getBeneficiaryIndex(targetBeneficiaryIndex);

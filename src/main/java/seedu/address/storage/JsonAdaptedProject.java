@@ -1,5 +1,9 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,7 +13,7 @@ import seedu.address.model.project.Complete;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;
-
+import seedu.address.model.volunteer.Volunteer;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -22,6 +26,7 @@ class JsonAdaptedProject {
     private final String projectDate;
     private final String complete;
     private final String beneficiaryAssigned;
+    private final List<JsonAdaptedVolunteer> attachedVolunteers = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -30,11 +35,15 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(@JsonProperty("project title") String projectTitle,
                               @JsonProperty("project date") String projectDate,
                               @JsonProperty("complete") String complete,
-                              @JsonProperty("attached beneficiary") String beneficiaryAssigned) {
+                              @JsonProperty("attached beneficiary") String beneficiaryAssigned,
+                              @JsonProperty("attached volunteers") List<JsonAdaptedVolunteer> attachedVolunteers) {
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
         this.complete = complete;
         this.beneficiaryAssigned = beneficiaryAssigned;
+        if (attachedVolunteers != null) {
+            this.attachedVolunteers.addAll(attachedVolunteers);
+        }
     }
 
     /**
@@ -45,6 +54,9 @@ class JsonAdaptedProject {
         projectDate = source.getProjectDate().fullDate;
         complete = source.getComplete().toString();
         beneficiaryAssigned = source.getBeneficiaryAssigned().toString();
+        attachedVolunteers.addAll(source.getVolunteerList().stream()
+                .map(JsonAdaptedVolunteer::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -87,7 +99,9 @@ class JsonAdaptedProject {
         final Complete complete = new Complete(this.complete);
         final Name modelBeneficiaryAssigned = new Name(beneficiaryAssigned);
 
-        Project project = new Project(modelProjectTitle, modelProjectDate, complete, modelBeneficiaryAssigned);
+        Project project = new Project(modelProjectTitle, modelProjectDate, modelComplete, modelBeneficiaryAssigned);
+        final List<Volunteer> modelVolunteerList = new ArrayList<>();
+        project.setVolunteerList(modelVolunteerList);
 
         return project;
     }

@@ -22,7 +22,7 @@ public class AddProjectCommand extends Command {
         + PREFIX_DATE + "DATE "
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_PROJECT_TITLE + "Charity Run "
-        + PREFIX_DATE + "020319 ";
+        + PREFIX_DATE + "01/04/2019 ";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in VolunCHeer";

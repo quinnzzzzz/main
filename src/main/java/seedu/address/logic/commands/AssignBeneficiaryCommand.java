@@ -22,18 +22,18 @@ import seedu.address.model.project.ProjectTitle;
  */
 public class AssignBeneficiaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "assign";
+    public static final String COMMAND_WORD = "assignB";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a beneficiary to a project, "
-        + "only 1 beneficiary can be assigned to each project.\n"
-        + "Parameters: "
-        + ASSIGNED_PROJECT_TITLE
-        + "[PROJECT_TITLE] "
-        + PREFIX_INDEX
-        + "[INDEX]...\n"
-        + "Example: " + COMMAND_WORD + " "
-        + "Project Sunshine"
-        + "1 ";
+            + "only 1 beneficiary can be assigned to each project.\n"
+            + "Parameters: "
+            + ASSIGNED_PROJECT_TITLE
+            + "[PROJECT_TITLE] "
+            + PREFIX_INDEX
+            + "[INDEX]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + "Project Sunshine"
+            + "i/1 ";
 
     public static final String MESSAGE_PARAMETERS = ASSIGNED_PROJECT_TITLE + "[PROJECT_TITLE] "
         + PREFIX_INDEX + "INDEX ";
