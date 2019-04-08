@@ -34,7 +34,7 @@ public class DeleteBeneficiaryCommand extends Command {
     public static final String MESSAGE_BENEFICIARY_HAS_PROJECTS_ATTACHED = "%1$s has this/these projects: %2$s"
         + " attached to it. \n "
         + "Please delete them before delete the beneficiary"
-        + "or use hard mode delete: -D";
+        + "or use hard mode delete: -D to delete attached projects and this beneficiary";
 
     private final Index targetIndex;
     private final boolean isHardDeleteMode;
@@ -54,6 +54,7 @@ public class DeleteBeneficiaryCommand extends Command {
         }
 
         Beneficiary beneficiaryToDelete = lastShownList.get(targetIndex.getZeroBased());
+
         if (beneficiaryToDelete.hasAttachedProjects() && !isHardDeleteMode) {
             throw new CommandException(String.format(MESSAGE_BENEFICIARY_HAS_PROJECTS_ATTACHED,
                 beneficiaryToDelete.getName(),
