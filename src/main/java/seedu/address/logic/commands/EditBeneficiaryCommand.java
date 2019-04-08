@@ -35,7 +35,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditBeneficiaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "editBeneficiary";
+    public static final String COMMAND_WORD = "editB";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the beneficiary identified "
         + "by the index number used in the displayed beneficiary list. "
