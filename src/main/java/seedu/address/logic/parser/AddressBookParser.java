@@ -69,6 +69,7 @@ public class AddressBookParser {
             return new AddBeneficiaryCommandParser().parse(arguments);
 
         case AddVolunteerCommand.COMMAND_WORD:
+        case AddVolunteerCommand.COMMAND_ALIAS:
             return new AddVolunteerCommandParser().parse(arguments);
 
         case SummaryBeneficiaryCommand.COMMAND_WORD:
@@ -84,6 +85,7 @@ public class AddressBookParser {
             return new EditBeneficiaryCommandParser().parse(arguments);
 
         case EditVolunteerCommand.COMMAND_WORD:
+        case EditVolunteerCommand.COMMAND_ALIAS:
             return new EditVolunteerCommandParser().parse(arguments);
 
         case DeleteBeneficiaryCommand.COMMAND_WORD:
@@ -93,6 +95,7 @@ public class AddressBookParser {
             return new DeleteProjectCommandParser().parse(arguments);
 
         case DeleteVolunteerCommand.COMMAND_WORD:
+        case DeleteVolunteerCommand.COMMAND_ALIAS:
             return new DeleteVolunteerCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
@@ -102,6 +105,7 @@ public class AddressBookParser {
             return new FindBeneficiaryCommandParser().parse(arguments);
 
         case FindVolunteerCommand.COMMAND_WORD:
+        case FindVolunteerCommand.COMMAND_ALIAS:
             return new FindVolunteerCommandParser().parse(arguments);
 
         case ListProjectCommand.COMMAND_WORD:
@@ -111,6 +115,7 @@ public class AddressBookParser {
             return new ListBeneficiaryCommand();
 
         case ListVolunteerCommand.COMMAND_WORD:
+        case ListVolunteerCommand.COMMAND_ALIAS:
             return new ListVolunteerCommand();
 
         case HistoryCommand.COMMAND_WORD:
@@ -120,6 +125,7 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case SelectVolunteerCommand.COMMAND_WORD:
+        case SelectVolunteerCommand.COMMAND_ALIAS:
             return new SelectVolunteerCommandParser().parse(arguments);
 
         case CompleteCommand.COMMAND_WORD:

@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class MedicalCondition {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Medical Conditions should not contain numbers";
+        "Medical Conditions should consist of only numbers/alphabets and should not any contain special character";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String status;
 

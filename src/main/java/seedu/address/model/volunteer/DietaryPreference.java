@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class DietaryPreference {
 
     public static final String MESSAGE_CONSTRAINTS = "Dietary Preference should not contain numbers";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha}]*";
     public final String restriction;
 
     /**
