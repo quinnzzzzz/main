@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 
 /**
@@ -30,6 +31,8 @@ public class DeleteProjectCommand extends Command {
 
     private final Index targetIndex;
 
+    private static final String NULL_BENEFICIARY_NAME = "nil";
+
     public DeleteProjectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -44,10 +47,21 @@ public class DeleteProjectCommand extends Command {
         }
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (isValidAssignedBeneficiary(model, projectToDelete)) {
+            Beneficiary beneficiary = model.getFilteredBeneficiaryList()
+                .filtered(x -> x.getName().equals(projectToDelete.getBeneficiaryAssigned())).get(0);
+            beneficiary.deleteAttachedProject(projectToDelete.getProjectTitle());
+        }
 
         model.deleteProject(projectToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
+    }
+
+    private boolean isValidAssignedBeneficiary(Model model, Project projectToDelete) {
+        return projectToDelete.getBeneficiaryAssigned().toString() != NULL_BENEFICIARY_NAME
+            && !model.getFilteredBeneficiaryList()
+                .filtered(x -> x.getName().equals(projectToDelete.getBeneficiaryAssigned())).isEmpty();
     }
 
     @Override
@@ -56,4 +70,6 @@ public class DeleteProjectCommand extends Command {
             || (other instanceof DeleteProjectCommand // instanceof handles nulls
             && targetIndex.equals(((DeleteProjectCommand) other).targetIndex)); // state check
     }
+
+
 }
