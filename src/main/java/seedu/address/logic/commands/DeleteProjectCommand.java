@@ -18,19 +18,12 @@ import seedu.address.model.project.Project;
 public class DeleteProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteProject";
-
-    private static final String NULL_BENEFICIARY_NAME = "nil";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the project identified by the index number used in the displayed project list.\n"
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " 1";
-
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
-
-    public static final String MESSAGE_PROJECT_HAS_PROJECTS_ATTACHED = "%1$s has this/these projects: %2$s"
-        + " attached to it, please delete them before delete the project.";
-
+    private static final String NULL_BENEFICIARY_NAME = "nil";
     private final Index targetIndex;
 
     public DeleteProjectCommand(Index targetIndex) {
@@ -61,7 +54,7 @@ public class DeleteProjectCommand extends Command {
     private boolean isValidAssignedBeneficiary(Model model, Project projectToDelete) {
         return projectToDelete.getBeneficiaryAssigned().toString() != NULL_BENEFICIARY_NAME
             && !model.getFilteredBeneficiaryList()
-                .filtered(x -> x.getName().equals(projectToDelete.getBeneficiaryAssigned())).isEmpty();
+            .filtered(x -> x.getName().equals(projectToDelete.getBeneficiaryAssigned())).isEmpty();
     }
 
     @Override
