@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ public class Volunteer {
     private final Set<Tag> tags = new HashSet<>();
     // Data fields
     private int points;
+    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
 
     /**
      * Every field must be present and not null.
@@ -139,6 +141,24 @@ public class Volunteer {
         points = 0;
     }
 
+    /**
+     * Check if volunteer is attached to a Project
+     */
+    public boolean hasProjectTitle(ProjectTitle projectTitle) {
+        return this.attachedProjectList.contains(projectTitle);
+    }
+    /**
+     * Add a project title to the attached Project Líst.
+     */
+    public void addAttachedProject(ProjectTitle title) {
+        this.attachedProjectList.add(title);
+    }
+    /**
+     * Add all the project attached to this beneficiary.
+     */
+    public void setProjectLists(Set<ProjectTitle> projectList) {
+        this.attachedProjectList.addAll(projectList);
+    }
     /**
      * Returns true if both volunteers have the same identity and data fields.
      * This defines a stronger notion of equality between two volunteers.
