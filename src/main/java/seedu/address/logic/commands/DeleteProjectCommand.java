@@ -19,6 +19,8 @@ public class DeleteProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteProject";
 
+    private static final String NULL_BENEFICIARY_NAME = "nil";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the project identified by the index number used in the displayed project list.\n"
         + "Parameters: INDEX (must be a positive integer)\n"
@@ -30,8 +32,6 @@ public class DeleteProjectCommand extends Command {
         + " attached to it, please delete them before delete the project.";
 
     private final Index targetIndex;
-
-    private static final String NULL_BENEFICIARY_NAME = "nil";
 
     public DeleteProjectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
