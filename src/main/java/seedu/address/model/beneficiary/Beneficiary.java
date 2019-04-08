@@ -62,8 +62,8 @@ public class Beneficiary {
 
         return otherBeneficiary != null
             && (otherBeneficiary.getName().equals(getName())
-            || otherBeneficiary.getPhone().equals(getPhone())
-            || otherBeneficiary.getEmail().equals(getEmail()));
+            || (otherBeneficiary.getPhone().equals(getPhone())
+            && otherBeneficiary.getEmail().equals(getEmail())));
     }
 
     /**
@@ -82,8 +82,8 @@ public class Beneficiary {
 
         Beneficiary otherBeneficiary = (Beneficiary) other;
         return otherBeneficiary.getName().equals(getName())
-            || otherBeneficiary.getPhone().equals(getPhone())
-            || otherBeneficiary.getEmail().equals(getEmail());
+            || (otherBeneficiary.getPhone().equals(getPhone())
+            && otherBeneficiary.getEmail().equals(getEmail()));
     }
 
     @Override

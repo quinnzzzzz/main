@@ -97,7 +97,8 @@ public class EditBeneficiaryCommand extends Command {
         Beneficiary editedBeneficiary = createEditedBeneficiary(beneficiaryToEdit, editBeneficiaryDescriptor);
         editedBeneficiary.setProjectLists(beneficiaryToEdit.getAttachedProjectLists());
 
-        if (!beneficiaryToEdit.isSameBeneficiary(editedBeneficiary) && model.hasBeneficiary(editedBeneficiary)) {
+        if(beneficiaryToEdit.isSameBeneficiary(editedBeneficiary)
+            && model.getFilteredBeneficiaryList().filtered(x->x.isSameBeneficiary(editedBeneficiary)).size() != 1) {
             throw new CommandException(MESSAGE_DUPLICATE_BENEFICIARY);
         }
 
