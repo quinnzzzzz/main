@@ -62,8 +62,8 @@ public class Beneficiary {
 
         return otherBeneficiary != null
             && (otherBeneficiary.getName().equals(getName())
-            || otherBeneficiary.getPhone().equals(getPhone())
-            || otherBeneficiary.getEmail().equals(getEmail()));
+            || (otherBeneficiary.getPhone().equals(getPhone())
+            && otherBeneficiary.getEmail().equals(getEmail())));
     }
 
     /**
@@ -82,9 +82,8 @@ public class Beneficiary {
 
         Beneficiary otherBeneficiary = (Beneficiary) other;
         return otherBeneficiary.getName().equals(getName())
-            || otherBeneficiary.getPhone().equals(getPhone())
-            || otherBeneficiary.getEmail().equals(getEmail())
-            || otherBeneficiary.getAddress().equals(getAddress());
+            || (otherBeneficiary.getPhone().equals(getPhone())
+            && otherBeneficiary.getEmail().equals(getEmail()));
     }
 
     @Override
@@ -166,6 +165,16 @@ public class Beneficiary {
      */
     public void setProjectLists(Set<ProjectTitle> projectList) {
         this.attachedProjectList.addAll(projectList);
+    }
+
+    /**
+     * .
+     * Get method for attached project list.
+     *
+     * @return a set of project titles.
+     */
+    public HashSet<ProjectTitle> getHashAttachedProjectLists() {
+        return this.attachedProjectList;
     }
 }
 

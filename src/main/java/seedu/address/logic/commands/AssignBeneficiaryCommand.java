@@ -72,13 +72,15 @@ public class AssignBeneficiaryCommand extends Command {
             throw new CommandException("Project does not exist.");
         } else {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-            if (projectToAssign.getBeneficiaryAssigned().toString() != "nil"
-                && model.getFilteredBeneficiaryList().filtered(
-                    x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0) {
+
+            //Update previous beneficiary on the change
+            if (isValidPreAssignedBeneficiary(model)) {
                 Beneficiary oldBeneficiary = model.getFilteredBeneficiaryList()
                     .filtered(x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).get(0);
                 oldBeneficiary.deleteAttachedProject(projectToAssign.getProjectTitle());
             }
+
+            //assign new beneficiary
             Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
             if (!beneficiary.hasProjectTitle(targetProject)) {
                 beneficiary.addAttachedProject(targetProject);
@@ -88,9 +90,16 @@ public class AssignBeneficiaryCommand extends Command {
             this.editedProject = new ProjectBuilder(this.projectToAssign).withBeneficiary(beneficiaryAssigned).build();
             editedProject.setBeneficiary(beneficiaryAssigned);
             model.setProject(projectToAssign, editedProject);
+
             model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
+    }
+
+    private boolean isValidPreAssignedBeneficiary(Model model) {
+        return projectToAssign.getBeneficiaryAssigned().toString() != "nil"
+            && model.getFilteredBeneficiaryList().filtered(
+                x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0;
     }
 
     @Override
