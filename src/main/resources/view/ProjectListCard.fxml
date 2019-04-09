@@ -27,6 +27,7 @@
             </HBox>
             <Label fx:id="projectDate" styleClass="cell_small_label" text="\$projectDate"/>
             <Label fx:id="beneficiary" styleClass="cell_small_label" text="\$beneficiary"/>
+            <Label fx:id="volunteer" styleClass="cell_small_label" text="\$volunteer"/>
         </VBox>
     </GridPane>
 </HBox>

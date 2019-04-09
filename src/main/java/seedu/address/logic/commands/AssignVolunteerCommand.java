@@ -65,27 +65,19 @@ public class AssignVolunteerCommand extends Command {
             throw new CommandException("Project does not exist.");
         } else {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-            if (requiredVolunteers == 1) {
-                volunteersToAssign = lastShownList.subList(0, 1);
-            } else {
                 if (requiredVolunteers > lastShownList.size()) {
                     throw new CommandException(Messages.MESSAGE_NOT_ENOUGH_VOLUNTEERS);
-                } else if (requiredVolunteers == lastShownList.size()) {
-                    volunteersToAssign = lastShownList;
-                } else {
-                    volunteersToAssign = lastShownList.subList(0, (requiredVolunteers + 1));
-                    for (Volunteer volunteer : volunteersToAssign) {
-                        if (!volunteer.hasProjectTitle(targetProject)) {
-                            volunteer.addAttachedProject(targetProject);
-                        }
-                        editedProject.addAttachedVolunteer(volunteer);
-                    }
                 }
-            }
+                else {
+                    volunteersToAssign = lastShownList.subList(0, requiredVolunteers);
+                    System.out.println("size" + lastShownList.size());
+                }
         }
         this.editedProject = new ProjectBuilder(this.projectToAssign).withVolunteer(volunteersToAssign).build();
         model.setProject(projectToAssign, editedProject);
+        System.out.println(projectToAssign.getVolunteerList().get(0).getName().toString());
         model.commitAddressBook();
+        System.out.println(projectToAssign.getVolunteerCount());
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 

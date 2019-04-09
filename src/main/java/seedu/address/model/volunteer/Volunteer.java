@@ -140,25 +140,18 @@ public class Volunteer {
     public void resetPoints() {
         points = 0;
     }
+//
+//    /**
+//     * Check if volunteer is attached to a Project
+//     */
+//    public boolean hasProjectTitle(ProjectTitle projectTitle) {
+//        return this.attachedProjectList.contains(projectTitle);
+//    }
+//
+//    public HashSet<ProjectTitle> getAttachedProjectList() {
+//        return this.attachedProjectList;
+//    }
 
-    /**
-     * Check if volunteer is attached to a Project
-     */
-    public boolean hasProjectTitle(ProjectTitle projectTitle) {
-        return this.attachedProjectList.contains(projectTitle);
-    }
-    /**
-     * Add a project title to the attached Project Líst.
-     */
-    public void addAttachedProject(ProjectTitle title) {
-        this.attachedProjectList.add(title);
-    }
-    /**
-     * Add all the project attached to this beneficiary.
-     */
-    public void setProjectLists(Set<ProjectTitle> projectList) {
-        this.attachedProjectList.addAll(projectList);
-    }
     /**
      * Returns true if both volunteers have the same identity and data fields.
      * This defines a stronger notion of equality between two volunteers.

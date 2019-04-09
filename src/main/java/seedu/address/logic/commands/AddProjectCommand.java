@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -43,7 +44,6 @@ public class AddProjectCommand extends Command {
         if (model.hasProject(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
-
         model.addProject(toAdd);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
