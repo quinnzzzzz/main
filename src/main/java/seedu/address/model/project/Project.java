@@ -129,8 +129,7 @@ public class Project {
     public String isVolunteerAttached() {
         if (!(volunteerList.size() == 0)) {
             return "true";
-        }
-        else {
+        } else {
             return "false";
         }
     }

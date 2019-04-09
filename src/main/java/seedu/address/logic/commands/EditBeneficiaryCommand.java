@@ -35,7 +35,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditBeneficiaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "editBeneficiary";
+    public static final String COMMAND_WORD = "editB";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the beneficiary identified "
         + "by the index number used in the displayed beneficiary list. "
@@ -97,12 +97,13 @@ public class EditBeneficiaryCommand extends Command {
         Beneficiary editedBeneficiary = createEditedBeneficiary(beneficiaryToEdit, editBeneficiaryDescriptor);
         editedBeneficiary.setProjectLists(beneficiaryToEdit.getAttachedProjectLists());
 
-        if (!beneficiaryToEdit.isSameBeneficiary(editedBeneficiary) && model.hasBeneficiary(editedBeneficiary)) {
+        if (beneficiaryToEdit.isSameBeneficiary(editedBeneficiary)
+            && model.getFilteredBeneficiaryList().filtered(x->x.isSameBeneficiary(editedBeneficiary)).size() != 1) {
             throw new CommandException(MESSAGE_DUPLICATE_BENEFICIARY);
         }
 
         for (ProjectTitle attachedProject : beneficiaryToEdit.getAttachedProjectLists()) {
-            Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(attachedProject.toString());
+            Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(attachedProject);
             if (model.getFilteredProjectList().filtered(equalProjectTitle).size() != 0) {
                 Project project = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
                 project.setBeneficiary(editedBeneficiary.getName());
