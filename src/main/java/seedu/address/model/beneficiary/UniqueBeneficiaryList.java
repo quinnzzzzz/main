@@ -63,7 +63,6 @@ public class UniqueBeneficiaryList implements Iterable<Beneficiary> {
         if (index == -1) {
             throw new BeneficiaryNotFoundException();
         }
-
         if (!target.isSameBeneficiary(editedBeneficiary) && contains(editedBeneficiary)) {
             throw new DuplicateBeneficiaryException();
         }

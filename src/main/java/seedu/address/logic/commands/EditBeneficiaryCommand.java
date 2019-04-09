@@ -35,7 +35,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditBeneficiaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "editBeneficiary";
+    public static final String COMMAND_WORD = "editB";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the beneficiary identified "
         + "by the index number used in the displayed beneficiary list. "
@@ -97,20 +97,22 @@ public class EditBeneficiaryCommand extends Command {
         Beneficiary editedBeneficiary = createEditedBeneficiary(beneficiaryToEdit, editBeneficiaryDescriptor);
         editedBeneficiary.setProjectLists(beneficiaryToEdit.getAttachedProjectLists());
 
-        if (!beneficiaryToEdit.isSameBeneficiary(editedBeneficiary) && model.hasBeneficiary(editedBeneficiary)) {
+        if (beneficiaryToEdit.isSameBeneficiary(editedBeneficiary)
+            && model.getFilteredBeneficiaryList().filtered(x->x.isSameBeneficiary(editedBeneficiary)).size() != 1) {
             throw new CommandException(MESSAGE_DUPLICATE_BENEFICIARY);
         }
 
         for (ProjectTitle attachedProject : beneficiaryToEdit.getAttachedProjectLists()) {
-            Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(attachedProject.toString());
+            Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(attachedProject);
             if (model.getFilteredProjectList().filtered(equalProjectTitle).size() != 0) {
                 Project project = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-                project.setBeneficiary(editedBeneficiary.getName());
+                //project.setBeneficiary(editedBeneficiary.getName());
+                Project newProject = new ProjectBuilder(project).withBeneficiary(editedBeneficiary.getName()).build();
+                model.setProject(project, newProject);
             }
         }
         model.setBeneficiary(beneficiaryToEdit, editedBeneficiary);
         model.updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_BENEFICIARY_SUCCESS, editedBeneficiary));
     }
@@ -142,7 +144,6 @@ public class EditBeneficiaryCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
 
         public EditBeneficiaryDescriptor() {
         }
@@ -155,15 +156,14 @@ public class EditBeneficiaryCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setAddress(toCopy.address);;
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
 
         public Optional<Name> getName() {
@@ -198,23 +198,6 @@ public class EditBeneficiaryCommand extends Command {
             this.address = address;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -233,8 +216,7 @@ public class EditBeneficiaryCommand extends Command {
             return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
-                && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags());
+                && getAddress().equals(e.getAddress());
         }
     }
 }

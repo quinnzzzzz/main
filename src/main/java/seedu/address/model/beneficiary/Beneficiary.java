@@ -34,6 +34,18 @@ public class Beneficiary {
         this.address = address;
     }
 
+    /**
+     *
+     * @return
+     */
+    public Beneficiary(Beneficiary b) {
+        this.name = b.getName();
+        this.phone = b.getPhone();
+        this.email = b.getEmail();
+        this.address = b.getAddress();
+        this.attachedProjectList = b.getHashAttachedProjectLists();
+    }
+
     public Name getName() {
         return name;
     }
@@ -62,8 +74,8 @@ public class Beneficiary {
 
         return otherBeneficiary != null
             && (otherBeneficiary.getName().equals(getName())
-            || otherBeneficiary.getPhone().equals(getPhone())
-            || otherBeneficiary.getEmail().equals(getEmail()));
+            || (otherBeneficiary.getPhone().equals(getPhone())
+            && otherBeneficiary.getEmail().equals(getEmail())));
     }
 
     /**
@@ -82,9 +94,8 @@ public class Beneficiary {
 
         Beneficiary otherBeneficiary = (Beneficiary) other;
         return otherBeneficiary.getName().equals(getName())
-            || otherBeneficiary.getPhone().equals(getPhone())
-            || otherBeneficiary.getEmail().equals(getEmail())
-            || otherBeneficiary.getAddress().equals(getAddress());
+            || (otherBeneficiary.getPhone().equals(getPhone())
+            && otherBeneficiary.getEmail().equals(getEmail()));
     }
 
     @Override
@@ -130,9 +141,7 @@ public class Beneficiary {
      */
     public void deleteAttachedProject(ProjectTitle title) {
         if (this.attachedProjectList.contains(title)) {
-            System.out.println(this.attachedProjectList);
             this.attachedProjectList.remove(title);
-            System.out.println(this.attachedProjectList);
         }
     }
 
@@ -166,6 +175,16 @@ public class Beneficiary {
      */
     public void setProjectLists(Set<ProjectTitle> projectList) {
         this.attachedProjectList.addAll(projectList);
+    }
+
+    /**
+     * .
+     * Get method for attached project list.
+     *
+     * @return a set of project titles.
+     */
+    public HashSet<ProjectTitle> getHashAttachedProjectLists() {
+        return this.attachedProjectList;
     }
 }
 
