@@ -140,17 +140,6 @@ public class Volunteer {
     public void resetPoints() {
         points = 0;
     }
-//
-//    /**
-//     * Check if volunteer is attached to a Project
-//     */
-//    public boolean hasProjectTitle(ProjectTitle projectTitle) {
-//        return this.attachedProjectList.contains(projectTitle);
-//    }
-//
-//    public HashSet<ProjectTitle> getAttachedProjectList() {
-//        return this.attachedProjectList;
-//    }
 
     /**
      * Returns true if both volunteers have the same identity and data fields.

@@ -6,13 +6,9 @@ import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BENEFICIARIES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;

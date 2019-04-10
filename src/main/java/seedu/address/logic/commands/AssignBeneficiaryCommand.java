@@ -89,6 +89,11 @@ public class AssignBeneficiaryCommand extends Command {
         }
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     private Beneficiary updateBeneficiary(Model model) {
         Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
         Beneficiary updatedBeneficiary = new Beneficiary(beneficiary);
@@ -99,6 +104,10 @@ public class AssignBeneficiaryCommand extends Command {
         return updatedBeneficiary;
     }
 
+    /**
+     *
+     * @param model
+     */
     private void updatePreBeneficiary(Model model) {
         if (isValidPreAssignedBeneficiary(model)) {
             Beneficiary oldBeneficiary = model.getFilteredBeneficiaryList()
