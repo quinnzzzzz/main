@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -85,6 +86,10 @@ public class Project {
         this.volunteerList = volunteerList;
     }
 
+    /**
+     * get methods to obtain various attributes of Project
+     * @return attribute
+     */
     public ProjectTitle getProjectTitle() {
         return projectTitle;
     }
@@ -108,6 +113,7 @@ public class Project {
     public List<Volunteer> getVolunteerList() {
         return volunteerList;
     }
+
     /**
      * Returns true if Project has completed, else returns false.
      */
@@ -115,33 +121,20 @@ public class Project {
         return complete.isComplete();
     }
 
+    //Set the beneficiary attached to project
     public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
     }
+    //Set the list of volunteers attached to project
     public void setVolunteerList(List<Volunteer> volunteerList) {
         this.volunteerList.addAll(volunteerList);
-    }
-
-    /**
-     * Check if there is {@code volunteer} attached to the project
-     * @return true if {@code volunteerList is not empty}
-     */
-    public String isVolunteerAttached() {
-        if (!(volunteerList.size() == 0)) {
-            return "true";
-        } else {
-            return "false";
-        }
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectTitle())
-            .append(" Project Date: ")
             .append(getProjectDate())
-            .append(" Beneficiary: ")
-            .append(getBeneficiaryAssigned())
             .append("\n");
         return builder.toString();
     }

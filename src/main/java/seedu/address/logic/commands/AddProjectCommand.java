@@ -17,15 +17,15 @@ public class AddProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "addProject";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new project to VolunCHeer. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new project to VolunCHeer.\n"
         + "Parameters: "
         + PREFIX_PROJECT_TITLE + "Project Title "
-        + PREFIX_DATE + "DATE "
+        + PREFIX_DATE + "Date of Project "
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_PROJECT_TITLE + "Charity Run "
-        + PREFIX_DATE + "01/04/2019 ";
+        + PREFIX_DATE + "01/06/2019 ";
 
-    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New project added: %1$s\n";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in VolunCHeer";
 
     private final Project toAdd;
@@ -45,7 +45,7 @@ public class AddProjectCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
         model.addProject(toAdd);
-        model.sortProjectByDate();
+        model.sortProjectByDate();//Sorts the list of project in ascending date order
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

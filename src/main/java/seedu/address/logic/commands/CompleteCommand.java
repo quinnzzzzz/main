@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -13,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Add a project to completes
+ * Indicate a project as completed
  */
 public class CompleteCommand extends Command {
     public static final String COMMAND_WORD = "complete";
@@ -22,7 +23,7 @@ public class CompleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " i/1";
 
-    public static final String MESSAGE_SUCCESS = "Project added to completes: %1$s";
+    public static final String MESSAGE_SUCCESS = "Project indicated as complete!: %1$s";
 
     private final Index targetProjectIndex;
 

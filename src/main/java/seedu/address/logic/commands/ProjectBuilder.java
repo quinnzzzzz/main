@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -14,10 +15,6 @@ import seedu.address.model.volunteer.Volunteer;
  */
 public class ProjectBuilder {
 
-    public static final String DEFAULT_PROJECT_TITLE = "Project Title";
-    public static final String DEFAULT_PROJECT_DATE = "20190401";
-    public static final String DEFAULT_COMPLETE = "false";
-
     private ProjectTitle projectTitle;
     private ProjectDate projectDate;
     private Complete complete;
@@ -33,22 +30,6 @@ public class ProjectBuilder {
         complete = projectToCopy.getComplete();
         beneficiaryAssigned = projectToCopy.getBeneficiaryAssigned();
         volunteerList = projectToCopy.getVolunteerList();
-    }
-
-    /**
-     * Sets the {@code ProjectTitle} of the {@code Project} that we are building.
-     */
-    public ProjectBuilder withProjectTitle(String projectTitle) {
-        this.projectTitle = new ProjectTitle(projectTitle);
-        return this;
-    }
-
-    /**
-     * Sets the {@code ProjectDate} of the {@code Project} that we are building.
-     */
-    public ProjectBuilder withProjectDate(String projectDate) {
-        this.projectDate = new ProjectDate(projectDate);
-        return this;
     }
 
     /**
@@ -82,5 +63,4 @@ public class ProjectBuilder {
         this.volunteerList = attachedVolunteers;
         return this;
     }
-
 }

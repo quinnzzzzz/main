@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
@@ -23,7 +24,6 @@ public class Complete {
 
     /**
      * Returns true if a given string is a valid boolean string.
-     *
      * @param test
      */
     public static Boolean isValidBoolean(String test) {

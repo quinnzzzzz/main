@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
@@ -89,6 +90,11 @@ public class UniqueProjectList implements Iterable<Project> {
             projectTitleProjectHashtable.remove(toRemove);
         }
     }
+
+    /**
+     * Sets the project with new UniqueProjectList data
+     * @param replacement
+     */
 
     public void setProjects(UniqueProjectList replacement) {
         requireNonNull(replacement);
