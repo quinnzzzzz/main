@@ -45,6 +45,7 @@ public class AddProjectCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
         model.addProject(toAdd);
+        model.sortProjectByDate();
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

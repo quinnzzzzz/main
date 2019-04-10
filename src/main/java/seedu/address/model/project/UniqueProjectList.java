@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -122,6 +123,21 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public ObservableList<Project> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public void sortProjectByDate() {
+        FXCollections.sort(internalList, (new Comparator<Project>() {
+            public int compare(Project p1, Project p2) {
+                if (p1.getProjectDate().getYear() == p2.getProjectDate().getYear()) {
+                    if (p1.getProjectDate().getMonth() == p2.getProjectDate().getMonth()) {
+                        return p1.getProjectDate().getDay() - p2.getProjectDate().getDay();
+                    } else {
+                        return p1.getProjectDate().getMonth() - p2.getProjectDate().getMonth();
+                    }
+                } else {
+                    return p1.getProjectDate().getYear() - p2.getProjectDate().getYear();
+                }
+            }}));
     }
 
     @Override

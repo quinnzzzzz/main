@@ -307,6 +307,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(edited);
         projects.setProject(target, edited);
     }
+
+    public void sortProjectByDate() {
+        projects.sortProjectByDate();
+        indicateModified();
+    }
     //@@author articstranger
     /**
      * Sorts all volunteers by their points
