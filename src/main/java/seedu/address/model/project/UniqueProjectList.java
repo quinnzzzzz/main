@@ -125,6 +125,9 @@ public class UniqueProjectList implements Iterable<Project> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Compares the day, month, year factor of ProjectDate for sortByDate command
+     */
     public void sortProjectByDate() {
         FXCollections.sort(internalList, (new Comparator<Project>() {
             public int compare(Project p1, Project p2) {
@@ -137,7 +140,7 @@ public class UniqueProjectList implements Iterable<Project> {
                 } else {
                     return p1.getProjectDate().getYear() - p2.getProjectDate().getYear();
                 }
-            }}));
+            } }));
     }
 
     @Override

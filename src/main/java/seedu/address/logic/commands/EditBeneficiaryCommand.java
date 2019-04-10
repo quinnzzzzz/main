@@ -24,7 +24,6 @@ import seedu.address.model.beneficiary.Name;
 import seedu.address.model.beneficiary.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing beneficiary in the address book.
