@@ -34,6 +34,18 @@ public class Beneficiary {
         this.address = address;
     }
 
+    /**
+     *
+     * @return
+     */
+    public Beneficiary(Beneficiary b) {
+        this.name = b.getName();
+        this.phone = b.getPhone();
+        this.email = b.getEmail();
+        this.address = b.getAddress();
+        this.attachedProjectList = b.getHashAttachedProjectLists();
+    }
+
     public Name getName() {
         return name;
     }
@@ -129,9 +141,7 @@ public class Beneficiary {
      */
     public void deleteAttachedProject(ProjectTitle title) {
         if (this.attachedProjectList.contains(title)) {
-            System.out.println(this.attachedProjectList);
             this.attachedProjectList.remove(title);
-            System.out.println(this.attachedProjectList);
         }
     }
 

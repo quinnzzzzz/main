@@ -75,11 +75,11 @@ public class ProjectBuilder {
         return this;
     }
     /**
-     * @param volunteerList
+     * @param attachedVolunteers
      * @return ProjectBuilder
      */
-    public ProjectBuilder withVolunteer(List<Volunteer> volunteerList) {
-        this.volunteerList = volunteerList;
+    public ProjectBuilder withVolunteer(List<Volunteer> attachedVolunteers) {
+        this.volunteerList = attachedVolunteers;
         return this;
     }
 
