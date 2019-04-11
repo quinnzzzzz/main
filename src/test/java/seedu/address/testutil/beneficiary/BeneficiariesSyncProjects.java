@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.beneficiary;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

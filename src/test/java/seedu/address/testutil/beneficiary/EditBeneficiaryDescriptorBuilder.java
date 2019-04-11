@@ -1,10 +1,6 @@
-package seedu.address.testutil;
+package seedu.address.testutil.beneficiary;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import seedu.address.logic.commands.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
+import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.model.beneficiary.Address;
 import seedu.address.model.beneficiary.Email;
 import seedu.address.model.beneficiary.Name;

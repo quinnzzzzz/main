@@ -1,13 +1,13 @@
-package seedu.address.testutil;
+package seedu.address.testutil.beneficiary;
 
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_ADDRESS_ANIMAL_SHELTER;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_ADDRESS_BABES;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_EMAIL_ANIMAL_SHELTER;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_EMAIL_BABES;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_NAME_ANIMAL_SHELTER;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_NAME_BABES;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_PHONE_ANIMAL_SHELTER;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_PHONE_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_ADDRESS_ANIMAL_SHELTER;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_ADDRESS_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_EMAIL_ANIMAL_SHELTER;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_EMAIL_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_ANIMAL_SHELTER;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_PHONE_ANIMAL_SHELTER;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_PHONE_BABES;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.beneficiary;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -13,12 +13,14 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.beneficiary.NameContainsKeywordsPredicate;
 import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.testutil.EditBeneficiaryDescriptorBuilder;
+import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

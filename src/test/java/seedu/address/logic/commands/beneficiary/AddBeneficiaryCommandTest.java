@@ -31,7 +31,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.testutil.BeneficiaryBuilder;
+import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
 
 public class AddBeneficiaryCommandTest {
 

@@ -1,18 +1,18 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.beneficiary;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.DESC_ANIMAL_SHELTER;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.DESC_BABES;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_ADDRESS_BABES;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_EMAIL_BABES;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_NAME_BABES;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.VALID_PHONE_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.DESC_ANIMAL_SHELTER;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.DESC_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_ADDRESS_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_EMAIL_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_PHONE_BABES;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
-import seedu.address.testutil.EditBeneficiaryDescriptorBuilder;
+import static seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
+import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 
 public class EditBeneficiaryDescriptorTest {
 
@@ -35,7 +35,8 @@ public class EditBeneficiaryDescriptorTest {
         assertFalse(DESC_ANIMAL_SHELTER.equals(DESC_BABES));
 
         // different name -> returns false
-        EditBeneficiaryDescriptor editedAnimalShelter = new EditBeneficiaryDescriptorBuilder(DESC_ANIMAL_SHELTER).withName(VALID_NAME_BABES).build();
+        EditBeneficiaryDescriptor editedAnimalShelter =
+            new EditBeneficiaryDescriptorBuilder(DESC_ANIMAL_SHELTER).withName(VALID_NAME_BABES).build();
         assertFalse(DESC_ANIMAL_SHELTER.equals(editedAnimalShelter));
 
         // different phone -> returns false

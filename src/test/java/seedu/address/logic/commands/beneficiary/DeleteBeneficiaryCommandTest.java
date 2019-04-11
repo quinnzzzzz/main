@@ -1,18 +1,18 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.beneficiary;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.BeneficiaryCommandTestUtil.showBeneficiaryAtIndex;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.showBeneficiaryAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.BeneficiariesSyncProjects.ATTACHED_PROJECT_B1;
-import static seedu.address.testutil.BeneficiariesSyncProjects.ATTACHED_PROJECT_B2;
-import static seedu.address.testutil.BeneficiariesSyncProjects.BENEFICIARY_B;
-import static seedu.address.testutil.BeneficiariesSyncProjects.getAandBBeneficiaries;
-import static seedu.address.testutil.BeneficiariesSyncProjects.getAddressBookForBeneficiarySyncTest;
-import static seedu.address.testutil.BeneficiariesSyncProjects.getProjectA2B;
-import static seedu.address.testutil.TypicalBeneficiaries.getTypicalAddressBook;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.ATTACHED_PROJECT_B1;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.ATTACHED_PROJECT_B2;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.BENEFICIARY_B;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAandBBeneficiaries;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAddressBookForBeneficiarySyncTest;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getProjectA2B;
+import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
@@ -21,6 +21,9 @@ import org.junit.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -106,11 +109,11 @@ public class DeleteBeneficiaryCommandTest {
 
         // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiaries
         expectedModel.undoAddressBook();
-        assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // redo -> same first beneficiary deleted again
         expectedModel.redoAddressBook();
-        assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
