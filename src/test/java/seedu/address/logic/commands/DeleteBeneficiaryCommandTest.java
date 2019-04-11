@@ -104,7 +104,7 @@ public class DeleteBeneficiaryCommandTest {
         // delete -> first beneficiary deleted
         deleteBeneficiaryCommand.execute(model, commandHistory);
 
-        // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiarys
+        // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiaries
         expectedModel.undoAddressBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -136,7 +136,8 @@ public class DeleteBeneficiaryCommandTest {
      */
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameBeneficiaryDeleted() throws Exception {
-        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(INDEX_FIRST, false);
+        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(INDEX_FIRST,
+            false);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         showBeneficiaryAtIndex(model, INDEX_SECOND);
@@ -148,7 +149,7 @@ public class DeleteBeneficiaryCommandTest {
         // first beneficiary in filtered beneficiary list
         deleteBeneficiaryCommand.execute(model, commandHistory);
 
-        // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiarys
+        // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiaries
         expectedModel.undoAddressBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -160,27 +161,27 @@ public class DeleteBeneficiaryCommandTest {
 
     @Test
     public void equals() {
-        DeleteBeneficiaryCommand deleteFirstCommand = new DeleteBeneficiaryCommand(INDEX_FIRST,
+        DeleteBeneficiaryCommand deleteBeneficiaryFirstCommand = new DeleteBeneficiaryCommand(INDEX_FIRST,
             false);
         DeleteBeneficiaryCommand deleteSecondCommand = new DeleteBeneficiaryCommand(INDEX_SECOND,
             false);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(deleteBeneficiaryFirstCommand.equals(deleteBeneficiaryFirstCommand));
 
         // same values -> returns true
-        DeleteBeneficiaryCommand deleteFirstCommandCopy = new DeleteBeneficiaryCommand(INDEX_FIRST,
+        DeleteBeneficiaryCommand deleteBeneficiaryFirstCommandCopy = new DeleteBeneficiaryCommand(INDEX_FIRST,
             false);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        assertTrue(deleteBeneficiaryFirstCommand.equals(deleteBeneficiaryFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(deleteBeneficiaryFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(deleteBeneficiaryFirstCommand.equals(null));
 
         // different beneficiary -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(deleteBeneficiaryFirstCommand.equals(deleteSecondCommand));
     }
 
     @Test
