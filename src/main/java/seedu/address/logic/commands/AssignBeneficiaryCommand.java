@@ -22,18 +22,18 @@ import seedu.address.model.project.ProjectTitle;
  */
 public class AssignBeneficiaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "assign";
+    public static final String COMMAND_WORD = "assignB";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a beneficiary to a project, "
-        + "only 1 beneficiary can be assigned to each project.\n"
-        + "Parameters: "
-        + ASSIGNED_PROJECT_TITLE
-        + "[PROJECT_TITLE] "
-        + PREFIX_INDEX
-        + "[INDEX]...\n"
-        + "Example: " + COMMAND_WORD + " "
-        + "Project Sunshine"
-        + "1 ";
+            + "only 1 beneficiary can be assigned to each project.\n"
+            + "Parameters: "
+            + ASSIGNED_PROJECT_TITLE
+            + "[PROJECT_TITLE] "
+            + PREFIX_INDEX
+            + "[INDEX]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + "Project Sunshine"
+            + "i/1 ";
 
     public static final String MESSAGE_PARAMETERS = ASSIGNED_PROJECT_TITLE + "[PROJECT_TITLE] "
         + PREFIX_INDEX + "INDEX ";
@@ -64,7 +64,6 @@ public class AssignBeneficiaryCommand extends Command {
         List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
 
         if (targetBeneficiaryIndex.getZeroBased() >= lastShownList.size()) {
-            //System.out.println(lastShownList.size());
             throw new CommandException(Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
         }
         Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(targetProject);
@@ -72,25 +71,47 @@ public class AssignBeneficiaryCommand extends Command {
             throw new CommandException("Project does not exist.");
         } else {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-            if (projectToAssign.getBeneficiaryAssigned().toString() != "nil"
-                && model.getFilteredBeneficiaryList().filtered(
-                    x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0) {
-                Beneficiary oldBeneficiary = model.getFilteredBeneficiaryList()
-                    .filtered(x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).get(0);
-                oldBeneficiary.deleteAttachedProject(projectToAssign.getProjectTitle());
-            }
-            Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
-            if (!beneficiary.hasProjectTitle(targetProject)) {
-                beneficiary.addAttachedProject(targetProject);
-            }
+
+            //Update previous beneficiary on the change
+            updatePreBeneficiary(model);
+
+            //match project to beneficiary
+            Beneficiary beneficiary = updateBeneficiary(model);
+
+            //match beneficiary to project
             Name beneficiaryAssigned = beneficiary.getName();
-            beneficiary.addAttachedProject(targetProject);
             this.editedProject = new ProjectBuilder(this.projectToAssign).withBeneficiary(beneficiaryAssigned).build();
-            editedProject.setBeneficiary(beneficiaryAssigned);
             model.setProject(projectToAssign, editedProject);
+
             model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
+    }
+
+    private Beneficiary updateBeneficiary(Model model) {
+        Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetBeneficiaryIndex.getZeroBased());
+        Beneficiary updatedBeneficiary = new Beneficiary(beneficiary);
+        if (!updatedBeneficiary.hasProjectTitle(targetProject)) {
+            updatedBeneficiary.addAttachedProject(targetProject);
+        }
+        model.setBeneficiary(beneficiary, updatedBeneficiary);
+        return updatedBeneficiary;
+    }
+
+    private void updatePreBeneficiary(Model model) {
+        if (isValidPreAssignedBeneficiary(model)) {
+            Beneficiary oldBeneficiary = model.getFilteredBeneficiaryList()
+                .filtered(x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).get(0);
+            Beneficiary newBeneficiary = new Beneficiary(oldBeneficiary);
+            newBeneficiary.deleteAttachedProject(projectToAssign.getProjectTitle());
+            model.setBeneficiary(oldBeneficiary, newBeneficiary);
+        }
+    }
+
+    private boolean isValidPreAssignedBeneficiary(Model model) {
+        return projectToAssign.getBeneficiaryAssigned().toString() != "nil"
+            && model.getFilteredBeneficiaryList().filtered(
+                x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0;
     }
 
     @Override

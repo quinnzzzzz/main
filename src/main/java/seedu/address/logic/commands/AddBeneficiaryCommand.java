@@ -16,7 +16,7 @@ import seedu.address.model.beneficiary.Beneficiary;
  */
 public class AddBeneficiaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "addBeneficiary";
+    public static final String COMMAND_WORD = "addB";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a beneficiary to the address book. "
         + "Parameters: "
