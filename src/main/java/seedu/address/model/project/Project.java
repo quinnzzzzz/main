@@ -17,6 +17,7 @@ public class Project {
     // Identity fields
     private final ProjectTitle projectTitle;
     private final ProjectDate projectDate;
+    // Data fields
     private Complete complete;
     private Name beneficiaryAssigned;
     private List<Volunteer> volunteerList;
@@ -100,6 +101,10 @@ public class Project {
         return beneficiaryAssigned;
     }
 
+    public Integer getVolunteerCount() {
+        return volunteerList.size();
+    }
+
     public List<Volunteer> getVolunteerList() {
         return volunteerList;
     }
@@ -109,12 +114,7 @@ public class Project {
     public boolean isComplete() {
         return complete.isComplete();
     }
-    /**
-     * Add volunteer into Volunteer List.
-     */
-    public void addAttachedVolunteer(Volunteer volunteer) {
-        this.volunteerList.add(volunteer);
-    }
+
     public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
     }
