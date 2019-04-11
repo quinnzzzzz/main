@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.Assert.assertEquals;
@@ -18,6 +18,7 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MapObject;
@@ -62,12 +63,12 @@ public class AddBeneficiaryCommandTest {
     @Test
     public void execute_duplicateBeneficiary_throwsCommandException() throws Exception {
         Beneficiary validBeneficiary = new BeneficiaryBuilder().build();
-        AddBeneficiaryCommand addCommand = new AddBeneficiaryCommand(validBeneficiary);
+        AddBeneficiaryCommand addBeneficiaryCommand = new AddBeneficiaryCommand(validBeneficiary);
         ModelStub modelStub = new ModelStubWithBeneficiary(validBeneficiary);
 
         thrown.expect(CommandException.class);
         thrown.expectMessage(AddBeneficiaryCommand.MESSAGE_DUPLICATE_BENEFICIARY);
-        addCommand.execute(modelStub, commandHistory);
+        addBeneficiaryCommand.execute(modelStub, commandHistory);
     }
 
     @Test
@@ -150,6 +151,11 @@ public class AddBeneficiaryCommandTest {
         public void addProject(Project project) {
             throw new AssertionError("This method "
                     + "should not be called.");
+        }
+
+        @Override
+        public void sortProjectByDate() {
+            
         }
 
         @Override
