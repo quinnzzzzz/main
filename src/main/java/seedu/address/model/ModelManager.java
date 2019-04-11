@@ -588,7 +588,9 @@ public class ModelManager implements Model {
             && userPrefs.equals(other.userPrefs)
             && filteredPersons.equals(other.filteredPersons)
             && filteredProjects.equals(other.filteredProjects)
-            && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
+            && filteredBeneficiaries.equals(other.filteredBeneficiaries)
+            && Objects.equals(selectedPerson.get(), other.selectedPerson.get())
+            && Objects.equals(selectedBeneficiary.get(), other.selectedBeneficiary.get());
         // && Objects.equals(selectedProject.get(), other,selectedProject.get());
     }
 

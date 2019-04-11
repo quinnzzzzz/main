@@ -1,11 +1,12 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.beneficiary.Address;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Email;
 import seedu.address.model.beneficiary.Name;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Phone;
 import seedu.address.model.project.ProjectTitle;
 
@@ -23,7 +24,7 @@ public class BeneficiaryBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
+    private Set<ProjectTitle> attachedProjectList;
 
     public BeneficiaryBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -78,6 +79,12 @@ public class BeneficiaryBuilder {
 
     public Beneficiary build() {
         return new Beneficiary(name, phone, email, address);
+    }
+
+    public Beneficiary buildWithProjectList(Set<ProjectTitle> attachedProjectList) {
+        Beneficiary beneficiary = build();
+        beneficiary.setProjectLists(attachedProjectList);
+        return beneficiary;
     }
 
 }

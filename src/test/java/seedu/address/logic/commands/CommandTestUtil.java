@@ -17,8 +17,11 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
+import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -110,8 +113,14 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Person> expectedPersonFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Beneficiary> expectedBeneficiaryFilteredList = new ArrayList<>(actualModel.getFilteredBeneficiaryList());
+        List<Project> expectedProjectFilteredList = new ArrayList<>(actualModel.getFilteredProjectList());
+        List<Volunteer> expectedVolunteerFilteredList = new ArrayList<>(actualModel.getFilteredVolunteerList());
         Person expectedSelectedPerson = actualModel.getSelectedPerson();
+        Beneficiary expectedSelectedBeneficiary = actualModel.getSelectedBeneficiary();
+        Project expectedSelectedProject = actualModel.getSelectedProject();
+        Volunteer expectedSelectedVolunteer = actualModel.getSelectedVolunteer();
 
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
@@ -121,8 +130,14 @@ public class CommandTestUtil {
         } catch (CommandException e) {
             assertEquals(expectedMessage, e.getMessage());
             assertEquals(expectedAddressBook, actualModel.getAddressBook());
-            assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+            assertEquals(expectedPersonFilteredList, actualModel.getFilteredPersonList());
+            assertEquals(expectedBeneficiaryFilteredList, actualModel.getFilteredBeneficiaryList());
+            assertEquals(expectedProjectFilteredList, actualModel.getFilteredProjectList());
+            assertEquals(expectedVolunteerFilteredList, actualModel.getFilteredVolunteerList());
             assertEquals(expectedSelectedPerson, actualModel.getSelectedPerson());
+            assertEquals(expectedSelectedBeneficiary, actualModel.getSelectedBeneficiary());
+            assertEquals(expectedSelectedVolunteer, actualModel.getSelectedVolunteer());
+            assertEquals(expectedSelectedProject, actualModel.getSelectedProject());
             assertEquals(expectedCommandHistory, actualCommandHistory);
         }
     }

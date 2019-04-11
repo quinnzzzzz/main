@@ -48,14 +48,14 @@ public class AddBeneficiaryCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_beneficiaryAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingBeneficiaryAdded modelStub = new ModelStubAcceptingBeneficiaryAdded();
         Beneficiary validBeneficiary = new BeneficiaryBuilder().build();
 
         CommandResult commandResult = new AddBeneficiaryCommand(validBeneficiary).execute(modelStub, commandHistory);
 
         assertEquals(String.format(AddBeneficiaryCommand.MESSAGE_SUCCESS, validBeneficiary), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validBeneficiary), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validBeneficiary), modelStub.beneficiariesAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 
@@ -92,7 +92,7 @@ public class AddBeneficiaryCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different beneficiary -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -416,18 +416,18 @@ public class AddBeneficiaryCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingBeneficiaryAdded extends ModelStub {
-        final ArrayList<Beneficiary> personsAdded = new ArrayList<>();
+        final ArrayList<Beneficiary> beneficiariesAdded = new ArrayList<>();
 
         @Override
         public boolean hasBeneficiary(Beneficiary person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameBeneficiary);
+            return beneficiariesAdded.stream().anyMatch(person::isSameBeneficiary);
         }
 
         @Override
         public void addBeneficiary(Beneficiary person) {
             requireNonNull(person);
-            personsAdded.add(person);
+            beneficiariesAdded.add(person);
         }
 
         @Override
