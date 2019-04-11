@@ -138,6 +138,7 @@ public class DeleteBeneficiaryCommandTest {
         expectedModel.undoAddressBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
+        assertNotEquals(beneficiaryToDelete, model.getFilteredBeneficiaryList().get(INDEX_FIRST_PERSON.getZeroBased()));
         // redo -> deletes same second beneficiary in unfiltered beneficiary list
         expectedModel.redoAddressBook();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
