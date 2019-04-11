@@ -233,5 +233,5 @@ public class EditBeneficiaryCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditBeneficiaryCommand(INDEX_FIRST, DESC_BABES)));
     }
-    
+
 }
