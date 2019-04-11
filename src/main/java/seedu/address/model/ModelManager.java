@@ -174,6 +174,11 @@ public class ModelManager implements Model {
         versionedAddressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
+    @Override
+    public void sortProjectByDate() {
+        versionedAddressBook.sortProjectByDate();
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {

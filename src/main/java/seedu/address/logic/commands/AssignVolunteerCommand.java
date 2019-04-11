@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -23,18 +24,18 @@ public class AssignVolunteerCommand extends Command {
     public static final String COMMAND_WORD = "assignV";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns volunteers to a project,"
-            + "at least 1 volunteer should be assigned.\n"
-            + "More than 1 project can be assigned to each volunteer.\n"
-            + "Parameters: "
-            + ASSIGNED_PROJECT_TITLE
-            + "[PROJECT_TITLE] "
-            + PREFIX_REQUIRED_VOLUNTEER + "5"
-            + "Example: " + COMMAND_WORD + " "
-            + "p/Project Sunshine"
-            + "rv/5";
+        + "at least 1 volunteer should be assigned.\n"
+        + "More than 1 project can be assigned to each volunteer.\n"
+        + "Parameters: "
+        + ASSIGNED_PROJECT_TITLE
+        + "[PROJECT_TITLE] "
+        + PREFIX_REQUIRED_VOLUNTEER + "5"
+        + "Example: " + COMMAND_WORD + " "
+        + "p/Project Sunshine"
+        + "rv/5";
 
     public static final String MESSAGE_PARAMETERS = ASSIGNED_PROJECT_TITLE + "[PROJECT_TITLE] "
-            + PREFIX_REQUIRED_VOLUNTEER + "INDEX ";
+        + PREFIX_REQUIRED_VOLUNTEER + "INDEX ";
     public static final String MESSAGE_SUCCESS = "Volunteer/s successfully assigned to project.";
 
     private final ProjectTitle targetProject;
@@ -64,33 +65,24 @@ public class AssignVolunteerCommand extends Command {
             throw new CommandException("Project does not exist.");
         } else {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-            if (requiredVolunteers == 1) {
-                volunteersToAssign = lastShownList.subList(0, 1);
+            if (requiredVolunteers > lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_NOT_ENOUGH_VOLUNTEERS);
             } else {
-                if (requiredVolunteers > lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_NOT_ENOUGH_VOLUNTEERS);
-                } else if (requiredVolunteers == lastShownList.size()) {
-                    volunteersToAssign = lastShownList;
-                } else {
-                    volunteersToAssign = lastShownList.subList(0, (requiredVolunteers + 1));
-                    for (Volunteer volunteer : volunteersToAssign) {
-                        if (!volunteer.hasProjectTitle(targetProject)) {
-                            volunteer.addAttachedProject(targetProject);
-                        }
-                        editedProject.addAttachedVolunteer(volunteer);
-                    }
-                }
+                volunteersToAssign = lastShownList.subList(0, requiredVolunteers);
+                //System.out.println("size" + lastShownList.size());
             }
         }
         this.editedProject = new ProjectBuilder(this.projectToAssign).withVolunteer(volunteersToAssign).build();
         model.setProject(projectToAssign, editedProject);
+        //System.out.println(projectToAssign.getVolunteerList().get(0).getName().toString());
         model.commitAddressBook();
+        //System.out.println(projectToAssign.getVolunteerCount());
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this || (other instanceof AssignVolunteerCommand
-                && this.targetProject.equals(((AssignVolunteerCommand) other).targetProject));
+            && this.targetProject.equals(((AssignVolunteerCommand) other).targetProject));
     }
 }
