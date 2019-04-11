@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.beneficiaryCommand;
+package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BENEFICIARIES;

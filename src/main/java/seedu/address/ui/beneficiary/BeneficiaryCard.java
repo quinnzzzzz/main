@@ -1,4 +1,4 @@
-package seedu.address.ui.beneficiaryUi;
+package seedu.address.ui.beneficiary;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

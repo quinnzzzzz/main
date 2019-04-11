@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.beneficiaryParser;
+package seedu.address.logic.parser.beneficiary;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.beneficiaryCommand.EditBeneficiaryCommand;
-import seedu.address.logic.commands.beneficiaryCommand.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
+import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand;
+import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

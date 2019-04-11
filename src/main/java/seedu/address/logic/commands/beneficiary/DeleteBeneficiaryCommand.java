@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.beneficiaryCommand;
+package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.HARD_DELETE_MODE;

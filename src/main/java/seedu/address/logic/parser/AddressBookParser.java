@@ -27,16 +27,16 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectVolunteerCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
-import seedu.address.logic.commands.beneficiaryCommand.AddBeneficiaryCommand;
-import seedu.address.logic.commands.beneficiaryCommand.DeleteBeneficiaryCommand;
-import seedu.address.logic.commands.beneficiaryCommand.EditBeneficiaryCommand;
-import seedu.address.logic.commands.beneficiaryCommand.FindBeneficiaryCommand;
-import seedu.address.logic.commands.beneficiaryCommand.ListBeneficiaryCommand;
-import seedu.address.logic.commands.beneficiaryCommand.SummaryBeneficiaryCommand;
-import seedu.address.logic.parser.beneficiaryParser.AddBeneficiaryCommandParser;
-import seedu.address.logic.parser.beneficiaryParser.DeleteBeneficiaryCommandParser;
-import seedu.address.logic.parser.beneficiaryParser.EditBeneficiaryCommandParser;
-import seedu.address.logic.parser.beneficiaryParser.FindBeneficiaryCommandParser;
+import seedu.address.logic.commands.beneficiary.AddBeneficiaryCommand;
+import seedu.address.logic.commands.beneficiary.DeleteBeneficiaryCommand;
+import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand;
+import seedu.address.logic.commands.beneficiary.FindBeneficiaryCommand;
+import seedu.address.logic.commands.beneficiary.ListBeneficiaryCommand;
+import seedu.address.logic.commands.beneficiary.SummaryBeneficiaryCommand;
+import seedu.address.logic.parser.beneficiary.AddBeneficiaryCommandParser;
+import seedu.address.logic.parser.beneficiary.DeleteBeneficiaryCommandParser;
+import seedu.address.logic.parser.beneficiary.EditBeneficiaryCommandParser;
+import seedu.address.logic.parser.beneficiary.FindBeneficiaryCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

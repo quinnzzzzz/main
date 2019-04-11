@@ -1,10 +1,10 @@
-package seedu.address.logic.parser.beneficiaryParser;
+package seedu.address.logic.parser.beneficiary;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.beneficiaryCommand.FindBeneficiaryCommand;
+import seedu.address.logic.commands.beneficiary.FindBeneficiaryCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.beneficiary.NameContainsKeywordsPredicate;

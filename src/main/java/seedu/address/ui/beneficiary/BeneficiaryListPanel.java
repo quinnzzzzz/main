@@ -1,4 +1,4 @@
-package seedu.address.ui.beneficiaryUi;
+package seedu.address.ui.beneficiary;
 
 import java.util.Objects;
 import java.util.function.Consumer;
