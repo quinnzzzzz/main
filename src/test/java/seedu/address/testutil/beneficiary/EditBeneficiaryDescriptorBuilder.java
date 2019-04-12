@@ -18,7 +18,8 @@ public class EditBeneficiaryDescriptorBuilder {
 
     private EditBeneficiaryDescriptor descriptor;
 
-    public EditBeneficiaryDescriptorBuilder() {
+    public
+    EditBeneficiaryDescriptorBuilder() {
         descriptor = new EditBeneficiaryDescriptor();
     }
 
