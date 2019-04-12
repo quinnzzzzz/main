@@ -8,10 +8,10 @@ import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUti
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_EMAIL_BABES;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_BABES;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_PHONE_BABES;
+import static seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 
 import org.junit.Test;
 
-import static seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 
 public class EditBeneficiaryDescriptorTest {

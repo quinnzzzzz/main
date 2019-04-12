@@ -10,17 +10,17 @@ import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUti
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.showBeneficiaryAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.ATTACHED_PROJECT_A;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.ATTACH_TO_A_TITLE;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.BENEFICIARY_A;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.BENEFICIARY_A_EDITED;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.BENEFICIARY_A_EDITED_NAME;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.buildProjectStub;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAandBBeneficiaries;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAddressBookForBeneficiarySyncTest;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getProjectA2B;
-import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.buildProjectStub;
 import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.getTypicalAddressBook;
 
 import org.junit.Test;
@@ -29,17 +29,17 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
-import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
+import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditBeneficiaryCommand.
@@ -55,7 +55,7 @@ public class EditBeneficiaryCommandTest {
         EditBeneficiaryDescriptor descriptor = new EditBeneficiaryDescriptorBuilder(editedBeneficiary).build();
         EditBeneficiaryCommand editBeneficiaryCommand = new EditBeneficiaryCommand(INDEX_FIRST, descriptor);
 
-        String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS, 
+        String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS,
             editedBeneficiary);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -72,13 +72,13 @@ public class EditBeneficiaryCommandTest {
 
         BeneficiaryBuilder beneficiaryInList = new BeneficiaryBuilder(lastBeneficiary);
         Beneficiary editedBeneficiary = beneficiaryInList.withName(VALID_NAME_BABES).withPhone(VALID_PHONE_BABES)
-                .build();
+            .build();
 
         EditBeneficiaryDescriptor descriptor = new EditBeneficiaryDescriptorBuilder().withName(VALID_NAME_BABES)
-                .withPhone(VALID_PHONE_BABES).build();
+            .withPhone(VALID_PHONE_BABES).build();
         EditBeneficiaryCommand editBeneficiaryCommand = new EditBeneficiaryCommand(indexLastBeneficiary, descriptor);
 
-        String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS, 
+        String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS,
             editedBeneficiary);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -93,7 +93,7 @@ public class EditBeneficiaryCommandTest {
         EditBeneficiaryCommand editBeneficiaryCommand = new EditBeneficiaryCommand(INDEX_FIRST, new EditBeneficiaryDescriptor());
         Beneficiary editedBeneficiary = model.getFilteredBeneficiaryList().get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS, 
+        String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS,
             editedBeneficiary);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -110,9 +110,9 @@ public class EditBeneficiaryCommandTest {
         Beneficiary editedBeneficiary = new BeneficiaryBuilder(beneficiaryInFilteredList).withName(VALID_NAME_BABES)
             .build();
         EditBeneficiaryCommand editBeneficiaryCommand = new EditBeneficiaryCommand(INDEX_FIRST,
-                new EditBeneficiaryDescriptorBuilder().withName(VALID_NAME_BABES).build());
+            new EditBeneficiaryDescriptorBuilder().withName(VALID_NAME_BABES).build());
 
-        String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS, 
+        String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS,
             editedBeneficiary);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -145,7 +145,7 @@ public class EditBeneficiaryCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getBeneficiaryList().size());
 
         EditBeneficiaryCommand editBeneficiaryCommand = new EditBeneficiaryCommand(outOfBoundIndex,
-                new EditBeneficiaryDescriptorBuilder().withName(VALID_NAME_BABES).build());
+            new EditBeneficiaryDescriptorBuilder().withName(VALID_NAME_BABES).build());
 
         assertCommandFailure(editBeneficiaryCommand, model, commandHistory,
             Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);

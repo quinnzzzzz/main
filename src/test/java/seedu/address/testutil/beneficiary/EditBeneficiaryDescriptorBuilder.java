@@ -2,12 +2,11 @@ package seedu.address.testutil.beneficiary;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand;
 import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.model.beneficiary.Address;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Email;
 import seedu.address.model.beneficiary.Name;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Phone;
 import seedu.address.model.project.ProjectTitle;
 
@@ -18,8 +17,7 @@ public class EditBeneficiaryDescriptorBuilder {
 
     private EditBeneficiaryDescriptor descriptor;
 
-    public
-    EditBeneficiaryDescriptorBuilder() {
+    public EditBeneficiaryDescriptorBuilder() {
         descriptor = new EditBeneficiaryDescriptor();
     }
 

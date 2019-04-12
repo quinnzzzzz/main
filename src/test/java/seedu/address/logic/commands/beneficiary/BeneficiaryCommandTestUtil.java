@@ -18,8 +18,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.beneficiary.NameContainsKeywordsPredicate;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.beneficiary.NameContainsKeywordsPredicate;
 import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 
 /**
@@ -58,11 +58,11 @@ public class BeneficiaryCommandTestUtil {
 
     static {
         DESC_ANIMAL_SHELTER = new EditBeneficiaryDescriptorBuilder().withName(VALID_NAME_ANIMAL_SHELTER)
-                .withPhone(VALID_PHONE_ANIMAL_SHELTER).withEmail(VALID_EMAIL_ANIMAL_SHELTER)
-                .withAddress(VALID_ADDRESS_ANIMAL_SHELTER).build();
+            .withPhone(VALID_PHONE_ANIMAL_SHELTER).withEmail(VALID_EMAIL_ANIMAL_SHELTER)
+            .withAddress(VALID_ADDRESS_ANIMAL_SHELTER).build();
         DESC_BABES = new EditBeneficiaryDescriptorBuilder().withName(VALID_NAME_BABES)
-                .withPhone(VALID_PHONE_BABES).withEmail(VALID_EMAIL_BABES)
-                .withAddress(VALID_ADDRESS_BABES).build();
+            .withPhone(VALID_PHONE_BABES).withEmail(VALID_EMAIL_BABES)
+            .withAddress(VALID_ADDRESS_BABES).build();
     }
 
     /**

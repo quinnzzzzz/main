@@ -3,9 +3,11 @@ package seedu.address.logic.commands.beneficiary;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.showBeneficiaryAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.showBeneficiaryAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.ATTACHED_PROJECT_B1;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.ATTACHED_PROJECT_B2;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.BENEFICIARY_B;
@@ -13,8 +15,6 @@ import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAa
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAddressBookForBeneficiarySyncTest;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getProjectA2B;
 import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.Test;
 

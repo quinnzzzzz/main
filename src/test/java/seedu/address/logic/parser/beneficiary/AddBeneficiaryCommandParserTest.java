@@ -28,11 +28,10 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.beneficiary.AddBeneficiaryCommand;
 import seedu.address.model.beneficiary.Address;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Email;
 import seedu.address.model.beneficiary.Name;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
 
 public class AddBeneficiaryCommandParserTest {
@@ -45,27 +44,27 @@ public class AddBeneficiaryCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
             PREAMBLE_WHITESPACE + NAME_DESC_BABES + PHONE_DESC_BABES + EMAIL_DESC_BABES
-            + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
+                + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
 
         // multiple names - last name accepted
         assertParseSuccess(parser,
             NAME_DESC_ANIMAL_SHELTER + NAME_DESC_BABES + PHONE_DESC_BABES + EMAIL_DESC_BABES
-            + ADDRESS_DESC_BABES , new AddBeneficiaryCommand(expectedBeneficiary));
+                + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser,
             NAME_DESC_BABES + PHONE_DESC_ANIMAL_SHELTER + PHONE_DESC_BABES + EMAIL_DESC_BABES
-            + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
+                + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser,
             NAME_DESC_BABES + PHONE_DESC_BABES + EMAIL_DESC_ANIMAL_SHELTER + EMAIL_DESC_BABES
-            + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
+                + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser,
             NAME_DESC_BABES + PHONE_DESC_BABES + EMAIL_DESC_BABES + ADDRESS_DESC_ANIMAL_SHELTER
-            + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
+                + ADDRESS_DESC_BABES, new AddBeneficiaryCommand(expectedBeneficiary));
 
         // multiple tags - all accepted
         Beneficiary expectedBeneficiaryMultipleTags = new BeneficiaryBuilder(BABES)
