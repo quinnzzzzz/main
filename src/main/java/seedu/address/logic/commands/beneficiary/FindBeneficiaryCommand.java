@@ -1,9 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.beneficiary.NameContainsKeywordsPredicate;
 
@@ -13,7 +15,7 @@ import seedu.address.model.beneficiary.NameContainsKeywordsPredicate;
  */
 public class FindBeneficiaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "findBeneficiary";
+    public static final String COMMAND_WORD = "findB";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all beneficiaries whose names contain any of "
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ public class Volunteer {
     private final Set<Tag> tags = new HashSet<>();
     // Data fields
     private int points;
+    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
 
     /**
      * Every field must be present and not null.

@@ -115,8 +115,13 @@ public interface Model {
      * Adds the given project.
      * {@code project} must not already exist in the address book.
      */
-
     void addProject(Project project);
+
+    /**
+     * Sorts the given project according to date
+     * {@code project} must not already exist in the address book.
+     */
+    void sortProjectByDate();
 
     /**
      * Adds the given person.

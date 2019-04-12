@@ -1,0 +1,28 @@
+{
+  "ignoreGlobList": ["about-us/**", "**index.html"],
+  "formats": ["html", "css"],
+  "ignoreCommitList": ["90018e49f129ce7e0abdc8b18e91c9813588c601", "67890def"],
+  "authors":
+  [
+    {
+      "githubId": "ndhuu",
+      "displayName": "NGU...HUU",
+      "authorNames": ["ndhuu"]
+    },
+    {
+      "githubId": "articstranger",
+      "displayName": "WON...EMY",
+      "authorNames": ["articstranger"]
+    },
+    {
+      "githubId": "swalahlah",
+      "displayName": "LIO...HUI",
+      "authorNames": ["swalahlah"]
+    },
+    {
+      "githubId": "quinnzzzzz",
+      "displayName": "ZHA... RU",
+      "authorNames": ["quinnzzzzz", "Quinn Zhao"]
+    }
+  ]
+}

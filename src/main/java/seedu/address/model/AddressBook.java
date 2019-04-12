@@ -307,7 +307,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(edited);
         projects.setProject(target, edited);
     }
-
+    /**
+     * Sorts the projects by date from earliest
+     */
+    public void sortProjectByDate() {
+        projects.sortProjectByDate();
+        indicateModified();
+    }
     //@@author articstranger
     /**
      * Sorts all volunteers by their points
@@ -316,8 +322,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         volunteers.sortByPoints();
         indicateModified();
     }
-
-
 }
 //    public boolean checkBeneficiaryForProject(ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
 //        Beneficiary beneficiary = beneficiaries.getBeneficiaryIndex(targetBeneficiaryIndex);
