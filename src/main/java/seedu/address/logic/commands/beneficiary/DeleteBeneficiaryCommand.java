@@ -25,6 +25,7 @@ import seedu.address.model.project.ProjectTitle;
 public class DeleteBeneficiaryCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteB";
+    public static final String COMMAND_WORD_ALIAS = "db";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the beneficiary identified by the index number used in the displayed beneficiary list.\n"
