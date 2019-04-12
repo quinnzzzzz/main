@@ -24,18 +24,18 @@ public class AssignVolunteerCommand extends Command {
     public static final String COMMAND_WORD = "assignV";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns volunteers to a project,"
-            + "at least 1 volunteer should be assigned.\n"
-            + "More than 1 project can be assigned to each volunteer.\n"
-            + "Parameters: "
-            + ASSIGNED_PROJECT_TITLE
-            + "[PROJECT_TITLE] "
-            + PREFIX_REQUIRED_VOLUNTEER + "5"
-            + "Example: " + COMMAND_WORD + " "
-            + "p/Project Sunshine"
-            + "rv/5";
+        + "at least 1 volunteer should be assigned.\n"
+        + "More than 1 project can be assigned to each volunteer.\n"
+        + "Parameters: "
+        + ASSIGNED_PROJECT_TITLE
+        + "[PROJECT_TITLE] "
+        + PREFIX_REQUIRED_VOLUNTEER + "5"
+        + "Example: " + COMMAND_WORD + " "
+        + "p/Project Sunshine"
+        + "rv/5";
 
     public static final String MESSAGE_PARAMETERS = ASSIGNED_PROJECT_TITLE + "[PROJECT_TITLE] "
-            + PREFIX_REQUIRED_VOLUNTEER + "INDEX ";
+        + PREFIX_REQUIRED_VOLUNTEER + "INDEX ";
     public static final String MESSAGE_SUCCESS = "Volunteer/s successfully assigned to project.";
 
     private final ProjectTitle targetProject;
@@ -67,8 +67,7 @@ public class AssignVolunteerCommand extends Command {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
             if (requiredVolunteers > lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_NOT_ENOUGH_VOLUNTEERS);
-            }
-            else {
+            } else {
                 volunteersToAssign = lastShownList.subList(0, requiredVolunteers);
                 //System.out.println("size" + lastShownList.size());
             }
@@ -84,6 +83,6 @@ public class AssignVolunteerCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this || (other instanceof AssignVolunteerCommand
-                && this.targetProject.equals(((AssignVolunteerCommand) other).targetProject));
+            && this.targetProject.equals(((AssignVolunteerCommand) other).targetProject));
     }
 }

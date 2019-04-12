@@ -1,36 +1,27 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.SummaryBeneficiaryCommand.SummarisedBeneficiary;
+import seedu.address.logic.commands.beneficiary.SummaryBeneficiaryCommand;
+import seedu.address.logic.commands.beneficiary.SummaryBeneficiaryCommand.SummarisedBeneficiary;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.ui.beneficiary.BeneficiaryListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -190,46 +181,8 @@ public class MainWindow extends UiPart<Stage> {
     public void handleBeneficiarySummary() {
         Stage stage = new Stage();
         TableView<SummarisedBeneficiary> table = new TableView<SummarisedBeneficiary>();
-        List<Beneficiary> beneficiaryList = logic.getFilteredBeneficiaryList();
-        List<SummarisedBeneficiary> data0 = new ArrayList<>();
-        for (Beneficiary beneficiary : beneficiaryList) {
-            data0.add(new SummarisedBeneficiary(beneficiary));
-        }
-        final ObservableList<SummarisedBeneficiary> data = FXCollections.observableArrayList(data0);
-        Scene scene = new Scene(new Group());
-        stage.setTitle("VolunCheer");
-        stage.setWidth(1200);
-        stage.setHeight(700);
-
-        final Label label = new Label("Beneficiary Summary Table");
-        label.setFont(new Font("Arial", 20));
-
-        table.setEditable(true);
-
-        TableColumn nameCol = new TableColumn("Beneficiary Name");
-        nameCol.setMinWidth(100);
-        nameCol.setCellValueFactory(
-            new PropertyValueFactory<SummarisedBeneficiary, String>("name"));
-
-        TableColumn numProjectCol = new TableColumn("No. Projects");
-        numProjectCol.setMinWidth(100);
-        numProjectCol.setCellValueFactory(
-            new PropertyValueFactory<SummarisedBeneficiary, String>("numberOfProjects"));
-
-        TableColumn projListCol = new TableColumn("List of attached projects");
-        projListCol.setMinWidth(800);
-        projListCol.setCellValueFactory(
-            new PropertyValueFactory<SummarisedBeneficiary, List<String>>("projectList"));
-
-        table.setItems(data);
-        table.getColumns().addAll(nameCol, numProjectCol, projListCol);
-
-        final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table);
-        Group g = (Group) scene.getRoot();
-        g.getChildren().addAll(vbox);
+        final ObservableList<SummarisedBeneficiary> data = SummaryBeneficiaryCommand.getSummarisedBeneficiaries(logic);
+        Scene scene = SummaryBeneficiaryCommand.getScene(stage, table, data);
         stage.setScene(scene);
         stage.show();
     }
