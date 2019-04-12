@@ -1,11 +1,15 @@
 package seedu.address.testutil.beneficiary;
 
+import java.util.Set;
+
+import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand;
 import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.model.beneficiary.Address;
 import seedu.address.model.beneficiary.Email;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.Phone;
+import seedu.address.model.project.ProjectTitle;
 
 /**
  * A utility class to help with building EditBeneficiaryDescriptor objects.
@@ -31,6 +35,7 @@ public class EditBeneficiaryDescriptorBuilder {
         descriptor.setPhone(Beneficiary.getPhone());
         descriptor.setEmail(Beneficiary.getEmail());
         descriptor.setAddress(Beneficiary.getAddress());
+        descriptor.setAttachedProjectList(Beneficiary.getAttachedProjectLists());
     }
 
     /**
@@ -62,6 +67,14 @@ public class EditBeneficiaryDescriptorBuilder {
      */
     public EditBeneficiaryDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code attachedProjectList} of the {@code EditBeneficiaryDescriptor} that we are building.
+     */
+    public EditBeneficiaryDescriptorBuilder withProjectList(Set<ProjectTitle> projectList) {
+        descriptor.setAttachedProjectList(projectList);
         return this;
     }
 

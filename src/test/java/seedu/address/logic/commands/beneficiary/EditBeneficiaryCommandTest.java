@@ -10,8 +10,17 @@ import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUti
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.showBeneficiaryAtIndex;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.ATTACHED_PROJECT_A;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.ATTACH_TO_A_TITLE;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.BENEFICIARY_A;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.BENEFICIARY_A_EDITED;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.BENEFICIARY_A_EDITED_NAME;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAandBBeneficiaries;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAddressBookForBeneficiarySyncTest;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getProjectA2B;
+import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.buildProjectStub;
 import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.getTypicalAddressBook;
 
 import org.junit.Test;
@@ -28,6 +37,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
 
@@ -235,6 +245,28 @@ public class EditBeneficiaryCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditBeneficiaryCommand(INDEX_FIRST, DESC_BABES)));
+    }
+
+    /**
+     * Edit beneficiary with attached projects and observe the synchronization in those projects
+     */
+    @Test
+    public void execute_editBeneficiary_checkSyncWithAttachedProjects() {
+        Model model = new ModelManager(
+            getAddressBookForBeneficiarySyncTest(getAandBBeneficiaries(), getProjectA2B()), new UserPrefs());
+        CommandHistory commandHistory = new CommandHistory();
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        EditBeneficiaryCommand editBeneficiaryCommand = new EditBeneficiaryCommand(INDEX_SECOND, BENEFICIARY_A_EDITED);
+        Beneficiary editedBeneficiary = new BeneficiaryBuilder(BENEFICIARY_A)
+            .withName(BENEFICIARY_A_EDITED_NAME).build();
+        expectedModel.setBeneficiary(BENEFICIARY_A, editedBeneficiary);
+        Project projectAttachedToA = buildProjectStub(ATTACH_TO_A_TITLE, editedBeneficiary);
+        expectedModel.setProject(ATTACHED_PROJECT_A, projectAttachedToA);
+        System.out.println(projectAttachedToA);
+        expectedModel.commitAddressBook();
+        String expectedMessage = String.format(
+            EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS, editedBeneficiary);
+        assertCommandSuccess(editBeneficiaryCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
 }

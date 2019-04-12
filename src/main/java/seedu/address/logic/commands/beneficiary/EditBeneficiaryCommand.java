@@ -7,8 +7,10 @@ import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BENEFICIARIES;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -177,6 +179,7 @@ public class EditBeneficiaryCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Set<ProjectTitle> attachedProjectList = new HashSet<>();
 
         public EditBeneficiaryDescriptor() {
         }
@@ -229,6 +232,10 @@ public class EditBeneficiaryCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public void setAttachedProjectList(Set<ProjectTitle> attachedProjectList) {
+            this.attachedProjectList = attachedProjectList;
         }
 
         @Override

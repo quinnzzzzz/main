@@ -78,7 +78,9 @@ public class BeneficiaryBuilder {
     }
 
     public Beneficiary build() {
-        return new Beneficiary(name, phone, email, address);
+        Beneficiary b = new Beneficiary(name, phone, email, address);
+        b.setProjectLists(this.attachedProjectList);
+        return b;
     }
 
     public Beneficiary buildWithProjectList(Set<ProjectTitle> attachedProjectList) {

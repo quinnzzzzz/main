@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Complete;
@@ -28,15 +29,23 @@ public class BeneficiariesSyncProjects {
     public static final Set<ProjectTitle> PROJECT_LIST_OF_B = new HashSet<>(
         Arrays.asList(ATTACH_TO_B1_TITLE, ATTACH_TO_B2_TITLE));
 
+    public static final String BENEFICIARY_A_NAME = "Beneficiary A";
+    public static final String A_PHONE = "8482131";
+    public static final String A_EMAIL = "befA@example.com";
+    public static final String A_ADDRESS = "chicago ave";
     public static final Beneficiary BENEFICIARY_A = new BeneficiaryBuilder()
-        .withName("Beneficiary A").withPhone("8482131")
-        .withEmail("befA@example.com")
-        .withAddress("chicago ave").buildWithProjectList(PROJECT_LIST_OF_A);
+        .withName(BENEFICIARY_A_NAME).withPhone(A_PHONE).withEmail(A_EMAIL)
+        .withAddress(A_ADDRESS).buildWithProjectList(PROJECT_LIST_OF_A);
 
     public static final Beneficiary BENEFICIARY_B = new BeneficiaryBuilder()
         .withName("Beneficiary B").withPhone("8482131")
         .withEmail("befB@example.com")
         .withAddress("chicago ave").buildWithProjectList(PROJECT_LIST_OF_B);
+
+    public static final String BENEFICIARY_A_EDITED_NAME = "Beneficiary A edited";
+    public static final EditBeneficiaryDescriptor BENEFICIARY_A_EDITED = new EditBeneficiaryDescriptorBuilder()
+        .withName(BENEFICIARY_A_EDITED_NAME).withPhone(A_PHONE).withEmail(A_EMAIL)
+        .withAddress(A_ADDRESS).withProjectList(PROJECT_LIST_OF_A).build();
 
     public static final Project ATTACHED_PROJECT_A = buildProjectStub(ATTACH_TO_A_TITLE, BENEFICIARY_A);
     public static final Project ATTACHED_PROJECT_B1 = buildProjectStub(ATTACH_TO_B1_TITLE, BENEFICIARY_B);
