@@ -1,3 +1,4 @@
+//@@author ndhuu
 package seedu.address.model.beneficiary;
 
 import static org.junit.Assert.assertFalse;

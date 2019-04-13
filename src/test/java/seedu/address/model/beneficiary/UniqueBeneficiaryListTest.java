@@ -1,3 +1,4 @@
+//@@author ndhuu
 package seedu.address.model.beneficiary;
 
 import static org.junit.Assert.assertEquals;
@@ -138,13 +139,13 @@ public class UniqueBeneficiaryListTest {
     }
 
     @Test
-    public void setBeneficiarys_nullUniqueBeneficiaryList_throwsNullPointerException() {
+    public void setBeneficiaries_nullUniqueBeneficiaryList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         uniqueBeneficiaryList.setBeneficiaries((UniqueBeneficiaryList) null);
     }
 
     @Test
-    public void setBeneficiarys_uniqueBeneficiaryList_replacesOwnListWithProvidedUniqueBeneficiaryList() {
+    public void setBeneficiaries_uniqueBeneficiaryList_replacesOwnListWithProvidedUniqueBeneficiaryList() {
         uniqueBeneficiaryList.add(ANIMAL_SHELTER);
         UniqueBeneficiaryList expectedUniqueBeneficiaryList = new UniqueBeneficiaryList();
         expectedUniqueBeneficiaryList.add(BABES);
@@ -153,13 +154,13 @@ public class UniqueBeneficiaryListTest {
     }
 
     @Test
-    public void setBeneficiarys_nullList_throwsNullPointerException() {
+    public void setBeneficiaries_nullList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         uniqueBeneficiaryList.setBeneficiaries((List<Beneficiary>) null);
     }
 
     @Test
-    public void setBeneficiarys_list_replacesOwnListWithProvidedList() {
+    public void setBeneficiaries_list_replacesOwnListWithProvidedList() {
         uniqueBeneficiaryList.add(ANIMAL_SHELTER);
         List<Beneficiary> beneficiaryList = Collections.singletonList(BABES);
         uniqueBeneficiaryList.setBeneficiaries(beneficiaryList);
@@ -169,10 +170,10 @@ public class UniqueBeneficiaryListTest {
     }
 
     @Test
-    public void setBeneficiarys_listWithDuplicateBeneficiarys_throwsDuplicateBeneficiaryException() {
-        List<Beneficiary> listWithDuplicateBeneficiarys = Arrays.asList(ANIMAL_SHELTER, ANIMAL_SHELTER);
+    public void setBeneficiaries_listWithDuplicateBeneficiaries_throwsDuplicateBeneficiaryException() {
+        List<Beneficiary> listWithDuplicateBeneficiaries = Arrays.asList(ANIMAL_SHELTER, ANIMAL_SHELTER);
         thrown.expect(DuplicateBeneficiaryException.class);
-        uniqueBeneficiaryList.setBeneficiaries(listWithDuplicateBeneficiarys);
+        uniqueBeneficiaryList.setBeneficiaries(listWithDuplicateBeneficiaries);
     }
 
     @Test

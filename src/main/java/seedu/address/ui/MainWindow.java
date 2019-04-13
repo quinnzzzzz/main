@@ -174,6 +174,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    //@@author ndhuu
     /**
      * open summary table window.
      */
