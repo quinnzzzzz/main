@@ -168,7 +168,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Volunteer Book, Beneficiary Book, Project Book data.
-* manages the interaction and relationship between different objects (Vounteer, Beneficiary, Project)
+* manages the interaction and relationship between different objects (Volunteer, Beneficiary, Project)
 * exposes an unmodifiable `ObservableList<Object>` that can be 'observed' (Object can be Vounteer, Beneficiary, Project). e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -194,10 +194,24 @@ Classes used by multiple components are in the `seedu.voluncheerbook.commons` pa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::[recommendationCommandLine][]
-=== [Proposed] Command Line Recommendation feature
-==== Proposed Implementation
-The command line recommendation feature is facilitated by the `CommandLineParser`. It imports the 'CliSyntax.Java'
+// tag::Beneficiary Management[]
+=== Beneficiary Management Feature
+==== Implementation
+Beneficiary is implement in order to manage the information a benefited volunteer organization. These organizations interact
+with the user's organization through projects. Hence, `Beneficiary` class has a bidirectional navigability with `Project` class,
+as shown in the Figure 8.
+
+.Structure of the `Beneficiary` class including its attributes, and its bidirectional navigability with `Project` class.
+image::BeneficiaryClassDiagram.jpg[width="800"]
+
+
+This means that if an operation such as deletion is done on a beneficiary, this should be updated on the projects that the
+beneficiary is assigned to. The figure below shows how the delete beneficiary command works:
+
+.Beneficiary deletion sequence diagram, hard deletion mode.
+image::BeneficiaryHardDeletionSequenceDiagram.png[width="800"]
+
+To facilitate the Beneficiary Management feature is facilitated by the `UniqueBeneficiaryList` class. It imports the 'CliSyntax.Java'
 and stores internally the `UserClosestInput` and `CommandUsed`. It updates the `UserClosestInput` and process to
 give suggestions.
 +
@@ -207,14 +221,14 @@ Step 1: The user types in a command keyword then type [space], the CommandLinePa
 `UserClosestInput` and `CommandUsed`. Then the command line show the command syntax.
 
 Step 2: The user continues to type, `UserClosestInput` takes the input and stores. There are 2 alternatives:
-* If the user types a slash [\] the `UserClosestInput` waits for syntax and when syntax match, shows the recommandation
+* If the user types a slash [/] the `UserClosestInput` waits for syntax and when syntax match, shows the recommandation
 list for that particular slash sub syntax.
 
 * If the user types without the slash [\] the example remains.
 
 Step 3: After the users type [Enter] the class is cleared.
 
-image::CommandLineRecommendationSequenceDiagram.png[width="800"]
+
 
 ==== Design Considerations
 
