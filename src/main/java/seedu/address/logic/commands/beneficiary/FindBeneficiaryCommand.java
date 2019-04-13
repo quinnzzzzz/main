@@ -16,6 +16,7 @@ import seedu.address.model.beneficiary.NameContainsKeywordsPredicate;
 public class FindBeneficiaryCommand extends Command {
 
     public static final String COMMAND_WORD = "findB";
+    public static final String COMMAND_WORD_ALIAS = "fb";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all beneficiaries whose names contain any of "
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
