@@ -1,5 +1,7 @@
+//@@author quinnzzzzz
 package seedu.address.logic.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.beneficiary.Name;
@@ -14,15 +16,24 @@ import seedu.address.model.volunteer.Volunteer;
  */
 public class ProjectBuilder {
 
-    public static final String DEFAULT_PROJECT_TITLE = "Project Title";
-    public static final String DEFAULT_PROJECT_DATE = "20190401";
+    public static final String DEFAULT_PROJECT_TITLE = "Project Sunshine";
+    public static final String DEFAULT_DATE = "08/11/2019";
     public static final String DEFAULT_COMPLETE = "false";
+    public static final String DEFAULT_BENEFICIARY_ASSIGNED = "nil";
 
     private ProjectTitle projectTitle;
     private ProjectDate projectDate;
     private Complete complete;
     private Name beneficiaryAssigned;
     private List<Volunteer> volunteerList;
+
+    public ProjectBuilder() {
+        projectTitle = new ProjectTitle(DEFAULT_PROJECT_TITLE);
+        projectDate = new ProjectDate(DEFAULT_DATE);
+        complete = new Complete(DEFAULT_COMPLETE);
+        beneficiaryAssigned = new Name(DEFAULT_BENEFICIARY_ASSIGNED);
+        volunteerList = new ArrayList<>();
+    }
 
     /**
      * Initialises the ProjectBuilder with the data of {@code projectToCopy}.
@@ -36,22 +47,6 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code ProjectTitle} of the {@code Project} that we are building.
-     */
-    public ProjectBuilder withProjectTitle(String projectTitle) {
-        this.projectTitle = new ProjectTitle(projectTitle);
-        return this;
-    }
-
-    /**
-     * Sets the {@code ProjectDate} of the {@code Project} that we are building.
-     */
-    public ProjectBuilder withProjectDate(String projectDate) {
-        this.projectDate = new ProjectDate(projectDate);
-        return this;
-    }
-
-    /**
      * @return a project
      */
     public Project build() {
@@ -61,11 +56,24 @@ public class ProjectBuilder {
     /**
      * Sets the {@code ProjectTitle} of the {@code Project} that we are building.
      */
+    public ProjectBuilder withProjectTitle(String projectTitle) {
+        this.projectTitle = new ProjectTitle(projectTitle);
+        return this;
+    }
+    /**
+     * Sets the {@code ProjectDate} of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withProjectDate(String projectDate) {
+        this.projectDate = new ProjectDate(projectDate);
+        return this;
+    }
+    /**
+     * Indicates the {@code Complete} status of the {@code Project} that we are building.
+     */
     public ProjectBuilder withComplete(Boolean complete) {
         this.complete = new Complete(complete);
         return this;
     }
-
     /**
      * @param beneficiary
      * @return ProjectBuilder
@@ -82,5 +90,4 @@ public class ProjectBuilder {
         this.volunteerList = attachedVolunteers;
         return this;
     }
-
 }

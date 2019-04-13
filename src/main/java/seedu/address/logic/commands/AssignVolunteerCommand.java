@@ -17,7 +17,7 @@ import seedu.address.model.project.ProjectTitle;
 import seedu.address.model.volunteer.Volunteer;
 
 /**
- * Assigns a beneficiary to a project.
+ * Assigns volunteers to a project
  */
 public class AssignVolunteerCommand extends Command {
 
@@ -46,7 +46,7 @@ public class AssignVolunteerCommand extends Command {
     private Project projectToAssign;
 
     /**
-     * Creates an AssignBeneficiaryCommand to assign beneficiary to {@code Project}
+     * Creates an AssignVolunteerCommand to assign {@code Volunteer} to {@code Project}
      */
     public AssignVolunteerCommand(ProjectTitle targetProject, int requiredVolunteers) {
         requireNonNull(targetProject);
@@ -69,14 +69,11 @@ public class AssignVolunteerCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_NOT_ENOUGH_VOLUNTEERS);
             } else {
                 volunteersToAssign = lastShownList.subList(0, requiredVolunteers);
-                //System.out.println("size" + lastShownList.size());
             }
         }
         this.editedProject = new ProjectBuilder(this.projectToAssign).withVolunteer(volunteersToAssign).build();
         model.setProject(projectToAssign, editedProject);
-        //System.out.println(projectToAssign.getVolunteerList().get(0).getName().toString());
         model.commitAddressBook();
-        //System.out.println(projectToAssign.getVolunteerCount());
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 

@@ -21,9 +21,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.Volunteer;
 
 /**
@@ -34,11 +33,8 @@ public class ModelManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Project> filteredProjects;
     private final SimpleObjectProperty<Project> selectedProject = new SimpleObjectProperty<>();
-    private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
-
     private final FilteredList<Volunteer> filteredVolunteers;
     private final SimpleObjectProperty<Volunteer> selectedVolunteer = new SimpleObjectProperty<>();
     private final FilteredList<Beneficiary> filteredBeneficiaries;
@@ -56,16 +52,14 @@ public class ModelManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
-        filteredPersons.addListener(this::ensureSelectedPersonIsValid);
         filteredProjects = new FilteredList<>(versionedAddressBook.getProjectList());
+        filteredProjects.addListener(this::ensureSelectedProjectIsValid);
 
         filteredBeneficiaries = new FilteredList<>(versionedAddressBook.getBeneficiaryList());
         filteredBeneficiaries.addListener(this::ensureSelectedBeneficiaryIsValid);
 
         filteredVolunteers = new FilteredList<>(versionedAddressBook.getVolunteerList());
         filteredVolunteers.addListener(this::ensureSelectedVolunteerIsValid);
-
 
     }
 
@@ -116,53 +110,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        versionedAddressBook.resetData(addressBook);
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return versionedAddressBook.hasPerson(person);
-    }
-
-    @Override
-    public boolean hasBeneficiary(Beneficiary beneficiary) {
-        requireNonNull(beneficiary);
-        return versionedAddressBook.hasBeneficiary(beneficiary);
-    }
-
-    @Override
-    public boolean hasProject(Project project) {
-        requireNonNull(project);
-        return versionedAddressBook.hasProject(project);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        versionedAddressBook.removePerson(target);
-    }
-
-    @Override
-
-    public void deleteProject(Project target) {
-        versionedAddressBook.removeProject(target);
-    }
-
-    public void deleteBeneficiary(Beneficiary target) {
-        versionedAddressBook.removeBeneficiary(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        versionedAddressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void addVolunteer(Volunteer volunteer) {
-        versionedAddressBook.addVolunteer(volunteer);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addProject(Project project) {
+        versionedAddressBook.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
@@ -172,21 +122,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addProject(Project project) {
-        versionedAddressBook.addProject(project);
-        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-    }
-    @Override
-    public void sortProjectByDate() {
-        versionedAddressBook.sortProjectByDate();
-        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    public void addVolunteer(Volunteer volunteer) {
+        versionedAddressBook.addVolunteer(volunteer);
+        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        versionedAddressBook.resetData(addressBook);
+    }
 
-        versionedAddressBook.setPerson(target, editedPerson);
+    @Override
+    public void setProject(Project targetProject, Project editedProject) {
+        requireNonNull(editedProject);
+        versionedAddressBook.setProject(targetProject, editedProject);
     }
 
     @Override
@@ -197,15 +146,38 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
+        requireAllNonNull(target, editedVolunteer);
+
+        versionedAddressBook.setVolunteer(target, editedVolunteer);
+    }
+
+    @Override
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return versionedAddressBook.hasProject(project);
+    }
+
+    @Override
+    public boolean hasBeneficiary(Beneficiary beneficiary) {
+        requireNonNull(beneficiary);
+        return versionedAddressBook.hasBeneficiary(beneficiary);
+    }
+
+    @Override
     public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
         return versionedAddressBook.hasVolunteer(volunteer);
     }
 
     @Override
-    public void setProject(Project targetProject, Project editedProject) {
-        requireNonNull(editedProject);
-        versionedAddressBook.setProject(targetProject, editedProject);
+    public void deleteProject(Project target) {
+        versionedAddressBook.removeProject(target);
+    }
+
+    @Override
+    public void deleteBeneficiary(Beneficiary target) {
+        versionedAddressBook.removeBeneficiary(target);
     }
 
     @Override
@@ -214,11 +186,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
-        requireAllNonNull(target, editedVolunteer);
-
-        versionedAddressBook.setVolunteer(target, editedVolunteer);
+    public void sortProjectByDate() {
+        versionedAddressBook.sortProjectByDate();
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
+    //=========== Filtered Project List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
+    }
+
+    //=========== Filtered Beneficiary List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Beneficiary} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
+        return filteredBeneficiaries;
+    }
+
+    @Override
+    public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
+        requireNonNull(predicate);
+        filteredBeneficiaries.setPredicate(predicate);
+    }
+
     //=========== Filtered Volunteer List Accessors =============================================================
 
     /**
@@ -235,46 +238,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredVolunteers.setPredicate(predicate);
     }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
-        return filteredBeneficiaries;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public ObservableList<Project> getFilteredProjectList() {
-        return filteredProjects;
-    }
-
-    @Override
-    public void updateFilteredProjectList(Predicate<Project> predicate) {
-        requireNonNull(predicate);
-        filteredProjects.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate) {
-        requireNonNull(predicate);
-        filteredBeneficiaries.setPredicate(predicate);
-    }
-
     //=========== Undo/Redo =================================================================================
 
     @Override
@@ -320,6 +283,7 @@ public class ModelManager implements Model {
             selectedVolunteer.setValue(volunteer);
         }
     }
+
     //@@author articstranger
     /**
      * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
@@ -397,7 +361,7 @@ public class ModelManager implements Model {
             }
         }));
         versionedAddressBook.sortVolunteers();
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
     }
 
 
@@ -512,10 +476,6 @@ public class ModelManager implements Model {
 
     //=========== Selected person ===========================================================================
 
-    @Override
-    public ReadOnlyProperty<Person> selectedPersonProperty() {
-        return selectedPerson;
-    }
 
     @Override
     public ReadOnlyProperty<Project> selectedProjectProperty() {
@@ -528,34 +488,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person getSelectedPerson() {
-        return selectedPerson.getValue();
-    }
-
-    @Override
-    public void setSelectedPerson(Person person) {
-        if (person != null && !filteredPersons.contains(person)) {
-            throw new PersonNotFoundException();
-        }
-        selectedPerson.setValue(person);
-    }
-
-    @Override
-    public Project getSelectedProject() {
-        return selectedProject.getValue();
-    }
-
-    @Override
     public void setSelectedProject(Project project) {
         if (project != null && !filteredProjects.contains(project)) {
-            throw new PersonNotFoundException();
+            throw new ProjectNotFoundException();
         }
         selectedProject.setValue(project);
-    }
-
-    @Override
-    public Beneficiary getSelectedBeneficiary() {
-        return selectedBeneficiary.getValue();
     }
 
     @Override
@@ -598,41 +535,12 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
-     */
-    private void ensureSelectedPersonIsValid(ListChangeListener.Change<? extends Person> change) {
-        while (change.next()) {
-            if (selectedPerson.getValue() == null) {
-                // null is always a valid selected person, so we do not need to check that it is valid anymore.
-                return;
-            }
-
-            boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                && change.getRemoved().contains(selectedPerson.getValue());
-            if (wasSelectedPersonReplaced) {
-                // Update selectedPerson to its new value.
-                int index = change.getRemoved().indexOf(selectedPerson.getValue());
-                selectedPerson.setValue(change.getAddedSubList().get(index));
-                continue;
-            }
-
-            boolean wasSelectedPersonRemoved = change.getRemoved().stream()
-                .anyMatch(removedPerson -> selectedPerson.getValue().isSamePerson(removedPerson));
-            if (wasSelectedPersonRemoved) {
-                // Select the person that came before it in the list,
-                // or clear the selection if there is no such person.
-                selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
-            }
-        }
-    }
-
-    /**
-     * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
+     * Ensures {@code selectedProject} is a valid project in {@code filteredProjects}.
      */
     private void ensureSelectedProjectIsValid(ListChangeListener.Change<? extends Project> change) {
         while (change.next()) {
             if (selectedProject.getValue() == null) {
-                // null is always a valid selected person, so we do not need to check that it is valid anymore.
+                // null is always a valid selected project, so we do not need to check that it is valid anymore.
                 return;
             }
 
@@ -649,8 +557,8 @@ public class ModelManager implements Model {
             boolean wasSelectedProjectRemoved = change.getRemoved().stream()
                 .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
             if (wasSelectedProjectRemoved) {
-                // Select the person that came before it in the list,
-                // or clear the selection if there is no such person.
+                // Select the project that came before it in the list,
+                // or clear the selection if there is no such project.
                 selectedProject.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }

@@ -22,7 +22,6 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
     Predicate<Beneficiary> PREDICATE_SHOW_ALL_BENEFICIARIES = unused -> true;
     Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
@@ -68,21 +67,17 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
+    //@@author quinnzzzzz
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Adds the given project.
+     * {@code project} must not already exist in the address book.
      */
-    boolean hasPerson(Person person);
+    void addProject(Project project);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
      */
     boolean hasProject(Project project);
-
-
-    /**
-     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
-     */
-    boolean hasBeneficiary(Beneficiary beneficiary);
 
     /**
      * Updates the Project status
@@ -93,13 +88,7 @@ public interface Model {
      * @throws ProjectNotFoundException
      */
     void setProject(Project target, Project editedProject)
-        throws DuplicateProjectException, ProjectNotFoundException;
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
+            throws DuplicateProjectException, ProjectNotFoundException;
 
     /**
      * Deletes the given project.
@@ -108,35 +97,29 @@ public interface Model {
     void deleteProject(Project target);
 
     /**
-     * Deletes the given beneficiary.
-     * The beneficiary must exist in the address book.
-     */
-    void deleteBeneficiary(Beneficiary target);
-
-    /**
-     * Adds the given project.
-     * {@code project} must not already exist in the address book.
-     */
-    void addProject(Project project);
-
-    /**
      * Sorts the given project according to date
      * {@code project} must not already exist in the address book.
      */
     void sortProjectByDate();
 
+    void setSelectedProject(Project project);
+
+    //@@author ndhuu
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Add Beneficiary.
      */
-    void addPerson(Person person);
+    void addBeneficiary(Beneficiary beneficiary);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    boolean hasBeneficiary(Beneficiary beneficiary);
+
+    /**
+     * Deletes the given beneficiary.
+     * The beneficiary must exist in the address book.
+     */
+    void deleteBeneficiary(Beneficiary target);
 
     /**
      * Replaces the given Beneficiary{@code target} with {@code editedBeneficiary}.
@@ -146,101 +129,9 @@ public interface Model {
      */
     void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
 
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Returns an unmodifiable view of the filtered beneficiary list
-     */
-    ObservableList<Beneficiary> getFilteredBeneficiaryList();
-
-    /**
-     * Returns an unmodifiable view of the filtered volunteer list
-     */
-    ObservableList<Volunteer> getFilteredVolunteerList();
-
-    /**
-     * Returns an unmodifiable view of the filtered project list
-     */
-    ObservableList<Project> getFilteredProjectList();
-
-    /**
-     * Updates the filter of the filtered Beneficiary list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
-
-    void updateFilteredProjectList(Predicate<Project> predicate);
-
-    void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
-
-
-    /**
-     * Returns true if the model has previous address book states to restore.
-     */
-    boolean canUndoAddressBook();
-
-    /**
-     * Returns true if the model has undone address book states to restore.
-     */
-    boolean canRedoAddressBook();
-
-    /**
-     * Restores the model's address book to its previous state.
-     */
-    void undoAddressBook();
-
-    /**
-     * Restores the model's address book to its previously undone state.
-     */
-    void redoAddressBook();
-
-    /**
-     * Saves the current address book state for undo/redo.
-     */
-    void commitAddressBook();
-
-    /**
-     * Selected person in the filtered person list.
-     * null if no person is selected.
-     */
-    ReadOnlyProperty<Person> selectedPersonProperty();
-
-    /**
-     * Selected project in the filtered project list.
-     * null if no project is selected.
-     */
-    ReadOnlyProperty<Project> selectedProjectProperty();
-
-    /**
-     * Selected beneficiary in the filtered beneficiary list.
-     * null if no beneficiary is selected.
-     */
-    ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty();
-
-    /**
-     * Returns the selected beneficiary in the filtered beneficiary list.
-     * null if no beneficairy is selected.
-     */
-    Beneficiary getSelectedBeneficiary();
-
     void setSelectedBeneficiary(Beneficiary beneficiary);
 
-    Person getSelectedPerson();
-
-    /**
-     * Sets the selected person in the filtered person list.
-     */
-    void setSelectedPerson(Person person);
-
-    Project getSelectedProject();
-
-    void setSelectedProject(Project project);
-
-    //Volunteers
+    //@@author swalahlah
     boolean hasVolunteer(Volunteer volunteer);
 
     void addVolunteer(Volunteer volunteer);
@@ -315,6 +206,7 @@ public interface Model {
      */
     public void sortVolunteers();
 
+    //get FilteredLists
     /**
      * Goes throught the volunteer list and adds data to the based on what prefixes are wanted.
      * stops when the list ends or the provided limit is reached.
@@ -323,8 +215,70 @@ public interface Model {
 
     /**
      * Add Beneficiary.
+     * Returns an unmodifiable view of the filtered project list
      */
-    void addBeneficiary(Beneficiary beneficiary);
+    ObservableList<Project> getFilteredProjectList();
 
 
+    /**
+     * Returns an unmodifiable view of the filtered beneficiary list
+     */
+    ObservableList<Beneficiary> getFilteredBeneficiaryList();
+
+    /**
+     * Returns an unmodifiable view of the filtered volunteer list
+     */
+    ObservableList<Volunteer> getFilteredVolunteerList();
+
+    //update FilteredLists
+    /**
+     * Updates the filter of the filtered Project list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredProjectList(Predicate<Project> predicate);
+    /**
+     * Updates the filter of the filtered Beneficiary list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
+
+    /**
+     * Returns true if the model has previous address book states to restore.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Returns true if the model has undone address book states to restore.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Restores the model's address book to its previous state.
+     */
+    void undoAddressBook();
+
+    /**
+     * Restores the model's address book to its previously undone state.
+     */
+    void redoAddressBook();
+
+    /**
+     * Saves the current address book state for undo/redo.
+     */
+    void commitAddressBook();
+
+    //selectedProperty
+    /**
+     * Selected project in the filtered project list.
+     * null if no project is selected.
+     */
+    ReadOnlyProperty<Project> selectedProjectProperty();
+
+    /**
+     * Selected beneficiary in the filtered beneficiary list.
+     * null if no beneficiary is selected.
+     */
+    ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty();
 }

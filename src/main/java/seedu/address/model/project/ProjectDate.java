@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
@@ -44,6 +45,7 @@ public class ProjectDate {
 
     /**
      * Returns true if a given string is a valid date.
+     * Checks if date is after current day
      */
     public static boolean isValidDate(String test) {
         if (isEmptyDate(test) || !test.matches(VALIDATION_REGEX) || !hasDateMonthYear(test)) {
@@ -53,7 +55,7 @@ public class ProjectDate {
             LocalDate inputDate = stringToDate(test);
             LocalDate current = LocalDate.now();
             LocalDate nextDay = current.plus(1, ChronoUnit.DAYS);
-            return inputDate.isAfter(nextDay);
+            return inputDate.isAfter(nextDay) || inputDate.isEqual(nextDay);
         } catch (DateTimeException dte) {
             return false;
         }

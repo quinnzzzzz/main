@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
@@ -69,15 +70,4 @@ public class ParserUtilProject extends ParserUtil {
         return indexList;
     }
 
-    /**
-     * Parses a {@code Optional<String> value} into the specified value or {@code UNSPECIFIED_FIELD} if is empty
-     */
-    public static Optional<String> parseValue(Optional<String> value, String messageConstraints)
-        throws IllegalValueException {
-        if (value.isPresent() && value.get().equals(UNSPECIFIED_FIELD)) {
-            throw new IllegalValueException(messageConstraints);
-        } else {
-            return Optional.of(value.orElse(UNSPECIFIED_FIELD));
-        }
-    }
 }
