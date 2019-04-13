@@ -424,7 +424,7 @@ public class AddBeneficiaryCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the beneficiary being added.
      */
     private class ModelStubAcceptingBeneficiaryAdded extends ModelStub {
         final ArrayList<Beneficiary> beneficiariesAdded = new ArrayList<>();
