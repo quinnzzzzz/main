@@ -52,13 +52,13 @@ public class ValidatePassword {
 
     private static Label message = new Label("");
     private static final String MESSAGE_VALID_LOGIN = "Login Successful";
-    private static final String MESSAGE_INVALID_LOGIN ="Your password is incorrect!";
+    private static final String MESSAGE_INVALID_LOGIN = "Your password is incorrect!";
     private static int tries = 5;
     private static String password = "password";
     /**
      *
      */
-    public static void display(boolean []User) {
+    public static void display(boolean []user) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         Group root = new Group();
@@ -86,7 +86,7 @@ public class ValidatePassword {
                 if (checkPw.getText().equals(password)) {
                     message.setText(MESSAGE_VALID_LOGIN);
                     message.setTextFill(Color.web("green"));
-                    User[0] = true;
+                    user[0] = true;
                     window.close();
                 } else {
                     message.setText(MESSAGE_INVALID_LOGIN + "\nNumber of attempts left: " + tries);

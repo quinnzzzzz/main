@@ -49,18 +49,6 @@ public class EditVolunteerCommand extends Command {
 
     public static final String COMMAND_WORD = "editVolunteer";
     public static final String COMMAND_ALIAS = "ev";
-    public static final String COMMAND_PARAMETERS = "\"[\" + PREFIX_NAME + \"NAME] \"\n" +
-            "        + \"[\" + PREFIX_AGE + \"AGE] \"\n" +
-            "        + \"[\" + PREFIX_GENDER + \"AGE] \"\n" +
-            "        + \"[\" + PREFIX_RACE + \"RACE] \"\n" +
-            "        + \"[\" + PREFIX_RELIGION + \"AGE] \"\n" +
-            "        + \"[\" + PREFIX_PHONE + \"PHONE] \"\n" +
-            "        + \"[\" + PREFIX_EMAIL + \"EMAIL] \"\n" +
-            "        + \"[\" + PREFIX_EMERGENCY_CONTACT + \"NAME, RELATIONSHIP, PHONE] \"\n" +
-            "        + \"[\" + PREFIX_DIETARY_PREFERENCE + \"PREFERENCE] \"\n" +
-            "        + \"[\" + PREFIX_MEDICAL_CONDITION + \"STATUS] \"\n" +
-            "        + \"[\" + PREFIX_ADDRESS + \"ADDRESS] \"\n" +
-            "        + \"[\" + PREFIX_TAG + \"TAG]...\\n\"";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the volunteer identified "
         + "by the index number used in the displayed volunteer list. "

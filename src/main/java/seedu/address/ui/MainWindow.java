@@ -127,10 +127,10 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Returns true if password is correct, indicating User has logged in.
      */
-    boolean show(boolean []User) {
+    boolean show(boolean []user) {
         primaryStage.show();
-        ValidatePassword.display(User);
-        if (User[0]) {
+        ValidatePassword.display(user);
+        if (user[0]) {
             return true;
         } else {
             return false;

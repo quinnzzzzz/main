@@ -59,8 +59,8 @@ public class UiManager implements Ui {
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
-            boolean []isAdmin = {false};
-            if (mainWindow.show(isAdmin)) {
+            boolean []user = {false};
+            if (mainWindow.show(user)) {
                 mainWindow.fillInnerParts(); //This should be called before creating other UI parts
             }
 
