@@ -211,9 +211,14 @@ beneficiary is assigned to. The figure below shows how the delete beneficiary co
 .Beneficiary deletion sequence diagram, hard deletion mode.
 image::BeneficiaryHardDeletionSequenceDiagram.png[width="800"]
 
-.
-
-
+. The `DeleteBeneficiaryParser` parses the index of the beneficiary that is required to delete.
++
+[NOTE]
+"-D" indicates that the deletion is in
+the hard mode, meaning that the respective projects that are attached to this beneficiary will be deleted.
++
+. The `ModelManager` is then called to update the deletion of the respective projects.
+. The `ModelManager` is then called to update the deletion of the beneficiary and update all the changes.
 
 ==== Design Considerations
 
