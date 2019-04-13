@@ -22,11 +22,8 @@ public class MapCommandParser implements Parser<MapCommand> {
      * Returns true if the argMultimap contains any valid prefixes.
      */
     private static boolean noPrefixes(ArgumentMultimap argMultimap) {
-        if (argMultimap.getAllValues(PREFIX_AGE).isEmpty() && argMultimap.getAllValues(PREFIX_RACE).isEmpty()
-            && argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION).isEmpty()) {
-            return true;
-        }
-        return false;
+        return argMultimap.getAllValues(PREFIX_AGE).isEmpty() && argMultimap.getAllValues(PREFIX_RACE).isEmpty()
+            && argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION).isEmpty();
     }
 
     /**
@@ -71,7 +68,7 @@ public class MapCommandParser implements Parser<MapCommand> {
                 return null;
             }
             yearOperator = criteriaHolder.substring(1, 2);
-            prefixCriteria = criteriaHolder.substring(2, criteriaHolder.length());
+            prefixCriteria = criteriaHolder.substring(2);
             if (notValidAgePair(yearOperator, prefixCriteria)) {
                 return null;
             }
@@ -83,7 +80,7 @@ public class MapCommandParser implements Parser<MapCommand> {
         if (!argMultimap.getAllValues(PREFIX_RACE).isEmpty()) {
             criteriaHolder = argMultimap.getValue(PREFIX_RACE).get();
             prefixPoints = Integer.parseInt(criteriaHolder.substring(0, 1));
-            prefixCriteria = criteriaHolder.substring(1, criteriaHolder.length());
+            prefixCriteria = criteriaHolder.substring(1);
             localRacePair = new Pair<>(prefixPoints, prefixCriteria);
         } else {
             localRacePair = new Pair<>(0, "");
@@ -92,7 +89,7 @@ public class MapCommandParser implements Parser<MapCommand> {
         if (!argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION).isEmpty()) {
             criteriaHolder = argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get();
             prefixPoints = Integer.parseInt(criteriaHolder.substring(0, 1));
-            prefixCriteria = criteriaHolder.substring(1, criteriaHolder.length());
+            prefixCriteria = criteriaHolder.substring(1);
             localMedicalPair = new Pair<>(prefixPoints, prefixCriteria);
         } else {
             localMedicalPair = new Pair<>(0, "");
@@ -109,9 +106,7 @@ public class MapCommandParser implements Parser<MapCommand> {
     public boolean notValidAgePair(String comparator, String year) {
 
         if (comparator.contains("<") || comparator.contains(">") || comparator.contains("=")) {
-            if (isValidInt(year)) {
-                return false;
-            }
+            return !isValidInt(year);
         }
         return true;
 

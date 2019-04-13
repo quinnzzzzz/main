@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
@@ -15,7 +16,7 @@ import java.time.temporal.ChronoUnit;
 public class ProjectDate {
     public static final String MESSAGE_CONSTRAINTS =
         "Dates should only contain numbers in DD/MM/YYYY format and should be greater than the current date, "
-                + "and it should not be blank.";
+            + "and it should not be blank.";
     public static final String VALIDATION_REGEX = "[0-9]{2}/[0-9]{2}/[0-9]{4}";
 
     private static final int DAY_INDEX = 0;
@@ -44,6 +45,7 @@ public class ProjectDate {
 
     /**
      * Returns true if a given string is a valid date.
+     * Checks if date is after current day
      */
     public static boolean isValidDate(String test) {
         if (isEmptyDate(test) || !test.matches(VALIDATION_REGEX) || !hasDateMonthYear(test)) {
@@ -53,7 +55,7 @@ public class ProjectDate {
             LocalDate inputDate = stringToDate(test);
             LocalDate current = LocalDate.now();
             LocalDate nextDay = current.plus(1, ChronoUnit.DAYS);
-            return inputDate.isAfter(nextDay);
+            return inputDate.isAfter(nextDay) || inputDate.isEqual(nextDay);
         } catch (DateTimeException dte) {
             return false;
         }
@@ -74,13 +76,6 @@ public class ProjectDate {
         return dateFormats.length == 3;
     }
 
-    public void setDateFormats(String date) {
-        this.dateFormats = date.split("/");
-        this.day = Integer.parseInt(dateFormats[DAY_INDEX]);
-        this.month = Integer.parseInt(dateFormats[MONTH_INDEX]);
-        this.year = Integer.parseInt(dateFormats[YEAR_INDEX]);
-    }
-
     /**
      * Returns {@code LocalDate} from given {@code String} date
      */
@@ -92,12 +87,21 @@ public class ProjectDate {
         return LocalDate.of(testYear, testMonth, testDay);
     }
 
+    public void setDateFormats(String date) {
+        dateFormats = date.split("/");
+        this.day = Integer.parseInt(dateFormats[DAY_INDEX]);
+        this.month = Integer.parseInt(dateFormats[MONTH_INDEX]);
+        this.year = Integer.parseInt(dateFormats[YEAR_INDEX]);
+    }
+
     public int getDay() {
         return this.day;
     }
+
     public int getMonth() {
         return this.month;
     }
+
     public int getYear() {
         return this.year;
     }
@@ -106,10 +110,10 @@ public class ProjectDate {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(this.day)
-                .append("/")
-                .append(this.month)
-                .append("/")
-                .append(this.year);
+            .append("/")
+            .append(this.month)
+            .append("/")
+            .append(this.year);
         return "Date: " + builder.toString();
     }
 }

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+/*package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.deleteFirstPerson;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -40,5 +40,6 @@ public class UndoCommandTest {
         // no undoable states in model
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
     }
-    */
+
 }
+*/
