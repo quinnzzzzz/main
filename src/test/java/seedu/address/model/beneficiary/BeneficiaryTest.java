@@ -3,13 +3,12 @@ package seedu.address.model.beneficiary;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_ADDRESS_ANIMAL_SHELTER;
-import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_EMAIL_ANIMAL_SHELTER;
-import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_ANIMAL_SHELTER;
-import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_PHONE_ANIMAL_SHELTER;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_ADDRESS_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_EMAIL_ANIMAL_SHELTER;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_EMAIL_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_ANIMAL_SHELTER;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_BABES;
+import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_PHONE_ANIMAL_SHELTER;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_PHONE_BABES;
 import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.ANIMAL_SHELTER;
 import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.BABES;

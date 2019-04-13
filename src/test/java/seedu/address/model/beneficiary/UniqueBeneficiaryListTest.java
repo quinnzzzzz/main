@@ -16,15 +16,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
 import seedu.address.model.beneficiary.exceptions.BeneficiaryNotFoundException;
+import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
 
 public class UniqueBeneficiaryListTest {
+    private final UniqueBeneficiaryList uniqueBeneficiaryList = new UniqueBeneficiaryList();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private final UniqueBeneficiaryList uniqueBeneficiaryList = new UniqueBeneficiaryList();
 
     @Test
     public void contains_nullBeneficiary_throwsNullPointerException() {
@@ -46,7 +45,8 @@ public class UniqueBeneficiaryListTest {
     @Test
     public void contains_beneficiaryWithSameIdentityFieldsInList_returnsTrue() {
         uniqueBeneficiaryList.add(ANIMAL_SHELTER);
-        Beneficiary editedAnimalShelter = new BeneficiaryBuilder(ANIMAL_SHELTER).withAddress(VALID_ADDRESS_BABES).build();
+        Beneficiary editedAnimalShelter = new BeneficiaryBuilder(ANIMAL_SHELTER)
+            .withAddress(VALID_ADDRESS_BABES).build();
         assertTrue(uniqueBeneficiaryList.contains(editedAnimalShelter));
     }
 
