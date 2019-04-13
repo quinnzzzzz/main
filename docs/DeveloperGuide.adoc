@@ -211,7 +211,7 @@ beneficiary is assigned to. The figure below shows how the delete beneficiary co
 .Beneficiary deletion sequence diagram, hard deletion mode.
 image::BeneficiaryHardDeletionSequenceDiagram.png[width="800"]
 
-. 
+.
 
 
 
