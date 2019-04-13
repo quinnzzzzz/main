@@ -408,7 +408,8 @@ public class AddBeneficiaryCommandTest {
 
         @Override
         public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
-            return null;
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
     }
 
