@@ -21,4 +21,10 @@ public class CliSyntaxVolunteer {
     public static final Prefix PREFIX_REQUIRED_VOLUNTEER = new Prefix("rv/");
     public static final Prefix ASSIGNED_PROJECT_TITLE = new Prefix("p/");
 
+    /* Command keywords */
+    public static final String COMMAND_ADD_VOLUNTEER = "addVolunteer";
+    public static final String COMMAND_DELETE_VOLUNTEER = "deleteVolunteer";
+    public static final String COMMAND_EDIT_VOLUNTEER = "editVolunteer";
+
+
 }

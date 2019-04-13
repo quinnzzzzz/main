@@ -44,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private ValidatePassword validatePassword;
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
@@ -129,6 +130,20 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+    }
+
+
+    /**
+     * Returns true if password is correct, indicating User has logged in.
+     */
+    boolean show(boolean []User) {
+        primaryStage.show();
+        ValidatePassword.display(User);
+        if (User[0]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -254,7 +269,9 @@ public class MainWindow extends UiPart<Stage> {
         return volunteerListPanel;
 
     }
-
+    void hide() {
+        primaryStage.hide();
+    } //Delete
     public BeneficiaryListPanel getBeneficiaryListPanel() {
         return beneficiaryListPanel;
     }
@@ -294,4 +311,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

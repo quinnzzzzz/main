@@ -16,7 +16,7 @@ public class Gender {
     /*
      * the gender parameter must be m or f
      */
-    public static final String VALIDATION_REGEX = "[FMm]";
+    public static final String VALIDATION_REGEX = "[FfMm]";
 
     public final String genderOutput;
 

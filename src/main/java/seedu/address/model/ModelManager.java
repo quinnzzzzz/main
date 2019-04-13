@@ -591,5 +591,4 @@ public class ModelManager implements Model {
             && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
         // && Objects.equals(selectedProject.get(), other,selectedProject.get());
     }
-
 }

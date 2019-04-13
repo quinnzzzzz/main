@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
@@ -315,6 +317,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         volunteers.sortByPoints();
         indicateModified();
     }
+
+//    public void UpdateAge(){
+//        volunteers.updateAge();
+//        indicateModified();
+//    }
 }
 //    public boolean checkBeneficiaryForProject(ProjectTitle projectTitle,Index targetBeneficiaryIndex) {
 //        Beneficiary beneficiary = beneficiaries.getBeneficiaryIndex(targetBeneficiaryIndex);
