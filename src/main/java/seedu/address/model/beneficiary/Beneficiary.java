@@ -21,7 +21,7 @@ public class Beneficiary {
     private final Email email;
     // Data fields
     private final Address address;
-    private HashSet<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
+    private Set<ProjectTitle> attachedProjectList = new HashSet<ProjectTitle>();
 
     /**
      * Every field must be present and not null.
@@ -32,6 +32,18 @@ public class Beneficiary {
         this.phone = phone;
         this.email = email;
         this.address = address;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Beneficiary(Beneficiary b) {
+        this.name = b.getName();
+        this.phone = b.getPhone();
+        this.email = b.getEmail();
+        this.address = b.getAddress();
+        this.attachedProjectList = b.getHashAttachedProjectLists();
     }
 
     public Name getName() {
@@ -89,7 +101,7 @@ public class Beneficiary {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address);
+        return Objects.hash(name, phone, email, address, attachedProjectList);
     }
 
     @Override
@@ -129,9 +141,7 @@ public class Beneficiary {
      */
     public void deleteAttachedProject(ProjectTitle title) {
         if (this.attachedProjectList.contains(title)) {
-            System.out.println(this.attachedProjectList);
             this.attachedProjectList.remove(title);
-            System.out.println(this.attachedProjectList);
         }
     }
 
@@ -174,7 +184,7 @@ public class Beneficiary {
      * @return a set of project titles.
      */
     public HashSet<ProjectTitle> getHashAttachedProjectLists() {
-        return this.attachedProjectList;
+        return new HashSet<>(this.attachedProjectList);
     }
 }
 

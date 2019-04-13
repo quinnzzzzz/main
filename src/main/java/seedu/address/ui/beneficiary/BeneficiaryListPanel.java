@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.beneficiary;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.beneficiary.Beneficiary;
+import seedu.address.ui.UiPart;
 
 /**
  * Panel containing the list of beneficiaries.

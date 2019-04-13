@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_ADDRESS;
@@ -6,19 +6,18 @@ import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BENEFICIARIES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ProjectBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.beneficiary.Address;
@@ -28,7 +27,6 @@ import seedu.address.model.beneficiary.Name;
 import seedu.address.model.beneficiary.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTitle;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing beneficiary in the address book.
@@ -89,31 +87,68 @@ public class EditBeneficiaryCommand extends Command {
         requireNonNull(model);
         List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (exceedBeneficiaryListSize(lastShownList)) {
             throw new CommandException(Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
         }
 
+        //Set edited beneficiary
         Beneficiary beneficiaryToEdit = lastShownList.get(index.getZeroBased());
         Beneficiary editedBeneficiary = createEditedBeneficiary(beneficiaryToEdit, editBeneficiaryDescriptor);
         editedBeneficiary.setProjectLists(beneficiaryToEdit.getAttachedProjectLists());
 
-        if (beneficiaryToEdit.isSameBeneficiary(editedBeneficiary)
-            && model.getFilteredBeneficiaryList().filtered(x->x.isSameBeneficiary(editedBeneficiary)).size() != 1) {
+        if (doesEditCauseDuplication(model, beneficiaryToEdit, editedBeneficiary)) {
             throw new CommandException(MESSAGE_DUPLICATE_BENEFICIARY);
         }
 
+        updateAttachedProjects(model, beneficiaryToEdit, editedBeneficiary);
+        updateTargetBeneficiary(model, beneficiaryToEdit, editedBeneficiary);
+        saveChanges(model);
+        return new CommandResult(String.format(MESSAGE_EDIT_BENEFICIARY_SUCCESS, editedBeneficiary));
+    }
+
+    private boolean exceedBeneficiaryListSize(List<Beneficiary> lastShownList) {
+        return index.getZeroBased() >= lastShownList.size();
+    }
+
+    private void saveChanges(Model model) {
+        model.commitAddressBook();
+    }
+
+    private void updateTargetBeneficiary(Model model, Beneficiary beneficiaryToEdit, Beneficiary editedBeneficiary) {
+        model.setBeneficiary(beneficiaryToEdit, editedBeneficiary);
+        model.updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
+    }
+
+    /**
+     * Check if the edit is valid (no repetition of beneficiaries)
+     *
+     * @param model
+     * @param beneficiaryToEdit
+     * @param editedBeneficiary
+     * @return
+     */
+    private boolean doesEditCauseDuplication(
+        Model model, Beneficiary beneficiaryToEdit, Beneficiary editedBeneficiary) {
+        return beneficiaryToEdit.isSameBeneficiary(editedBeneficiary)
+            && model.getFilteredBeneficiaryList().filtered(x -> x.isSameBeneficiary(editedBeneficiary)).size() != 1;
+    }
+
+    /**
+     * Update the projects attached to the edited beneficiary
+     *
+     * @param model
+     * @param beneficiaryToEdit
+     * @param editedBeneficiary
+     */
+    private void updateAttachedProjects(Model model, Beneficiary beneficiaryToEdit, Beneficiary editedBeneficiary) {
         for (ProjectTitle attachedProject : beneficiaryToEdit.getAttachedProjectLists()) {
             Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(attachedProject);
             if (model.getFilteredProjectList().filtered(equalProjectTitle).size() != 0) {
                 Project project = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
-                project.setBeneficiary(editedBeneficiary.getName());
+                Project newProject = new ProjectBuilder(project).withBeneficiary(editedBeneficiary.getName()).build();
+                model.setProject(project, newProject);
             }
         }
-        model.setBeneficiary(beneficiaryToEdit, editedBeneficiary);
-        model.updateFilteredBeneficiaryList(PREDICATE_SHOW_ALL_BENEFICIARIES);
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_BENEFICIARY_SUCCESS, editedBeneficiary));
     }
 
     @Override
@@ -143,7 +178,6 @@ public class EditBeneficiaryCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
 
         public EditBeneficiaryDescriptor() {
         }
@@ -157,14 +191,13 @@ public class EditBeneficiaryCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
 
         public Optional<Name> getName() {
@@ -199,23 +232,6 @@ public class EditBeneficiaryCommand extends Command {
             this.address = address;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -234,8 +250,7 @@ public class EditBeneficiaryCommand extends Command {
             return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
-                && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags());
+                && getAddress().equals(e.getAddress());
         }
     }
 }

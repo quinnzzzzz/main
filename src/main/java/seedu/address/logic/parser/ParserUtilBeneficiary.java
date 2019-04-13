@@ -13,6 +13,8 @@ import seedu.address.model.beneficiary.Phone;
  */
 public class ParserUtilBeneficiary extends ParserUtil {
 
+    private static final String NIL_NAME = "nil";
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -22,7 +24,7 @@ public class ParserUtilBeneficiary extends ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName) || trimmedName.equals(new Name("nil"))) {
+        if (!Name.isValidName(trimmedName) || trimmedName.toLowerCase().equals(NIL_NAME)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);

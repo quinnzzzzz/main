@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
@@ -33,7 +34,8 @@ public class ProjectCard extends UiPart<Region> {
     private Label projectDate;
     @FXML
     private Label beneficiary;
-
+    @FXML
+    private Label volunteer;
 
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
@@ -41,10 +43,11 @@ public class ProjectCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         projectTitle.setText(project.getProjectTitle().fullTitle);
         if (project.isComplete()) {
-            projectTitle.setStyle("-fx-font-family: Segoe UI Semibold; -fx-font-size: 15pt; -fx-text-fill: #FF0000;");
+            projectTitle.setStyle("-fx-font-family: Segoe UI Semibold; -fx-font-size: 13pt; -fx-text-fill: #FF0000;");
         }
         projectDate.setText("Project Date: " + project.getProjectDate().fullDate);
         beneficiary.setText("Beneficiary Assigned: " + project.getBeneficiaryAssigned().toString());
+        volunteer.setText("Number of Volunteers Assigned: " + project.getVolunteerCount());
     }
 
     @Override

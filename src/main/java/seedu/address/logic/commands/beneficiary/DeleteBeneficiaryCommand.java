@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.HARD_DELETE_MODE;
@@ -11,6 +11,8 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.beneficiary.Beneficiary;
@@ -49,7 +51,7 @@ public class DeleteBeneficiaryCommand extends Command {
         requireNonNull(model);
         List<Beneficiary> lastShownList = model.getFilteredBeneficiaryList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (exceedBeneficiaryListSize(lastShownList)) {
             throw new CommandException(Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
         }
 
@@ -60,18 +62,32 @@ public class DeleteBeneficiaryCommand extends Command {
                 beneficiaryToDelete.getName(),
                 beneficiaryToDelete.getAttachedProjectLists()));
         } else if (beneficiaryToDelete.hasAttachedProjects() && isHardDeleteMode) {
-            HashSet<ProjectTitle> attachedProjects = beneficiaryToDelete.getHashAttachedProjectLists();
-            List<Project> projectsToDelete = new ArrayList<>(model.getFilteredProjectList());
-            for (Project p : projectsToDelete) {
-                if (attachedProjects.contains(p.getProjectTitle())) {
-                    model.deleteProject(p);
-                }
-            }
+            deleteAttachedProjects(model, beneficiaryToDelete);
         }
 
         model.deleteBeneficiary(beneficiaryToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_BENEFICIARY_SUCCESS, beneficiaryToDelete));
+    }
+
+    /**
+     * Delete attached projects to the beneficiary
+     *
+     * @param model
+     * @param beneficiaryToDelete
+     */
+    private void deleteAttachedProjects(Model model, Beneficiary beneficiaryToDelete) {
+        HashSet<ProjectTitle> attachedProjects = beneficiaryToDelete.getHashAttachedProjectLists();
+        List<Project> projectsToDelete = new ArrayList<>(model.getFilteredProjectList());
+        for (Project p : projectsToDelete) {
+            if (attachedProjects.contains(p.getProjectTitle())) {
+                model.deleteProject(p);
+            }
+        }
+    }
+
+    private boolean exceedBeneficiaryListSize(List<Beneficiary> lastShownList) {
+        return targetIndex.getZeroBased() >= lastShownList.size();
     }
 
     @Override

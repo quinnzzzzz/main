@@ -43,7 +43,9 @@ public class DeleteProjectCommand extends Command {
         if (isValidAssignedBeneficiary(model, projectToDelete)) {
             Beneficiary beneficiary = model.getFilteredBeneficiaryList()
                 .filtered(x -> x.getName().equals(projectToDelete.getBeneficiaryAssigned())).get(0);
-            beneficiary.deleteAttachedProject(projectToDelete.getProjectTitle());
+            Beneficiary edittedBeneficiary = new Beneficiary(beneficiary);
+            edittedBeneficiary.deleteAttachedProject(projectToDelete.getProjectTitle());
+            model.setBeneficiary(beneficiary, edittedBeneficiary);
         }
 
         model.deleteProject(projectToDelete);
