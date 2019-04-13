@@ -9,7 +9,6 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
@@ -68,6 +67,7 @@ public interface Model {
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     //@@author quinnzzzzz
+
     /**
      * Adds the given project.
      * {@code project} must not already exist in the address book.
@@ -88,7 +88,7 @@ public interface Model {
      * @throws ProjectNotFoundException
      */
     void setProject(Project target, Project editedProject)
-            throws DuplicateProjectException, ProjectNotFoundException;
+        throws DuplicateProjectException, ProjectNotFoundException;
 
     /**
      * Deletes the given project.
@@ -102,13 +102,12 @@ public interface Model {
      */
     void sortProjectByDate();
 
-    void setSelectedProject(Project project);
-
-    //@@author ndhuu
     /**
      * Add Beneficiary.
      */
     void addBeneficiary(Beneficiary beneficiary);
+
+    //@@author ndhuu
 
     /**
      * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
@@ -128,8 +127,6 @@ public interface Model {
      * as another existing Beneficiary in the address book.
      */
     void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
-
-    void setSelectedBeneficiary(Beneficiary beneficiary);
 
     //@@author swalahlah
     boolean hasVolunteer(Volunteer volunteer);
@@ -157,21 +154,25 @@ public interface Model {
     ReadOnlyProperty<Volunteer> selectedVolunteerProperty();
 
     /**
-     * Returns the selected volunteer in the filtered volunteer list.
-     * null if no volunteer is selected.
-     */
-
-    /**
      * gets the selected project in the filtered project list.
      */
 
     Project getSelectedProject();
+
+    void setSelectedProject(Project project);
+
+    /**
+     * Returns the selected volunteer in the filtered volunteer list.
+     * null if no volunteer is selected.
+     */
 
     /**
      * gets the selected beneficiary in the filtered beneficiary list.
      */
 
     Beneficiary getSelectedBeneficiary();
+
+    void setSelectedBeneficiary(Beneficiary beneficiary);
 
     /**
      * gets the selected volunteer in the filtered volunteer list.
@@ -195,35 +196,36 @@ public interface Model {
     /**
      * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
-    public int checkAge(MapObject map, Volunteer currentVol);
+    int checkAge(MapObject map, Volunteer currentVol);
 
     /**
      * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
-    public int checkRace(MapObject map, Volunteer currentVol);
+    int checkRace(MapObject map, Volunteer currentVol);
 
     /**
      * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
-    public int checkMedical(MapObject map, Volunteer currentVol);
+    int checkMedical(MapObject map, Volunteer currentVol);
 
     /**
      * Maps all volunteers in the (@code UniqueVolunteerList)
      */
-    public void mapAllVolunteer(MapObject map);
+    void mapAllVolunteer(MapObject map);
 
     /**
      * Sorts all volunteers in the (@code UniqueVolunteerList)
      * and returns a (@code sortedList)
      */
-    public void sortVolunteers();
+    void sortVolunteers();
 
     //get FilteredLists
+
     /**
      * Goes throught the volunteer list and adds data to the based on what prefixes are wanted.
      * stops when the list ends or the provided limit is reached.
      */
-    public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted);
+    List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted);
 
     /**
      * Add Beneficiary.
@@ -243,12 +245,14 @@ public interface Model {
     ObservableList<Volunteer> getFilteredVolunteerList();
 
     //update FilteredLists
+
     /**
      * Updates the filter of the filtered Project list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
+
     /**
      * Updates the filter of the filtered Beneficiary list to filter by the given {@code predicate}.
      *
@@ -282,6 +286,7 @@ public interface Model {
     void commitAddressBook();
 
     //selectedProperty
+
     /**
      * Selected project in the filtered project list.
      * null if no project is selected.

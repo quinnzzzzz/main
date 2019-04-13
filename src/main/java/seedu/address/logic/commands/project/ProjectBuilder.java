@@ -60,6 +60,7 @@ public class ProjectBuilder {
         this.projectTitle = new ProjectTitle(projectTitle);
         return this;
     }
+
     /**
      * Sets the {@code ProjectDate} of the {@code Project} that we are building.
      */
@@ -67,6 +68,7 @@ public class ProjectBuilder {
         this.projectDate = new ProjectDate(projectDate);
         return this;
     }
+
     /**
      * Indicates the {@code Complete} status of the {@code Project} that we are building.
      */
@@ -74,6 +76,7 @@ public class ProjectBuilder {
         this.complete = new Complete(complete);
         return this;
     }
+
     /**
      * @param beneficiary
      * @return ProjectBuilder
@@ -82,6 +85,7 @@ public class ProjectBuilder {
         this.beneficiaryAssigned = beneficiary;
         return this;
     }
+
     /**
      * @param attachedVolunteers
      * @return ProjectBuilder

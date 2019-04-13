@@ -110,6 +110,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        versionedAddressBook.resetData(addressBook);
+    }
+
+    @Override
     public void addProject(Project project) {
         versionedAddressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
@@ -125,11 +130,6 @@ public class ModelManager implements Model {
     public void addVolunteer(Volunteer volunteer) {
         versionedAddressBook.addVolunteer(volunteer);
         updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
-    }
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        versionedAddressBook.resetData(addressBook);
     }
 
     @Override
@@ -191,6 +191,7 @@ public class ModelManager implements Model {
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
     //=========== Filtered Project List Accessors =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
      * {@code versionedAddressBook}
@@ -207,6 +208,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Beneficiary List Accessors =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Beneficiary} backed by the internal list of
      * {@code versionedAddressBook}
@@ -278,9 +280,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setSelectedProject(Project project) {
+        if (project != null && !filteredProjects.contains(project)) {
+            throw new ProjectNotFoundException();
+        }
+        selectedProject.setValue(project);
+    }
+
+    @Override
     public Beneficiary getSelectedBeneficiary() {
         return null;
     }
+
+    @Override
+    public void setSelectedBeneficiary(Beneficiary beneficiary) {
+        if (beneficiary != null && !filteredBeneficiaries.contains(beneficiary)) {
+            throw new BeneficiaryNotFoundException();
+        }
+        selectedBeneficiary.setValue(beneficiary);
+    }
+
+    //@@author articstranger
 
     @Override
     public Volunteer getSelectedVolunteer() {
@@ -294,7 +314,6 @@ public class ModelManager implements Model {
         }
     }
 
-    //@@author articstranger
     /**
      * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
@@ -325,7 +344,6 @@ public class ModelManager implements Model {
         return 0;
     }
 
-
     /**
      * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
@@ -336,7 +354,6 @@ public class ModelManager implements Model {
         return 0;
     }
 
-
     /**
      * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
      */
@@ -346,7 +363,6 @@ public class ModelManager implements Model {
         }
         return 0;
     }
-
 
     /**
      * Maps all volunteers in the (@code UniqueVolunteerList)
@@ -359,6 +375,9 @@ public class ModelManager implements Model {
             volunteer.addPoints(checkMedical(map, volunteer));
         });
     }
+
+
+    //@@author swalahlah
 
     /**
      * Sorts all volunteers in the (@code UniqueVolunteerList)
@@ -374,6 +393,7 @@ public class ModelManager implements Model {
         updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
     }
 
+    //=========== Selected person ===========================================================================
 
     /**
      * Goes throught the volunteer list and adds data to the based on what prefixes are wanted.
@@ -381,7 +401,7 @@ public class ModelManager implements Model {
      */
     public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
         List<String[]> finalData = new ArrayList<>();
-        finalData.add(new String[]{"Volunteers" });
+        finalData.add(new String[]{"Volunteers"});
         ArrayList<String> tempVolunteer = new ArrayList<>();
         int i = 0;
         for (Volunteer vol : versionedAddressBook.getVolunteerList()) {
@@ -451,9 +471,6 @@ public class ModelManager implements Model {
         return finalData;
     }
 
-
-
-    //@@author swalahlah
     /**
      * Ensures {@code selectedVolunteer} is a valid volunteer in {@code filteredVolunteers}.
      */
@@ -484,9 +501,6 @@ public class ModelManager implements Model {
         }
     }
 
-    //=========== Selected person ===========================================================================
-
-
     @Override
     public ReadOnlyProperty<Project> selectedProjectProperty() {
         return selectedProject;
@@ -495,22 +509,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
         return selectedBeneficiary;
-    }
-
-    @Override
-    public void setSelectedProject(Project project) {
-        if (project != null && !filteredProjects.contains(project)) {
-            throw new ProjectNotFoundException();
-        }
-        selectedProject.setValue(project);
-    }
-
-    @Override
-    public void setSelectedBeneficiary(Beneficiary beneficiary) {
-        if (beneficiary != null && !filteredBeneficiaries.contains(beneficiary)) {
-            throw new BeneficiaryNotFoundException();
-        }
-        selectedBeneficiary.setValue(beneficiary);
     }
 
     /**

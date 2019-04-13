@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -22,6 +21,7 @@ import seedu.address.model.project.ProjectTitle;
 public class ParserUtilProject extends ParserUtil {
 
     public static final String UNSPECIFIED_FIELD = "<UNSPECIFIED>";
+
     /**
      * Parses a project date
      */

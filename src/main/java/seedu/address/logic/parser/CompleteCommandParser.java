@@ -17,6 +17,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class CompleteCommandParser implements Parser<CompleteCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the CompleteCommand
      * and returns an CompleteCommand object for execution.
      *
@@ -27,18 +35,11 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEX)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CompleteCommand.MESSAGE_USAGE));
+                CompleteCommand.MESSAGE_USAGE));
         }
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         return new CompleteCommand(index);
-    }
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

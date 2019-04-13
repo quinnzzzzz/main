@@ -34,6 +34,7 @@ public class AssignBeneficiaryCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Name beneficiaryToAssign = model.getFilteredBeneficiaryList().get(INDEX_FIRST_BENEFICIARY.getZeroBased()).getName();
         Project projectForAssign = new ProjectBuilder(PROJECT1).build();
+        System.out.println(projectForAssign.getProjectTitle().toString());
         AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(projectForAssign.getProjectTitle(),INDEX_FIRST_BENEFICIARY);
         String expectedMessage = String.format(AssignBeneficiaryCommand.MESSAGE_SUCCESS);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -48,7 +49,7 @@ public class AssignBeneficiaryCommandTest {
         Project projectForAssign = new ProjectBuilder(PROJECT2).build();
         AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(projectForAssign.getProjectTitle(), outOfBoundIndex);
 
-        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory, Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
     }
 
     @Test

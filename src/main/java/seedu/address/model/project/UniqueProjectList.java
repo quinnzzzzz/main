@@ -93,6 +93,7 @@ public class UniqueProjectList implements Iterable<Project> {
 
     /**
      * Sets the project with new UniqueProjectList data
+     *
      * @param replacement
      */
 
@@ -146,7 +147,8 @@ public class UniqueProjectList implements Iterable<Project> {
                 } else {
                     return p1.getProjectDate().getYear() - p2.getProjectDate().getYear();
                 }
-            } }));
+            }
+        }));
     }
 
     @Override

@@ -48,6 +48,7 @@ public class Project {
         this.beneficiaryAssigned = new Name("nil");
         this.volunteerList = new ArrayList<>();
     }
+
     /**
      * When volunteerAttached info is not initialised.
      */
@@ -60,6 +61,7 @@ public class Project {
         this.beneficiaryAssigned = beneficiaryAssigned;
         this.volunteerList = new ArrayList<>();
     }
+
     /**
      * When beneficiaryAssigned info is not initialised.
      */
@@ -72,11 +74,12 @@ public class Project {
         this.beneficiaryAssigned = new Name("nil");
         this.volunteerList = volunteerList;
     }
+
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
     public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete, Name beneficiaryAssigned,
-                    List<Volunteer> volunteerList) {
+                   List<Volunteer> volunteerList) {
         requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned, volunteerList);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
@@ -88,6 +91,7 @@ public class Project {
 
     /**
      * get methods to obtain various attributes of Project
+     *
      * @return attribute
      */
     public ProjectTitle getProjectTitle() {
@@ -114,6 +118,11 @@ public class Project {
         return volunteerList;
     }
 
+    //Set the list of volunteers attached to project
+    public void setVolunteerList(List<Volunteer> volunteerList) {
+        this.volunteerList.addAll(volunteerList);
+    }
+
     /**
      * Returns true if Project has completed, else returns false.
      */
@@ -125,10 +134,6 @@ public class Project {
     public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
     }
-    //Set the list of volunteers attached to project
-    public void setVolunteerList(List<Volunteer> volunteerList) {
-        this.volunteerList.addAll(volunteerList);
-    }
 
     @Override
     public String toString() {
@@ -138,6 +143,7 @@ public class Project {
             .append("\n");
         return builder.toString();
     }
+
     /**
      * Returns true if both Projects of the same projectTitle have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two Projects.

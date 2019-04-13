@@ -44,7 +44,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
         try {
             ProjectTitle projectTitle = ParserUtilProject
-                    .parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
+                .parseProjectTitle(argMultimap.getValue(PREFIX_PROJECT_TITLE).get());
             ProjectDate projectDate = ParserUtilProject.parseProjectDate(argMultimap.getValue(PREFIX_DATE).get());
             Project project = new Project(projectTitle, projectDate);
             return new AddProjectCommand(project);
