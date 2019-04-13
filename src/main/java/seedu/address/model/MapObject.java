@@ -1,3 +1,4 @@
+//@@author articstranger
 package seedu.address.model;
 
 import javafx.util.Pair;
