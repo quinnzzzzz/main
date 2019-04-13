@@ -1,9 +1,13 @@
 package seedu.address.logic.commands.project;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.project.TypicalProjects.PROJECT1;
+import static seedu.address.testutil.project.TypicalProjects.PROJECT2;
 import static seedu.address.testutil.project.TypicalProjects.getTypicalAddressBook;
 
 import org.junit.Rule;
@@ -43,4 +47,25 @@ public class CompleteCommandTest {
         assertCommandFailure(completeCommand, model, commandHistory, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
 
+    @Test
+    public void equals() {
+        final CompleteCommand completeFirstCommand = new CompleteCommand(INDEX_FIRST);
+        final CompleteCommand completeSecondCommand = new CompleteCommand(INDEX_SECOND);
+
+        // same object -> returns true
+        assertTrue(completeFirstCommand.equals(completeFirstCommand));
+
+        // same values -> returns true
+        CompleteCommand completeFirstCommandCopy =  new CompleteCommand(INDEX_FIRST);
+        assertTrue(completeFirstCommand.equals(completeFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(completeFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(completeFirstCommand.equals(null));
+
+        // different index -> returns false
+        assertFalse(completeFirstCommand.equals(completeSecondCommand));
+    }
 }

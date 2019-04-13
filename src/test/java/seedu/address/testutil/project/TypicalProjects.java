@@ -19,6 +19,10 @@ import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
 public class TypicalProjects {
     public static final Project PROJECT1 = new ProjectBuilder().withProjectTitle("Sunshine")
             .withProjectDate("16/01/2020").withComplete(false).build();
+    public static final Project REPEATED_PROJECT1 = new ProjectBuilder().withProjectTitle("Sunshine")
+        .withProjectDate("16/01/2020").withComplete(false).build();
+    public static final Project EDITED_PROJECT1 = new ProjectBuilder().withProjectTitle("OldFolks")
+        .withProjectDate("16/01/2020").withComplete(false).build();
     public static final Project PROJECT2 = new ProjectBuilder().withProjectTitle("iReject")
             .withProjectDate("12/08/2019").withComplete(false).build();
     public static final Beneficiary ACTION_FOR_AIDS = new BeneficiaryBuilder()

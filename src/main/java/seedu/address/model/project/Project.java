@@ -154,8 +154,7 @@ public class Project {
         }
 
         return otherProject != null
-            && otherProject.getProjectTitle().equals(getProjectTitle())
-            || (otherProject.getProjectDate().equals(getProjectDate()));
+            && otherProject.getProjectTitle().equals(getProjectTitle());
     }
 
     /**
