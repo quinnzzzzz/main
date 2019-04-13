@@ -11,11 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.ObservableList;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
@@ -31,6 +30,8 @@ import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.collections.ObservableList;
 
 public class AddBeneficiaryCommandTest {
 

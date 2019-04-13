@@ -2,6 +2,9 @@ package seedu.address.logic.commands.beneficiary;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.DESC_ANIMAL_SHELTER;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.DESC_BABES;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_ADDRESS_BABES;
@@ -9,8 +12,6 @@ import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUti
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_BABES;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_PHONE_BABES;
 import static seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
-
-import org.junit.Test;
 import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 
 public class EditBeneficiaryDescriptorTest {
