@@ -64,7 +64,7 @@ public class AssignVolunteerCommand extends Command {
         List<Volunteer> lastShownList = model.getFilteredVolunteerList();
         Predicate<Project> equalProjectTitle = x -> x.getProjectTitle().equals(targetProject);
         if (model.getFilteredProjectList().filtered(equalProjectTitle).size() == 0) {
-            throw new CommandException("Project does not exist.");
+            throw new CommandException(Messages.MESSAGE_PROJECT_NOT_FOUND);
         } else {
             projectToAssign = model.getFilteredProjectList().filtered(equalProjectTitle).get(0);
             if (requiredVolunteers > lastShownList.size()) {

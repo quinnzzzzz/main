@@ -9,20 +9,18 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.showBeneficiaryAtIndex;
+import static seedu.address.logic.commands.project.ProjectCommandTestUtil.showBeneficiaryAtIndex;
 import static seedu.address.testutil.TypicalIndexes.*;
 import static seedu.address.testutil.project.TypicalProjects.PROJECT1;
 import static seedu.address.testutil.project.TypicalProjects.PROJECT2;
 import static seedu.address.testutil.project.TypicalProjects.PROJECT3;
 import static seedu.address.testutil.project.TypicalProjects.getTypicalAddressBook;
-
 
 public class AssignBeneficiaryCommandTest {
 
@@ -44,16 +42,6 @@ public class AssignBeneficiaryCommandTest {
     }
 
     @Test
-    public void execute_validProjectAndIndexFilteredList_success() {
-        showBeneficiaryAtIndex(model, INDEX_FIRST);
-        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),
-            INDEX_FIRST);
-        String expectedMessage = String.format(AssignBeneficiaryCommand.MESSAGE_SUCCESS);
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        assertCommandSuccess(assignBeneficiaryCommand, model, commandHistory, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_validProjectInvalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBeneficiaryList().size() + 1);
         AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),
@@ -63,11 +51,50 @@ public class AssignBeneficiaryCommandTest {
     }
 
     @Test
+    public void execute_invalidProjectValidIndexUnfilteredList_throwsCommandException() {
+        Project invalidProject = PROJECT3;
+        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(invalidProject
+            .getProjectTitle(),INDEX_FIRST);
+        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory,
+            Messages.MESSAGE_PROJECT_NOT_FOUND);
+    }
+
+    @Test
+    public void execute_validProjectInvalidIndexFilteredList_throwsCommandException() {
+        showBeneficiaryAtIndex(model, INDEX_FIRST);
+
+        Index outOfBoundIndex = INDEX_SECOND;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getBeneficiaryList().size());
+
+        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),
+            outOfBoundIndex);
+
+        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory,
+            Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        showBeneficiaryAtIndex(model, INDEX_FIRST);
+
+        Index outOfBoundIndex = INDEX_SECOND;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getBeneficiaryList().size());
+
+        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),
+            outOfBoundIndex);
+
+        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory,
+            Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
+    }
+
+    @Test
     public void execute_invalidProjectValidIndexUnFilteredList_throwCommandException() {
         Project invalidProject = PROJECT3;
         AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(invalidProject
             .getProjectTitle(), INDEX_FIRST);
-        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory, Messages.MESSAGE_INVALID_PROJECT);
+        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory, Messages.MESSAGE_PROJECT_NOT_FOUND);
     }
 
     @Test
