@@ -13,15 +13,13 @@ import java.util.List;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 public class UniqueProjectListTest {
+    private final UniqueProjectList uniqueProjectList = new UniqueProjectList();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private final UniqueProjectList uniqueProjectList = new UniqueProjectList();
 
     @Test
     public void contains_nullProject_throwsNullPointerException() {

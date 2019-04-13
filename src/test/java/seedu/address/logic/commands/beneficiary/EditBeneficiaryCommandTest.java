@@ -3,6 +3,9 @@ package seedu.address.logic.commands.beneficiary;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.DESC_ANIMAL_SHELTER;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.DESC_BABES;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.VALID_NAME_BABES;
@@ -22,9 +25,6 @@ import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAa
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getAddressBookForBeneficiarySyncTest;
 import static seedu.address.testutil.beneficiary.BeneficiariesSyncProjects.getProjectA2B;
 import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.getTypicalAddressBook;
-
-import org.junit.Test;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;

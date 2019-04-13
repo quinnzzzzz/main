@@ -6,11 +6,10 @@ import static seedu.address.testutil.TypicalVolunteers.ALICE;
 
 import java.net.URL;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import guitests.guihandles.BrowserPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
+import org.junit.Before;
+import org.junit.Test;
 import seedu.address.model.volunteer.Volunteer;
 
 public class BrowserPanelTest extends GuiUnitTest {

@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.ParserUtilVolunteer.MESSAGE_INVALID_IND
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ParserUtilTest {

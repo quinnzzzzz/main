@@ -2,6 +2,7 @@ package seedu.address.logic.commands.beneficiary;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;
@@ -99,7 +100,7 @@ public class BeneficiaryCommandTestUtil {
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered beneficiary list
-     *      and selected beneficiary in {@code actualModel} remain unchanged <br>
+     * and selected beneficiary in {@code actualModel} remain unchanged <br>
      * - {@code actualCommandHistory} remains unchanged.
      */
     public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,

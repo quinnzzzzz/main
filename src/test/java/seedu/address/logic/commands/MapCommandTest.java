@@ -7,9 +7,8 @@ import static seedu.address.testutil.TypicalVolunteers.getTypicalVolunteersPoint
 
 import java.util.ArrayList;
 
-import org.junit.Test;
-
 import javafx.util.Pair;
+import org.junit.Test;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.MapObject;
 import seedu.address.model.Model;
@@ -37,8 +36,8 @@ public class MapCommandTest {
     }
 
     /**
-     *
      * Goes through the @param model and collects points from all volunteers
+     *
      * @return points as an arraylist
      */
     public ArrayList<Integer> collectPoints(Model model) {
@@ -51,6 +50,7 @@ public class MapCommandTest {
 
     /**
      * default mapobject stub
+     *
      * @return
      */
     private MapObject defaultMap() {
@@ -61,7 +61,6 @@ public class MapCommandTest {
 
         return new MapObject(agePair, comparator, racePair, medicalPair);
     }
-
 
 
 }

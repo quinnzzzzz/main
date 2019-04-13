@@ -8,7 +8,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -16,10 +15,9 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddressBookParserTest {
+    private final AddressBookParser parser = new AddressBookParser();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_help() throws Exception {

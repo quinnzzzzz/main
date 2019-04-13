@@ -15,8 +15,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
@@ -32,6 +30,8 @@ import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.collections.ObservableList;
 
 public class AddBeneficiaryCommandTest {
 
@@ -357,7 +357,7 @@ public class AddBeneficiaryCommandTest {
         @Override
         public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
             throw new AssertionError("This method "
-                    + "should not be called.");
+                + "should not be called.");
         }
     }
 

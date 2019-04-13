@@ -79,6 +79,7 @@ public class BeneficiaryBuilder {
 
     /**
      * Build method to build new beneficiary
+     *
      * @return a beneficiary object
      */
     public Beneficiary build() {
@@ -89,6 +90,7 @@ public class BeneficiaryBuilder {
 
     /**
      * build method to build new beneficiary with an attached project list
+     *
      * @param attachedProjectList
      * @return a beneficiary
      */

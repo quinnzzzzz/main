@@ -14,17 +14,20 @@ import java.util.function.Predicate;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.MapObject;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.Volunteer;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.collections.ObservableList;
 
 public class AddProjectCommandTest {
 
@@ -94,12 +97,12 @@ public class AddProjectCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -129,12 +132,12 @@ public class AddProjectCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -219,11 +222,6 @@ public class AddProjectCommandTest {
         }
 
         @Override
-        public void setSelectedProject(Project project) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addBeneficiary(Beneficiary beneficiary) {
 
         }
@@ -240,11 +238,6 @@ public class AddProjectCommandTest {
 
         @Override
         public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
-
-        }
-
-        @Override
-        public void setSelectedBeneficiary(Beneficiary beneficiary) {
 
         }
 
@@ -279,8 +272,18 @@ public class AddProjectCommandTest {
         }
 
         @Override
+        public void setSelectedProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Beneficiary getSelectedBeneficiary() {
             return null;
+        }
+
+        @Override
+        public void setSelectedBeneficiary(Beneficiary beneficiary) {
+
         }
 
         @Override
