@@ -1,12 +1,13 @@
 package seedu.address.logic.commands;
 
+import static org.junit.Assert.assertEquals;
 import static seedu.address.testutil.TypicalVolunteers.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalVolunteers.getTypicalVolunteersPoints;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
+
+import org.junit.Test;
+
 import javafx.util.Pair;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.MapObject;
@@ -51,7 +52,7 @@ public class MapCommandTest {
      * default mapobject stub
      * @return
      */
-    private MapObject defaultMap(){
+    private MapObject defaultMap() {
         Pair<Integer, Integer> agePair = new Pair<>(2, 18);
         Pair<Integer, String> racePair = new Pair<>(1, "Chinese");
         Pair<Integer, String> medicalPair = new Pair<>(3, "Nil");
