@@ -208,7 +208,7 @@ public class EditBeneficiaryCommandTest {
         expectedModel.setBeneficiary(beneficiaryToEdit, editedBeneficiary);
         expectedModel.commitAddressBook();
 
-        // edit -> edits second beneficiary in unfiltered beneficiary list 
+        // edit -> edits second beneficiary in unfiltered beneficiary list
         // first beneficiary in filtered beneficiary list
         editBeneficiaryCommand.execute(model, commandHistory);
 
