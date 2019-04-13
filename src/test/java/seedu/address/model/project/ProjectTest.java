@@ -37,7 +37,6 @@ public class ProjectTest {
         // different name -> returns false
         editedPROJECT1 = new ProjectBuilder(PROJECT1).withProjectTitle(VALID_TITLE_RECYCLE).build();
         assertFalse(PROJECT1.isSameProject(editedPROJECT1));
-        
         // same projectTitle, projectDate -> returns true
         editedPROJECT1 = new ProjectBuilder(PROJECT1).withProjectTitle(VALID_TITLE_SUNSHINE).withProjectDate(VALID_DATE).build();
         assertTrue(PROJECT1.isSameProject(editedPROJECT1));

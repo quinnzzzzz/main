@@ -56,7 +56,7 @@ public class AssignBeneficiaryCommandTest {
         showBeneficiaryAtIndex(model, INDEX_FIRST_BENEFICIARY);
 
         Name beneficiaryToAssign = model.getFilteredBeneficiaryList().get(INDEX_FIRST_BENEFICIARY.getZeroBased()).getName();
-        Project projectForAssign = new ProjectBuilder(PROJECT1).build();
+        Project projectForAssign = new ProjectBuilder(PROJECT3).build();
         AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(projectForAssign.getProjectTitle(),INDEX_FIRST_BENEFICIARY);
 
         String expectedMessage = String.format(AssignBeneficiaryCommand.MESSAGE_SUCCESS);
@@ -70,7 +70,6 @@ public class AssignBeneficiaryCommandTest {
 
     private void showNoBeneficiary(Model model) {
         model.updateFilteredBeneficiaryList(p -> false);
-        
         assertTrue(model.getFilteredBeneficiaryList().isEmpty());
     }
 
