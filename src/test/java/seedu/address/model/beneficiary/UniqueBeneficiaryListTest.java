@@ -21,9 +21,10 @@ import seedu.address.model.beneficiary.exceptions.DuplicateBeneficiaryException;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
 
 public class UniqueBeneficiaryListTest {
-    private final UniqueBeneficiaryList uniqueBeneficiaryList = new UniqueBeneficiaryList();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private final UniqueBeneficiaryList uniqueBeneficiaryList = new UniqueBeneficiaryList();
 
     @Test
     public void contains_nullBeneficiary_throwsNullPointerException() {
