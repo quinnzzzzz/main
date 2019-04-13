@@ -36,10 +36,8 @@ public class AssignBeneficiaryCommandTest {
         Project projectForAssign = new ProjectBuilder(PROJECT1).build();
         AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(projectForAssign.getProjectTitle(),INDEX_FIRST_BENEFICIARY);
         String expectedMessage = String.format(AssignBeneficiaryCommand.MESSAGE_SUCCESS);
-        
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.commitAddressBook();
-        
         assertCommandSuccess(assignBeneficiaryCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 

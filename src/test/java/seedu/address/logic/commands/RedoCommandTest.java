@@ -1,10 +1,11 @@
-/*package seedu.address.logic.commands;
+package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.deleteFirstPerson;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.Before;
 
+import org.junit.Test;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -19,18 +20,14 @@ public class RedoCommandTest {
     @Before
     public void setUp() {
         // set up of both models' undo/redo history
-        deleteFirstPerson(model);
-        deleteFirstPerson(model);
         model.undoAddressBook();
         model.undoAddressBook();
 
-        deleteFirstPerson(expectedModel);
-        deleteFirstPerson(expectedModel);
         expectedModel.undoAddressBook();
         expectedModel.undoAddressBook();
     }
 
-    /*
+
     @Test
     public void execute() {
         // multiple redoable states in model
@@ -46,4 +43,3 @@ public class RedoCommandTest {
     }
 
 }
-*/
