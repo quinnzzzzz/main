@@ -1,6 +1,8 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ReadOnlyProperty;
@@ -307,11 +309,22 @@ public interface Model {
      */
     public void mapAllVolunteer(MapObject map);
 
+    /**
+     * Sorts all volunteers in the (@code UniqueVolunteerList)
+     * and returns a (@code sortedList)
+     */
     public void sortVolunteers();
+
+    /**
+     * Goes throught the volunteer list and adds data to the based on what prefixes are wanted.
+     * stops when the list ends or the provided limit is reached.
+     */
+    public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted);
 
     /**
      * Add Beneficiary.
      */
     void addBeneficiary(Beneficiary beneficiary);
+
 
 }
