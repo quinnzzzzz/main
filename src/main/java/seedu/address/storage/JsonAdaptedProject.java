@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.beneficiary.Name;
 import seedu.address.model.project.Complete;
@@ -55,8 +54,8 @@ class JsonAdaptedProject {
         complete = source.getComplete().toString();
         beneficiaryAssigned = source.getBeneficiaryAssigned().toString();
         attachedVolunteers.addAll(source.getVolunteerList().stream()
-                .map(JsonAdaptedVolunteer::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedVolunteer::new)
+            .collect(Collectors.toList()));
     }
 
     /**
