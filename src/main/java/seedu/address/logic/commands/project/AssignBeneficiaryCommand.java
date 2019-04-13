@@ -130,6 +130,6 @@ public class AssignBeneficiaryCommand extends Command {
     private boolean isValidPreAssignedBeneficiary(Model model) {
         return projectToAssign.getBeneficiaryAssigned().toString() != "nil"
             && model.getFilteredBeneficiaryList().filtered(
-            x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0;
+                x -> x.getName().equals(projectToAssign.getBeneficiaryAssigned())).size() != 0;
     }
 }
