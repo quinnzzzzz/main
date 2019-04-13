@@ -1,5 +1,5 @@
 //@@author quinnzzzzz
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.project;
 
 import java.util.ArrayList;
 import java.util.List;

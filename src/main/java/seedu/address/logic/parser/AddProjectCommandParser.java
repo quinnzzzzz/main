@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_PROJECT_TITLE;
 import java.util.stream.Stream;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddProjectCommand;
+import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDate;

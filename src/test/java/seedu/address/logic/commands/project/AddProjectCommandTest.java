@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.Assert.assertEquals;
@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -18,11 +19,11 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.*;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
-import seedu.address.logic.commands.ProjectBuilder;
 import seedu.address.model.volunteer.Volunteer;
 
 public class AddProjectCommandTest {
@@ -45,6 +46,7 @@ public class AddProjectCommandTest {
         ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
         Project validProject = new ProjectBuilder().build();
 
+
         CommandResult commandResult = new AddProjectCommand(validProject).execute(modelStub, commandHistory);
 
         assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), commandResult.getFeedbackToUser());
@@ -55,36 +57,36 @@ public class AddProjectCommandTest {
     @Test
     public void execute_duplicateProject_throwsCommandException() throws Exception {
         Project validProject = new ProjectBuilder().build();
-        AddProjectCommand addCommand = new AddProjectCommand(validProject);
+        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject);
         ModelStub modelStub = new ModelStubWithProject(validProject);
 
         thrown.expect(CommandException.class);
         thrown.expectMessage(AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
-        addCommand.execute(modelStub, commandHistory);
+        addProjectCommand.execute(modelStub, commandHistory);
     }
 
     @Test
     public void equals() {
-        Project alice = new ProjectBuilder().withProjectTitle("Project Sunshine").build();
-        Project bob = new ProjectBuilder().withProjectTitle("Recycle!").build();
-        AddProjectCommand addAliceCommand = new AddProjectCommand(alice);
-        AddProjectCommand addBobCommand = new AddProjectCommand(bob);
+        Project sunshine = new ProjectBuilder().withProjectTitle("Project Sunshine").build();
+        Project recycle = new ProjectBuilder().withProjectTitle("Recycle").build();
+        AddProjectCommand addSunshineCommand = new AddProjectCommand(sunshine);
+        AddProjectCommand addRecycleCommand = new AddProjectCommand(recycle);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addSunshineCommand.equals(addSunshineCommand));
 
         // same values -> returns true
-        AddProjectCommand addAliceCommandCopy = new AddProjectCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddProjectCommand addSunshineCommandCopy = new AddProjectCommand(sunshine);
+        assertTrue(addSunshineCommand.equals(addSunshineCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addSunshineCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addSunshineCommand.equals(null));
 
         // different project -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addSunshineCommand.equals(addRecycleCommand));
     }
 
     /**
@@ -144,6 +146,11 @@ public class AddProjectCommandTest {
         @Override
         public void deleteProject(Project target) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortProjectByDate() {
+
         }
 
         @Override
@@ -212,11 +219,6 @@ public class AddProjectCommandTest {
         }
 
         @Override
-        public void sortProjectByDate() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setSelectedProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
@@ -272,6 +274,16 @@ public class AddProjectCommandTest {
         }
 
         @Override
+        public Project getSelectedProject() {
+            return null;
+        }
+
+        @Override
+        public Beneficiary getSelectedBeneficiary() {
+            return null;
+        }
+
+        @Override
         public Volunteer getSelectedVolunteer() {
             return null;
         }
@@ -309,6 +321,11 @@ public class AddProjectCommandTest {
         @Override
         public void sortVolunteers() {
 
+        }
+
+        @Override
+        public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
+            return null;
         }
     }
 

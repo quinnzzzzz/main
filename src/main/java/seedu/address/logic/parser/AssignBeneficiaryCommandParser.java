@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AssignBeneficiaryCommand;
+import seedu.address.logic.commands.project.AssignBeneficiaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectTitle;
 

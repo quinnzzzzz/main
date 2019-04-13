@@ -273,6 +273,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Project getSelectedProject() {
+        return null;
+    }
+
+    @Override
+    public Beneficiary getSelectedBeneficiary() {
+        return null;
+    }
+
+    @Override
     public Volunteer getSelectedVolunteer() {
         return selectedVolunteer.getValue();
     }
@@ -580,10 +590,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return versionedAddressBook.equals(other.versionedAddressBook)
             && userPrefs.equals(other.userPrefs)
-            && filteredPersons.equals(other.filteredPersons)
             && filteredProjects.equals(other.filteredProjects)
             && filteredBeneficiaries.equals(other.filteredBeneficiaries)
-            && Objects.equals(selectedPerson.get(), other.selectedPerson.get())
             && Objects.equals(selectedBeneficiary.get(), other.selectedBeneficiary.get());
         // && Objects.equals(selectedProject.get(), other,selectedProject.get());
     }

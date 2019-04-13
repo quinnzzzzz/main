@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_REQUIRED_VOLU
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AssignVolunteerCommand;
+import seedu.address.logic.commands.project.AssignVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectTitle;
 

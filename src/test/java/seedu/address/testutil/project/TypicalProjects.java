@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.project;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.project.Project;
-import seedu.address.logic.commands.ProjectBuilder;
+import seedu.address.logic.commands.project.ProjectBuilder;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -160,18 +161,6 @@ public class AddBeneficiaryCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method "
-                + "should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method "
-                + "should not be called.");
-        }
-
-        @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method"
                 + " should not be called.");
@@ -179,12 +168,6 @@ public class AddBeneficiaryCommandTest {
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method "
-                + "should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
             throw new AssertionError("This method "
                 + "should not be called.");
         }
@@ -204,12 +187,6 @@ public class AddBeneficiaryCommandTest {
         public void setProject(Project target, Project editedProject)
             throws DuplicateProjectException, ProjectNotFoundException {
 
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method"
-                + " should not be called.");
         }
 
         @Override
@@ -236,11 +213,6 @@ public class AddBeneficiaryCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            return null;
-        }
-
-        @Override
         public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -248,12 +220,6 @@ public class AddBeneficiaryCommandTest {
         @Override
         public ObservableList<Project> getFilteredProjectList() {
             return null;
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method "
-                + "should not be called.");
         }
 
         @Override
@@ -299,11 +265,6 @@ public class AddBeneficiaryCommandTest {
         }
 
         @Override
-        public ReadOnlyProperty<Person> selectedPersonProperty() {
-            return null;
-        }
-
-        @Override
         public ReadOnlyProperty<Project> selectedProjectProperty() {
             return null;
         }
@@ -312,16 +273,6 @@ public class AddBeneficiaryCommandTest {
         public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
             throw new AssertionError("This method "
                 + "should not be called.");
-        }
-
-        @Override
-        public Person getSelectedPerson() {
-            return null;
-        }
-
-        @Override
-        public void setSelectedPerson(Person person) {
-
         }
 
         @Override
@@ -402,6 +353,11 @@ public class AddBeneficiaryCommandTest {
         @Override
         public void sortVolunteers() {
 
+        }
+
+        @Override
+        public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
+            return null;
         }
     }
 

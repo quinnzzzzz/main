@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.CompleteCommand;
+import seedu.address.logic.commands.project.CompleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

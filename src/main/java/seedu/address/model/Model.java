@@ -162,6 +162,18 @@ public interface Model {
      */
 
     /**
+     * gets the selected project in the filtered project list.
+     */
+
+    Project getSelectedProject();
+
+    /**
+     * gets the selected beneficiary in the filtered beneficiary list.
+     */
+
+    Beneficiary getSelectedBeneficiary();
+
+    /**
      * gets the selected volunteer in the filtered volunteer list.
      */
 

@@ -3,10 +3,10 @@ package seedu.address.model.project;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalProjects.PROJECT1;
-import static seedu.address.testutil.TypicalProjects.PROJECT2;
+import static seedu.address.testutil.project.TypicalProjects.PROJECT1;
+import static seedu.address.testutil.project.TypicalProjects.PROJECT2;
 
-import seedu.address.logic.commands.ProjectBuilder;
+import seedu.address.logic.commands.project.ProjectBuilder;
 
 import org.junit.Rule;
 import org.junit.Test;
