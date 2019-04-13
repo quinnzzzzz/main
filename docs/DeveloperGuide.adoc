@@ -211,22 +211,7 @@ beneficiary is assigned to. The figure below shows how the delete beneficiary co
 .Beneficiary deletion sequence diagram, hard deletion mode.
 image::BeneficiaryHardDeletionSequenceDiagram.png[width="800"]
 
-To facilitate the Beneficiary Management feature is facilitated by the `UniqueBeneficiaryList` class. It imports the 'CliSyntax.Java'
-and stores internally the `UserClosestInput` and `CommandUsed`. It updates the `UserClosestInput` and process to
-give suggestions.
-+
-Given below is an example usage scenario and how the command line recommendation feature behaves at each step.
-
-Step 1: The user types in a command keyword then type [space], the CommandLineParser is initialized which stores the
-`UserClosestInput` and `CommandUsed`. Then the command line show the command syntax.
-
-Step 2: The user continues to type, `UserClosestInput` takes the input and stores. There are 2 alternatives:
-* If the user types a slash [/] the `UserClosestInput` waits for syntax and when syntax match, shows the recommandation
-list for that particular slash sub syntax.
-
-* If the user types without the slash [\] the example remains.
-
-Step 3: After the users type [Enter] the class is cleared.
+. 
 
 
 
