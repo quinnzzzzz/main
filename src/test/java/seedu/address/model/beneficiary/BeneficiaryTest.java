@@ -52,8 +52,8 @@ public class BeneficiaryTest {
         assertFalse(ANIMAL_SHELTER.isSameBeneficiary(differentEmail));
 
         //different name, (same phone and email) different attributes -> returns true
-        Beneficiary editedAnimalShelter = new BeneficiaryBuilder(ANIMAL_SHELTER).
-            withName(VALID_NAME_BABES)
+        Beneficiary editedAnimalShelter = new BeneficiaryBuilder(ANIMAL_SHELTER)
+            .withName(VALID_NAME_BABES)
             .withAddress(VALID_ADDRESS_BABES).build();
         assertTrue(ANIMAL_SHELTER.isSameBeneficiary(editedAnimalShelter));
 
