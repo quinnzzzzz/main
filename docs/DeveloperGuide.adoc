@@ -238,6 +238,95 @@ image::CommandLineRecommendationSequenceDiagram.png[width="800"]
 
 // end::recommendationCommandLine[]
 
+// tag::filterexport[]
+=== Filtered Export feature
+==== Current Implementation
+
+To facilitate the filtering mechanism, a new `points` integer field is added to the `Volunteer` class:
+
+.Volunteer class with new points field
+image::Volunteerclasswithpoints.jpg[width="800"]
+
+`points` was implemented as a integer instead of a class for ease of access. Also, it is not directly influenced by
+any input from the user, as input has been checked by the the other classes in `Volunteer`. Hence, no accompanying
+methods are necessary.
+
+This feature revolves around 3 commands:
+
+. `map` Command
+. `sort` Command
+. `exportV` Command
+
+For the `map` command, the user inputs the specific criteria to map `Volunteers` on, as well as the points.
+Upon execution of the `map` command, the following sequence diagram shows how the map command works:
+
+.Sequence diagram of the map command
+image::MapSequenceDiagram.png[width="800"]
+
+`MapCommandParser` will check the given arguments for correctness, such as proper points or valid comparator.
+It then creates a `MapObject` and stores the given arguments in a `Pair` of <points, conditions> and passes it to `MapCommand`, which passes it to `Model`
+by calling `mapAllVolunteers`.
+
+Within the model, `mapAllVolunteers()` is as shown:
+----
+public void mapAllVolunteer(MapObject map) {
+        versionedAddressBook.getVolunteerList().forEach(volunteer -> {
+            volunteer.resetPoints();
+            volunteer.addPoints(checkAge(map, volunteer));
+            volunteer.addPoints(checkRace(map, volunteer));
+            volunteer.addPoints(checkRace(map, volunteer));
+        });
+    }
+----
+The `checkAge`, `checkRace` and `checkRace` methods check each `Volunteer` and
+return the given points for that criteria,
+which `addPoints` adds to them.
+
+[large]*`Sort` Command*
+
+For the `Sort` command, the `Model` calls the `UniqueVolunteerList` internal `sortByPoints` method.
+This method uses the standard `FXCollections.sort` on the `internalList`,
+which immediately reflects in the UI.
+----
+    public void sortByPoints() {
+        FXCollections.sort(internalList, (new Comparator<Volunteer>() {
+            public int compare (Volunteer s1, Volunteer s2) {
+                return s2.getPoints() - s1.getPoints();
+            }
+        }));
+    }
+----
+The custom comparator sorts `Volunteers` in descending order of points.
+
+[large]*`Export` Command*
+
+The `exportV` command writes certain parts of volunteers data based on provided crtieria.
+It takes on various parameters such as [NUMBER OF VOLUNTEERS],
+[PREFIX OF DATA REQUIRED 1][PREFIX OF DATA REQUIRED 2] ... .
+
+The `ExportVolunteerCommandParser` checks that at least 1 type of data and the number of `Volunteers`
+is given. It then stores the prefixes in a list called `prefixToBePrinted` and returns the the list and the number of volunteers
+as a `Pair` to `ExportVolunteer`.
+The code snippet below shows how the main command is implemented.
+----
+File output = new File("Export.csv");
+        List<String[]> volunteerData = new ArrayList<>();
+        volunteerData = model.addData(numVolunteers, prefixToBePrinted);
+        try (PrintWriter pw = new PrintWriter(output)) {
+            volunteerData.stream()
+                    .map(this::toCsv)
+                    .forEach(pw::println);
+        } catch (IOException e) {
+            throw new CommandException("Error writing to file");
+        }
+----
+A `List` of `String` arrays is used to store each line of `Volunteer`. The `addData` method goes through the `Volunteer`
+list and collects the specified fields into a `String` array, which is appended to another `List` of `String` arrays
+and returned. The `toCsv` method formats the data into CSV-friendly data.
+
+
+// end::filterexport[]
+
 // tag::undoredo[]
 === Undo/Redo feature
 ==== Current Implementation
