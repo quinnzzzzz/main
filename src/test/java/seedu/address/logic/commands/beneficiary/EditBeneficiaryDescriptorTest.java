@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUti
 import static seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand.EditBeneficiaryDescriptor;
 
 import org.junit.Test;
-
 import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 
 public class EditBeneficiaryDescriptorTest {

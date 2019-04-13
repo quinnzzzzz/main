@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.deleteFirstVolunteer;
 import static seedu.address.testutil.TypicalVolunteers.getTypicalAddressBook;
 
 import org.junit.Before;
-
 import org.junit.Test;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
@@ -29,7 +28,7 @@ public class UndoCommandTest {
         deleteFirstVolunteer(expectedModel);
     }
 
-    
+
     @Test
     public void execute() {
         // multiple undoable states in model

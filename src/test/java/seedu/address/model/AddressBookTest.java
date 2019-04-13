@@ -4,22 +4,20 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.Volunteer;
 
 public class AddressBookTest {
+    private final AddressBook addressBook = new AddressBook();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private final AddressBook addressBook = new AddressBook();
 
     @Test
     public void constructor() {

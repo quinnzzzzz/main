@@ -11,12 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.collections.ObservableList;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
@@ -357,7 +356,7 @@ public class AddBeneficiaryCommandTest {
         @Override
         public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
             throw new AssertionError("This method "
-                    + "should not be called.");
+                + "should not be called.");
         }
     }
 
