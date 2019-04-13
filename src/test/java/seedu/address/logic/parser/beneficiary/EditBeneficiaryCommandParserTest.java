@@ -89,7 +89,8 @@ public class EditBeneficiaryCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser,
-            "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_ANIMAL_SHELTER + VALID_PHONE_ANIMAL_SHELTER,
+            "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                + VALID_ADDRESS_ANIMAL_SHELTER + VALID_PHONE_ANIMAL_SHELTER,
             Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -126,7 +127,8 @@ public class EditBeneficiaryCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + NAME_DESC_ANIMAL_SHELTER;
-        EditBeneficiaryDescriptor descriptor = new EditBeneficiaryDescriptorBuilder().withName(VALID_NAME_ANIMAL_SHELTER).build();
+        EditBeneficiaryDescriptor descriptor = new EditBeneficiaryDescriptorBuilder()
+            .withName(VALID_NAME_ANIMAL_SHELTER).build();
         EditBeneficiaryCommand expectedCommand = new EditBeneficiaryCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -168,7 +170,8 @@ public class EditBeneficiaryCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BABES;
-        EditBeneficiaryDescriptor descriptor = new EditBeneficiaryDescriptorBuilder().withPhone(VALID_PHONE_BABES).build();
+        EditBeneficiaryDescriptor descriptor = new EditBeneficiaryDescriptorBuilder()
+            .withPhone(VALID_PHONE_BABES).build();
         EditBeneficiaryCommand expectedCommand = new EditBeneficiaryCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

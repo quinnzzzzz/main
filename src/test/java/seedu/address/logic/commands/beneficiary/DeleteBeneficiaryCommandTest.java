@@ -58,7 +58,8 @@ public class DeleteBeneficiaryCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBeneficiaryList().size() + 1);
-        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(outOfBoundIndex, false);
+        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(
+            outOfBoundIndex, false);
 
         assertCommandFailure(deleteBeneficiaryCommand, model, commandHistory,
             Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
@@ -69,7 +70,8 @@ public class DeleteBeneficiaryCommandTest {
         showBeneficiaryAtIndex(model, INDEX_FIRST);
 
         Beneficiary beneficiaryToDelete = model.getFilteredBeneficiaryList().get(INDEX_FIRST.getZeroBased());
-        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(INDEX_FIRST, false);
+        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(
+            INDEX_FIRST, false);
 
         String expectedMessage = String.format(DeleteBeneficiaryCommand.MESSAGE_DELETE_BENEFICIARY_SUCCESS,
             beneficiaryToDelete);
@@ -90,7 +92,8 @@ public class DeleteBeneficiaryCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getBeneficiaryList().size());
 
-        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(outOfBoundIndex, false);
+        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(
+            outOfBoundIndex, false);
 
         assertCommandFailure(deleteBeneficiaryCommand, model, commandHistory,
             Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
@@ -99,7 +102,8 @@ public class DeleteBeneficiaryCommandTest {
     @Test
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
         Beneficiary beneficiaryToDelete = model.getFilteredBeneficiaryList().get(INDEX_FIRST.getZeroBased());
-        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(INDEX_FIRST, false);
+        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(
+            INDEX_FIRST, false);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteBeneficiary(beneficiaryToDelete);
         expectedModel.commitAddressBook();
@@ -109,17 +113,20 @@ public class DeleteBeneficiaryCommandTest {
 
         // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiaries
         expectedModel.undoAddressBook();
-        CommandTestUtil.assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(
+            new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // redo -> same first beneficiary deleted again
         expectedModel.redoAddressBook();
-        CommandTestUtil.assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(
+            new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBeneficiaryList().size() + 1);
-        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(outOfBoundIndex, false);
+        DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(
+            outOfBoundIndex, false);
 
         // execution failed -> address book state not added into model
         assertCommandFailure(deleteBeneficiaryCommand, model, commandHistory,
@@ -200,7 +207,7 @@ public class DeleteBeneficiaryCommandTest {
     }
 
     @Test
-    public void execute_validDelete_hardDelete_success() {
+    public void execute_validDeleteHardDelete_success() {
         DeleteBeneficiaryCommand deleteBeneficiaryCommand = new DeleteBeneficiaryCommand(INDEX_FIRST,
             true);
         Model model = new ModelManager(getAddressBookForBeneficiarySyncTest(getAandBBeneficiaries(), getProjectA2B()),
@@ -211,8 +218,8 @@ public class DeleteBeneficiaryCommandTest {
         expectedModel.deleteProject(ATTACHED_PROJECT_B1);
         expectedModel.deleteProject(ATTACHED_PROJECT_B2);
         expectedModel.commitAddressBook();
-        String expectedMessage = String.format(DeleteBeneficiaryCommand.MESSAGE_DELETE_BENEFICIARY_SUCCESS,
-            BENEFICIARY_B);
+        String expectedMessage = String.format(
+            DeleteBeneficiaryCommand.MESSAGE_DELETE_BENEFICIARY_SUCCESS, BENEFICIARY_B);
         assertCommandSuccess(deleteBeneficiaryCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 

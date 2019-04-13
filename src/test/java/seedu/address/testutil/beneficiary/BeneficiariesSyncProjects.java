@@ -51,6 +51,12 @@ public class BeneficiariesSyncProjects {
     public static final Project ATTACHED_PROJECT_B1 = buildProjectStub(ATTACH_TO_B1_TITLE, BENEFICIARY_B);
     public static final Project ATTACHED_PROJECT_B2 = buildProjectStub(ATTACH_TO_B2_TITLE, BENEFICIARY_B);
 
+    /**
+     * A method to build a project stub
+     * @param projectTitle
+     * @param beneficiary
+     * @return a project stub model
+     */
     public static Project buildProjectStub(ProjectTitle projectTitle, Beneficiary beneficiary) {
         String dateString = LocalDate.now().plus(2, ChronoUnit.DAYS).toString();
         String[] arrOfStr = dateString.split("-");

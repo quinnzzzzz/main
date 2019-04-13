@@ -28,13 +28,13 @@ public class EditBeneficiaryDescriptorBuilder {
     /**
      * Returns an {@code EditBeneficiaryDescriptor} with fields containing {@code Beneficiary}'s details
      */
-    public EditBeneficiaryDescriptorBuilder(Beneficiary Beneficiary) {
+    public EditBeneficiaryDescriptorBuilder(Beneficiary beneficiary) {
         descriptor = new EditBeneficiaryDescriptor();
-        descriptor.setName(Beneficiary.getName());
-        descriptor.setPhone(Beneficiary.getPhone());
-        descriptor.setEmail(Beneficiary.getEmail());
-        descriptor.setAddress(Beneficiary.getAddress());
-        descriptor.setAttachedProjectList(Beneficiary.getAttachedProjectLists());
+        descriptor.setName(beneficiary.getName());
+        descriptor.setPhone(beneficiary.getPhone());
+        descriptor.setEmail(beneficiary.getEmail());
+        descriptor.setAddress(beneficiary.getAddress());
+        descriptor.setAttachedProjectList(beneficiary.getAttachedProjectLists());
     }
 
     /**

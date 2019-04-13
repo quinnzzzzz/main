@@ -42,7 +42,8 @@ import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
 import seedu.address.testutil.beneficiary.EditBeneficiaryDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditBeneficiaryCommand.
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
+ * and unit tests for EditBeneficiaryCommand.
  */
 public class EditBeneficiaryCommandTest {
 
@@ -90,7 +91,8 @@ public class EditBeneficiaryCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditBeneficiaryCommand editBeneficiaryCommand = new EditBeneficiaryCommand(INDEX_FIRST, new EditBeneficiaryDescriptor());
+        EditBeneficiaryCommand editBeneficiaryCommand = new EditBeneficiaryCommand(
+            INDEX_FIRST, new EditBeneficiaryDescriptor());
         Beneficiary editedBeneficiary = model.getFilteredBeneficiaryList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditBeneficiaryCommand.MESSAGE_EDIT_BENEFICIARY_SUCCESS,
@@ -166,11 +168,13 @@ public class EditBeneficiaryCommandTest {
 
         // undo -> reverts addressbook back to previous state and filtered beneficiary list to show all beneficiarys
         expectedModel.undoAddressBook();
-        BeneficiaryCommandTestUtil.assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        BeneficiaryCommandTestUtil.assertCommandSuccess(
+            new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // redo -> same first beneficiary edited again
         expectedModel.redoAddressBook();
-        BeneficiaryCommandTestUtil.assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        BeneficiaryCommandTestUtil.assertCommandSuccess(
+            new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

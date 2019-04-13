@@ -77,12 +77,21 @@ public class BeneficiaryBuilder {
         return this;
     }
 
+    /**
+     * Build method to build new beneficiary
+     * @return a beneficiary object
+     */
     public Beneficiary build() {
         Beneficiary b = new Beneficiary(name, phone, email, address);
         b.setProjectLists(this.attachedProjectList);
         return b;
     }
 
+    /**
+     * build method to build new beneficiary with an attached project list
+     * @param attachedProjectList
+     * @return a beneficiary
+     */
     public Beneficiary buildWithProjectList(Set<ProjectTitle> attachedProjectList) {
         Beneficiary beneficiary = build();
         beneficiary.setProjectLists(attachedProjectList);

@@ -55,7 +55,8 @@ public class AddBeneficiaryCommandTest {
 
         CommandResult commandResult = new AddBeneficiaryCommand(validBeneficiary).execute(modelStub, commandHistory);
 
-        assertEquals(String.format(AddBeneficiaryCommand.MESSAGE_SUCCESS, validBeneficiary), commandResult.getFeedbackToUser());
+        assertEquals(String.format(
+            AddBeneficiaryCommand.MESSAGE_SUCCESS, validBeneficiary), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBeneficiary), modelStub.beneficiariesAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
@@ -200,7 +201,8 @@ public class AddBeneficiaryCommandTest {
         }
 
         @Override
-        public void setProject(Project target, Project editedProject) throws DuplicateProjectException, ProjectNotFoundException {
+        public void setProject(Project target, Project editedProject)
+            throws DuplicateProjectException, ProjectNotFoundException {
 
         }
 

@@ -69,7 +69,8 @@ public class AddBeneficiaryCommandParserTest {
         // multiple tags - all accepted
         Beneficiary expectedBeneficiaryMultipleTags = new BeneficiaryBuilder(BABES)
             .build();
-        assertParseSuccess(parser, NAME_DESC_BABES + PHONE_DESC_BABES + EMAIL_DESC_BABES + ADDRESS_DESC_BABES,
+        assertParseSuccess(parser,
+            NAME_DESC_BABES + PHONE_DESC_BABES + EMAIL_DESC_BABES + ADDRESS_DESC_BABES,
             new AddBeneficiaryCommand(expectedBeneficiaryMultipleTags));
     }
 
