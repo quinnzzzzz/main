@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -403,6 +404,11 @@ public class AddBeneficiaryCommandTest {
         @Override
         public void sortVolunteers() {
 
+        }
+
+        @Override
+        public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
+            return null;
         }
     }
 
