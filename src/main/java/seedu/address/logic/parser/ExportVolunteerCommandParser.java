@@ -36,7 +36,7 @@ public class ExportVolunteerCommandParser implements Parser<ExportVolunteerComma
         }
         return false;
     }
-    
+
     public ExportVolunteerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AGE, PREFIX_GENDER, PREFIX_RACE, PREFIX_RELIGION,
@@ -57,9 +57,5 @@ public class ExportVolunteerCommandParser implements Parser<ExportVolunteerComma
                 prefixes);
         return new ExportVolunteerCommand(numberAndprefixes);
     }
-
-
-
-
 
 }

@@ -467,6 +467,7 @@ public class ModelManager implements Model {
                 }
             });
             finalData.add(tempVolunteer.toArray(new String[0]));
+            tempVolunteer.clear();
             i++;
 
             }
@@ -475,7 +476,7 @@ public class ModelManager implements Model {
 
 
 
-
+    //@@author swalahlah
     /**
      * Ensures {@code selectedVolunteer} is a valid volunteer in {@code filteredVolunteers}.
      */
