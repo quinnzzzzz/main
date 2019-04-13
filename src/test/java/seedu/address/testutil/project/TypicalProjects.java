@@ -12,17 +12,14 @@ import seedu.address.logic.commands.project.ProjectBuilder;
  * A utility class containing a list of {@code Project} objects to be used in tests.
  */
 public class TypicalProjects {
-
-    public static final Project PROJECT1 = new ProjectBuilder().withProjectTitle("Project Sunshine")
+    public static final Project PROJECT1 = new ProjectBuilder().withProjectTitle("Sunshine")
             .withProjectDate("16/01/2020").withComplete(false).build();
-    public static final Project PROJECT2 = new ProjectBuilder().withProjectTitle("iReject!")
+    public static final Project PROJECT2 = new ProjectBuilder().withProjectTitle("iReject")
             .withProjectDate("12/08/2019").withComplete(false).build();
+
+    //manually added
     public static final Project PROJECT3 = new ProjectBuilder().withProjectTitle("Save the Earth")
             .withProjectDate("02/04/2020").withComplete(false).build();
-    public static final Project PROJECT4 = new ProjectBuilder().withProjectTitle("Olk Folks Home Visit")
-            .withProjectDate("06/08/2019").withComplete(false).build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalProjects() {
     } // prevents instantiation
@@ -39,6 +36,6 @@ public class TypicalProjects {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(PROJECT1,PROJECT2,PROJECT3));
+        return new ArrayList<>(Arrays.asList(PROJECT1,PROJECT2));
     }
 }

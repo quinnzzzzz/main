@@ -9,7 +9,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.beneficiary.Name;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 
 import static junit.framework.TestCase.assertTrue;
@@ -18,72 +18,68 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.beneficiary.BeneficiaryCommandTestUtil.showBeneficiaryAtIndex;
 import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.project.TypicalProjects.*;
+import static seedu.address.testutil.project.TypicalProjects.PROJECT1;
+import static seedu.address.testutil.project.TypicalProjects.PROJECT2;
+import static seedu.address.testutil.project.TypicalProjects.PROJECT3;
+import static seedu.address.testutil.project.TypicalProjects.getTypicalAddressBook;
+
 
 public class AssignBeneficiaryCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
+    private static final CommandHistory commandHistory = new CommandHistory();
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private CommandHistory commandHistory = new CommandHistory();
-
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Name beneficiaryToAssign = model.getFilteredBeneficiaryList().get(INDEX_FIRST_BENEFICIARY.getZeroBased()).getName();
-        Project projectForAssign = new ProjectBuilder(PROJECT1).build();
-        System.out.println(projectForAssign.getProjectTitle().toString());
-        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(projectForAssign.getProjectTitle(),INDEX_FIRST_BENEFICIARY);
+    public void execute_validProjectAndIndexUnfilteredList_success() {
+        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),
+            INDEX_FIRST);
         String expectedMessage = String.format(AssignBeneficiaryCommand.MESSAGE_SUCCESS);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.commitAddressBook();
-        assertCommandSuccess(assignBeneficiaryCommand, model, commandHistory, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBeneficiaryList().size() + 1);
-        Name beneficiaryOutOfBound = model.getFilteredBeneficiaryList().get(outOfBoundIndex.getZeroBased()).getName();
-        Project projectForAssign = new ProjectBuilder(PROJECT2).build();
-        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(projectForAssign.getProjectTitle(), outOfBoundIndex);
-
-        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory, Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showBeneficiaryAtIndex(model, INDEX_FIRST_BENEFICIARY);
-
-        Name beneficiaryToAssign = model.getFilteredBeneficiaryList().get(INDEX_FIRST_BENEFICIARY.getZeroBased()).getName();
-        Project projectForAssign = new ProjectBuilder(PROJECT3).build();
-        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(projectForAssign.getProjectTitle(),INDEX_FIRST_BENEFICIARY);
-
-        String expectedMessage = String.format(AssignBeneficiaryCommand.MESSAGE_SUCCESS);
-
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.commitAddressBook();
-        showNoBeneficiary(expectedModel);
 
+        expectedModel.commitAddressBook();
         assertCommandSuccess(assignBeneficiaryCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
-    private void showNoBeneficiary(Model model) {
-        model.updateFilteredBeneficiaryList(p -> false);
-        assertTrue(model.getFilteredBeneficiaryList().isEmpty());
+    @Test
+    public void execute_validProjectAndIndexFilteredList_success() {
+        showBeneficiaryAtIndex(model, INDEX_FIRST);
+        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),
+            INDEX_FIRST);
+        String expectedMessage = String.format(AssignBeneficiaryCommand.MESSAGE_SUCCESS);
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        assertCommandSuccess(assignBeneficiaryCommand, model, commandHistory, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validProjectInvalidIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBeneficiaryList().size() + 1);
+        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),
+            outOfBoundIndex);
+        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory,
+            Messages.MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidProjectValidIndexUnFilteredList_throwCommandException() {
+        Project invalidProject = PROJECT3;
+        AssignBeneficiaryCommand assignBeneficiaryCommand = new AssignBeneficiaryCommand(invalidProject
+            .getProjectTitle(), INDEX_FIRST);
+        assertCommandFailure(assignBeneficiaryCommand, model, commandHistory, Messages.MESSAGE_INVALID_PROJECT);
     }
 
     @Test
     public void equals() {
-        AssignBeneficiaryCommand assignFirstCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),INDEX_FIRST_BENEFICIARY);
-        AssignBeneficiaryCommand assignSecondCommand = new AssignBeneficiaryCommand(PROJECT2.getProjectTitle(),INDEX_SECOND_BENEFICIARY);
+        final AssignBeneficiaryCommand assignFirstCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),INDEX_FIRST);
+        final AssignBeneficiaryCommand assignSecondCommand = new AssignBeneficiaryCommand(PROJECT2.getProjectTitle(),INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(assignFirstCommand.equals(assignFirstCommand));
 
         // same values -> returns true
-        AssignBeneficiaryCommand assignFirstCommandCopy = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),INDEX_FIRST_BENEFICIARY);
+        AssignBeneficiaryCommand assignFirstCommandCopy =  new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(),INDEX_FIRST);
         assertTrue(assignFirstCommand.equals(assignFirstCommandCopy));
 
         // different types -> returns false
@@ -95,6 +91,4 @@ public class AssignBeneficiaryCommandTest {
         // different beneficiary -> returns false
         assertFalse(assignFirstCommand.equals(assignSecondCommand));
     }
-
-
 }

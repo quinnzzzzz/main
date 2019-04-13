@@ -12,6 +12,7 @@ public class Messages {
     public static final String MESSAGE_PROJECT_NOT_FOUND = "The project does not exist";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_INDEX = "Beneficiary index provided is invalid";
+    public static final String MESSAGE_INVALID_PROJECT = "Project title provided is invalid";
 
     public static final String MESSAGE_INVALID_BENEFICIARY_DISPLAYED_INDEX = "The beneficiary index provided "
         + "is invalid";
