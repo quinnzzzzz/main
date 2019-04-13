@@ -54,7 +54,7 @@ public class ValidatePassword {
     private static final String MESSAGE_VALID_LOGIN = "Login Successful";
     private static final String MESSAGE_INVALID_LOGIN ="Your password is incorrect!";
     private static int tries = 5;
-    private static String password = "voluncheer";
+    private static String password = "password";
     /**
      *
      */
