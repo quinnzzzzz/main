@@ -19,6 +19,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX = "The volunteer index provided is invalid";
     public static final String MESSAGE_NOT_ENOUGH_VOLUNTEERS = "The volunteer pool does not have enough volunteers!";
     public static final String MESSAGE_VOLUNTEERS_LISTED_OVERVIEW = "%1$d volunteers listed!";
-    public static final String MESSAGE_MAP_SUCCESS = "Mapping success!";
     public static final String MESSAGE_INVALID_AGE_FORMAT = "Invalid year input!";
 }
