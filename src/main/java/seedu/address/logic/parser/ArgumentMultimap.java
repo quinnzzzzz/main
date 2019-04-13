@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 
 /**
@@ -62,7 +66,7 @@ public class ArgumentMultimap {
      */
     public ArrayList<String> getPrefixes() {
         ArrayList<String> prefixes = new ArrayList<String>();
-        for ( Prefix key : argMultimap.keySet() ) {
+        for (Prefix key : argMultimap.keySet()) {
             if (!key.getPrefix().isEmpty()) {
                 prefixes.add(key.getPrefix());
             }

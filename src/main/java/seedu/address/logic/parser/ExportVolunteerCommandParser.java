@@ -1,17 +1,27 @@
 //@@author articstranger
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtil.isValidInt;
+
+import java.util.ArrayList;
 
 import javafx.util.Pair;
 import seedu.address.logic.commands.ExportVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.ArrayList;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.*;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
-import static seedu.address.logic.parser.ParserUtil.isValidInt;
 /**
  * Parses input arguments and creates a new ExportCommand object
  */
@@ -37,6 +47,9 @@ public class ExportVolunteerCommandParser implements Parser<ExportVolunteerComma
         return false;
     }
 
+    /**
+     * parses arguments into a pair of integer and list for @code exportVolunteerCommand
+     */
     public ExportVolunteerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AGE, PREFIX_GENDER, PREFIX_RACE, PREFIX_RELIGION,
@@ -45,11 +58,13 @@ public class ExportVolunteerCommandParser implements Parser<ExportVolunteerComma
 
         if (!hasPrefixes(argMultimap) || argMultimap.getPreamble().isEmpty()
                 || !isValidInt(argMultimap.getPreamble())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportVolunteerCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, ExportVolunteerCommand.MESSAGE_USAGE));
         }
 
         if (!isValidInt(argMultimap.getPreamble())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportVolunteerCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, ExportVolunteerCommand.MESSAGE_USAGE));
         }
 
         ArrayList<String> prefixes = argMultimap.getPrefixes();
