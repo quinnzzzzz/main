@@ -1,13 +1,14 @@
 package seedu.address.testutil;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- * {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
@@ -34,6 +35,14 @@ public class AddressBookBuilder {
      */
     public AddressBookBuilder withProject(Project project) {
         addressBook.addProject(project);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Beneficiary} to the {@code AddressBook} that we are building.
+     */
+    public AddressBookBuilder withBeneficiary(Beneficiary beneficiary) {
+        addressBook.addBeneficiary(beneficiary);
         return this;
     }
 
