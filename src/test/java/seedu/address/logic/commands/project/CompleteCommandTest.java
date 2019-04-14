@@ -38,7 +38,7 @@ public class CompleteCommandTest {
     }
 
     @Test
-    public void execute_InvalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
         CompleteCommand completeCommand = new CompleteCommand(outOfBoundIndex);
         assertCommandFailure(completeCommand, model, commandHistory, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);

@@ -11,6 +11,9 @@ import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 
+/**
+ * Contains helper methods for testing commands.
+ */
 public class ProjectCommandTestUtil {
 
     /**
@@ -33,7 +36,8 @@ public class ProjectCommandTestUtil {
 
         Beneficiary beneficiary = model.getFilteredBeneficiaryList().get(targetIndex.getZeroBased());
         final String[] splitName = beneficiary.getName().fullName.split("\\s+");
-        model.updateFilteredBeneficiaryList(new seedu.address.model.beneficiary.NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBeneficiaryList(new seedu.address.model.beneficiary.NameContainsKeywordsPredicate(Arrays
+            .asList(splitName[0])));
 
         assertEquals(1, model.getFilteredBeneficiaryList().size());
     }

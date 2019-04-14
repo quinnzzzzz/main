@@ -100,14 +100,17 @@ public class AssignBeneficiaryCommandTest {
 
     @Test
     public void equals() {
-        final AssignBeneficiaryCommand assignFirstCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(), INDEX_FIRST);
-        final AssignBeneficiaryCommand assignSecondCommand = new AssignBeneficiaryCommand(PROJECT2.getProjectTitle(), INDEX_SECOND);
+        final AssignBeneficiaryCommand assignFirstCommand = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle()
+            , INDEX_FIRST);
+        final AssignBeneficiaryCommand assignSecondCommand = new AssignBeneficiaryCommand(PROJECT2.getProjectTitle()
+            , INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(assignFirstCommand.equals(assignFirstCommand));
 
         // same values -> returns true
-        AssignBeneficiaryCommand assignFirstCommandCopy = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle(), INDEX_FIRST);
+        AssignBeneficiaryCommand assignFirstCommandCopy = new AssignBeneficiaryCommand(PROJECT1.getProjectTitle()
+            , INDEX_FIRST);
         assertTrue(assignFirstCommand.equals(assignFirstCommandCopy));
 
         // different types -> returns false
