@@ -1061,7 +1061,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 5: Find volunteer
+=== Use case 6: Find volunteer
 
 *MSS*
 
@@ -1081,7 +1081,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 6: Delete Project
+=== Use case 7: Delete Project
 
 *MSS*
 
@@ -1101,7 +1101,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 7: export volunteer list
+=== Use case 8: export volunteer list
 
 *MSS*
 
@@ -1117,26 +1117,6 @@ Use case ends.
 +
 [none]
 ** 2a1. VolunCHeer shows an error message.
-+
-Use case ends.
-
-[discrete]
-=== Use case 8: export volunteer list
-
-*MSS*
-
-1.  User requests to export a volunteer file
-2.  VolunCHeer exports new volunteer data file
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. the file has existed.
-+
-[none]
-** 2a1. VolunCHeer overwritten the file.
 +
 Use case ends.
 
@@ -1160,9 +1140,29 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
+=== Use case 10: export volunteer list
+
+*MSS*
+
+1.  User requests to export a volunteer file
+2.  VolunCHeer exports new volunteer data file
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. the file has existed.
++
+[none]
+** 2a1. VolunCHeer overwritten the file.
++
+Use case ends.
+
 // tag::BenefUseCases[]
 [discrete]
-=== Use case 10: Add a beneficiary
+=== Use case 11: Add a beneficiary
 
 *MSS*
 
@@ -1186,7 +1186,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: Edit a beneficiary
+=== Use case 12: Edit a beneficiary
 
 *MSS*
 
@@ -1205,7 +1205,7 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case 12: Delete a beneficiary (soft delete)
+=== Use case 13: Delete a beneficiary (soft delete)
 
 *MSS*
 
@@ -1235,7 +1235,7 @@ Use case ends.
 // end::BenefUseCases[]
 
 [discrete]
-=== Use case 11: Sort volunteers based on PRIORITY_SCORE
+=== Use case 14: Sort volunteers based on PRIORITY_SCORE
 
 *MSS*
 
