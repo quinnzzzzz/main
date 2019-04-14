@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.volunteer.Volunteer;
+import seedu.address.ui.UiPart;
 
 /**
  * Panel containing the list of volunteers.
