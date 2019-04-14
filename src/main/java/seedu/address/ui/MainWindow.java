@@ -22,6 +22,8 @@ import seedu.address.logic.commands.beneficiary.SummaryBeneficiaryCommand.Summar
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.beneficiary.BeneficiaryListPanel;
+import seedu.address.ui.password.ValidatePassword;
+import seedu.address.ui.volunteer.VolunteerListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing

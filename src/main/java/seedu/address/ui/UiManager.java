@@ -61,7 +61,7 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             boolean []user = {false};
             if (mainWindow.show(user)) {
-                mainWindow.fillInnerParts(); //This should be called before creating other UI parts
+                mainWindow.fillInnerParts();
             }
 
         } catch (Throwable e) {

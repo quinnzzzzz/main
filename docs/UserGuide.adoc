@@ -57,7 +57,8 @@ This shows the list of volunteers currently in VolunCHeer.
 .  Ensure you have Java version `9` or later installed in your Computer.
 .  Download the latest `VolunCHeer.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for our VolunCHeer Application.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Double-click the file to start the app. The GUI should appear in a few seconds, prompting you for password to grant access
+.  Enter the password field using the default password: `password`
 +
 image::Ui.png[width="790"]
 +
@@ -239,13 +240,16 @@ Returns `Nursing Home` and `Nursing Center`
 ==== Adding a volunteer: `addVolunteer`
 
 Adds a volunteer to the volunteer pool +
-Format: `addVolunteer n/NAME y/AGE g/gender r/race [rg/religion] a/ADDRESS e/EMAIL p/PHONE_NUMBER
-ec/EMERGENCY_CONTACT [dp/DIETARY_PREFERENCE] [m/MEDICAL CONDITION] [t/TAG]...`
+Format: `addVolunteer n/NAME y/AGE g/GENDER r/RACE [rg/RELIGION] a/ADDRESS e/EMAIL p/PHONE_NUMBER
+ec/EMERGENCY_CONTACT [dp/DIETARY_PREFERENCE] [m/MEDICAL_CONDITION] [t/TAG]...` +
+Alternative Format: `av n/NAME y/AGE g/GENDER r/RACE [rg/RELIGION] a/ADDRESS e/EMAIL p/PHONE_NUMBER
+                    ec/EMERGENCY_CONTACT [dp/DIETARY_PREFERENCE] [m/MEDICAL_CONDITION] [t/TAG]...`
+
 
 ****
 * "Add Successful!" message is prompted upon successfully adding a volunteer
-* Otherwise, if the volunteer already exists, show edit option to update portfolio
-* Dietary Preference, Medical Condition is set to NIL by default
+* An invalid message will be prompted if a Volunteer with the same exact name is present in the existing database
+* Parameters for Religion, Dietary Preference, Medical Condition are optional and set to 'nil' by default
 ****
 
 [TIP]
@@ -253,11 +257,11 @@ A volunteer can have any number of tags (including 0)
 
 Examples:
 
-* `addVolunteer n/John Doe y/18 g/male r/eurasian rg/nil a/John street, block 123, #01-01 e/johnd@example.com
+* `addVolunteer n/John Doe y/18 g/male r/eurasian rg/christian a/John street, block 123, #01-01 e/johnd@example.com
 p/98765432 ec/Mary, Mother, 92221111 dp/vegetarian m/asthma`
 
-* `addVolunteer n/Sarah Soh y/22 g/female r/chinese rg/buddhist a/betsy ave 6, 02-08 e/sarah08@example.com
-p/92345678 ec/Johnny, Husband, 81234568
+* `av n/Sarah Soh y/22 g/female r/chinese rg/buddhist a/betsy ave 6, 02-08 e/sarah08@example.com
+p/92345678 ec/Johnny, Husband, 81234568`
 
 
 
@@ -267,8 +271,8 @@ p/92345678 ec/Johnny, Husband, 81234568
 ==== Listing all volunteers : `listVolunteer`
 
 Shows a list of all volunteers in the volunteer pool. +
-Format: `listVolunteer`
-
+Format: `listVolunteer`+
+Alternative Format: `lv`
 
 
 ==== Editing a volunteer : `editVolunteer`
@@ -299,6 +303,8 @@ Edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing
 Finds volunteers whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+Alternative Format: `fv KEYWORD [MORE_KEYWORDS]`
+
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -310,9 +316,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `find John` +
+* `findVolunteer John` +
 Returns `john` and `John Doe`
-* `find Betsy Tim John` +
+* `findVolunteer Betsy Tim John` +
 Returns any volunteer having names `Betsy`, `Tim`, or `John`
 
 
@@ -320,7 +326,8 @@ Returns any volunteer having names `Betsy`, `Tim`, or `John`
 ==== Deleting a volunteer : `deleteVolunteer`
 
 Deletes the specified volunteer from the volunteer list. +
-Format: `delete INDEX`
+Format: `deleteVolunteer INDEX` +
+Alternative Format: `dv INDEX`
 
 ****
 * Deletes the volunteer at the specified `INDEX`.
@@ -332,11 +339,11 @@ Format: `delete INDEX`
 Examples:
 
 * `list` +
-`delete 2` +
+`deleteVolunteer 2` +
 Deletes the 2nd volunteer in the volunteer list.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st volunteer in the results of the `find` command.
+* `findVolunteer Betsy` +
+`deleteVolunteer 1` +
+Deletes the 1st volunteer in the searched volunteer list.
 
 
 
@@ -495,20 +502,27 @@ Manage funds and sponsors for individual projects and track project spending.
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous VolunCHeer application folder.
 
+*Q*: Can I create multiple accounts for different Users? +
+*A*: Unfortunately, VolunCHeer does not have this feature right now. We are working on it and plan to implement the feature in future releases.
+
+*Q*: How do I change my password? +
+*A*: Do https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/ContactUs.adoc[contact us] if you would require a custom password.
+
 == Command Summary
 
 * *AddProject* `addProject n/PROJECT_TITLE d/DATE b/BENEFICIARY [t/TAG]...` +
 e.g. `addProject n/Charity Run d/081219 b/Sunshine Old Folks Home`
-* *AddVolunteer* `addVolunteer n/NAME y/AGE a/ADDRESS e/EMAIL p/PHONE_NUMBER g/EMERGENCY_CONTACT r/RACE d/DIETARY_PREFERENCE
-                 m/MEDICAL CONDITION [t/TAG]...` +
-e.g. `addVolunteer n/John Doe y/18 a/John street, block 123, #01-01 e/johnd@example.com p/98765432 g/98292998 r/chinese
-        d/vegetarian m/asthma`
+* *AddVolunteer* `addVolunteer n/NAME y/AGE g/GENDER r/RACE rg/RELIGION a/ADDRESS e/EMAIL p/PHONE_NUMBER ec/EMERGENCY_CONTACT
+    d/DIETARY_PREFERENCE m/MEDICAL CONDITION [t/TAG]...` +
+e.g. `addVolunteer n/John Doe y/18 g/male r/eurasian rg/christian a/John street, block 123, #01-01 e/johnd@example.com
+     p/98765432 ec/Mary, Mother, 92221111 dp/vegetarian m/asthma`
 * *AddBeneficiary* `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER v/VOLUNTEERS_REQUIRED [t/TAG]...` +
 e.g. `addBeneficiary n/Sunshine Old Folks Home a/sunshine ave 5 e/sunny@oldfolks.sg p/67580392 v/20`
 * *List* : `list`
 * *EditProject* `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...` +
 e.g. `editProject Charity Run d/010319`
-* *EditVolunteer* `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+* *EditVolunteer* `edit INDEX [n/NAME] [y/AGE] [g/GENDER] [r/RACE] [rg/RELIGION] [a/ADDRESS] [p/PHONE_NUMBER] [e/EMAIL]
+[ec/EMERGENCY_CONTACT] [dp/DIETARY_PREFERENCE] [mc/MEDICAL_CONDITION] [t/TAG]...` +
 e.g. `editVolunteer 1 p/91234567 e/johndoe@example.com`
 * *FindVolunteer* : `findVolunteer KEYWORD [MORE_KEYWORDS]` +
 e.g. `findVolunteer James Jake`
