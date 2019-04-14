@@ -36,7 +36,6 @@ public class Beneficiary {
     }
 
     /**
-     *
      * @return
      */
     public Beneficiary(Beneficiary b) {
@@ -131,9 +130,7 @@ public class Beneficiary {
      * update a project title in the attached Project Líst.
      */
     public void updateAttachedProject(ProjectTitle oldTitle, ProjectTitle newTitle) {
-        if (this.attachedProjectList.contains(oldTitle)) {
-            this.attachedProjectList.remove(oldTitle);
-        }
+        this.attachedProjectList.remove(oldTitle);
         addAttachedProject(newTitle);
     }
 
@@ -141,9 +138,7 @@ public class Beneficiary {
      * delete a project title in the attached Project Líst.
      */
     public void deleteAttachedProject(ProjectTitle title) {
-        if (this.attachedProjectList.contains(title)) {
-            this.attachedProjectList.remove(title);
-        }
+        this.attachedProjectList.remove(title);
     }
 
     /**

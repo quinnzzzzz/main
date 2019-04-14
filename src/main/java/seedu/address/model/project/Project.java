@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -47,6 +48,7 @@ public class Project {
         this.beneficiaryAssigned = new Name("nil");
         this.volunteerList = new ArrayList<>();
     }
+
     /**
      * When volunteerAttached info is not initialised.
      */
@@ -59,6 +61,7 @@ public class Project {
         this.beneficiaryAssigned = beneficiaryAssigned;
         this.volunteerList = new ArrayList<>();
     }
+
     /**
      * When beneficiaryAssigned info is not initialised.
      */
@@ -71,11 +74,12 @@ public class Project {
         this.beneficiaryAssigned = new Name("nil");
         this.volunteerList = volunteerList;
     }
+
     /**
      * Every field must be present and not null when all attributes can be passed in
      */
     public Project(ProjectTitle projectTitle, ProjectDate projectDate, Complete complete, Name beneficiaryAssigned,
-                    List<Volunteer> volunteerList) {
+                   List<Volunteer> volunteerList) {
         requireAllNonNull(projectTitle, projectDate, complete, beneficiaryAssigned, volunteerList);
         this.projectTitle = projectTitle;
         this.projectDate = projectDate;
@@ -85,6 +89,11 @@ public class Project {
         this.volunteerList = volunteerList;
     }
 
+    /**
+     * get methods to obtain various attributes of Project
+     *
+     * @return attribute
+     */
     public ProjectTitle getProjectTitle() {
         return projectTitle;
     }
@@ -108,6 +117,12 @@ public class Project {
     public List<Volunteer> getVolunteerList() {
         return volunteerList;
     }
+
+    //Set the list of volunteers attached to project
+    public void setVolunteerList(List<Volunteer> volunteerList) {
+        this.volunteerList.addAll(volunteerList);
+    }
+
     /**
      * Returns true if Project has completed, else returns false.
      */
@@ -115,36 +130,20 @@ public class Project {
         return complete.isComplete();
     }
 
+    //Set the beneficiary attached to project
     public void setBeneficiary(Name beneficiary) {
         this.beneficiaryAssigned = beneficiary;
-    }
-    public void setVolunteerList(List<Volunteer> volunteerList) {
-        this.volunteerList.addAll(volunteerList);
-    }
-
-    /**
-     * Check if there is {@code volunteer} attached to the project
-     * @return true if {@code volunteerList is not empty}
-     */
-    public String isVolunteerAttached() {
-        if (!(volunteerList.size() == 0)) {
-            return "true";
-        } else {
-            return "false";
-        }
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectTitle())
-            .append(" Project Date: ")
             .append(getProjectDate())
-            .append(" Beneficiary: ")
-            .append(getBeneficiaryAssigned())
             .append("\n");
         return builder.toString();
     }
+
     /**
      * Returns true if both Projects of the same projectTitle have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two Projects.
@@ -155,8 +154,7 @@ public class Project {
         }
 
         return otherProject != null
-            && otherProject.getProjectTitle().equals(getProjectTitle())
-            || (otherProject.getProjectDate().equals(getProjectDate()));
+            && otherProject.getProjectTitle().equals(getProjectTitle());
     }
 
     /**
