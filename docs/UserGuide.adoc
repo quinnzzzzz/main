@@ -29,11 +29,18 @@ We guarantee that VolunCHeer will save you the need for multiple documents and f
 all your information. And with our ability to *filter out suitable volunteers based on their data*,
 you can effectively say goodbye to more cumbersome sorting methods like Excel!
 
-Wish to know more? Click on link:{https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/UserGuide.adoc#quick-start}/[Section 2. "Quick Start"] to get started!
+Eager to get started? Click on link:{https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/UserGuide.adoc#quick-start}/[Section 2. "Quick Start"] to jump ahead,
+though we highly recommend reading the overview below!
 
 === Overview
+To facilitate your reading, we have a few icons to take note of:
 
-Now let's just go though quick overview of our VolunCHeer application.
+TIP: Useful tips are generally located here!
+
+IMPORTANT: Information here is quite important and should be carefully noted.
+
+
+Now let us go though a quick overview of our VolunCHeer application.
 
 .VolunCHeer user interface
 image::UI.png[width="790"]
@@ -45,7 +52,10 @@ This is where you can exit the app (under File) or find the Help page
 This is where you will be typing in your commands.
 
 . Command Result:
-This is where the results of all your commands are displayed. useful tips and error messages are also shown here.
+This is where the results of all your commands are displayed.
+[TIP]
+Useful tips and error messages are also shown here. If it seems like somethings is not working,
+try looking here!
 
 . Project List:
 This column shows the list of projects you have currently stored in VolunCHeer.
@@ -63,7 +73,7 @@ To start using VolunCHeer, all you have to do is follow these simple steps below
 you have, check out link:{https://www.java.com/en/download/help/version_manual.xml}/[this site] for more info.
 .  Download the latest `VolunCHeer.jar` link:{repoURL}/releases[here].
 .  Copy the file to whichever folder you would like to store VolunCHeer in.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Double-click the file to start the app. The GUI should appear as below in a few seconds.
 +
 image::UiClean.png[width="790"]
 +
@@ -76,15 +86,16 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * **`deleteProject`**`2` : deletes the 2nd project portfolio in the current list of projects.
 * *`exit`* : exits the app
 
-.  Refer to <<Features>> for details of each command.
+.  For a more detailed explanation of each command please refer to <<Features>>  .
 
 [[Features]]
 == Features
-
+Before we go on to explain our features, this section will give a brief introduction
+on how to interpret our explanations.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which you supply, like `add n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
