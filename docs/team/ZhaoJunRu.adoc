@@ -67,10 +67,8 @@ https://github.com/cs2113-ay1819s2-t08-1/main/pull/141#issue-270291847[#141]
 
 ** Tools:
 *** Integrated asciidoc for pdf releases of documentations as well as easy editing of adoc
-*** Integrated Ruby for pdf document releases
 
 == Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
