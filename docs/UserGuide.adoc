@@ -95,42 +95,55 @@ on how to interpret our explanations.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which you supply, like `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which you supply, like `add n/John Doe`. Parameters
+are generally necessary, unless mentioned as below.
+* Parameters in square brackets are *optional* e.g in `addVolunteer n/NAME [t/TAG]`, we can input `addVolunteer n/John Doe t/friend` or `addVolunteer n/John Doe`.
+* Items with `…`​ after them can be used multiple times, including zero. e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), or  `t/friend`, `t/friend t/family` etc.
+* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also perfectly acceptable.
 ====
 
 === Viewing help : `help`
+If you are stuck and cannot figure out what to do, do not fear! Instead of screaming for help, simply type it into the command bar and we will give you
+everything you need to use this app.
 
 Format: `help`
 
+
 === Adding a project: `addProject` / `ap`
-Adds a new project +
+One of the first things to do when you use the app is to start adding projects to track, and this is the command to use.
+
 Format: `addProject n/PROJECT_NAME d/DATE`
 
-****
-* Please enter DATE in DD/MM/YYYY format, date should be after today.
-* Project Title should not have dupliates in the project list.
-* Projects are automatically sorted in ascending date order for easier tracking or Project tasks.
-****
+[IMPORTANT]
+Please enter DATE in DD/MM/YYYY format, making sure that the date should be after today.
+
+[IMPORTANT]
+Project Name does not accept duplicates in the project list, so make you name everything differently!
+
+[TIP]
+Projects are automatically sorted in ascending date order for easier tracking or Project tasks.
+
+Now let us look at what happens when the command `addProject p/Old Folk Home Visit d/25/05/2019` is entered on screen.
 
 .When `addProject p/Old Folk Home Visit d/25/05/2019` is executed.
 image::addProject.png[]
 
-Examples:
-* `addProject n/Charity Run d/06/12/2020.
+Other sample commands: +
+ `addProject n/Charity Run d/06/12/2020`.
 
 === Deleting a project ： `deleteProject` / `dp`
-
-Deletes the specified project from the application. +
+When a project is completed or cancelled, VolunCHeer allows you to easily delete it by stating
+ the project order in the list. +
 Format: `deleteProject INDEX`
 
-****
-* Deletes the project at index "INDEX".
-* The INDEX refers to the index of the project in the project list, use 'listProject' to view all projects if unsure.
-* Error message is shown if the INDEX entered is invalid
-****
+[IMPORTANT]
+ This INDEX refers to the index of the project in the project list. If you are unsure of the order, *PLEASE*
+  use 'listProject' to view all projects and get the correct index. If you delete the wrong projects, please refer to  <<undo>>.
+
+[TIP]
+Error message is shown if the INDEX entered is invalid
+
+This is how the project list changes upon execution.
 
 .When `deleteProject 3` command is executed.
 
@@ -138,20 +151,26 @@ image::deleteProject.png[]
 
 === Listing all projects : `listProject` / `lp`
 
-Shows a list of all projects. +
+When you want to take a look at all your projects, this command helps you do so. +
+
 Format: `listProject`
 
 === Assigning a Beneficiary to Project: `assignB`
+Projects are generally associated with certain beneficiaries. VolunCHeer allows you to attach them easily with this command.
+It assigns the Beneficiary at the provided INDEX to the Project with ProjectTitle indicated. +
 
-Assigns the Beneficiary at INDEX to the Project with ProjectTitle indicated. +
-Format: `assignBeneficiary p/PROJECT_TITLE i/INDEX
+Format: `assignBeneficiary p/PROJECT_TITLE i/INDEX`
 
-****
-* Assign the Beneficiary to the Project specified with PROJECT_TITLE
-* The assigned Beneficiary can then be seen under the Project card as shown below.
-* There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
-* The index *must be a positive integer* `1, 2, 3, ...`
-****
+[TIP]
+The assigned Beneficiary can then be seen under the Project card as shown below.
+
+[TIP]
+There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
+
+[IMPORTANT]
+The index *must be a positive integer* `1, 2, 3, ...`
+
+After assigning a beneficiary, the project will have its adata updated as seen below.
 
 .When `assignB p/Old Folks Home Visit i/1` command executed
 image::assignB.png[]
@@ -161,14 +180,15 @@ Use listBeneficiary to view a full list of Beneficiary to assign.
 Use summaryBeneficiary command to view the Projects attached to each Beneficiary.
 
 === Assigning one or more Volunteers to Project: `assignV`
+We also provide an easy method to assign a specific number of volunteers to the indicated Project
 
-Assigns a specific number of volunteers to the Project with ProjectTitle indicated. +
-Format: `assignVolunteer p/PROJECT_TITLE rv/REQUIRED_NUMBER_OF_VOLUNTEERS
 
-****
-* Assigns the specific number of Volunteers to the Project specified with PROJECT_TITLE
-* The number of volunteers assigned to the Project can be seen under the Project card as shown below.
-****
+Format: `assignVolunteer p/PROJECT_TITLE rv/REQUIRED_NUMBER_OF_VOLUNTEERS`
+
+
+[TIP]
+The number of volunteers assigned to the Project can be seen under the Project card as shown below.
+
 
 .When `assignV p/Old Folks Home Visit rv/2` is executed.
 
@@ -178,8 +198,8 @@ image::assignV.png[]
 Use Map and Sort commands to filter out the desired list of volunteers.
 
 === Mark project as complete: 'complete'
-
-Marks project with at index "INDEX" as complete.
+Once a project is done, you can mark it as complete to distinguish it from your other projects.
+Simply provide an INDEX to indicate which project you would like to complete.
 
 Format: `complete i/INDEX`
 
@@ -187,9 +207,9 @@ Format: `complete i/INDEX`
 
 image::complete.png[]
 
-****
-* Once marked as complete, project title will be displayed in red colour font
-****
+[TIP]
+Once marked as complete, project title will be displayed in red colour font
+
 
 === Adding a volunteer: `addVolunteer`
 
@@ -476,6 +496,7 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 ====
 
 // tag::undoredo[]
+[[undo]]
 === Undoing previous command : `undo`
 
 Restores the VolunCHeer application to the state before the previous _undoable_ command was executed. +
