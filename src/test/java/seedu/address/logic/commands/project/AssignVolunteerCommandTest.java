@@ -31,7 +31,8 @@ public class AssignVolunteerCommandTest {
     @Test
     public void execute_validProjectAndRequiredVolunteers_success() {
         Integer requiredVolunteers = model.getFilteredVolunteerList().size();
-        AssignVolunteerCommand assignVolunteerCommand = new AssignVolunteerCommand(PROJECT1.getProjectTitle(), requiredVolunteers);
+        AssignVolunteerCommand assignVolunteerCommand = new AssignVolunteerCommand(PROJECT1.getProjectTitle(),
+            requiredVolunteers);
         String expectedMessage = String.format(AssignVolunteerCommand.MESSAGE_SUCCESS);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.commitAddressBook();
@@ -57,14 +58,17 @@ public class AssignVolunteerCommandTest {
 
     @Test
     public void equals() {
-        final AssignVolunteerCommand assignFirstCommand = new AssignVolunteerCommand(PROJECT1.getProjectTitle(), 2);
-        final AssignVolunteerCommand assignSecondCommand = new AssignVolunteerCommand(PROJECT2.getProjectTitle(), 2);
+        final AssignVolunteerCommand assignFirstCommand = new AssignVolunteerCommand(PROJECT1.getProjectTitle(),
+            2);
+        final AssignVolunteerCommand assignSecondCommand = new AssignVolunteerCommand(PROJECT2.getProjectTitle(),
+            2);
 
         // same object -> returns true
         assertTrue(assignFirstCommand.equals(assignFirstCommand));
 
         // same values -> returns true
-        AssignVolunteerCommand assignFirstCommandCopy = new AssignVolunteerCommand(PROJECT1.getProjectTitle(), 2);
+        AssignVolunteerCommand assignFirstCommandCopy = new AssignVolunteerCommand(PROJECT1.getProjectTitle(),
+            2);
         assertTrue(assignFirstCommand.equals(assignFirstCommandCopy));
 
         // different types -> returns false

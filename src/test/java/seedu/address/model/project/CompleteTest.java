@@ -22,7 +22,7 @@ public class CompleteTest {
         assertFalse(Complete.isValidBoolean("^")); //non-alphanumeric characters
 
         //valid complete status
-        assertTrue(Complete.isValidBoolean("true"));//true status
-        assertTrue(Complete.isValidBoolean("false"));//false status
+        assertTrue(Complete.isValidBoolean("true")); //true status
+        assertTrue(Complete.isValidBoolean("false")); //false status
     }
 }
