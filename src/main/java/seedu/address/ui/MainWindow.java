@@ -123,7 +123,6 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
     }
-
     //@@swalahlah
     /**
      * Returns true if password is correct, indicating User has logged in.
@@ -201,10 +200,6 @@ public class MainWindow extends UiPart<Stage> {
         Scene scene = SummaryBeneficiaryCommand.drawSummaryTable(stage, table, data);
         stage.setScene(scene);
         stage.show();
-    }
-
-    void show() {
-        primaryStage.show();
     }
 
     /**
