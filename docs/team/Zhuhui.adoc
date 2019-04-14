@@ -53,7 +53,7 @@ compared to using the command line interface.
 ** What it does: It prompts the user for a confirmation message when exiting VolunCHeer. It allows the `exit` command to bypass the message.
 ** Justification: This feature prevents accidental termination of the program by the user or external program.
 
-* *Code contributed*: [https://github.com/cs2113-ay1819s2-t08-1/main/tree/master/src/main/java/seedu/address/model/volunteer[Functional code]] [https://github.com[Test code]]
+* *Code contributed*: [https://github.com/cs2113-ay1819s2-t08-1/main/tree/master/src/main/java/seedu/address/logic/command/volunteer[Volunteer]] [https://github.com/cs2113-ay1819s2-t08-1/main/tree/master/src/main/java/seedu/address/ui/ValidatePassword]
 * *Other contributions*:
 
 ** UI interface:
