@@ -24,10 +24,11 @@ import seedu.address.model.project.ProjectTitle;
 public class CompleteCommandTest {
 
     private CommandHistory commandHistory = new CommandHistory();
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         CompleteCommand completeCommand = new CompleteCommand(INDEX_FIRST);
