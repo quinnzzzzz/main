@@ -1,6 +1,11 @@
 //@@author ndhuu
 package seedu.address.logic.commands.beneficiary;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,17 +34,12 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 public class AddBeneficiaryCommandTest {
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     private CommandHistory commandHistory = new CommandHistory();
 

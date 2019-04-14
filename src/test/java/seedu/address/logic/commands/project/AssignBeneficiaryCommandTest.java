@@ -26,12 +26,12 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 
 public class AssignBeneficiaryCommandTest {
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     private static final CommandHistory commandHistory = new CommandHistory();
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validProjectAndIndexUnfilteredList_success() {
