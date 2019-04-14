@@ -43,7 +43,7 @@ setting projects status as complete to keep track of ongoing and completed `Proj
 * *Other contributions*:
 
 ** Project management:
-*** Team Lead for the project, in charge of ensuring project submissions are accurate and before the deadline.
+*** Manage project submissions and deadlines.
 *** Managed setting up of Milestones v1.2 v1.3 and v1.4
 https://github.com/cs2113-ay1819s2-t08-1/main/issues/#42#issue-424114821[#42]
 *** Managed releases `v1.3` and `v1.4` on GitHub

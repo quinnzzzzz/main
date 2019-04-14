@@ -56,7 +56,7 @@ public class AddVolunteerCommand extends Command {
         + PREFIX_EMERGENCY_CONTACT + "Sally Mother 91234567 "
         + PREFIX_DIETARY_PREFERENCE + "nil "
         + PREFIX_MEDICAL_CONDITION + "nil "
-        + PREFIX_TAG + "new volunteer";
+        + PREFIX_TAG + "newVolunteer";
 
     public static final String MESSAGE_SUCCESS = "New volunteer added: %1$s";
     public static final String MESSAGE_DUPLICATE_VOLUNTEER = "This volunteer already exists in the address book";
