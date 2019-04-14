@@ -7,24 +7,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.AddVolunteerCommand;
+import seedu.address.logic.commands.volunteer.AddVolunteerCommand;
 import seedu.address.logic.commands.AssignBeneficiaryCommand;
 import seedu.address.logic.commands.AssignVolunteerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CompleteCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
-import seedu.address.logic.commands.DeleteVolunteerCommand;
-import seedu.address.logic.commands.EditVolunteerCommand;
+import seedu.address.logic.commands.volunteer.DeleteVolunteerCommand;
+import seedu.address.logic.commands.volunteer.EditVolunteerCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportVolunteerCommand;
-import seedu.address.logic.commands.FindVolunteerCommand;
+import seedu.address.logic.commands.volunteer.FindVolunteerCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListProjectCommand;
-import seedu.address.logic.commands.ListVolunteerCommand;
+import seedu.address.logic.commands.volunteer.ListVolunteerCommand;
 import seedu.address.logic.commands.MapCommand;
-import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.beneficiary.AddBeneficiaryCommand;
@@ -152,8 +151,8 @@ public class AddressBookParser {
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
-        case RedoCommand.COMMAND_WORD:
-            return new RedoCommand();
+//        case RedoCommand.COMMAND_WORD:
+//            return new RedoCommand();
 
 
         default:

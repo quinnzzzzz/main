@@ -1,20 +1,22 @@
-package seedu.address.testutil;
+package seedu.address.testutil.volunteer;
 
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddVolunteerCommand;
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.volunteer.AddVolunteerCommand;
+import seedu.address.logic.commands.volunteer.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.volunteer.Volunteer;
 
@@ -37,7 +39,9 @@ public class VolunteerUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + volunteer.getName().fullName + " ");
         sb.append(PREFIX_AGE + volunteer.getAge().ageOutput + " ");
+        sb.append(PREFIX_GENDER + volunteer.getGender().genderOutput + " ");
         sb.append(PREFIX_RACE + volunteer.getRace().raceOutput + " ");
+        sb.append(PREFIX_RELIGION + volunteer.getReligion().religionOutput + " ");
         sb.append(PREFIX_PHONE + volunteer.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + volunteer.getAddress().value + " ");
         sb.append(PREFIX_EMAIL + volunteer.getEmail().value + " ");
@@ -57,7 +61,9 @@ public class VolunteerUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getAge().ifPresent(age -> sb.append(PREFIX_AGE).append(age.ageOutput).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_AGE).append(gender.genderOutput).append(" "));
         descriptor.getRace().ifPresent(race -> sb.append(PREFIX_RACE).append(race.raceOutput).append(" "));
+        descriptor.getReligion().ifPresent(religion -> sb.append(PREFIX_AGE).append(religion.religionOutput).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getEmergencyContact().ifPresent(emergency_contact -> sb.append(PREFIX_EMERGENCY_CONTACT)

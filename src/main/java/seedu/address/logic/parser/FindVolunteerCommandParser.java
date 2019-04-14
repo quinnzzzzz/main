@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.FindVolunteerCommand;
+import seedu.address.logic.commands.volunteer.FindVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.volunteer.NameContainsKeywordsPredicate;
 

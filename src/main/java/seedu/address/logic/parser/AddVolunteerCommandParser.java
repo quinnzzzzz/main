@@ -17,7 +17,7 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddVolunteerCommand;
+import seedu.address.logic.commands.volunteer.AddVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.volunteer.Address;

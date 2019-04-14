@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import seedu.address.model.AddressBook;
-import seedu.address.testutil.TestUtil;
 
 public class SampleDataTest extends AddressBookSystemTest {
     /**

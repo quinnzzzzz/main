@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.FindVolunteerCommand;
+import seedu.address.logic.commands.volunteer.FindVolunteerCommand;
 import seedu.address.model.volunteer.NameContainsKeywordsPredicate;
 
 public class FindVolunteerCommandParserTest {

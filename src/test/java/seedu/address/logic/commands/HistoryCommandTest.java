@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 
 public class HistoryCommandTest {
     private CommandHistory history = new CommandHistory();
