@@ -16,6 +16,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
@@ -31,15 +33,12 @@ import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.ObservableList;
 
 public class AddBeneficiaryCommandTest {
-
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
 
     private CommandHistory commandHistory = new CommandHistory();
 

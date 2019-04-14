@@ -3,7 +3,6 @@ package seedu.address.logic.commands.beneficiary;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;

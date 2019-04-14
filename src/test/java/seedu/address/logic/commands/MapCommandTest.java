@@ -7,8 +7,9 @@ import static seedu.address.testutil.TypicalVolunteers.getTypicalVolunteersPoint
 
 import java.util.ArrayList;
 
-import javafx.util.Pair;
 import org.junit.Test;
+
+import javafx.util.Pair;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.MapObject;
 import seedu.address.model.Model;

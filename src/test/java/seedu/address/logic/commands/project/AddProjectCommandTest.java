@@ -14,6 +14,9 @@ import java.util.function.Predicate;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
@@ -26,8 +29,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.Volunteer;
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.ObservableList;
 
 public class AddProjectCommandTest {
 

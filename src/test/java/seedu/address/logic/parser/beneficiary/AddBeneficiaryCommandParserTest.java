@@ -26,6 +26,7 @@ import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.ANIMAL_SHE
 import static seedu.address.testutil.beneficiary.TypicalBeneficiaries.BABES;
 
 import org.junit.Test;
+
 import seedu.address.logic.commands.beneficiary.AddBeneficiaryCommand;
 import seedu.address.model.beneficiary.Address;
 import seedu.address.model.beneficiary.Beneficiary;
