@@ -55,8 +55,8 @@ class JsonAdaptedProject {
         complete = source.getComplete().toString();
         beneficiaryAssigned = source.getBeneficiaryAssigned().toString();
         attachedVolunteers.addAll(source.getVolunteerList().stream()
-                .map(JsonAdaptedVolunteer::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedVolunteer::new)
+            .collect(Collectors.toList()));
     }
 
     /**
