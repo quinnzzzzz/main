@@ -23,7 +23,7 @@ Responsibilities: Deadline & Deliverables, Scheduling and Tracking, Documentatio
 
 === Wong Kai Wen Jeremy
 image::articstranger.png[width="150", align="left"]
-{empty}[http://github.com/articstranger[github]][<<johndoe#, portfolio>>]
+{empty}[http://github.com/articstranger[github]][<<Jeremy#, portfolio>>]
 
 Role: Git expert/Travis CI/Developer +
 Responsibilities: Handle Git Hub PRs, Travis Build
