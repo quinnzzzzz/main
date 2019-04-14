@@ -21,7 +21,7 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
 === About VolunCHeer
 
-VolunCHeer is an open-sourced  Command Line Interface (CLI) management application designed for Volunteering Project Managers. 
+VolunCHeer is an open-sourced  Command Line Interface (CLI) management application designed for Volunteering Project Managers.
 We aim to help our target users alleviate the haystack of managing multiple projects, beneficiaries, and volunteers in an efficient and effective manner.
 
 === How to Contribute
