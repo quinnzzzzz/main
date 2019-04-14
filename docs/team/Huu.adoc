@@ -3,7 +3,7 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: AddressBook - Level 4
+== PROJECT: VolunCHeer
 
 ---
 
@@ -93,14 +93,13 @@ https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=huu&sort=displayName
 
 * *Other contributions*:
 
-** Giving substantial comments on Github
-** Enhancements to existing features:
-*** PENDING: Allow the selection of volunteers into details (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+** Managing issue tracker: https://github.com/cs2113-ay1819s2-t08-1/main/issues/31[#31] https://github.com/cs2113-ay1819s2-t08-1/main/issues/61[#61]
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+*** Contribution to DG in early stage https://github.com/cs2113-ay1819s2-t08-1/main/pull/3[#2] https://github.com/cs2113-ay1819s2-t08-1/main/pull/2[#3]
+*** Did cosmetic tweaks to existing contents of the Developer Guide: https://github.com[#14]
+** Giving substantial comments on Github
+https://github.com/cs2113-ay1819s2-t08-1/main/pull/64[#64]
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/124[#124]
 
 == Contributions to the User Guide
 
