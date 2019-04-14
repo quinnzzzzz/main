@@ -33,42 +33,45 @@ Wish to know more? Click on link:{https://github.com/cs2113-ay1819s2-t08-1/main/
 
 === Overview
 
-Now lets just go though quick overview of our VolunCHeer application.
+Now let's just go though quick overview of our VolunCHeer application.
 
 .VolunCHeer user interface
-image::UI.jpg[width="790"]
+image::UI.png[width="790"]
 
+. Menu Bar:
+This is where you can exit the app (under File) or find the Help page
 
-1. Command Box:
+. Command Box:
 This is where you will be typing in your commands.
 
-2. Command Result:
-This is where the results of all your commands are displayed.
+. Command Result:
+This is where the results of all your commands are displayed. useful tips and error messages are also shown here.
 
-[TIP] useful tips and error messages are also shown here.
+. Project List:
+This column shows the list of projects you have currently stored in VolunCHeer.
 
-3. Project List:
-This shows the list of projects currently in VolunCHeer.
+. Beneficiary List:
+This column shows the list of beneficiaries currently in VolunCHeer.
 
-4. Beneficiary List:
-This shows the list of beneficiaries currently in VolunCHeer.
-
-5. Volunteer List:
+. Volunteer List:
+Similar to the other lists, this one shows the list of beneficiaries you currently have.
 
 == Quick Start
+To start using VolunCHeer, all you have to do is follow these simple steps below:
 
-.  Ensure you have Java version `9` or later installed in your Computer.
+.  Ensure you have Java version `9` or later installed in your Computer. If you are not sure what version
+you have, check out link:{https://www.java.com/en/download/help/version_manual.xml}/[this site] for more info.
 .  Download the latest `VolunCHeer.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for our VolunCHeer Application.
+.  Copy the file to whichever folder you would like to store VolunCHeer in.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+image::UiClean.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
+* *`help`* : get a list of all the commands we have (highly recommended).
 * **`addProject`** n/Project Sunshine d/20190320: adds a project named "Project Sunshine" in the project list.
 * **`deleteProject`**`2` : deletes the 2nd project portfolio in the current list of projects.
 * *`exit`* : exits the app
