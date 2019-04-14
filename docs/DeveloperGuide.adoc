@@ -284,7 +284,9 @@ Assigning a Beneficiary / VolunteerList to Project.
 Since the implementation of commands AssignBeneficiary and AssignVolunteer are similar, we will describe the
 implementation of AssignBeneficiary command only and provide the difference between the two.
 
-The following sequence diagram shows how the AssignBeneficiaryCommand works:
+.Sequence diagram to show how the AssignBeneficiaryCommand works.
+
+image::assignSequence.png[]
 
 1.	The *AssignBeneficiaryCommand(ProjectTitle, Index)* takes in the targetProject’s projectTitle attribute and targetBeneficiary’s index.
 2.	The *executeCommandResult()* method
