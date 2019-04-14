@@ -47,31 +47,25 @@
                 </StackPane>
 
                 <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.3" VBox.vgrow="ALWAYS">
-                    <VBox fx:id="projectList" minWidth="300" prefWidth="220" SplitPane.resizableWithParent="false">
+                    <VBox fx:id="projectList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
                         <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
-                    <VBox fx:id="beneficiaryList" minWidth="300" prefWidth="220" SplitPane.resizableWithParent="false">
+                    <VBox fx:id="beneficiaryList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
                         <StackPane fx:id="beneficiaryListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
-                    <VBox fx:id="volunteerList" minWidth="400" prefWidth="220" SplitPane.resizableWithParent="false">
+                    <VBox fx:id="volunteerList" minWidth="400" prefWidth="300" SplitPane.resizableWithParent="false">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
                         <StackPane fx:id="volunteerListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
                 </SplitPane>
-
-                <StackPane fx:id="calendarPanelPlaceholder" prefWidth="340">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
-                </StackPane>
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
             </VBox>

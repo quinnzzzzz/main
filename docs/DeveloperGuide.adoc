@@ -24,6 +24,8 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 VolunCHeer is an open-sourced  Command Line Interface (CLI) management application designed for Volunteering Project Managers.
 We aim to help our target users alleviate the haystack of managing multiple projects, beneficiaries, and volunteers in an efficient and effective manner.
 
+image::Ui.png[]
+
 === How to Contribute
 
 There are lots of ways to contribute to VolunCHeer: coding, testing or improving our build process and tools. This developer's guide provides information that will help you get started as a VolunCHeer contributor. Even if you are an experienced VolunCHeer developer, you will still find this guide to be useful to refer to. +
@@ -625,13 +627,53 @@ _{The projectcalendar mechanism takes the projectTitle and projectDate attribute
  includes a calendar interface and projects sorted according to date.
  The API has a dependency on Google API Client Library and build.gradle file compiles 'com.google.api-client:google-api-client:1.25.0'.
 
-// tag::deleteProject[]
-=== [Proposed] Delete Project
+=== Password Feature (coming in v2.0)
+==== Current Implementation
+A password is required to grant access to the project manager at the start of the program.
+It serves as a security mechanism to
+protect the important data within.
 
-_{The deleteProject is facilitated by DeleterProjectCommand Parser. deleteProject(index) removes the project with index, alongside with date attribute but beneficiary remains.
-if the project index is not found, DeleteProjectCommand throws ParseException.
+At the start of the program, the UI is initialised by `UiManager`. A password window will pop out and prompt the user
+to enter the password. +
 
-// end::deleteProject[]
+.Program prompting user for password
+image::password prompt.jpg[width="800"]
+
+The password feature uses `ValidatePassword` to check if the user input matches the password stored in the program.
+If the password matches, it will set boolean `user` to be true. `UiManager` will thus instantiate
+ `fillInnerParts()`, displaying the hidden data to the project manager.
+
+.Data displayed to user upon entering the correct password
+image::login successful.jpg[width="800"]
+
+If the password is entered incorrectly for five times, the program will terminate itself.
+
+A sequence diagram is shown below to illustrate how it works in an abstract level.
+
+.Sequence diagram of Password Feature
+image::ArchitectureDiagram_password.png[width="800"]
+
+==== Design Considerations
+
+
+[width="100%", cols="1, 1, 1 "options="header",]
+|=======================================================================
+| Aspect | Alternatives | Pros (+)/ Cons(-)
+.2+| Implementation of Synchronization
+| *UI with a password field. (current choice)*
+| + : It is simple and user friendly. It serves its purpose as a offline application for a single user.
+ +
+    {empty} +
+ - : The current alternative does not allow the user to change password.
+| Using Command Line Interface
+| + : It allows more flexibility to implement more parameters such as custom security questions to improve its security. +
+  {empty} +
+  - : It may not be as user friendly as the UI.
+
+
+|=======================================================================
+// end::PasswordFeature[]
+
 
 === Logging
 
@@ -1063,7 +1105,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 5: Find volunteer
+=== Use case 6: Find volunteer
 
 *MSS*
 
@@ -1083,7 +1125,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 6: Delete Project
+=== Use case 7: Delete Project
 
 *MSS*
 
@@ -1103,7 +1145,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 7: export volunteer list
+=== Use case 8: export volunteer list
 
 *MSS*
 
@@ -1119,26 +1161,6 @@ Use case ends.
 +
 [none]
 ** 2a1. VolunCHeer shows an error message.
-+
-Use case ends.
-
-[discrete]
-=== Use case 8: export volunteer list
-
-*MSS*
-
-1.  User requests to export a volunteer file
-2.  VolunCHeer exports new volunteer data file
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. the file has existed.
-+
-[none]
-** 2a1. VolunCHeer overwritten the file.
 +
 Use case ends.
 
@@ -1162,9 +1184,29 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
+=== Use case 10: export volunteer list
+
+*MSS*
+
+1.  User requests to export a volunteer file
+2.  VolunCHeer exports new volunteer data file
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. the file has existed.
++
+[none]
+** 2a1. VolunCHeer overwritten the file.
++
+Use case ends.
+
 // tag::BenefUseCases[]
 [discrete]
-=== Use case 10: Add a beneficiary
+=== Use case 11: Add a beneficiary
 
 *MSS*
 
@@ -1188,7 +1230,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: Edit a beneficiary
+=== Use case 12: Edit a beneficiary
 
 *MSS*
 
@@ -1207,7 +1249,8 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case 12: Delete a beneficiary (soft delete)
+[discrete]
+=== Use case 13: Delete a beneficiary (soft delete)
 
 *MSS*
 
@@ -1237,7 +1280,7 @@ Use case ends.
 // end::BenefUseCases[]
 
 [discrete]
-=== Use case 11: Sort volunteers based on PRIORITY_SCORE
+=== Use case 14: Sort volunteers based on PRIORITY_SCORE
 
 *MSS*
 
