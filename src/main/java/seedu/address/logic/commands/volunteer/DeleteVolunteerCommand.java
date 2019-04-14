@@ -30,7 +30,7 @@ public class DeleteVolunteerCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteVolunteerCommand(Index targetIndex) {
+    public DeleteVolunteerCommand(Index targetIndex, boolean b) {
         this.targetIndex = targetIndex;
     }
 

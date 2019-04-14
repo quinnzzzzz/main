@@ -17,6 +17,25 @@ endif::[]
 
 By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
+
+== Introduction
+=== About VolunCHeer
+
+VolunCHeer is an open source Command Line Interface (CLI) addressbook
+designed for Project Managers to manage multiple projects, beneficiaries and volunteers
+effectively.
+
+=== How to Contribute
+
+We welcome you to contribute.
+Please refer to this developer guide to understand more about the design process behind VolunCHeer.
+
+When you are ready to contribute, simply create a Pull Request on our Main Repository.
+
+If you have encountered any bugs or have any suggestions to improve VolunCHeer, please
+create an issue https://github.com/cs2113-ay1819s2-t08-1/main/issues[here]
+or https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/ContactUs.adoc[contact us] directly.
+
 == Setting up
 
 === Prerequisites
@@ -575,13 +594,13 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |volunteer manager |edit a volunteer |update information of volunteer
 
-|`* * *` |volunteer mangager |find a volunteer by name |locate details of the volunteer without having to go through the entire list
+|`* * *` |volunteer manager |find a volunteer by name |locate details of the volunteer without having to go through the entire list
 
 |`* * *` |volunteer manager |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
 |`* * *` |volunteer manager |sort volunteer list by name |locate a the volunteer easily
 
-|`* * *` |volunteer manager |add a beneficiary |have their infomation in the system to manage
+|`* * *` |volunteer manager |add a beneficiary |have their information in the system to manage
 
 |`* * *` |volunteer manager |add beneficiary's description |have a description of beneficiary to refer to
 

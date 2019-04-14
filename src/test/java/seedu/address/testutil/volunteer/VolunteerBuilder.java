@@ -138,6 +138,31 @@ public class VolunteerBuilder {
         return this;
     }
 
+
+    /**
+     * Sets the {@code Address} of the {@code Volunteer} that we are building.
+     */
+    public VolunteerBuilder withAddress(String address) {
+        this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code Volunteer} that we are building.
+     */
+    public VolunteerBuilder withPhone(String phone) {
+        this.phone = new Phone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Volunteer} that we are building.
+     */
+    public VolunteerBuilder withEmail(String email) {
+        this.email = new Email(email);
+        return this;
+    }
+
     /**
      * build.
      * @param medicalCondition
@@ -168,29 +193,6 @@ public class VolunteerBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Address} of the {@code Volunteer} that we are building.
-     */
-    public VolunteerBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Volunteer} that we are building.
-     */
-    public VolunteerBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Volunteer} that we are building.
-     */
-    public VolunteerBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
 
     /**
      * build

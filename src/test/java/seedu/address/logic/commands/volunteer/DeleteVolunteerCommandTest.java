@@ -1,14 +1,14 @@
-package seedu.address.logic.commands.volunteer.;
+package seedu.address.logic.commands.volunteer;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showVolunteerAtIndex;
+import static seedu.address.logic.commands.volunteer.VolunteerCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.volunteer.VolunteerCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.volunteer.VolunteerCommandTestUtil.showVolunteerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_VOLUNTEER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_VOLUNTEER;
-import static seedu.address.testutil.TypicalVolunteers.getTypicalAddressBook;
+import static seedu.address.testutil.volunteer.TypicalVolunteers.getTypicalAddressBook;
 
 import org.junit.Test;
 
@@ -34,7 +34,7 @@ public class DeleteVolunteerCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Volunteer volunteerToDelete = model.getFilteredVolunteerList().get(INDEX_FIRST_VOLUNTEER.getZeroBased());
-        DeleteVolunteerCommand deleteCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER);
+        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER, false);
 
         String expectedMessage = String.format(DeleteVolunteerCommand.MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete);
 
@@ -42,15 +42,15 @@ public class DeleteVolunteerCommandTest {
         expectedModel.deleteVolunteer(volunteerToDelete);
         expectedModel.commitAddressBook();
 
-        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteVolunteerCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVolunteerList().size() + 1);
-        DeleteVolunteerCommand deleteCommand = new DeleteVolunteerCommand(outOfBoundIndex);
+        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(outOfBoundIndex, false);
 
-        assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteVolunteerCommand, model, commandHistory, Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class DeleteVolunteerCommandTest {
         showVolunteerAtIndex(model, INDEX_FIRST_VOLUNTEER);
 
         Volunteer volunteerToDelete = model.getFilteredVolunteerList().get(INDEX_FIRST_VOLUNTEER.getZeroBased());
-        DeleteVolunteerCommand deleteCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER);
+        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER, false);
 
         String expectedMessage = String.format(DeleteVolunteerCommand.MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete);
 
@@ -67,7 +67,7 @@ public class DeleteVolunteerCommandTest {
         expectedModel.commitAddressBook();
         showNoVolunteer(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteVolunteerCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -78,21 +78,21 @@ public class DeleteVolunteerCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getVolunteerList().size());
 
-        DeleteVolunteerCommand deleteCommand = new DeleteVolunteerCommand(outOfBoundIndex);
+        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(outOfBoundIndex, false);
 
-        assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteVolunteerCommand, model, commandHistory, Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
     }
 
     @Test
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
         Volunteer volunteerToDelete = model.getFilteredVolunteerList().get(INDEX_FIRST_VOLUNTEER.getZeroBased());
-        DeleteVolunteerCommand deleteCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER);
+        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER, false);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteVolunteer(volunteerToDelete);
         expectedModel.commitAddressBook();
 
         // delete -> first volunteer deleted
-        deleteCommand.execute(model, commandHistory);
+        deleteVolunteerCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered volunteer list to show all volunteers
         expectedModel.undoAddressBook();
@@ -106,10 +106,10 @@ public class DeleteVolunteerCommandTest {
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVolunteerList().size() + 1);
-        DeleteVolunteerCommand deleteCommand = new DeleteVolunteerCommand(outOfBoundIndex);
+        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(outOfBoundIndex, false);
 
         // execution failed -> address book state not added into model
-        assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteVolunteerCommand, model, commandHistory, Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
 
         // single address book state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
@@ -125,7 +125,7 @@ public class DeleteVolunteerCommandTest {
      */
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameVolunteerDeleted() throws Exception {
-        DeleteVolunteerCommand deleteCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER);
+        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER, false);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         showVolunteerAtIndex(model, INDEX_SECOND_VOLUNTEER);
@@ -134,7 +134,7 @@ public class DeleteVolunteerCommandTest {
         expectedModel.commitAddressBook();
 
         // delete -> deletes second volunteer in unfiltered volunteer list / first volunteer in filtered volunteer list
-        deleteCommand.execute(model, commandHistory);
+        deleteVolunteerCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered volunteer list to show all volunteers
         expectedModel.undoAddressBook();
@@ -148,14 +148,14 @@ public class DeleteVolunteerCommandTest {
 
     @Test
     public void equals() {
-        DeleteVolunteerCommand deleteFirstCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER);
-        DeleteVolunteerCommand deleteSecondCommand = new DeleteVolunteerCommand(INDEX_SECOND_VOLUNTEER);
+        DeleteVolunteerCommand deleteFirstCommand = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER, false);
+        DeleteVolunteerCommand deleteSecondCommand = new DeleteVolunteerCommand(INDEX_SECOND_VOLUNTEER, false);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteVolunteerCommand deleteFirstCommandCopy = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER);
+        DeleteVolunteerCommand deleteFirstCommandCopy = new DeleteVolunteerCommand(INDEX_FIRST_VOLUNTEER, false);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
