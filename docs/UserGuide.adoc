@@ -92,11 +92,13 @@ Format: `addProject n/PROJECT_NAME d/DATE`
 ****
 * Please enter DATE in DD/MM/YYYY format, date should be after today.
 * Project Title should not have dupliates in the project list.
-* Projects are automatically sorted in ascending date order for esaier tracking or Project tasks.
+* Projects are automatically sorted in ascending date order for easier tracking or Project tasks.
 ****
 
-Examples:
+.When `addProject p/Old Folk Home Visit d/25/05/2019` is executed.
+image::addProject.png[]
 
+Examples:
 * `addProject n/Charity Run d/06/12/2020.
 
 === Deleting a project ： `deleteProject` / `dp`
@@ -109,6 +111,10 @@ Format: `deleteProject INDEX`
 * The INDEX refers to the index of the project in the project list, use 'listProject' to view all projects if unsure.
 * Error message is shown if the INDEX entered is invalid
 ****
+
+.When `deleteProject 3` command is executed.
+
+image::deleteProject.png[]
 
 === Listing all projects : `listProject` / `lp`
 
@@ -127,6 +133,9 @@ Format: `assignBeneficiary p/PROJECT_TITLE i/INDEX
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
 
+.When `assignB p/Old Folks Home Visit i/1` command executed
+image::assignB.png[]
+
 [TIP]
 Use listBeneficiary to view a full list of Beneficiary to assign.
 Use summaryBeneficiary command to view the Projects attached to each Beneficiary.
@@ -141,6 +150,10 @@ Format: `assignVolunteer p/PROJECT_TITLE rv/REQUIRED_NUMBER_OF_VOLUNTEERS
 * The number of volunteers assigned to the Project can be seen under the Project card as shown below.
 ****
 
+.When `assignV p/Old Folks Home Visit rv/2` is executed.
+
+image::assignV.png[]
+
 [TIP]
 Use Map and Sort commands to filter out the desired list of volunteers.
 
@@ -149,6 +162,10 @@ Use Map and Sort commands to filter out the desired list of volunteers.
 Marks project with at index "INDEX" as complete.
 
 Format: `complete i/INDEX`
+
+.When `complete i/1` command is executed
+
+image::complete.png[]
 
 ****
 * Once marked as complete, project title will be displayed in red colour font
