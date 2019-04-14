@@ -2,18 +2,18 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_AGE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_GENDER;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_NAME;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_PHONE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_RELIGION;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.isValidInt;
 
 import java.util.ArrayList;

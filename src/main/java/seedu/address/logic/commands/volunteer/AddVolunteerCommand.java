@@ -1,20 +1,22 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.volunteer;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_AGE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_GENDER;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_NAME;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_PHONE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_RELIGION;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_TAG;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.volunteer.Volunteer;

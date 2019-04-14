@@ -1,4 +1,7 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.beneficiary;
+
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.Prefix;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands

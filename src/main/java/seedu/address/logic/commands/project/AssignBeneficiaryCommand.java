@@ -2,8 +2,8 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.ASSIGNED_PROJECT_TITLE;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_INDEX;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.ASSIGNED_PROJECT_TITLE;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_INDEX;
 
 import java.util.List;
 import java.util.function.Predicate;

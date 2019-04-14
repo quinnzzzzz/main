@@ -1,14 +1,18 @@
 //@@author quinnzzzzz
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.project;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_PROJECT_TITLE;
+import static seedu.address.logic.parser.project.CliSyntaxProject.PREFIX_DATE;
+import static seedu.address.logic.parser.project.CliSyntaxProject.PREFIX_PROJECT_TITLE;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.project.AddProjectCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDate;

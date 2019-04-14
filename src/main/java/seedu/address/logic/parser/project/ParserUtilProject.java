@@ -1,5 +1,5 @@
 //@@author quinnzzzzz
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.project;
 
 import static java.util.Objects.requireNonNull;
 
@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectTitle;

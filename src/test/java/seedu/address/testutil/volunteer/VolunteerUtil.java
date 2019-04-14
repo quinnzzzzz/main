@@ -1,20 +1,20 @@
 package seedu.address.testutil.volunteer;
 
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
-import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_AGE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_EMAIL;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_NAME;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_PHONE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_RACE;
+import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddVolunteerCommand;
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.volunteer.AddVolunteerCommand;
+import seedu.address.logic.commands.volunteer.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.volunteer.Volunteer;
 

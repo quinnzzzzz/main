@@ -1,7 +1,9 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.beneficiary;
 
 import static java.util.Objects.requireNonNull;
 
+
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.beneficiary.Address;
 import seedu.address.model.beneficiary.Email;
