@@ -16,11 +16,13 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_invalidInput_throwsParseException() throws Exception {
         thrown.expect(ParseException.class);
+        ParserUtil.parseIndex("10 a");
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() throws Exception {
         thrown.expect(ParseException.class);
         thrown.expectMessage(MESSAGE_INVALID_INDEX);
+        ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1));
     }
 }
