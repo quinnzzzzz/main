@@ -24,6 +24,8 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 VolunCHeer is an open-sourced  Command Line Interface (CLI) management application designed for Volunteering Project Managers.
 We aim to help our target users alleviate the haystack of managing multiple projects, beneficiaries, and volunteers in an efficient and effective manner.
 
+image::Ui.png[]
+
 === How to Contribute
 
 There are lots of ways to contribute to VolunCHeer: coding, testing or improving our build process and tools. This developer's guide provides information that will help you get started as a VolunCHeer contributor. Even if you are an experienced VolunCHeer developer, you will still find this guide to be useful to refer to. +
@@ -1205,6 +1207,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case 13: Delete a beneficiary (soft delete)
 
 *MSS*
