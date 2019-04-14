@@ -43,7 +43,7 @@ image::UI.jpg[width="790"]
 This is where you will be typing in your commands.
 
 2. Command Result:
-This is where the results of all your commands are displayed. TIP: useful tips and error messages are also shown here.
+This is where the results of all your commands are displayed. [TIP] useful tips and error messages are also shown here.
 
 3. Project List:
 This shows the list of projects currently in VolunCHeer.
