@@ -16,8 +16,8 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditVolunteerCommand;
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.volunteer.EditVolunteerCommand;
+import seedu.address.logic.commands.volunteer.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

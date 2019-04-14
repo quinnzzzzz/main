@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.volunteer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
@@ -15,6 +15,8 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.volunteer.Volunteer;
@@ -27,6 +29,7 @@ import seedu.address.model.volunteer.Volunteer;
 public class AddVolunteerCommand extends Command {
 
     public static final String COMMAND_WORD = "addVolunteer";
+    public static final String COMMAND_ALIAS = "av";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
         + "Parameters: "
@@ -34,13 +37,13 @@ public class AddVolunteerCommand extends Command {
         + PREFIX_AGE + "AGE "
         + PREFIX_GENDER + "GENDER "
         + PREFIX_RACE + "RACE "
-        + PREFIX_RELIGION + "RELIGION "
+        + "[" + PREFIX_RELIGION + "RELIGION] "
         + PREFIX_PHONE + "PHONE "
         + PREFIX_ADDRESS + "ADDRESS "
         + PREFIX_EMAIL + "EMAIL "
         + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT "
-        + PREFIX_DIETARY_PREFERENCE + "DIETARY PREFERENCE "
-        + PREFIX_MEDICAL_CONDITION + "MEDICAL CONDITION "
+        + "[" + PREFIX_DIETARY_PREFERENCE + "DIETARY PREFERENCE] "
+        + "[" + PREFIX_MEDICAL_CONDITION + "MEDICAL CONDITION] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_NAME + "John Doe "
@@ -54,7 +57,8 @@ public class AddVolunteerCommand extends Command {
         + PREFIX_EMERGENCY_CONTACT + "Sally Mother 91234567 "
         + PREFIX_DIETARY_PREFERENCE + "nil "
         + PREFIX_MEDICAL_CONDITION + "nil "
-        + PREFIX_TAG + "new volunteer";
+        + PREFIX_TAG + "new";
+
 
     public static final String MESSAGE_SUCCESS = "New volunteer added: %1$s";
     public static final String MESSAGE_DUPLICATE_VOLUNTEER = "This volunteer already exists in the address book";

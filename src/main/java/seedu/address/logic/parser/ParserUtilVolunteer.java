@@ -133,14 +133,14 @@ public class ParserUtilVolunteer {
     }
 
     /**
-     * Parses a {@code String emergencycontact} into an {@code EmergencyContact}.
+     * Parses a {@code String emergencyContact} into an {@code EmergencyContact}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code emergencycontact} is invalid.
+     * @throws ParseException if the given {@code emergencyContact} is invalid.
      */
-    public static EmergencyContact parseEmergencyContact(String emergencycontact) throws ParseException {
-        requireNonNull(emergencycontact);
-        String trimmedEmergencyContact = emergencycontact.trim();
+    public static EmergencyContact parseEmergencyContact(String emergencyContact) throws ParseException {
+        requireNonNull(emergencyContact);
+        String trimmedEmergencyContact = emergencyContact.trim();
         if (!EmergencyContact.isValidEmergencyContact(trimmedEmergencyContact)) {
             throw new ParseException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
@@ -148,14 +148,14 @@ public class ParserUtilVolunteer {
     }
 
     /**
-     * Parses a {@code String medicalcondition} into an {@code MedicalCondition}.
+     * Parses a {@code String medicalCondition} into an {@code MedicalCondition}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static MedicalCondition parseMedicalCondition(String medicalcondition) throws ParseException {
-        requireNonNull(medicalcondition);
-        String trimmedMedicalCondition = medicalcondition.trim();
+    public static MedicalCondition parseMedicalCondition(String medicalCondition) throws ParseException {
+        requireNonNull(medicalCondition);
+        String trimmedMedicalCondition = medicalCondition.trim();
         if (!MedicalCondition.isValidMedicalCondition(trimmedMedicalCondition)) {
             throw new ParseException(MedicalCondition.MESSAGE_CONSTRAINTS);
         }
@@ -163,14 +163,14 @@ public class ParserUtilVolunteer {
     }
 
     /**
-     * Parses a {@code String dietarypreference} into an {@code DietaryPreference}.
+     * Parses a {@code String dietaryPreference} into an {@code DietaryPreference}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dietarypreference} is invalid.
+     * @throws ParseException if the given {@code dietaryPreference} is invalid.
      */
-    public static DietaryPreference parseDietaryPreference(String dietarypreference) throws ParseException {
-        requireNonNull(dietarypreference);
-        String trimmedDietaryPreference = dietarypreference.trim();
+    public static DietaryPreference parseDietaryPreference(String dietaryPreference) throws ParseException {
+        requireNonNull(dietaryPreference);
+        String trimmedDietaryPreference = dietaryPreference.trim();
         if (!DietaryPreference.isValidDietaryPreference(trimmedDietaryPreference)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }

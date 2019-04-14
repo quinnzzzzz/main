@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.volunteer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -44,9 +44,9 @@ public class VolunteerBuilder {
     private Phone phone;
     private Address address;
     private Email email;
-    private EmergencyContact emergencycontact;
-    private DietaryPreference dietarypreference;
-    private MedicalCondition medicalcondition;
+    private EmergencyContact emergencyContact;
+    private DietaryPreference dietaryPreference;
+    private MedicalCondition medicalCondition;
     private Set<Tag> tags;
 
     public VolunteerBuilder() {
@@ -58,9 +58,9 @@ public class VolunteerBuilder {
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         email = new Email(DEFAULT_EMAIL);
-        emergencycontact = new EmergencyContact(DEFAULT_EMERGENCY_CONTACT);
-        dietarypreference = new DietaryPreference(DEFAULT_DIETARY_PREFERENCE);
-        medicalcondition = new MedicalCondition(DEFAULT_MEDICAL_CONDITION);
+        emergencyContact = new EmergencyContact(DEFAULT_EMERGENCY_CONTACT);
+        dietaryPreference = new DietaryPreference(DEFAULT_DIETARY_PREFERENCE);
+        medicalCondition = new MedicalCondition(DEFAULT_MEDICAL_CONDITION);
         tags = new HashSet<>();
     }
 
@@ -76,9 +76,9 @@ public class VolunteerBuilder {
         phone = volunteerToCopy.getPhone();
         email = volunteerToCopy.getEmail();
         address = volunteerToCopy.getAddress();
-        emergencycontact = volunteerToCopy.getEmergencyContact();
-        dietarypreference = volunteerToCopy.getDietaryPreference();
-        medicalcondition = volunteerToCopy.getMedicalCondition();
+        emergencyContact = volunteerToCopy.getEmergencyContact();
+        dietaryPreference = volunteerToCopy.getDietaryPreference();
+        medicalCondition = volunteerToCopy.getMedicalCondition();
         tags = new HashSet<>(volunteerToCopy.getTags());
     }
 
@@ -100,7 +100,6 @@ public class VolunteerBuilder {
 
     /**
      * build with age.
-     *
      * @param age
      * @return
      */
@@ -111,7 +110,6 @@ public class VolunteerBuilder {
 
     /**
      * guild with gender.
-     *
      * @param gender
      * @return
      */
@@ -122,7 +120,6 @@ public class VolunteerBuilder {
 
     /**
      * build with race.
-     *
      * @param race
      * @return
      */
@@ -133,7 +130,6 @@ public class VolunteerBuilder {
 
     /**
      * build with religion
-     *
      * @param religion
      * @return
      */
@@ -142,38 +138,6 @@ public class VolunteerBuilder {
         return this;
     }
 
-    /**
-     * build.
-     *
-     * @param medicalcondition
-     * @return
-     */
-    public VolunteerBuilder withMedicalCondition(String medicalcondition) {
-        this.medicalcondition = new MedicalCondition(medicalcondition);
-        return this;
-    }
-
-    /**
-     * build.
-     *
-     * @param dietarypreference
-     * @return
-     */
-    public VolunteerBuilder withDietaryPreference(String dietarypreference) {
-        this.dietarypreference = new DietaryPreference(dietarypreference);
-        return this;
-    }
-
-    /**
-     * build.
-     *
-     * @param emergencycontact
-     * @return
-     */
-    public VolunteerBuilder withEmergencyContact(String emergencycontact) {
-        this.emergencycontact = new EmergencyContact(emergencycontact);
-        return this;
-    }
 
     /**
      * Sets the {@code Address} of the {@code Volunteer} that we are building.
@@ -200,13 +164,43 @@ public class VolunteerBuilder {
     }
 
     /**
+     * build.
+     * @param medicalCondition
+     * @return
+     */
+    public VolunteerBuilder withMedicalCondition(String medicalCondition) {
+        this.medicalCondition = new MedicalCondition(medicalCondition);
+        return this;
+    }
+
+    /**
+     * build.
+     * @param dietaryPreference
+     * @return
+     */
+    public VolunteerBuilder withDietaryPreference(String dietaryPreference) {
+        this.dietaryPreference = new DietaryPreference(dietaryPreference);
+        return this;
+    }
+
+    /**
+     * build.
+     * @param emergencyContact
+     * @return
+     */
+    public VolunteerBuilder withEmergencyContact(String emergencyContact) {
+        this.emergencyContact = new EmergencyContact(emergencyContact);
+        return this;
+    }
+
+
+    /**
      * build
-     *
      * @return
      */
     public Volunteer build() {
         return new Volunteer(name, age, gender, race, religion, phone, address, email,
-            emergencycontact, dietarypreference, medicalcondition, tags);
+            emergencyContact, dietaryPreference, medicalCondition, tags);
     }
 
 }

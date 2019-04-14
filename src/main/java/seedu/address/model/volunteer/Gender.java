@@ -11,12 +11,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Gender should be only M or F";
+        "Gender should be only M,m,F or f";
 
     /*
      * the gender parameter must be m or f
      */
-    public static final String VALIDATION_REGEX = "\\w";
+    public static final String VALIDATION_REGEX = "[FfMm]";
 
     public final String genderOutput;
 

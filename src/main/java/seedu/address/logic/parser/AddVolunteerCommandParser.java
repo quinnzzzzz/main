@@ -17,7 +17,7 @@ import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddVolunteerCommand;
+import seedu.address.logic.commands.volunteer.AddVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.volunteer.Address;
@@ -87,17 +87,17 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         Phone phone = ParserUtilVolunteer.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Address address = ParserUtilVolunteer.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Email email = ParserUtilVolunteer.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        EmergencyContact emergencycontact =
+        EmergencyContact emergencyContact =
             ParserUtilVolunteer.parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
         MedicalCondition medicalcondition =
             ParserUtilVolunteer.parseMedicalCondition(argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get());
-        DietaryPreference dietarypreference =
+        DietaryPreference dietaryPreference =
             ParserUtilVolunteer.parseDietaryPreference(argMultimap.getValue(PREFIX_DIETARY_PREFERENCE).get());
         Set<Tag> tagList =
             ParserUtilVolunteer.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Volunteer volunteer = new Volunteer(name, age, gender, race, religion, phone, address, email, emergencycontact,
-            dietarypreference, medicalcondition, tagList);
+        Volunteer volunteer = new Volunteer(name, age, gender, race, religion, phone, address, email, emergencyContact,
+            dietaryPreference, medicalcondition, tagList);
 
         return new AddVolunteerCommand(volunteer);
     }

@@ -40,9 +40,9 @@ class JsonAdaptedVolunteer {
     private final String phone;
     private final String address;
     private final String email;
-    private final String emergencycontact;
-    private final String dietarypreference;
-    private final String medicalcondition;
+    private final String emergencyContact;
+    private final String dietaryPreference;
+    private final String medicalCondition;
 
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -54,9 +54,9 @@ class JsonAdaptedVolunteer {
                                 @JsonProperty("gender") String gender, @JsonProperty("race") String race,
                                 @JsonProperty("religion") String religion, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
-                                @JsonProperty("DietaryPreference") String dietarypreference,
-                                @JsonProperty("EmergencyContact") String emergencycontact,
-                                @JsonProperty("MedicalCondition") String medicalcondition,
+                                @JsonProperty("dietaryPreference") String dietaryPreference,
+                                @JsonProperty("emergencyContact") String emergencyContact,
+                                @JsonProperty("medicalCondition") String medicalCondition,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.age = age;
@@ -66,9 +66,9 @@ class JsonAdaptedVolunteer {
         this.phone = phone;
         this.address = address;
         this.email = email;
-        this.emergencycontact = emergencycontact;
-        this.dietarypreference = dietarypreference;
-        this.medicalcondition = medicalcondition;
+        this.emergencyContact = emergencyContact;
+        this.dietaryPreference = dietaryPreference;
+        this.medicalCondition = medicalCondition;
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -87,9 +87,9 @@ class JsonAdaptedVolunteer {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        emergencycontact = source.getEmergencyContact().value;
-        dietarypreference = source.getDietaryPreference().restriction;
-        medicalcondition = source.getMedicalCondition().status;
+        emergencyContact = source.getEmergencyContact().value;
+        dietaryPreference = source.getDietaryPreference().restriction;
+        medicalCondition = source.getMedicalCondition().status;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -171,32 +171,32 @@ class JsonAdaptedVolunteer {
         }
         final Email modelEmail = new Email(email);
 
-        if (emergencycontact == null) {
+        if (emergencyContact == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 EmergencyContact.class.getSimpleName()));
         }
-        if (!EmergencyContact.isValidEmergencyContact(emergencycontact)) {
+        if (!EmergencyContact.isValidEmergencyContact(emergencyContact)) {
             throw new IllegalValueException(EmergencyContact.MESSAGE_CONSTRAINTS);
         }
-        final EmergencyContact modelEmergencyContact = new EmergencyContact(emergencycontact);
+        final EmergencyContact modelEmergencyContact = new EmergencyContact(emergencyContact);
 
-        if (dietarypreference == null) {
+        if (dietaryPreference == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 DietaryPreference.class.getSimpleName()));
         }
-        if (!DietaryPreference.isValidDietaryPreference(dietarypreference)) {
+        if (!DietaryPreference.isValidDietaryPreference(dietaryPreference)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final DietaryPreference modelDietaryPreference = new DietaryPreference(dietarypreference);
+        final DietaryPreference modelDietaryPreference = new DietaryPreference(dietaryPreference);
 
-        if (medicalcondition == null) {
+        if (medicalCondition == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 MedicalCondition.class.getSimpleName()));
         }
-        if (!MedicalCondition.isValidMedicalCondition(medicalcondition)) {
+        if (!MedicalCondition.isValidMedicalCondition(medicalCondition)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final MedicalCondition modelMedicalCondition = new MedicalCondition(medicalcondition);
+        final MedicalCondition modelMedicalCondition = new MedicalCondition(medicalCondition);
 
         final Set<Tag> modelTags = new HashSet<>(volunteerTags);
         return new Volunteer(modelName, modelAge, modelGender, modelRace, modelReligion, modelPhone,

@@ -208,7 +208,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Beneficiary List Accessors =============================================================
-
     /**
      * Returns an unmodifiable view of the list of {@code Beneficiary} backed by the internal list of
      * {@code versionedAddressBook}
@@ -267,7 +266,7 @@ public class ModelManager implements Model {
         versionedAddressBook.commit();
     }
 
-    //=========== Selected volunteer ===========================================================================
+    //=========== Selected properties ===========================================================================
 
     @Override
     public ReadOnlyProperty<Volunteer> selectedVolunteerProperty() {
@@ -280,16 +279,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Beneficiary getSelectedBeneficiary() {
+        return null;
+    }
+
+    @Override
+    public Volunteer getSelectedVolunteer() {
+        return selectedVolunteer.getValue();
+    }
+
+
+    @Override
     public void setSelectedProject(Project project) {
         if (project != null && !filteredProjects.contains(project)) {
             throw new ProjectNotFoundException();
         }
         selectedProject.setValue(project);
-    }
-
-    @Override
-    public Beneficiary getSelectedBeneficiary() {
-        return null;
     }
 
     @Override
@@ -300,12 +305,7 @@ public class ModelManager implements Model {
         selectedBeneficiary.setValue(beneficiary);
     }
 
-    //@@author articstranger
 
-    @Override
-    public Volunteer getSelectedVolunteer() {
-        return selectedVolunteer.getValue();
-    }
 
     @Override
     public void setSelectedVolunteer(Volunteer volunteer) {
@@ -313,6 +313,17 @@ public class ModelManager implements Model {
             selectedVolunteer.setValue(volunteer);
         }
     }
+    @Override
+    public ReadOnlyProperty<Project> selectedProjectProperty() {
+        return selectedProject;
+    }
+
+    @Override
+    public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
+        return selectedBeneficiary;
+    }
+
+    //@@author articstranger
 
     /**
      * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
@@ -320,26 +331,26 @@ public class ModelManager implements Model {
     public int checkAge(MapObject map, Volunteer currentVol) {
         switch (map.getComparator()) {
 
-        case "<":
-            if (Integer.parseInt(currentVol.getAge().toString()) < map.getAgePair().getValue()) {
-                return map.getAgePair().getKey();
-            }
-            break;
+            case "<":
+                if (Integer.parseInt(currentVol.getAge().toString()) < map.getAgePair().getValue()) {
+                    return map.getAgePair().getKey();
+                }
+                break;
 
-        case ">":
-            if (Integer.parseInt(currentVol.getAge().toString()) > map.getAgePair().getValue()) {
-                return map.getAgePair().getKey();
-            }
-            break;
+            case ">":
+                if (Integer.parseInt(currentVol.getAge().toString()) > map.getAgePair().getValue()) {
+                    return map.getAgePair().getKey();
+                }
+                break;
 
-        case "=":
-            if (Integer.parseInt(currentVol.getAge().toString()) == map.getAgePair().getValue()) {
-                return map.getAgePair().getKey();
-            }
-            break;
+            case "=":
+                if (Integer.parseInt(currentVol.getAge().toString()) == map.getAgePair().getValue()) {
+                    return map.getAgePair().getKey();
+                }
+                break;
 
-        default:
-            return 0;
+            default:
+                return 0;
         }
         return 0;
     }
@@ -377,8 +388,6 @@ public class ModelManager implements Model {
     }
 
 
-    //@@author swalahlah
-
     /**
      * Sorts all volunteers in the (@code UniqueVolunteerList)
      * and returns a (@code sortedList)
@@ -396,7 +405,7 @@ public class ModelManager implements Model {
     //=========== Selected person ===========================================================================
 
     /**
-     * Goes throught the volunteer list and adds data to the based on what prefixes are wanted.
+     * Goes through the volunteer list and adds data to the based on what prefixes are wanted.
      * stops when the list ends or the provided limit is reached.
      */
     public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
@@ -411,56 +420,56 @@ public class ModelManager implements Model {
             prefixToBePrinted.forEach(prefix -> {
                 switch (prefix) {
 
-                case "n/":
-                    tempVolunteer.add(vol.getName().toString());
-                    break;
+                    case "n/":
+                        tempVolunteer.add(vol.getName().toString());
+                        break;
 
-                case "y/":
-                    tempVolunteer.add(vol.getAge().toString());
-                    break;
+                    case "y/":
+                        tempVolunteer.add(vol.getAge().toString());
+                        break;
 
-                case "g/":
-                    tempVolunteer.add(vol.getGender().toString());
-                    break;
+                    case "g/":
+                        tempVolunteer.add(vol.getGender().toString());
+                        break;
 
-                case "r/":
-                    tempVolunteer.add(vol.getRace().toString());
-                    break;
+                    case "r/":
+                        tempVolunteer.add(vol.getRace().toString());
+                        break;
 
-                case "rg/":
-                    tempVolunteer.add(vol.getReligion().toString());
-                    break;
+                    case "rg/":
+                        tempVolunteer.add(vol.getReligion().toString());
+                        break;
 
-                case "p/":
-                    tempVolunteer.add(vol.getPhone().toString());
-                    break;
+                    case "p/":
+                        tempVolunteer.add(vol.getPhone().toString());
+                        break;
 
-                case "a/":
-                    tempVolunteer.add(vol.getAddress().toString());
-                    break;
+                    case "a/":
+                        tempVolunteer.add(vol.getAddress().toString());
+                        break;
 
-                case "e/":
-                    tempVolunteer.add(vol.getEmail().toString());
-                    break;
+                    case "e/":
+                        tempVolunteer.add(vol.getEmail().toString());
+                        break;
 
-                case "m/":
-                    tempVolunteer.add(vol.getMedicalCondition().toString());
-                    break;
+                    case "m/":
+                        tempVolunteer.add(vol.getMedicalCondition().toString());
+                        break;
 
-                case "dp/":
-                    tempVolunteer.add(vol.getDietaryPreference().toString());
-                    break;
+                    case "dp/":
+                        tempVolunteer.add(vol.getDietaryPreference().toString());
+                        break;
 
-                case "ec/":
-                    tempVolunteer.add(vol.getEmergencyContact().toString());
-                    break;
+                    case "ec/":
+                        tempVolunteer.add(vol.getEmergencyContact().toString());
+                        break;
 
-                case "t/":
-                    tempVolunteer.add(vol.getTags().toString());
-                    break;
+                    case "t/":
+                        tempVolunteer.add(vol.getTags().toString());
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
                 }
             });
             finalData.add(tempVolunteer.toArray(new String[0]));
@@ -482,8 +491,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedVolunteerReplaced =
-                change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedVolunteer.getValue());
+                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                            && change.getRemoved().contains(selectedVolunteer.getValue());
             if (wasSelectedVolunteerReplaced) {
                 // Update selectedVolunteer to its new value.
                 int index = change.getRemoved().indexOf(selectedVolunteer.getValue());
@@ -492,7 +501,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedVolunteerRemoved = change.getRemoved().stream()
-                .anyMatch(removedVolunteer -> selectedVolunteer.getValue().isSameVolunteer(removedVolunteer));
+                    .anyMatch(removedVolunteer -> selectedVolunteer.getValue().isSameVolunteer(removedVolunteer));
             if (wasSelectedVolunteerRemoved) {
                 // Select the volunteer that came before it in the list,
                 // or clear the selection if there is no such volunteer.
@@ -501,15 +510,10 @@ public class ModelManager implements Model {
         }
     }
 
-    @Override
-    public ReadOnlyProperty<Project> selectedProjectProperty() {
-        return selectedProject;
-    }
 
-    @Override
-    public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
-        return selectedBeneficiary;
-    }
+
+
+
 
     /**
      * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
@@ -522,8 +526,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedBeneficiaryReplaced = change.wasReplaced()
-                && change.getAddedSize() == change.getRemovedSize()
-                && change.getRemoved().contains(selectedBeneficiary.getValue());
+                    && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedBeneficiary.getValue());
             if (wasSelectedBeneficiaryReplaced) {
                 // Update selectedPerson to its new value.
                 int index = change.getRemoved().indexOf(selectedBeneficiary.getValue());
@@ -532,8 +536,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedBeneficiaryRemoved = change.getRemoved().stream()
-                .anyMatch(removedBeneficiary -> selectedBeneficiary.getValue()
-                    .isSameBeneficiary(removedBeneficiary));
+                    .anyMatch(removedBeneficiary -> selectedBeneficiary.getValue()
+                            .isSameBeneficiary(removedBeneficiary));
             if (wasSelectedBeneficiaryRemoved) {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
@@ -553,8 +557,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedProjectReplaced = change.wasReplaced() && change.getAddedSize() == change
-                .getRemovedSize()
-                && change.getRemoved().contains(selectedProject.getValue());
+                    .getRemovedSize()
+                    && change.getRemoved().contains(selectedProject.getValue());
             if (wasSelectedProjectReplaced) {
                 // Update selectedProject to its new value.
                 int index = change.getRemoved().indexOf(selectedProject.getValue());
@@ -563,7 +567,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedProjectRemoved = change.getRemoved().stream()
-                .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
+                    .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
             if (wasSelectedProjectRemoved) {
                 // Select the project that came before it in the list,
                 // or clear the selection if there is no such project.

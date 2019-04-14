@@ -79,6 +79,7 @@ public abstract class UiPart<T> {
      * @param root     Specifies the root of the object hierarchy.
      */
 
+
     private void loadFxmlFile(URL location, T root) {
         requireNonNull(location);
         fxmlLoader.setLocation(location);

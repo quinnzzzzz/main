@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteVolunteerCommand;
+import seedu.address.logic.commands.volunteer.DeleteVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -20,7 +20,7 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
     public DeleteVolunteerCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            return new DeleteVolunteerCommand(index);
+            return new DeleteVolunteerCommand(index, false);
         } catch (ParseException pe) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVolunteerCommand.MESSAGE_USAGE), pe);

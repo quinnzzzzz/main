@@ -15,13 +15,14 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.volunteer.EditVolunteerCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.NameContainsKeywordsPredicate;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.testutil.EditVolunteerDescriptorBuilder;
+import seedu.address.testutil.volunteer.EditVolunteerDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -67,11 +68,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_BOB)
-            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

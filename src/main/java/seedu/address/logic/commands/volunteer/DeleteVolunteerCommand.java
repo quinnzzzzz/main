@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.volunteer;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,6 +7,8 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.volunteer.Volunteer;
@@ -17,6 +19,7 @@ import seedu.address.model.volunteer.Volunteer;
 public class DeleteVolunteerCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteVolunteer";
+    public static final String COMMAND_ALIAS = "dv";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the volunteer identified by the index number used in the displayed volunteer list.\n"
@@ -27,7 +30,7 @@ public class DeleteVolunteerCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteVolunteerCommand(Index targetIndex) {
+    public DeleteVolunteerCommand(Index targetIndex, boolean b) {
         this.targetIndex = targetIndex;
     }
 

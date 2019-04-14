@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.util.List;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -18,6 +17,8 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+
+
 
     private final CommandExecutor commandExecutor;
     private final List<String> history;
@@ -52,6 +53,7 @@ public class CommandBox extends UiPart<Region> {
             keyEvent.consume();
             navigateToNextInput();
             break;
+
         default:
             // let JavaFx handle the keypress
         }
@@ -107,6 +109,7 @@ public class CommandBox extends UiPart<Region> {
             setStyleToIndicateCommandFailure();
         }
     }
+
 
     /**
      * Initializes the history snapshot.

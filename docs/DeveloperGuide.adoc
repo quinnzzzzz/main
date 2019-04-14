@@ -17,22 +17,24 @@ endif::[]
 
 By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
-== Introduction
 
+== Introduction
 === About VolunCHeer
 
-VolunCHeer is an open-sourced  Command Line Interface (CLI) management application designed for Volunteering Project Managers.
-We aim to help our target users alleviate the haystack of managing multiple projects, beneficiaries, and volunteers in an efficient and effective manner.
+VolunCHeer is an open source Command Line Interface (CLI) addressbook
+designed for Project Managers to manage multiple projects, beneficiaries and volunteers
+effectively.
 
 === How to Contribute
 
-There are lots of ways to contribute to VolunCHeer: coding, testing or improving our build process and tools. This developer's guide provides information that will help you get started as a VolunCHeer contributor. Even if you are an experienced VolunCHeer developer, you will still find this guide to be useful to refer to. +
+We welcome you to contribute.
+Please refer to this developer guide to understand more about the design process behind VolunCHeer.
 
-If you are ready to contribute, simply create a Pull Request (PR) on our main repository.
+When you are ready to contribute, simply create a Pull Request on our Main Repository.
 
-If you have found any bugs or have ideas to improve VolunCHeer, create an issue https://github.com/cs2113-ay1819s2-t08-1/main/issues[here] or https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/AboutUs.adoc[contact us] directly.
-
-=== How to use this Developer Guide
+If you have encountered any bugs or have any suggestions to improve VolunCHeer, please
+create an issue https://github.com/cs2113-ay1819s2-t08-1/main/issues[here]
+or https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/ContactUs.adoc[contact us] directly.
 
 == Setting up
 
@@ -71,7 +73,9 @@ This will generate all resources required by the application and tests.
 
 === Verifying the setup
 
-. Run the `seedu.voluncheer.MainApp` and try a few commands
+. Run the `seedu.Voluncheer.MainApp`
+. Enter your password. (Default password: password)
+. Try a few commands
 . <<Testing,Run the tests>> to ensure they all pass.
 
 === Configurations to do before writing code
@@ -229,6 +233,50 @@ beneficiary is assigned to. The figure below shows how the delete beneficiary co
 image::BeneficiaryHardDeletionSequenceDiagram.png[width="800"]
 
 . The `DeleteBeneficiaryParser` parses the index of the beneficiary that is required to delete.
+
+//tag::ValidatePassword
+=== Password Feature
+==== Current Implementation
+A password is required to grant access to the project manager at the start of the program.
+It serves as a security mechanism to
+protect the important data within.
+
+At the start of the program, the UI is initialised by `UiManager`. A password window will pop out and prompt the user
+to enter the password. +
+
+.Program prompting user for password
+image::password prompt.jpg[width="800"]
+
+The password feature uses `ValidatePassword` to check if the user input matches the password stored in the program.
+If the password matches, it will set boolean `user` to be true. `UiManager` will thus instantiate
+ `fillInnerParts()`, displaying the hidden data to the project manager.
+
+.Data displayed to user upon entering the correct password
+image::login successful.jpg[width="800"]
+
+If the password is entered incorrectly for five times, the program will terminate itself.
+
+A sequence diagram is shown below to illustrate how it works in an abstract level.
+
+.Sequence diagram of Password Feature
+image::ArchitectureDiagram_password.png[width="800"]
+
+==== Design Considerations
+
+Aspect: Login fields for password protection
+
+* **Alternative 1 (current choice)**: UI with a password field.
+** Pros: It is simple and user friendly. It serves its purpose as a offline application for a single user.
+** Cons: The current alternative does not allow the user to change password.
+
+* **Alternative 2**: Using CLI 
+
+// tag::[recommendationCommandLine][]
+=== [Proposed] Command Line Recommendation feature
+==== Proposed Implementation
+The command line recommendation feature is facilitated by the `CommandLineParser`. It imports the 'CliSyntax.Java'
+and stores internally the `UserClosestInput` and `CommandUsed`. It updates the `UserClosestInput` and process to
+give suggestions.
 +
 [NOTE]
 "-D" indicates that the deletion is in
@@ -254,6 +302,7 @@ image::SummaryBeneficiaryCommandSequenceDiagram.png[width=800]
 
 ==== Design Considerations
 
+===== Aspect: How often should the `UserClosestInput` refresh itself
 [width="100%", cols="1, 1, 1 "options="header",]
 |=======================================================================
 | Aspect | Alternatives | Pros (+)/ Cons(-)
@@ -268,6 +317,12 @@ use without a large amount of data. Hence, this method gives a good performance 
   {empty} +
   - : Take more resources to implement.
 
+* **Alternative 1 (current choice):** Everytime the [space] key is used.
+** Pros: Easy to implement.
+** Cons: Unable to dynamicay support the user.
+* **Alternative 2:** Every time a new character is type.
+** Pros: Very dynamic in the UI and supporting the user.
+** Cons: Potential to cause lagging, harder to implement.
 .2+| Display and use of attached project list
 | The beneficiary card shows the list
 | + : The synchronization can be observed throughout the execution of commands. +

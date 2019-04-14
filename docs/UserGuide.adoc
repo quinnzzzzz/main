@@ -18,12 +18,12 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-VolunCheer is a desktop application for project managers who wish to keep track of their ongoing / upcoming projects as
+VolunCHeer is a desktop application for project managers who wish to keep track of their ongoing / upcoming projects as
 well as their beneficiary and volunteer pool.
 
 You can also use VolunCHeer to filter out suitable volunteers based on their data stored in the system. VolunCHeer is
 The VolunCHeer Application is for project managers or directors who require a system to *keep track of their
-ongoing projects and the volunteer pool*. VolunCheer is optimised for users who prefer a *Command Line Interface (CLI)* while
+ongoing projects and the volunteer pool*. VolunCHeer is optimised for users who prefer a *Command Line Interface (CLI)* while
 still being able to view important data on the *Graphical User Interface(GUI)*. VolunCHeer will save you the need for multiple documents
 and folders just to store volunteer/beneficiary information. It also removes the need to track large amount of volunteer data to fit selection criterias using traditional methods such
 as Excel.
@@ -49,12 +49,16 @@ This shows the list of projects currently in VolunCHeer.
 4. Beneficiary List:
 This shows the list of beneficiaries currently in VolunCHeer.
 
+5. Volunteer List:
+This shows the list of volunteers currently in VolunCHeer.
+
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
 .  Download the latest `VolunCHeer.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for our VolunCHeer Application.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Double-click the file to start the app. The GUI should appear in a few seconds, prompting you for password to grant access
+.  Enter the password field using the default password: `password`
 +
 image::Ui.png[width="790"]
 +
@@ -75,9 +79,11 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which
+can be used as `add n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}`
+(i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
@@ -85,7 +91,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
-=== Adding a project: `addProject`
+=== Project
+
+==== Adding a project: `addProject`
 Adds a new project +
 Format: `addProject n/PROJECT_NAME d/DATE`
 
@@ -98,29 +106,67 @@ Examples:
 
 * `addProject n/Charity Run d/081219`
 
-=== Adding a volunteer: `addVolunteer`
+==== Assigning a beneficiary to project: 'assign'
 
-Adds a volunteer to the volunteer pool +
-Format: `addVolunteer n/NAME y/AGE g/gender r/race rg/religion a/ADDRESS e/EMAIL p/PHONE_NUMBER
-ec/EMERGENCY_CONTACT dp/DIETARY_PREFERENCE m/MEDICAL CONDITION [t/TAG]...`
+Assigns a beneficiary identified by the index number used in the displayed beneficiary list to a project matched
+by project title entered.
+Format: `assign PROJECT_TITLE, i/INDEX`
 
 ****
-* "Add Successful!" message is prompted upon successfully adding a volunteer
-* Otherwise, if the volunteer already exists, show edit option to update portfolio
-* Dietary Preference, Medical Condition is set to NIL by default
+* Assigns the beneficiary with index = "INDEX" to the project with title "PROJECT_TITLE".
+* Project attached will be shown on the specific beneficiary
+* There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
+* The index *must be a positive integer* `1, 2, 3, ...`
 ****
 
-[TIP]
-A volunteer can have any number of tags (including 0)
+==== Mark project as complete: 'complete'
+
+Marks project with at index "INDEX" as complete.
+
+Format: `complete i/INDEX`
+
+****
+* Once marked as complete, project title will be displayed in red colour font
+****
+
+==== Editing a project : `editProject`
+
+Edits an existing project +
+Format: `editProject PROJECT_NAME [n/NAME] [d/DATE]...`
+
+****
+* Edits the project at the specified 'PROJECT_NAME'.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the project will be removed i.e adding of tags is not cumulative.
+* Project's tags can be removed by typing `t/` without specifying any tags after it.
+* `n/` is invalid as 'PROJECT_NAME' cannot be removed unless with deleteProject command.
+****
 
 Examples:
 
-* `addVolunteer n/John Doe y/18 g/male r/eurasian rg/nil a/John street, block 123, #01-01 e/johnd@example.com
-p/98765432 ec/Mary, Mother, 92221111 dp/vegetarian m/asthma`
+* `editProject Charity Run d/20190301` +
+Edits the date of the project to be '20190301'.
 
-* `addVolunteer n/Sarah Soh y/22 g/female r/chinese rg/buddhist a/betsy ave 6, 02-08 e/sarah08@example.com
-p/92345678 ec/Johnny, Husband, 81234568
+==== Deleting a project ： `deleteProject`
 
+Deletes the specified project from the application. +
+Format: `deleteProject INDEX`
+
+****
+* Deletes the project at index "INDEX".
+* The INDEX refers to the index of the project in the project list, use 'listProject' to view all projects if unsure.
+* Error message is shown if the INDEX entered is invalid
+****
+
+==== Listing all projects : `listProject`
+
+Shows a list of all projects. +
+Format: `listProject`
+
+=== Beneficiary
+
+
+==== Adding a beneficiary: `addBeneficiary`
 
 // tag::BeneficiaryManagement[]
 === Adding a beneficiary: `addBeneficiary` / `ab`
@@ -239,34 +285,47 @@ The command can be used to consider future partners or fundraising.
 
 === Listing all projects : `listProject`
 
-Shows a list of all projects. +
-Format: `listProject`
+=== Volunteer
 
+==== Adding a volunteer: `addVolunteer`
 
-=== Listing all volunteers : `list`
+Adds a volunteer to the volunteer pool +
+Format: `addVolunteer n/NAME y/AGE g/GENDER r/RACE [rg/RELIGION] a/ADDRESS e/EMAIL p/PHONE_NUMBER
+ec/EMERGENCY_CONTACT [dp/DIETARY_PREFERENCE] [m/MEDICAL_CONDITION] [t/TAG]...` +
+Alternative Format: `av n/NAME y/AGE g/GENDER r/RACE [rg/RELIGION] a/ADDRESS e/EMAIL p/PHONE_NUMBER
+                    ec/EMERGENCY_CONTACT [dp/DIETARY_PREFERENCE] [m/MEDICAL_CONDITION] [t/TAG]...`
 
-Shows a list of all volunteers in the volunteer pool. +
-Format: `list`
-
-=== Editing a project : `editProject`
-
-Edits an existing project +
-Format: `editProject PROJECT_NAME [n/NAME] [d/DATE]...`
 
 ****
-* Edits the project at the specified 'PROJECT_NAME'.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the project will be removed i.e adding of tags is not cumulative.
-* Project's tags can be removed by typing `t/` without specifying any tags after it.
-* `n/` is invalid as 'PROJECT_NAME' cannot be removed unless with deleteProject command.
+* "Add Successful!" message is prompted upon successfully adding a volunteer
+* An invalid message will be prompted if a Volunteer with the same exact name is present in the existing database
+* Parameters for Religion, Dietary Preference, Medical Condition are optional and set to 'nil' by default
 ****
+
+[TIP]
+A volunteer can have any number of tags (including 0)
 
 Examples:
 
-* `editProject Charity Run d/20190301` +
-Edits the date of the project to be '20190301'.
+* `addVolunteer n/John Doe y/18 g/male r/eurasian rg/christian a/John street, block 123, #01-01 e/johnd@example.com
+p/98765432 ec/Mary, Mother, 92221111 dp/vegetarian m/asthma`
 
-=== Editing a volunteer : `editVolunteer`
+* `av n/Sarah Soh y/22 g/female r/chinese rg/buddhist a/betsy ave 6, 02-08 e/sarah08@example.com
+p/92345678 ec/Johnny, Husband, 81234568`
+
+
+
+
+
+
+==== Listing all volunteers : `listVolunteer`
+
+Shows a list of all volunteers in the volunteer pool. +
+Format: `listVolunteer`+
+Alternative Format: `lv`
+
+
+==== Editing a volunteer : `editVolunteer`
 
 Edits an existing volunteer in the volunteer list. +
 Format: `edit INDEX [n/NAME] [y/AGE] [g/GENDER] [r/RACE] [rg/RELIGION][p/PHONE] [a/ADDRESS] [e/EMAIL]
@@ -289,10 +348,12 @@ Edits the phone number and email address of the 1st volunteer to be `91234567` a
 * `editVolunteer  2 n/Betsy Crower t/` +
 Edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing tags.
 
-=== Locating volunteers by name: `find`
+==== Locating volunteers by name: `findVolunteer`
 
 Finds volunteers whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
+
+Alternative Format: `fv KEYWORD [MORE_KEYWORDS]`
 
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
@@ -305,26 +366,18 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `find John` +
+* `findVolunteer John` +
 Returns `john` and `John Doe`
-* `find Betsy Tim John` +
+* `findVolunteer Betsy Tim John` +
 Returns any volunteer having names `Betsy`, `Tim`, or `John`
 
-=== Deleting a project ： `deleteProject`
 
-Deletes the specified project from the application. +
-Format: `deleteProject INDEX`
 
-****
-* Deletes the project at index "INDEX".
-* The INDEX refers to the index of the project in the project list, use 'listProject' to view all projects if unsure.
-* Error message is shown if the INDEX entered is invalid
-****
-
-=== Deleting a volunteer : `deleteVolunteer`
+==== Deleting a volunteer : `deleteVolunteer`
 
 Deletes the specified volunteer from the volunteer list. +
-Format: `delete INDEX`
+Format: `deleteVolunteer INDEX` +
+Alternative Format: `dv INDEX`
 
 ****
 * Deletes the volunteer at the specified `INDEX`.
@@ -336,53 +389,15 @@ Format: `delete INDEX`
 Examples:
 
 * `list` +
-`delete 2` +
+`deleteVolunteer 2` +
 Deletes the 2nd volunteer in the volunteer list.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st volunteer in the results of the `find` command.
+* `findVolunteer Betsy` +
+`deleteVolunteer 1` +
+Deletes the 1st volunteer in the searched volunteer list.
 
-=== Selecting a volunteer : `select`
 
-Selects the volunteer identified by the index number used in the displayed volunteer list. +
-Format: `select INDEX`
 
-****
-* Selects the volunteer and loads the Google search page the volunteer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed volunteer list.
-* The index *must be a positive integer* `1, 2, 3, ...`
-****
 
-Examples:
-
-* `list` +
-`select 2` +
-Selects the 2nd volunteer in the volunteer list.
-* `find Betsy` +
-`select 1` +
-Selects the 1st volunteer in the results of the `find` command.
-
-=== Assigning a beneficiary to project: 'assign'
-
-Assigns a beneficiary identified by the index number used in the displayed beneficiary list to a project matched
-by project title entered.
-Format: `assign PROJECT_TITLE, i/INDEX`
-
-****
-* Assigns the beneficiary with index = "INDEX" to the project with title "PROJECT_TITLE".
-* Project attached will be shown on the specific beneficiary
-* There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
-* The index *must be a positive integer* `1, 2, 3, ...`
-****
-=== Mark project as complete: 'complete'
-
-Marks project with at index "INDEX" as complete.
-
-Format: `complete i/INDEX`
-
-****
-* Once marked as complete, project title will be displayed in red colour font
-****
 
 === Assigning mapping index to each volunteer : `map`
 
@@ -540,6 +555,12 @@ Quick Auto-completion of command to enhance typing speed
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous VolunCHeer application folder.
 
+*Q*: Can I create multiple accounts for different Users? +
+*A*: Unfortunately, VolunCHeer does not have this feature right now. We are working on it and plan to implement the feature in future releases.
+
+*Q*: How do I change my password? +
+*A*: Do https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/ContactUs.adoc[contact us] if you would require a custom password.
+
 == Command Summary
 
 * *AddProject* `addProject n/PROJECT_TITLE d/DATE b/BENEFICIARY [t/TAG]...` +
@@ -564,13 +585,14 @@ e.g. `findBeneficiary Old`
 * *List* : `list`
 * *EditProject* `editProject PROJECT_NAME [n/NAME] [d/DATE] [b/BENEFICIARY] [t/TAG]...` +
 e.g. `editProject Charity Run d/010319`
-* *EditVolunteer* `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+* *EditVolunteer* `edit INDEX [n/NAME] [y/AGE] [g/GENDER] [r/RACE] [rg/RELIGION] [a/ADDRESS] [p/PHONE_NUMBER] [e/EMAIL]
+[ec/EMERGENCY_CONTACT] [dp/DIETARY_PREFERENCE] [mc/MEDICAL_CONDITION] [t/TAG]...` +
 e.g. `editVolunteer 1 p/91234567 e/johndoe@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
+* *FindVolunteer* : `findVolunteer KEYWORD [MORE_KEYWORDS]` +
+e.g. `findVolunteer James Jake`
 * *DeleteProject* : `delete PROJECT_TITLE`
 e.g. `delete Charity Run`
-* *DeleteVolunteer* : `delete INDEX` +
+* *DeleteVolunteer* : `deleteVolunteer INDEX` +
 e.g. `delete 3`
 * *Select* : `select INDEX` +
 e.g.`select 2`
