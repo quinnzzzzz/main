@@ -13,11 +13,12 @@ VolunCheer is a desktop application for project managers who wish to keep track 
 
 == Summary of contributions
 
-* *Major enhancement*: implemented *addProject command whereby it adds a new Project to the VolunCHeer application*
-** What it does: allows the user to add in a new project with attributes "Project Title" and "Project Date" to keep track of current projects on hand.
-** Justification: This forms the basis of the VolunCHeer application whereby the aim is to manage and organise projects better and save users form the hustle of paper works.
-** Highlights: This enhancement was built on the existing add command with some variation in the attributes presented. The implementation was relatively easy but relevant features pertaining to the specific projects requires more in-depth knowledge and analysis of design alternatives. The User Interface is adjusted accordingly as well to show
-    execution of commands and the relevant result.
+* *Major enhancement*: implemented the Project class whereby it creates a new `Project` object to the VolunCHeer application*
+** What it does: the `Project` class is implemented with relevant functions that ties the Beneficiary pool and Volunteer pool together
+** Features involved: the relevant features include basic functions such as `addProject`, `deleteProject` and `listProject`. The added features are the `complete` feature
+  and the `assign` feature which will be elaborated in further details.
+** Justification: The Project class forms the basis of the VolunCHeer application whereby the aim is to manage and organise projects better and save users form the hustle of paper works.
+** Highlights: The methods implemented involves interactions between the 3 objects namely `Project` `Beneficiary` and `Volunteer`.
 ** Relevant features/enhancements:
     1. Assign Beneficiary *allows the user to assign a existing beneficiary to the project selected*
        - Justification: A beneficiary is usually attached to a project and beneficiary details are very important and usually tracked in a separate document / file. Thus we decide to keep Beneficiary information as a separate list and assigned to the project when required such that it can be managed separately.
