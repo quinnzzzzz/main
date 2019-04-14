@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.logic.commands.project;
 
 import static org.junit.Assert.assertFalse;
@@ -27,6 +28,7 @@ import seedu.address.model.project.Project;
 public class AssignBeneficiaryCommandTest {
 
     private static final CommandHistory commandHistory = new CommandHistory();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
