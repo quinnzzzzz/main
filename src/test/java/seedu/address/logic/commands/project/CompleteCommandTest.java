@@ -23,10 +23,9 @@ import seedu.address.model.project.ProjectTitle;
 
 public class CompleteCommandTest {
 
-    private CommandHistory commandHistory = new CommandHistory();
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+    private CommandHistory commandHistory = new CommandHistory();
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
