@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.ParserUtilVolunteer.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.volunteer.ParserUtilVolunteer.MESSAGE_INVALID_INDEX;
 
 import org.junit.Rule;
 import org.junit.Test;

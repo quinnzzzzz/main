@@ -15,13 +15,14 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.volunteer.EditVolunteerCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.NameContainsKeywordsPredicate;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.testutil.EditVolunteerDescriptorBuilder;
+import seedu.address.testutil.volunteer.EditVolunteerDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
