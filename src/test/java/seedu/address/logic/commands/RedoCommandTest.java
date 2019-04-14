@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.deleteFirstVolunteer;
-import static seedu.address.testutil.TypicalVolunteers.getTypicalAddressBook;
+import static seedu.address.testutil.volunteer.TypicalVolunteers.getTypicalAddressBook;
 
 import org.junit.Before;
 import org.junit.Test;

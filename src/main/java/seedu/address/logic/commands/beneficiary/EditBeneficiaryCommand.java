@@ -2,10 +2,10 @@
 package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_PHONE;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_EMAIL;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_NAME;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BENEFICIARIES;
 
 import java.util.HashSet;

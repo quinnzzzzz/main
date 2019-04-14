@@ -2,11 +2,11 @@
 package seedu.address.logic.parser.beneficiary;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_TAG;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_EMAIL;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_NAME;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_PHONE;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
@@ -14,7 +14,6 @@ import seedu.address.logic.commands.beneficiary.AddBeneficiaryCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtilBeneficiary;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.beneficiary.Address;

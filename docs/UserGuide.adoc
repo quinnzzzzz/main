@@ -14,124 +14,160 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/cs2113-ay1819s2-t08-1/main
 
+
 By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-VolunCheer is a desktop application for project managers who wish to keep track of their ongoing / upcoming projects as
-well as their beneficiary and volunteer pool.
+Hello and welcome to VolunCHeer! VolunCheer is a desktop application for project managers who want *an easy way to keep
+track of their beneficiaries, volunteers, and any ongoing / upcoming projects.*
 
-You can also use VolunCHeer to filter out suitable volunteers based on their data stored in the system. VolunCHeer is
-The VolunCHeer Application is for project managers or directors who require a system to *keep track of their
-ongoing projects and the volunteer pool*. VolunCheer is optimised for users who prefer a *Command Line Interface (CLI)* while
-still being able to view important data on the *Graphical User Interface(GUI)*. VolunCHeer will save you the need for multiple documents
-and folders just to store volunteer/beneficiary information. It also removes the need to track large amount of volunteer data to fit selection criterias using traditional methods such
-as Excel.
+VolunCheer is optimised for users who prefer a *Command Line Interface (CLI)* while still being able to view important
+data on the *Graphical User Interface(GUI)*. If that suits your tastes come give it a try!
 
-Wish to know more? Click on link:{https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/UserGuide.adoc#quick-start}/[Section 2. "Quick Start"] to get started.
+We guarantee that VolunCHeer will save you the need for multiple documents and folders just to store
+all your information. And with our ability to *filter out suitable volunteers based on their data*,
+you can effectively say goodbye to more cumbersome sorting methods like Excel!
+
+Eager to get started? Click on link:{https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/UserGuide.adoc#quick-start}/[Section 2. "Quick Start"] to jump ahead,
+though we highly recommend reading the overview below!
 
 === Overview
+To facilitate your reading, we have a few icons to take note of:
 
-Shown below is a quick overview of our VolunCHeer application.
-+
-image::Ui.png[width="790"]
-+
+TIP: Useful tips are generally located here!
 
-1. Command Box:
-This is where you type your commands.
+IMPORTANT: Information here is quite important and should be carefully noted.
 
-2. Command Result:
-This shows the result of command execution, useful tips and error messages are also shown here.
+NOTE: Important information can be found here.
 
-3. Project List:
-This shows the list of projects currently in VolunCHeer.
 
-4. Beneficiary List:
-This shows the list of beneficiaries currently in VolunCHeer.
+Now let us go though a quick overview of our VolunCHeer application.
+
+.VolunCHeer user interface
+image::UiDraw.png[width="790"]
+
+. Menu Bar:
+This is where you can exit the app (under File) or find the Help page
+
+. Command Box:
+This is where you will be typing in your commands.
+
+. Command Result:
+This is where the results of all your commands are displayed.
+[TIP]
+Useful tips and error messages are also shown here. If it seems like somethings is not working,
+try looking here!
+
+. Project List:
+This column shows the list of projects you have currently stored in VolunCHeer.
+
+. Beneficiary List:
+This column shows the list of beneficiaries currently in VolunCHeer.
+
+. Volunteer List:
+Similar to the other lists, this one shows the list of beneficiaries you currently have.
 
 == Quick Start
+To start using VolunCHeer, all you have to do is follow these simple steps below:
 
-.  Ensure you have Java version `9` or later installed in your Computer.
+.  Ensure you have Java version `9` or later installed in your Computer. If you are not sure what version
+you have, check out link:{https://www.java.com/en/download/help/version_manual.xml}/[this site] for more info.
 .  Download the latest `VolunCHeer.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for our VolunCHeer Application.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Copy the file to whichever folder you would like to store VolunCHeer in.
+.  Double-click the file to start the app. The GUI should appear as below in a few seconds.
 +
-image::Ui.png[width="790"]
+image::UiClean.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
+* *`help`* : get a list of all the commands we have (highly recommended).
 * **`addProject`** n/Project Sunshine d/20190320: adds a project named "Project Sunshine" in the project list.
 * **`deleteProject`**`2` : deletes the 2nd project portfolio in the current list of projects.
 * *`exit`* : exits the app
 
-.  Refer to <<Features>> for details of each command.
+.  For a more detailed explanation of each command please refer to <<Features>>  .
 
 [[Features]]
 == Features
-
+Before we go on to explain our features, this section will give a brief introduction
+on how to interpret our explanations.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which you supply, like `add n/John Doe`. Parameters
+are generally necessary, unless mentioned as below.
+* Parameters in square brackets are *optional* e.g in `addVolunteer n/NAME [t/TAG]`, we can input `addVolunteer n/John Doe t/friend` or `addVolunteer n/John Doe`.
+* Items with `…`​ after them can be used multiple times, including zero. e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), or  `t/friend`, `t/friend t/family` etc.
+* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also perfectly acceptable.
 ====
 
 === Viewing help : `help`
+If you are stuck and cannot figure out what to do, do not fear! Instead of screaming for help, simply type it into the command bar and we will give you
+everything you need to use this app.
 
 Format: `help`
 
-=== Adding a project: `addProject` / `ap`
-Adds a new project +
+// tag::ProjectManagement[]
+=== Project Management
+
+==== Adding a project: `addProject` / `ap`
+One of the first things to do when you use the app is to start adding projects to track, and this is the command to use.
+
 Format: `addProject n/PROJECT_NAME d/DATE`
 
 ****
-* Please enter DATE in DD/MM/YYYY format, date should be after today.
-* Project Title should not have dupliates in the project list.
+* Please enter DATE in DD/MM/YYYY format, making sure that the date should be after today.
+* Project Name does not accept duplicates in the project list, so make you name everything differently!
 * Projects are automatically sorted in ascending date order for easier tracking or Project tasks.
 ****
+
+Now let us look at what happens when the command `addProject p/Old Folk Home Visit d/25/05/2019` is entered on screen.
 
 .When `addProject p/Old Folk Home Visit d/25/05/2019` is executed.
 image::addProject.png[]
 
-Examples:
-* `addProject n/Charity Run d/06/12/2020.
 
-=== Deleting a project ： `deleteProject` / `dp`
-
-Deletes the specified project from the application. +
+==== Deleting a project ： `deleteProject` / `dp`
+When a project is completed or cancelled, VolunCHeer allows you to easily delete it by stating
+ the project order in the list. +
 Format: `deleteProject INDEX`
 
 ****
-* Deletes the project at index "INDEX".
-* The INDEX refers to the index of the project in the project list, use 'listProject' to view all projects if unsure.
+* This INDEX refers to the index of the project in the project list. If you are unsure of the order, *PLEASE*
+  use 'listProject' to view all projects and get the correct index. If you delete the wrong projects, please refer to  <<undo>>.
 * Error message is shown if the INDEX entered is invalid
 ****
+
+This is how the project list changes upon execution.
 
 .When `deleteProject 3` command is executed.
 
 image::deleteProject.png[]
 
-=== Listing all projects : `listProject` / `lp`
+==== Listing all projects : `listProject` / `lp`
 
-Shows a list of all projects. +
+When you want to take a look at all your projects, this command helps you do so. +
+
 Format: `listProject`
 
-=== Assigning a Beneficiary to Project: `assignB`
+==== Assigning a Beneficiary to Project: `assignB`
+Projects are generally associated with certain beneficiaries. VolunCHeer allows you to attach them easily with this command.
+It assigns the Beneficiary at the provided INDEX to the Project with ProjectTitle indicated. +
 
-Assigns the Beneficiary at INDEX to the Project with ProjectTitle indicated. +
-Format: `assignBeneficiary p/PROJECT_TITLE i/INDEX
+Format: `assignBeneficiary p/PROJECT_TITLE i/INDEX`
 
 ****
-* Assign the Beneficiary to the Project specified with PROJECT_TITLE
 * The assigned Beneficiary can then be seen under the Project card as shown below.
 * There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
-* The index *must be a positive integer* `1, 2, 3, ...`
 ****
+
+[IMPORTANT]
+The index *must be a positive integer* `1, 2, 3, ...`
+
+After assigning a beneficiary, the project will have its adata updated as seen below.
 
 .When `assignB p/Old Folks Home Visit i/1` command executed
 image::assignB.png[]
@@ -140,26 +176,27 @@ image::assignB.png[]
 Use listBeneficiary to view a full list of Beneficiary to assign.
 Use summaryBeneficiary command to view the Projects attached to each Beneficiary.
 
-=== Assigning one or more Volunteers to Project: `assignV`
+==== Assigning one or more Volunteers to Project: `assignV`
+We also provide an easy method to assign a specific number of volunteers to the indicated Project
 
-Assigns a specific number of volunteers to the Project with ProjectTitle indicated. +
-Format: `assignVolunteer p/PROJECT_TITLE rv/REQUIRED_NUMBER_OF_VOLUNTEERS
 
-****
-* Assigns the specific number of Volunteers to the Project specified with PROJECT_TITLE
-* The number of volunteers assigned to the Project can be seen under the Project card as shown below.
-****
+Format: `assignVolunteer p/PROJECT_TITLE rv/REQUIRED_NUMBER_OF_VOLUNTEERS`
+
+
+[TIP]
+The number of volunteers assigned to the Project can be seen under the Project card as shown below.
+
 
 .When `assignV p/Old Folks Home Visit rv/2` is executed.
 
 image::assignV.png[]
 
 [TIP]
-Use Map and Sort commands to filter out the desired list of volunteers.
+Use the commands listed in <<map>> to filter out the desired list of volunteers.
 
-=== Mark project as complete: 'complete'
-
-Marks project with at index "INDEX" as complete.
+==== Mark project as complete: 'complete'
+Once a project is done, you can mark it as complete to distinguish it from your other projects.
+Simply provide an INDEX to indicate which project you would like to complete.
 
 Format: `complete i/INDEX`
 
@@ -167,41 +204,20 @@ Format: `complete i/INDEX`
 
 image::complete.png[]
 
-****
-* Once marked as complete, project title will be displayed in red colour font
-****
-
-=== Adding a volunteer: `addVolunteer`
-
-Adds a volunteer to the volunteer pool +
-Format: `addVolunteer n/NAME y/AGE g/gender r/race rg/religion a/ADDRESS e/EMAIL p/PHONE_NUMBER
-ec/EMERGENCY_CONTACT dp/DIETARY_PREFERENCE m/MEDICAL CONDITION [t/TAG]...`
-
-****
-* "Add Successful!" message is prompted upon successfully adding a volunteer
-* Otherwise, if the volunteer already exists, show edit option to update portfolio
-* Dietary Preference, Medical Condition is set to NIL by default
-****
-
-[TIP]
-A volunteer can have any number of tags (including 0)
-
-Examples:
-
-* `addVolunteer n/John Doe y/18 g/male r/eurasian rg/nil a/John street, block 123, #01-01 e/johnd@example.com
-p/98765432 ec/Mary, Mother, 92221111 dp/vegetarian m/asthma`
-
-* `addVolunteer n/Sarah Soh y/22 g/female r/chinese rg/buddhist a/betsy ave 6, 02-08 e/sarah08@example.com
-p/92345678 ec/Johnny, Husband, 81234568
-
+[NOTE]
+Once marked as complete, project title will be displayed in red colour font
+// end::ProjectManagement[
 
 // tag::BeneficiaryManagement[]
-=== Adding a beneficiary: `addBeneficiary` / `ab`
+=== Beneficiary Management
 
-Adds a beneficiary to the list of Beneficiaries +
-Format: `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER `
 
-Examples:
+==== Adding a beneficiary: `addBeneficiary` / `ab`
+Similar to the previous adding command, this adds a beneficiary to the list of Beneficiaries +
+
+Format: `addBeneficiary n/NAME a/ADDRESS e/EMAIL p/PHONE_NUMBER`
+
+Example:
 
 * `addBeneficiary n/Orphanage p/98765432 e/Orphanage@example.com a/311, Clementi Ave 2, #02-25`
 
@@ -212,15 +228,16 @@ In the figure above, after the add command, we can observe a new beneficiary car
 
 ****
 * The beneficiary will be used to assign to a project, this means that the project will benefit this beneficiary,
-i.e. Orphanage Home, Nursing home, etc. +
+i.e. Orphanage Home, Nursing home, etc.
 * When add a new beneficiary, the project lists assigned to it will be empty. You can assign projects to it by assign
 command stated.
 ****
 
-=== Editing a beneficiary: `editBeneficiary` / `eb`
 
-Edits a beneficiary to the list of Beneficiaries +
-Format: `editBeneficiary  INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] `
+==== Editing a beneficiary: `editBeneficiary` / `eb`
+In case of incorrect information, we also allow you to edit the beneficiary at the given INDEX
+
+Format: `editBeneficiary  INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 Examples:
 
@@ -229,20 +246,20 @@ Examples:
 .Edit Beneficiary Command Result (pink: input, blue: output)
 image::EditBeneficiary.png[]
 
-In the figure, we can see that the WHO information including phone number and email haa changed, compared to the last figure.
-
-****
-* When a beneficiary is edited, the data of the beneficiary in its attached projects is in sync, meaning that that data
-is automatically updated in the mentioned projects.
-****
-
-=== Deleting a beneficiary: `deleteBeneficiary` / `db`
-
-Deletes a beneficiary in the beneficiary pool. +
-Format: `deleteBeneficiary i/INDEX -D`
+In the figure, we can see that the WHO information including phone number and email has changed, compared to the last figure.
 
 [NOTE]
-`-D` is optional.
+When a beneficiary is edited, the data of the beneficiary in its attached projects is in sync, meaning that that data
+is automatically updated in the mentioned projects.
+
+
+==== Deleting a beneficiary: `deleteBeneficiary` / `db`
+Of course, once a beneficiary is no longer associated with you, it can be removed by providing the INDEX.
+
+Format: `deleteBeneficiary i/INDEX -D`
+
+[IMPORTANT]
+`-D` is optional and should not be misused (see below)
 
 ****
 * There are two modes of deletion: *soft delete mode* and *hard delete mode*. +
@@ -269,17 +286,18 @@ image::HardDelete.png[]
 
 In Figure 4, the beneficiary and its attached projects have been deleted successfully.
 
-=== Listing all beneficiaries: `listBeneficiary` / `lb`
+==== Listing all beneficiaries: `listBeneficiary` / `lb`
 
-Shows a list of all Beneficiaries in the beneficiary pool. +
+As before, you can show a list of all Beneficiaries in the beneficiary pool.
+
 Format: `listBeneficiary`
 
 [TIP]
-The command can be used to get back to full list after several commands changing the list.
+The command can be used to get back to full list after several commands which change the list.
 
-=== Locating beneficiaries by name: `findBeneficiary` / `fb`
+==== Locating beneficiaries by name: `findBeneficiary` / `fb`
+TO facilitate searching for beneficiary, you can locate a specific one easily with via given keyword/keywords.
 
-Finds beneficiaries whose names contain any of the given keywords. +
 Format: `findBeneficiary KEYWORD [MORE_KEYWORDS]`
 
 ****
@@ -288,7 +306,7 @@ Format: `findBeneficiary KEYWORD [MORE_KEYWORDS]`
 * Only the name is searched.
 * Only full words will be matched e.g. `Orphan` will not match `Orphanage`
 * beneficiaries matching at least one keyword will be returned (i.e. `OR` search). e.g. `Orphanage Nursing` will return
- `Orphanage Rainbow`, `Nursing Home`
+ `Orphanage Rainbow` and `Nursing Home`
 ****
 
 Examples:
@@ -296,10 +314,10 @@ Examples:
 * `find Nursing` +
 Returns `Nursing Home` and `Nursing Center`
 
-=== Summarising all beneficiaries: `summariseBeneficiary` / `sb`
-
-Opens a pop up summary table of beneficiaries. You can use the arrow in header cells *number of Projects*
-to sort beneficiaries by the number of attached projects. A table sample is shown below. +
+==== Summarising all beneficiaries: `summariseBeneficiary` / `sb`
+Sometimes we have a beneficiary assigned to many projects and we just want to see a list of everything it is attached to.
+This command opens a pop up summary table of the beneficiaries for easy view. You can use even the arrow in header cells *number of Projects*
+to sort beneficiaries by the number of attached projects.
 
 Format: `summariseBeneficiary`
 
@@ -310,17 +328,69 @@ image::SummaryBeneficiary.png[]
 The command can be used to consider future partners or fundraising.
 // end::BeneficiaryManagement[]
 
-=== Listing all volunteers : `list`
+// tag::VolunteerManagement[]
+=== Volunteer
 
-Shows a list of all volunteers in the volunteer pool. +
-Format: `list`
+==== Adding a volunteer: `addVolunteer` / `av`
 
-=== Editing a volunteer : `editVolunteer`
+As like before, this adds a volunteer to the volunteer pool
 
-Edits an existing volunteer in the volunteer list. +
-Format: `edit INDEX [n/NAME] [y/AGE] [g/GENDER] [r/RACE] [rg/RELIGION][p/PHONE] [a/ADDRESS] [e/EMAIL]
-[ec/EMERGENCYCONTACT] [dp/DIETARYPREFERENCE] [mc/MEDICALCONDITION] [[t/TAG]...`
+Format: `addVolunteer n/NAME y/AGE g/GENDER r/RACE [rg/RELIGION] a/ADDRESS e/EMAIL p/PHONE_NUMBER
+ec/EMERGENCY_CONTACT [dp/DIETARY_PREFERENCE] [m/MEDICAL_CONDITION] [t/TAG]...`
 
+Alternative Format: `av n/NAME y/AGE g/GENDER r/RACE [rg/RELIGION] a/ADDRESS e/EMAIL p/PHONE_NUMBER
+                    ec/EMERGENCY_CONTACT [dp/DIETARY_PREFERENCE] [m/MEDICAL_CONDITION] [t/TAG]...`
+
+****
+* "Add Successful!" message is prompted upon successfully adding a volunteer
+* An invalid message will be prompted if a Volunteer with the same exact name is present in the existing database
+* Parameters for Religion, Dietary Preference, Medical Condition are optional and set to 'nil' by default
+****
+
+[TIP]
+A volunteer can have any number of tags (including 0)
+
+Examples:
+
+* `addVolunteer n/John Doe y/18 g/male r/eurasian rg/christian a/John street, block 123, #01-01 e/johnd@example.com
+p/98765432 ec/Mary, Mother, 92221111 dp/vegetarian m/asthma`
+
+* `av n/Sarah Soh y/22 g/female r/chinese rg/buddhist a/betsy ave 6, 02-08 e/sarah08@example.com
+p/92345678 ec/Johnny, Husband, 81234568`
+
+==== Deleting a volunteer : `deleteVolunteer` \ `dv`
+After a volunteer has left, it can be deleted by this command by referencing its index in the list.
+
+Format: `deleteVolunteer INDEX` +
+Alternative Format: `dv INDEX`
+
+****
+* Deletes the volunteer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed volunteer list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Error message is shown if the given index is invalid
+****
+
+Examples:
+
+* `listVolunteer` +
+`deleteVolunteer 2` +
+Deletes the 2nd volunteer in the volunteer list.
+* `findVolunteer Betsy` +
+`dv 1` +
+Deletes the 1st volunteer in the searched volunteer list.
+
+[TIP]
+Use the list volunteers commands to check the correct index of the volunteer to be deleted
+
+==== Editing a volunteer : `editVolunteer` \ `ev`
+Similar to beneficiary, we can update volunteer particulars by the given index.
+
+Format: `editVolunteer INDEX [n/NAME] [y/AGE] [g/GENDER] [r/RACE] [rg/RELIGION][p/PHONE] [a/ADDRESS] [e/EMAIL]
+[ec/EMERGENCYCONTACT] [dp/DIETARYPREFERENCE] [mc/MEDICALCONDITION] [t/TAG]...`
+
+Alternative Format: `ev INDEX [n/NAME] [y/AGE] [g/GENDER] [r/RACE] [rg/RELIGION][p/PHONE] [a/ADDRESS] [e/EMAIL]
+                    [ec/EMERGENCYCONTACT] [dp/DIETARYPREFERENCE] [mc/MEDICALCONDITION] [t/TAG]...`
 ****
 * Edits the volunteer at the specified `INDEX`.
 The index refers to the index number shown in the displayed volunteer list.
@@ -335,13 +405,15 @@ Examples:
 
 * `editVolunteer 1 p/91234567 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st volunteer to be `91234567` and `johndoe@example.com` respectively.
-* `editVolunteer  2 n/Betsy Crower t/` +
+* `ev 2 n/Betsy Crower t/` +
 Edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing tags.
 
-=== Locating volunteers by name: `find`
+==== Locating volunteers by name: `findVolunteer` \ `fv`
+Searching for volunteers works similarly to beneficiaries.
 
-Finds volunteers whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
+
+Alternative Format: `fv KEYWORD [MORE_KEYWORDS]`
 
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
@@ -354,61 +426,35 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `find John` +
+* `findVolunteer John` +
 Returns `john` and `John Doe`
-* `find Betsy Tim John` +
+* `fv Betsy Tim John` +
 Returns any volunteer having names `Betsy`, `Tim`, or `John`
 
-=== Deleting a volunteer : `deleteVolunteer`
+==== Listing all volunteers : `listVolunteer` \ `lv`
+Shows a list of all volunteers in the volunteer pool. +
 
-Deletes the specified volunteer from the volunteer list. +
-Format: `delete INDEX`
+Format: `listVolunteer`
 
-****
-* Deletes the volunteer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed volunteer list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Error message is shown if the given index is invalid
-****
+Alternative Format: `lv`
+// end::VolunteerManagement[]
 
-Examples:
+[[map]]
+// tag::FilteredExport[]
+=== Filtering & Exporting
 
-* `list` +
-`delete 2` +
-Deletes the 2nd volunteer in the volunteer list.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st volunteer in the results of the `find` command.
+==== Assigning mapping index to each volunteer : `map`
+We know that some volunteers suit a certain project better than others. To help with finding these volunteers,
+the map command assigns the volunteers with points 3, 2 or 1 according to the selection criteria that you set.
 
-=== Selecting a volunteer : `select`
 
-Selects the volunteer identified by the index number used in the displayed volunteer list. +
-Format: `select INDEX`
-
-****
-* Selects the volunteer and loads the Google search page the volunteer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed volunteer list.
-* The index *must be a positive integer* `1, 2, 3, ...`
-****
-
-Examples:
-
-* `list` +
-`select 2` +
-Selects the 2nd volunteer in the volunteer list.
-* `find Betsy` +
-`select 1` +
-Selects the 1st volunteer in the results of the `find` command.
-
-=== Assigning mapping index to each volunteer : `map`
-
-Assigns the volunteers with points 3, 2, 1 according to the selection criteria set by the user.
 Format: `map t/(POINTS)(CRITERIA) t/(POINTS)(CRITERIA) t/(POINTS)(CRITERIA)`
 
 ****
+* The t/ refers to any of the following tags.
 * There are three types of tags, the age of volunteer (y/), race (r/) and medical condition (m/).
-* There can be at most 3 tags and at least 1 tag as the selection criteria.
-* Each volunteer is tagged with the final PRIORITY_SCORE based on the points used for sorting later on.
+* You can enter at most 3 tags and at least 1 tag as the selection criteria.
+* Each volunteer is internally assigned points which will be used used for sorting later on.
 * The age criteria has comparators >,<,= which relate to the age given afterwards.
 * See examples below for a clearer picture.
 ****
@@ -420,22 +466,40 @@ Gives volunteers above the AGE of 18 3 points, RACE chinese 2 points and MEDICAL
 * `map m/3NIL`
 Only gives volunteers with no MEDICAL_CONDITION 3 points.
 
-=== Sort volunteers according to PRIORITY_SCORE : `sort`
+.map command execution
+image::MapCommand.png[]
 
-Sorts the volunteers from highest PRIORITY_SCORE to lowest PRIORITY_SCORE.
+Upon executing a successful map command, the message on figure 12 will appear.
+
+==== Sorting volunteers according to points : `sort`
+After mapping, we can then sort the volunteers into order, with the most suitable volunteers being on top.
+
 Format: `sort`
 
 ****
-* The map function should be called before sort to generate the PRIORITY_SCORE
-* Volunteers with PRIORITY_SCORE of 0 will not be sorted in any particular order
-* Selection of the volunteers based on the selection criteria can be done after they are sorted
+* The map function should be called before sort to generate the points
+* Volunteers with equal points will not be sorted in any particular order
+* Selection of the volunteers, such as with the assignV command, can be done after sorting.
 ****
 
-=== Select multiple volunteers from sorted list : `extract` (Coming in V1.4)
-Format: `extract [a][b]`
+.Before sorting
+image::SortBefore.jpg[]
+.After sorting
+image::SortAfter.jpg[]
+
+As can be seen in figure 13 Alice was previously at index 3. After sorting, she has shifted up to index 2 in figure 14.
+
+==== Extracting multiple volunteers from sorted list : `extract`
+Not everyone will have VolunCHeer, which is frankly their loss. Nonetheless, this command allows you
+share a list of certain volunteer particulars by extracting it into a Microsoft Excel file.
+
+Format: `extract NUMBER_OF_VOLUNTEERS t/PARTICULAR [t/OTHER_PARTICULARS]...`
 
 ****
-* Call extract after sort function to extract [b]-[a] number of volunteers.
+* This command requires at least one type of particular from the volunteers, up to all type of particulars.
+* If the NUMBER_OF_VOLUNTEERS exceeds the total number of volunteers in the list, the file will just extract all volunteers in
+VolunCHeer.
+* This command can be called before map and sort if order is not an issue.
 ****
 
 Examples:
@@ -444,6 +508,12 @@ Examples:
 Extracts the first 20 volunteers in the sorted list.
 *`extract [5][15]`
 Extracts volunteer number 5 to 15 in the list.
+
+.Extracted volunteer details
+image::Export.png[]
+
+The Excel file will look like figure 15.
+// end::FilteredExport[]
 
 === Listing entered commands : `history`
 
@@ -456,6 +526,7 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 ====
 
 // tag::undoredo[]
+[[undo]]
 === Undoing previous command : `undo`
 
 Restores the VolunCHeer application to the state before the previous _undoable_ command was executed. +
@@ -510,27 +581,6 @@ The `redo` command fails as there are no `undo` commands executed previously.
 Clears all entries from the specific list requested by user. +
 Format: `clear`
 
-=== Export data file: `export`
-
-Exports the saved data in a csv file. +
-Format: 'export'
-
-****
-* Supports export of volunteer list
-* Supports export of project data
-* Application shows successful export message once exported
-****
-
-=== Import data file: `import`
-
-Imports csv file saved in local folder. +
-Format: 'import FILE_DIRECTORY'
-
-****
-* The application finds the local file and extrapolate the data
-* Supports import of volunteer data
-* Application shows successful import message once imported
-****
 
 === Exiting the program : `exit`
 

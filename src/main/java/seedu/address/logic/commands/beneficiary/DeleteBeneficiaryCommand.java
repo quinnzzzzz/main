@@ -2,8 +2,8 @@
 package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.HARD_DELETE_MODE;
-import static seedu.address.logic.parser.CliSyntaxBeneficiary.PREFIX_INDEX;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.HARD_DELETE_MODE;
+import static seedu.address.logic.parser.beneficiary.CliSyntaxBeneficiary.PREFIX_INDEX;
 
 import java.util.ArrayList;
 import java.util.HashSet;

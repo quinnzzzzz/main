@@ -38,6 +38,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean showBeneficiarySummary) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showBeneficiarySummary = showBeneficiarySummary;
+        this.exit = exit;
     }
 
     /**

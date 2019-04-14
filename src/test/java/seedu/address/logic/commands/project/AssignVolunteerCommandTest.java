@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.logic.commands.project;
 
 import static junit.framework.TestCase.assertTrue;
@@ -24,9 +25,11 @@ import seedu.address.model.project.Project;
 public class AssignVolunteerCommandTest {
 
     private static final CommandHistory commandHistory = new CommandHistory();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
 
     @Test
     public void execute_validProjectAndRequiredVolunteers_success() {
