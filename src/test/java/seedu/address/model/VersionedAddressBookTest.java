@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,6 +15,9 @@ import seedu.address.testutil.AddressBookBuilder;
 
 public class VersionedAddressBookTest {
 
+//    private final ReadOnlyAddressBook addressBookWithAmy = new AddressBookBuilder().withVolunteer(AMY).build();
+//    private final ReadOnlyAddressBook addressBookWithBob = new AddressBookBuilder().withVolunteer(BOB).build();
+//    private final ReadOnlyAddressBook addressBookWithCarl = new AddressBookBuilder().withVolunteer(CARL).build();
     private final ReadOnlyAddressBook emptyAddressBook = new AddressBookBuilder().build();
 
     @Test
@@ -27,18 +31,18 @@ public class VersionedAddressBookTest {
             Collections.emptyList());
     }
 
-//    @Test
-//    public void commit_multipleAddressBookPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
-//        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
-//                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-//
-//        versionedAddressBook.commit();
-//        assertAddressBookListStatus(versionedAddressBook,
-//                Arrays.asList(emptyAddressBook, addressBookWithAmy, addressBookWithBob),
-//                addressBookWithBob,
-//                Collections.emptyList());
-//   }
-    
+    @Test
+    public void commit_multipleAddressBookPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
+        VersionedAddressBook versionedAddressBook = prepareAddressBookList(
+                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+
+        versionedAddressBook.commit();
+        assertAddressBookListStatus(versionedAddressBook,
+                Arrays.asList(emptyAddressBook, addressBookWithAmy, addressBookWithBob),
+                addressBookWithBob,
+                Collections.emptyList());
+   }
+
     @Test
     public void commit_multipleAddressBookPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
         VersionedAddressBook versionedAddressBook = prepareAddressBookList(
