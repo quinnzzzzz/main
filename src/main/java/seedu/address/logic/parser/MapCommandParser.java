@@ -3,10 +3,10 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ParserUtil.isValidInt;
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_RACE;
-import static seedu.address.logic.parser.ParserUtil.isValidInt;
 
 import javafx.util.Pair;
 import seedu.address.logic.commands.MapCommand;

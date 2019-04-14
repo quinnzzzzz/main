@@ -3,7 +3,6 @@ package seedu.address.model.volunteer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import static seedu.address.logic.commands.volunteer.VolunteerCommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.volunteer.VolunteerCommandTestUtil.VALID_TAG_NEW;
 import static seedu.address.testutil.volunteer.TypicalVolunteers.ALICE;

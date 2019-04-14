@@ -64,8 +64,8 @@ public class SummaryBeneficiaryCommand extends Command {
      * @param data
      * @return
      */
-    public static Scene getScene(Stage stage, TableView<SummarisedBeneficiary> table,
-                                 ObservableList<SummarisedBeneficiary> data) {
+    public static Scene drawSummaryTable(Stage stage, TableView<SummarisedBeneficiary> table,
+                                         ObservableList<SummarisedBeneficiary> data) {
         Scene scene = new Scene(new Group());
         stage.setTitle("VolunCheer");
         stage.setWidth(1200);

@@ -24,6 +24,8 @@ By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 VolunCHeer is an open-sourced  Command Line Interface (CLI) management application designed for Volunteering Project Managers.
 We aim to help our target users alleviate the haystack of managing multiple projects, beneficiaries, and volunteers in an efficient and effective manner.
 
+image::Ui.png[]
+
 === How to Contribute
 
 There are lots of ways to contribute to VolunCHeer: coding, testing or improving our build process and tools. This developer's guide provides information that will help you get started as a VolunCHeer contributor. Even if you are an experienced VolunCHeer developer, you will still find this guide to be useful to refer to. +
@@ -33,6 +35,15 @@ If you are ready to contribute, simply create a Pull Request (PR) on our main re
 If you have found any bugs or have ideas to improve VolunCHeer, create an issue https://github.com/cs2113-ay1819s2-t08-1/main/issues[here] or https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/AboutUs.adoc[contact us] directly.
 
 === How to use this Developer Guide
+
+[NOTE]
+This is a note. A note contains considerations or notices when using VolunCHeer
+
+[WARNING]
+This is a warning. Ensure not to violate these warnings when using VolunCHeer
+
+[TIP]
+This is a tip. A tip gives you suggestion on how to use certain features in VolunCHeer or how you can contribute to VolunCHeer
 
 == Setting up
 
@@ -230,17 +241,24 @@ The following sequence diagram shows how the complete command works:
 image::CompleteSequenceDiagram.png[width="800"]
 
 
-1.	The CompleteCommandParser parses the user input to obtain the target project index and constructs a ne CompleteCommand with this index.
-2.	The logic portion of the complete command will be executed by the CompleteCommand method. To mark a Project object as complete:
-i.  The CompleteCommand() method creates a targetProject based on the provided project index.
-i. In the executeCommandResult() method then creates a editedProject with Complete attribute set to “true”.
-    The editedProject is created with ProjectBuilder as shown below:
+1.	The `CompleteCommandParser` parses the user input to obtain the target project index and constructs a ne `CompleteCommand` with this index.
+2.	The logic portion of the complete command will be executed by the `CompleteCommand` method. To mark a Project object as complete:
+i.  The *CompleteCommand()* method creates a `targetProject` based on the provided project index.
+i. In the *executeCommandResult()* method then creates a `editedProject` with `Complete` attribute set to “true”.
+    The `editedProject` is created with ProjectBuilder as shown below:
 
-    Project editedProject = newProjectBuilder(targetProject).withComplete(true).build();
+[source, java]
+----
+    Project editedProject = new ProjectBuilder(targetProject).withComplete(true).build();
+----
 
+[start=3]
 3.	In the executeCommandResult() method
 
+[source, java]
+----
     model.setProject(targetProject, editedProject)
+----
 
 is called to replace `Project`’s complete attribute from “false” to “true” in the VolunCHeer in-memory.
 
@@ -272,13 +290,13 @@ implementation of AssignBeneficiary command only and provide the difference betw
 
 image::assignSequence.png[]
 
-1.	The AssignBeneficiaryCommand(ProjectTitle, Index) takes in the targetProject’s projectTitle attribute and targetBeneficiary’s index.
-2.	The executeCommandResult() method
-i.	Sets up projectToAssign by calling a predicate to compare with the ProjectTitle in FilteredProjectList:
+1.	The *AssignBeneficiaryCommand(ProjectTitle, Index)* takes in the targetProject’s projectTitle attribute and targetBeneficiary’s index.
+2.	The *executeCommandResult()* method
+i.	Sets up projectToAssign by calling a predicate to compare with the `ProjectTitle` in `FilteredProjectList`:
 
     model. getFilteredProjectList(). filtered(equalProjectTitle).get(0);
 
-i.	updateBeneficiary(model) methods updates the `Beneficiary` object so that ProjectTitle is tracked within the Beneficiary class.
+i.	*updateBeneficiary(model)* methods updates the `Beneficiary` object so that ProjectTitle is tracked within the Beneficiary class.
 
 i.	editedProject is created using ProjectBuilder to take in the `Beneficiary` assigned. The following method is called
     to store the `Project` in VolunCHeer with specific `Beneficiary` attached to it.
@@ -292,7 +310,7 @@ i.	editedProject is created using ProjectBuilder to take in the `Beneficiary` as
 ==== Implementation
 Beneficiary is implement in order to manage the information a benefited volunteer organization. These organizations interact
 with the user's organization through projects. Hence, `Beneficiary` class has a bidirectional navigability with `Project` class,
-as shown in the Figure 8.
+as shown in the Figure 10.
 
 .Structure of the `Beneficiary` class including its attributes, and its bidirectional navigability with `Project` class.
 image::BeneficiaryClassDiagram.jpg[width="800"]
@@ -304,22 +322,57 @@ beneficiary is assigned to. The figure below shows how the delete beneficiary co
 .Beneficiary deletion sequence diagram, hard deletion mode.
 image::BeneficiaryHardDeletionSequenceDiagram.png[width="800"]
 
-. The `DeleteBeneficiaryParser` parses the index of the beneficiary that is required to delete.
-+
 [NOTE]
 "-D" indicates that the deletion is in
 the hard mode, meaning that the respective projects that are attached to this beneficiary will be deleted.
-+
-. The `ModelManager` is then called to update the deletion of the respective projects.
+
+
+. The `DeleteBeneficiaryParser` parses the index of the beneficiary that is required to delete. The Parser
+constructs a `DeleteBeneficiaryCommand` with constructor as shown below:
+
+[source, java]
+----
+    public DeleteBeneficiaryCommand(Index targetIndex, boolean isHardDeleteMode) {
+        this.targetIndex = targetIndex;
+        this.isHardDeleteMode = isHardDeleteMode;
+    }
+----
+
+[start=2]
+. Method *deleteAttachedProjects(model, beneficiaryToDelete)* then calls the `ModelManager` to update the deletion of the respective projects.
+
+[source, java]
+----
+    private void deleteAttachedProjects(Model model, Beneficiary beneficiaryToDelete) {
+        HashSet<ProjectTitle> attachedProjects = beneficiaryToDelete.getHashAttachedProjectLists();
+        List<Project> projectsToDelete = new ArrayList<>(model.getFilteredProjectList());
+        for (Project p : projectsToDelete) {
+            if (attachedProjects.contains(p.getProjectTitle())) {
+                model.deleteProject(p);
+            }
+        }
+    }
+----
+
+[start=3]
 . The `ModelManager` is then called to update the deletion of the beneficiary and update all the changes.
 
-The summarised statistics information of beneficiary based on their activeness is generated by using the summarised command.
+[source, java]
+----
+    model.deleteBeneficiary(beneficiaryToDelete);
+    model.commitAddressBook();
+----
+
+In order to view the synchronization, you can observe via project pool. This is to alleviate the worries of looking at attached projects
+when dealing with beneficiary, as a beneficiary can have multiple projects. +
+However, the Beneficiary Management Feature support the viewing of these information via Summarise Command. The Summarise Command generates
+the summarised statistics information of beneficiary based on their activeness.
 
 [NOTE]
 The activeness of a beneficiary is measured by the number of projects that beneficiary has collaborated with the user's organization
 
 
-The sequence diagram below shows how the summarise command works.
+The sequence diagram below shows how the Summarise Command works.
 
 .Summarise beneficiary command sequence diagram.
 image::SummaryBeneficiaryCommandSequenceDiagram.png[width=800]
@@ -369,7 +422,7 @@ To facilitate the filtering mechanism, a new `points` integer field is added to 
 .Volunteer class with new points field
 image::Volunteerclasswithpoints.jpg[width="800"]
 
-`points` was implemented as a integer instead of a class for ease of access. Also, it is not directly influenced by
+`Points` was implemented as a integer instead of a class for ease of access. Also, it is not directly influenced by
 any input from the user, as input has been checked by the the other classes in `Volunteer`. Hence, no accompanying
 methods are necessary.
 
@@ -390,6 +443,8 @@ It then creates a `MapObject` and stores the given arguments in a `Pair` of <poi
 by calling `mapAllVolunteers`.
 
 Within the model, `mapAllVolunteers()` is as shown:
+
+[source, java]
 ----
 public void mapAllVolunteer(MapObject map) {
         versionedAddressBook.getVolunteerList().forEach(volunteer -> {
@@ -409,6 +464,8 @@ which `addPoints` adds to them.
 For the `Sort` command, the `Model` calls the `UniqueVolunteerList` internal `sortByPoints` method.
 This method uses the standard `FXCollections.sort` on the `internalList`,
 which immediately reflects in the UI.
+
+[source, java]
 ----
     public void sortByPoints() {
         FXCollections.sort(internalList, (new Comparator<Volunteer>() {
@@ -431,6 +488,8 @@ The `ExportVolunteerCommandParser` checks that at least 1 type of data and the n
 is given. It then stores the prefixes in a list called `prefixToBePrinted` and returns the the list and the number of volunteers
 as a `Pair` to `ExportVolunteer`.
 The code snippet below shows how the main command is implemented.
+
+[source, java]
 ----
 File output = new File("Export.csv");
         List<String[]> volunteerData = new ArrayList<>();
@@ -568,13 +627,53 @@ _{The projectcalendar mechanism takes the projectTitle and projectDate attribute
  includes a calendar interface and projects sorted according to date.
  The API has a dependency on Google API Client Library and build.gradle file compiles 'com.google.api-client:google-api-client:1.25.0'.
 
-// tag::deleteProject[]
-=== [Proposed] Delete Project
+=== Password Feature (coming in v2.0)
+==== Current Implementation
+A password is required to grant access to the project manager at the start of the program.
+It serves as a security mechanism to
+protect the important data within.
 
-_{The deleteProject is facilitated by DeleterProjectCommand Parser. deleteProject(index) removes the project with index, alongside with date attribute but beneficiary remains.
-if the project index is not found, DeleteProjectCommand throws ParseException.
+At the start of the program, the UI is initialised by `UiManager`. A password window will pop out and prompt the user
+to enter the password. +
 
-// end::deleteProject[]
+.Program prompting user for password
+image::password prompt.jpg[width="800"]
+
+The password feature uses `ValidatePassword` to check if the user input matches the password stored in the program.
+If the password matches, it will set boolean `user` to be true. `UiManager` will thus instantiate
+ `fillInnerParts()`, displaying the hidden data to the project manager.
+
+.Data displayed to user upon entering the correct password
+image::login successful.jpg[width="800"]
+
+If the password is entered incorrectly for five times, the program will terminate itself.
+
+A sequence diagram is shown below to illustrate how it works in an abstract level.
+
+.Sequence diagram of Password Feature
+image::ArchitectureDiagram_password.png[width="800"]
+
+==== Design Considerations
+
+
+[width="100%", cols="1, 1, 1 "options="header",]
+|=======================================================================
+| Aspect | Alternatives | Pros (+)/ Cons(-)
+.2+| Implementation of Synchronization
+| *UI with a password field. (current choice)*
+| + : It is simple and user friendly. It serves its purpose as a offline application for a single user.
+ +
+    {empty} +
+ - : The current alternative does not allow the user to change password.
+| Using Command Line Interface
+| + : It allows more flexibility to implement more parameters such as custom security questions to improve its security. +
+  {empty} +
+  - : It may not be as user friendly as the UI.
+
+
+|=======================================================================
+// end::PasswordFeature[]
+
 
 === Logging
 
@@ -1006,7 +1105,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 5: Find volunteer
+=== Use case 6: Find volunteer
 
 *MSS*
 
@@ -1026,7 +1125,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 6: Delete Project
+=== Use case 7: Delete Project
 
 *MSS*
 
@@ -1046,7 +1145,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 7: export volunteer list
+=== Use case 8: export volunteer list
 
 *MSS*
 
@@ -1062,26 +1161,6 @@ Use case ends.
 +
 [none]
 ** 2a1. VolunCHeer shows an error message.
-+
-Use case ends.
-
-[discrete]
-=== Use case 8: export volunteer list
-
-*MSS*
-
-1.  User requests to export a volunteer file
-2.  VolunCHeer exports new volunteer data file
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. the file has existed.
-+
-[none]
-** 2a1. VolunCHeer overwritten the file.
 +
 Use case ends.
 
@@ -1105,9 +1184,29 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
+=== Use case 10: export volunteer list
+
+*MSS*
+
+1.  User requests to export a volunteer file
+2.  VolunCHeer exports new volunteer data file
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. the file has existed.
++
+[none]
+** 2a1. VolunCHeer overwritten the file.
++
+Use case ends.
+
 // tag::BenefUseCases[]
 [discrete]
-=== Use case 10: Add a beneficiary
+=== Use case 11: Add a beneficiary
 
 *MSS*
 
@@ -1131,7 +1230,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: Edit a beneficiary
+=== Use case 12: Edit a beneficiary
 
 *MSS*
 
@@ -1150,7 +1249,8 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case 12: Delete a beneficiary (soft delete)
+[discrete]
+=== Use case 13: Delete a beneficiary (soft delete)
 
 *MSS*
 
@@ -1180,7 +1280,7 @@ Use case ends.
 // end::BenefUseCases[]
 
 [discrete]
-=== Use case 11: Sort volunteers based on PRIORITY_SCORE
+=== Use case 14: Sort volunteers based on PRIORITY_SCORE
 
 *MSS*
 

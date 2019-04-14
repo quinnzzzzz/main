@@ -35,11 +35,10 @@ import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.volunteer.VolunteerBuilder;
 
 public class AddVolunteerCommandTest {
-
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
 
     private CommandHistory commandHistory = new CommandHistory();
 
@@ -57,7 +56,7 @@ public class AddVolunteerCommandTest {
         CommandResult commandResult = new AddVolunteerCommand(validVolunteer).execute(modelStub, commandHistory);
 
         assertEquals(String.format(AddVolunteerCommand.MESSAGE_SUCCESS, validVolunteer),
-                commandResult.getFeedbackToUser());
+            commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validVolunteer), modelStub.volunteersAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
@@ -102,12 +101,12 @@ public class AddVolunteerCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -137,11 +136,6 @@ public class AddVolunteerCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addProject(Project project) {
 
         }
@@ -153,7 +147,7 @@ public class AddVolunteerCommandTest {
 
         @Override
         public void setProject(Project target, Project editedProject)
-                throws DuplicateProjectException, ProjectNotFoundException {
+            throws DuplicateProjectException, ProjectNotFoundException {
 
         }
 
@@ -173,10 +167,12 @@ public class AddVolunteerCommandTest {
         }
 
         @Override
-        public void setSelectedProject(Project project) { }
+        public void setSelectedProject(Project project) {
+        }
 
         @Override
-        public void addBeneficiary(Beneficiary beneficiary) { }
+        public void addBeneficiary(Beneficiary beneficiary) {
+        }
 
         @Override
         public boolean hasBeneficiary(Beneficiary beneficiary) {
@@ -184,10 +180,12 @@ public class AddVolunteerCommandTest {
         }
 
         @Override
-        public void deleteBeneficiary(Beneficiary target) {}
+        public void deleteBeneficiary(Beneficiary target) {
+        }
 
         @Override
-        public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) { }
+        public void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary) {
+        }
 
         @Override
         public Beneficiary getSelectedBeneficiary() {
@@ -195,10 +193,16 @@ public class AddVolunteerCommandTest {
         }
 
         @Override
-        public void setSelectedBeneficiary(Beneficiary beneficiary) { }
+        public void setSelectedBeneficiary(Beneficiary beneficiary) {
+        }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 

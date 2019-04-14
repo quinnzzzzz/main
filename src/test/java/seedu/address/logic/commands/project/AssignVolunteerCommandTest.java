@@ -23,11 +23,11 @@ import seedu.address.model.project.Project;
 
 
 public class AssignVolunteerCommandTest {
-
-    private static final CommandHistory commandHistory = new CommandHistory();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+    private static final CommandHistory commandHistory = new CommandHistory();
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
 
     @Test
     public void execute_validProjectAndRequiredVolunteers_success() {

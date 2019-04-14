@@ -269,7 +269,7 @@ to switch to hard delete mode.
 .Delete Beneficiary Command (Hard Delete Mode) Result (pink: input, blue: output)
 image::HardDelete.png[]
 
-In Figure 4, the beneficiary and its attached project shave been deleted successfully.
+In Figure 4, the beneficiary and its attached projects have been deleted successfully.
 
 === Listing all beneficiaries: `listBeneficiary` / `lb`
 

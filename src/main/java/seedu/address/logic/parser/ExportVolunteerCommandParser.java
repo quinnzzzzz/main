@@ -2,6 +2,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ParserUtil.isValidInt;
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_AGE;
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_DIETARY_PREFERENCE;
@@ -14,7 +15,6 @@ import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_PHO
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_RELIGION;
 import static seedu.address.logic.parser.volunteer.CliSyntaxVolunteer.PREFIX_TAG;
-import static seedu.address.logic.parser.ParserUtil.isValidInt;
 
 import java.util.ArrayList;
 

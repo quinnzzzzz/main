@@ -17,6 +17,8 @@ in an efficient and effective manner.
 
 Team T08-1 consists of Zhao Jun Ru, Wong Kai Wen Jeremy, Liow Zhu Hui and myself.
 
+image::Ui.png[]
+
 The user interacts with VolunCHeer using a command-line interface, and has a GUI created with JavaFX. VolunCHeer is written
 in Java, and has about 10 kLoC.
 
@@ -88,7 +90,7 @@ https://github.com/cs2113-ay1819s2-t08-1/main/pull/72[#72]
 
 
 * *Code contributed*: My code contribution can be viewed
-https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=huu&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false[here]
+https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=huu&sort=displayName&since=2019-02-10&until=2019-04-14&timeframe=day&reverse=false&repoSort=true[here]
 
 
 * *Other contributions*:
@@ -96,7 +98,7 @@ https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=huu&sort=displayName
 ** Managing issue tracker: https://github.com/cs2113-ay1819s2-t08-1/main/issues/31[#31] https://github.com/cs2113-ay1819s2-t08-1/main/issues/61[#61]
 ** Documentation:
 *** Contribution to DG in early stage https://github.com/cs2113-ay1819s2-t08-1/main/pull/3[#2] https://github.com/cs2113-ay1819s2-t08-1/main/pull/2[#3]
-*** Did cosmetic tweaks to existing contents of the Developer Guide: https://github.com[#14]
+*** Did cosmetic tweaks to existing contents of the Developer Guide: https://github.com/cs2113-ay1819s2-t08-1/main/pull/142[#142]
 ** Giving substantial comments on Github
 https://github.com/cs2113-ay1819s2-t08-1/main/pull/64[#64]
 https://github.com/cs2113-ay1819s2-t08-1/main/issues/124[#124]
