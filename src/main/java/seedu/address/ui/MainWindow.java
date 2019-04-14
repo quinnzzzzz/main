@@ -22,6 +22,8 @@ import seedu.address.logic.commands.beneficiary.SummaryBeneficiaryCommand.Summar
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.beneficiary.BeneficiaryListPanel;
+import seedu.address.ui.project.ProjectListPanel;
+import seedu.address.ui.volunteer.VolunteerListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private ValidatePassword validatePassword;
 
     // Independent Ui parts residing in this Ui container
     private ProjectListPanel projectListPanel;
@@ -119,6 +122,20 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+    }
+
+    //@@swalahlah
+    /**
+     * Returns true if password is correct, indicating User has logged in.
+     */
+    boolean show(boolean []user) {
+        primaryStage.show();
+        ValidatePassword.display(user);
+        if (user[0]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

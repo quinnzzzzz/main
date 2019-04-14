@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.volunteer;
 
 import java.util.Objects;
 import java.util.function.Consumer;

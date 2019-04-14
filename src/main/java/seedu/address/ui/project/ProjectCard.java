@@ -1,11 +1,12 @@
 //@@author quinnzzzzz
-package seedu.address.ui;
+package seedu.address.ui.project;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Project}.
