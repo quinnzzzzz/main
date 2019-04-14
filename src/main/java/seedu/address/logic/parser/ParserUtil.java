@@ -27,6 +27,7 @@ public class ParserUtil {
     }
 
     //@@author articstranger
+
     /**
      * checks @param testingString and returns true if the string can be converted to an integer
      */

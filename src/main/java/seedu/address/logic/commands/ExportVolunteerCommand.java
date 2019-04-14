@@ -24,13 +24,13 @@ public class ExportVolunteerCommand extends Command {
     public static final String COMMAND_WORD = "exportv";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " Exports list of volunteers into a CSV file.\n"
-            + "If the number of volunteers specified is greater than the total number of volunteers,\n"
-            + " all volunteers will be printed out.\n"
-            + "Parameters: "
-            + "Number of volunteers to be exported + "
-            + "any number of valid volunteer prefixes e.g.(n/ y/ g/)\n"
-            + "Example: " + COMMAND_WORD + " 10 "
-            + "n/ y/ g/";
+        + "If the number of volunteers specified is greater than the total number of volunteers,\n"
+        + " all volunteers will be printed out.\n"
+        + "Parameters: "
+        + "Number of volunteers to be exported + "
+        + "any number of valid volunteer prefixes e.g.(n/ y/ g/)\n"
+        + "Example: " + COMMAND_WORD + " 10 "
+        + "n/ y/ g/";
 
 
     private ArrayList<String> prefixToBePrinted;
@@ -49,8 +49,8 @@ public class ExportVolunteerCommand extends Command {
         volunteerData = model.addData(numVolunteers, prefixToBePrinted);
         try (PrintWriter pw = new PrintWriter(output)) {
             volunteerData.stream()
-                    .map(this::toCsv)
-                    .forEach(pw::println);
+                .map(this::toCsv)
+                .forEach(pw::println);
         } catch (IOException e) {
             throw new CommandException("Error writing to file");
         }
@@ -64,7 +64,7 @@ public class ExportVolunteerCommand extends Command {
      */
     public String toCsv(String[] data) {
         return Stream.of(data)
-                .collect(Collectors.joining(","));
+            .collect(Collectors.joining(","));
 
     }
 

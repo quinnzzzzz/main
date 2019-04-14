@@ -137,12 +137,9 @@ public class CommandTestUtil {
             assertEquals(expectedSelectedBeneficiary, actualModel.getSelectedBeneficiary());
             assertEquals(expectedSelectedVolunteer, actualModel.getSelectedVolunteer());
             assertEquals(expectedSelectedProject, actualModel.getSelectedProject());
-            assert
-                    Equals(expectedCommandHistory, actualCommandHistory);
+            assertEquals(expectedCommandHistory, actualCommandHistory);
         }
     }
-
-    private static boolean Equals(CommandHistory expectedCommandHistory, CommandHistory actualCommandHistory) { }
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

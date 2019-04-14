@@ -67,17 +67,18 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
+    //@@author quinnzzzzz
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Adds the given project.
+     * {@code project} must not already exist in the address book.
+     */
+    void addProject(Project project);
+
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
      */
     boolean hasProject(Project project);
-
-
-    /**
-     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
-     */
-    boolean hasBeneficiary(Beneficiary beneficiary);
 
     /**
      * Updates the Project status
@@ -97,22 +98,34 @@ public interface Model {
     void deleteProject(Project target);
 
     /**
-     * Deletes the given beneficiary.
-     * The beneficiary must exist in the address book.
-     */
-    void deleteBeneficiary(Beneficiary target);
-
-    /**
-     * Adds the given project.
-     * {@code project} must not already exist in the address book.
-     */
-    void addProject(Project project);
-
-    /**
      * Sorts the given project according to date
      * {@code project} must not already exist in the address book.
      */
     void sortProjectByDate();
+
+
+
+    Project getSelectedProject();
+
+    void setSelectedProject(Project project);
+
+    /**
+     * Add Beneficiary.
+     */
+    void addBeneficiary(Beneficiary beneficiary);
+
+    //@@author ndhuu
+
+    /**
+     * Returns true if a beneficiary with the same identity as {@code beneficiary} exists in the address book.
+     */
+    boolean hasBeneficiary(Beneficiary beneficiary);
+
+    /**
+     * Deletes the given beneficiary.
+     * The beneficiary must exist in the address book.
+     */
+    void deleteBeneficiary(Beneficiary target);
 
     /**
      * Replaces the given Beneficiary{@code target} with {@code editedBeneficiary}.
@@ -121,6 +134,127 @@ public interface Model {
      * as another existing Beneficiary in the address book.
      */
     void setBeneficiary(Beneficiary target, Beneficiary editedBeneficiary);
+
+    /**
+     * Returns the selected volunteer in the filtered volunteer list.
+     * null if no volunteer is selected.
+     */
+
+    /**
+     * gets the selected beneficiary in the filtered beneficiary list.
+     */
+
+    Beneficiary getSelectedBeneficiary();
+
+    void setSelectedBeneficiary(Beneficiary beneficiary);
+
+
+
+    //@@author swalahlah
+
+    /**
+     * Add Volunteer.
+     */
+    void addVolunteer(Volunteer volunteer);
+
+    /**
+     *
+     * @param volunteer
+     * @return true if a volunteer with the same identity as {@code volunteer} exists in the address book
+     */
+    boolean hasVolunteer(Volunteer volunteer);
+
+     /** Deletes the given volunteer.
+     * The volunteer must exist in the address book.
+     */
+    void deleteVolunteer(Volunteer target);
+
+    /**
+     * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
+     * {@code target} must exist in the address book.
+     * The volunteer identity of {@code editedVolunteer} must not be the same as
+     * another existing volunteer in the address book.
+     */
+    void setVolunteer(Volunteer target, Volunteer editedVolunteer);
+
+
+
+    /**
+     * gets the selected volunteer in the filtered volunteer list.
+     */
+
+    Volunteer getSelectedVolunteer();
+
+    /**
+     * Sets the selected volunteer in the filtered volunteer list.
+     */
+
+    void setSelectedVolunteer(Volunteer volunteer);
+
+
+
+    /**
+     * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    int checkAge(MapObject map, Volunteer currentVol);
+
+    /**
+     * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    int checkRace(MapObject map, Volunteer currentVol);
+
+    /**
+     * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
+     */
+    int checkMedical(MapObject map, Volunteer currentVol);
+
+    /**
+     * Maps all volunteers in the (@code UniqueVolunteerList)
+     */
+
+    void mapAllVolunteer(MapObject map);
+
+    /**
+     * Sorts all volunteers in the (@code UniqueVolunteerList)
+     * and returns a (@code sortedList)
+     */
+    void sortVolunteers();
+
+    //get FilteredLists
+
+    /**
+     * gets the selected project in the filtered project list.
+     */
+
+    void updateFilteredProjectList(Predicate<Project> predicate);
+
+    /**
+     * Updates the filter of the filtered Beneficiary list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
+
+    /**
+     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
+
+
+    /**
+     * Goes throught the volunteer list and adds data to the based on what prefixes are wanted.
+     * stops when the list ends or the provided limit is reached.
+     */
+    List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted);
+
+    /**
+     * Add Beneficiary.
+     * Returns an unmodifiable view of the filtered project list
+     */
+    ObservableList<Project> getFilteredProjectList();
+
 
     /**
      * Returns an unmodifiable view of the filtered beneficiary list
@@ -132,20 +266,10 @@ public interface Model {
      */
     ObservableList<Volunteer> getFilteredVolunteerList();
 
-    /**
-     * Returns an unmodifiable view of the filtered project list
-     */
-    ObservableList<Project> getFilteredProjectList();
+    //update FilteredLists
 
-    /**
-     * Updates the filter of the filtered Beneficiary list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
 
-    void updateFilteredProjectList(Predicate<Project> predicate);
 
-    void updateFilteredBeneficiaryList(Predicate<Beneficiary> predicate);
 
 
     /**
@@ -173,6 +297,7 @@ public interface Model {
      */
     void commitAddressBook();
 
+    //selectedProperty
 
     /**
      * Selected project in the filtered project list.
@@ -187,102 +312,8 @@ public interface Model {
     ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty();
 
     /**
-     * Returns the selected beneficiary in the filtered beneficiary list.
-     * null if no beneficairy is selected.
-     */
-    Beneficiary getSelectedBeneficiary();
-
-    void setSelectedBeneficiary(Beneficiary beneficiary);
-
-    Project getSelectedProject();
-
-    void setSelectedProject(Project project);
-
-    //Volunteers
-    boolean hasVolunteer(Volunteer volunteer);
-
-    void addVolunteer(Volunteer volunteer);
-
-    /**
-     * Deletes the given volunteer.
-     * The volunteer must exist in the address book.
-     */
-    void deleteVolunteer(Volunteer target);
-
-    /**
-     * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
-     * {@code target} must exist in the address book.
-     * The volunteer identity of {@code editedVolunteer} must not be the same as
-     * another existing volunteer in the address book.
-     */
-    void setVolunteer(Volunteer target, Volunteer editedVolunteer);
-
-    /**
      * Selected volunteer in the filtered volunteer list.
      * null if no volunteer is selected.
      */
     ReadOnlyProperty<Volunteer> selectedVolunteerProperty();
-
-    /**
-     * Returns the selected volunteer in the filtered volunteer list.
-     * null if no volunteer is selected.
-     */
-
-    /**
-     * gets the selected volunteer in the filtered volunteer list.
-     */
-
-    Volunteer getSelectedVolunteer();
-
-    /**
-     * Sets the selected volunteer in the filtered volunteer list.
-     */
-
-    void setSelectedVolunteer(Volunteer volunteer);
-
-    /**
-     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
-
-    /**
-     * compares the age of the current {@code Volunteer} and the criteria in {@code MapObject}.
-     */
-    public int checkAge(MapObject map, Volunteer currentVol);
-
-    /**
-     * compares the race of the current {@code Volunteer} and the criteria in {@code MapObject}.
-     */
-    public int checkRace(MapObject map, Volunteer currentVol);
-
-    /**
-     * compares the medical condition of the current {@code Volunteer} and the criteria in {@code MapObject}.
-     */
-    public int checkMedical(MapObject map, Volunteer currentVol);
-
-    /**
-     * Maps all volunteers in the (@code UniqueVolunteerList)
-     */
-    public void mapAllVolunteer(MapObject map);
-
-    /**
-     * Sorts all volunteers in the (@code UniqueVolunteerList)
-     * and returns a (@code sortedList)
-     */
-    public void sortVolunteers();
-
-    /**
-     * Goes throught the volunteer list and adds data to the based on what prefixes are wanted.
-     * stops when the list ends or the provided limit is reached.
-     */
-    public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted);
-
-    /**
-     * Add Beneficiary.
-     */
-    void addBeneficiary(Beneficiary beneficiary);
-
-
 }

@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.volunteer.VolunteerCommandTestUtil.VA
 import org.junit.Test;
 
 import seedu.address.logic.commands.volunteer.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.testutil.volunteer.EditVolunteerDescriptorBuilder;
 
 public class EditVolunteerDescriptorTest {
 

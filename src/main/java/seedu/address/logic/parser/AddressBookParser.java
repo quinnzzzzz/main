@@ -6,32 +6,35 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.volunteer.AddVolunteerCommand;
-import seedu.address.logic.commands.AssignBeneficiaryCommand;
-import seedu.address.logic.commands.AssignVolunteerCommand;
+
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CompleteCommand;
-import seedu.address.logic.commands.DeleteProjectCommand;
-import seedu.address.logic.commands.volunteer.DeleteVolunteerCommand;
-import seedu.address.logic.commands.volunteer.EditVolunteerCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportVolunteerCommand;
-import seedu.address.logic.commands.volunteer.FindVolunteerCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
-import seedu.address.logic.commands.ListProjectCommand;
-import seedu.address.logic.commands.volunteer.ListVolunteerCommand;
 import seedu.address.logic.commands.MapCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
+
 import seedu.address.logic.commands.beneficiary.AddBeneficiaryCommand;
 import seedu.address.logic.commands.beneficiary.DeleteBeneficiaryCommand;
 import seedu.address.logic.commands.beneficiary.EditBeneficiaryCommand;
 import seedu.address.logic.commands.beneficiary.FindBeneficiaryCommand;
 import seedu.address.logic.commands.beneficiary.ListBeneficiaryCommand;
 import seedu.address.logic.commands.beneficiary.SummaryBeneficiaryCommand;
+import seedu.address.logic.commands.project.AddProjectCommand;
+import seedu.address.logic.commands.project.AssignBeneficiaryCommand;
+import seedu.address.logic.commands.project.AssignVolunteerCommand;
+import seedu.address.logic.commands.project.CompleteCommand;
+import seedu.address.logic.commands.project.DeleteProjectCommand;
+import seedu.address.logic.commands.project.ListProjectCommand;
+import seedu.address.logic.commands.volunteer.AddVolunteerCommand;
+import seedu.address.logic.commands.volunteer.DeleteVolunteerCommand;
+import seedu.address.logic.commands.volunteer.EditVolunteerCommand;
+import seedu.address.logic.commands.volunteer.FindVolunteerCommand;
+import seedu.address.logic.commands.volunteer.ListVolunteerCommand;
 import seedu.address.logic.parser.beneficiary.AddBeneficiaryCommandParser;
 import seedu.address.logic.parser.beneficiary.DeleteBeneficiaryCommandParser;
 import seedu.address.logic.parser.beneficiary.EditBeneficiaryCommandParser;
@@ -151,8 +154,8 @@ public class AddressBookParser {
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
-//        case RedoCommand.COMMAND_WORD:
-//            return new RedoCommand();
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
 
         default:

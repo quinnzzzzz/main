@@ -31,20 +31,17 @@ public class ExportVolunteerCommandParser implements Parser<ExportVolunteerComma
      * Returns true if the argMultimap contains any valid prefixes.
      */
     private static boolean hasPrefixes(ArgumentMultimap argMultimap) {
-        if (!(argMultimap.getAllValues(PREFIX_NAME).isEmpty()) || !(argMultimap.getAllValues(PREFIX_AGE).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_GENDER).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_RACE).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_RELIGION).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_PHONE).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_ADDRESS).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_EMAIL).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_EMERGENCY_CONTACT).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_DIETARY_PREFERENCE).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION).isEmpty())
-                || !(argMultimap.getAllValues(PREFIX_TAG).isEmpty())) {
-            return true;
-        }
-        return false;
+        return !(argMultimap.getAllValues(PREFIX_NAME).isEmpty()) || !(argMultimap.getAllValues(PREFIX_AGE).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_GENDER).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_RACE).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_RELIGION).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_PHONE).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_ADDRESS).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_EMAIL).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_EMERGENCY_CONTACT).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_DIETARY_PREFERENCE).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION).isEmpty())
+            || !(argMultimap.getAllValues(PREFIX_TAG).isEmpty());
     }
 
     /**
@@ -57,19 +54,19 @@ public class ExportVolunteerCommandParser implements Parser<ExportVolunteerComma
                 PREFIX_MEDICAL_CONDITION, PREFIX_TAG);
 
         if (!hasPrefixes(argMultimap) || argMultimap.getPreamble().isEmpty()
-                || !isValidInt(argMultimap.getPreamble())) {
+            || !isValidInt(argMultimap.getPreamble())) {
             throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, ExportVolunteerCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, ExportVolunteerCommand.MESSAGE_USAGE));
         }
 
         if (!isValidInt(argMultimap.getPreamble())) {
             throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, ExportVolunteerCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, ExportVolunteerCommand.MESSAGE_USAGE));
         }
 
         ArrayList<String> prefixes = argMultimap.getPrefixes();
         Pair<Integer, ArrayList<String>> numberAndprefixes = new Pair<>(Integer.parseInt(argMultimap.getPreamble()),
-                prefixes);
+            prefixes);
         return new ExportVolunteerCommand(numberAndprefixes);
     }
 

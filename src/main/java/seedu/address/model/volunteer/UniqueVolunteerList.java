@@ -74,18 +74,20 @@ public class UniqueVolunteerList implements Iterable<Volunteer> {
 
 
     //@@author articstranger
+
     /**
      * Sorts the @code internalList
      */
     public void sortByPoints() {
         FXCollections.sort(internalList, (new Comparator<Volunteer>() {
-            public int compare (Volunteer s1, Volunteer s2) {
+            public int compare(Volunteer s1, Volunteer s2) {
                 return s2.getPoints() - s1.getPoints();
             }
         }));
     }
 
     //@@author swalahlah
+
     /**
      * Removes the equivalent volunteer from the list.
      * The volunteer must exist in the list.

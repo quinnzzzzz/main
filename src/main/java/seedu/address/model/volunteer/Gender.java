@@ -22,6 +22,7 @@ public class Gender {
 
     /**
      * Gender constructor
+     *
      * @param gender
      */
     public Gender(String gender) {

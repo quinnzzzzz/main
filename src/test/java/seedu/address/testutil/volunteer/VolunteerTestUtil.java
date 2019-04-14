@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.volunteer.Volunteer;
 
+
 /**
  * A utility class for test cases.
  */
@@ -52,4 +53,5 @@ public class VolunteerTestUtil {
     public static Volunteer getVolunteer(Model model, Index index) {
         return model.getFilteredVolunteerList().get(index.getZeroBased());
     }
+
 }

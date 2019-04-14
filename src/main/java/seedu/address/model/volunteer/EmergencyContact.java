@@ -12,9 +12,9 @@ public class EmergencyContact {
     public static final String MESSAGE_CONSTRAINTS =
         " Format must be <Name> <Relationship> <Contact number> and separated by spaces. "
             + "Name should contain only the first name. "
-            + "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            + "Phone numbers should only contain numbers, and it should be at least 4 digits long";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}  ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String value;
 
     /**

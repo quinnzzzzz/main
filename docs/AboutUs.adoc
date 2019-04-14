@@ -14,7 +14,7 @@ As part of our software engineering module, CS2113T, **VolunCHeer** was develope
 
 === Zhao Jun Ru
 image::quinnzzzzz.png[width="150", align="left"]
-{empty}[https://github.com/quinnzzzzz[github]]
+{empty}[https://github.com/quinnzzzzz[github]][<<ZhaoJunRu#, portfolio>>]
 
 Role: Team Lead/Developer +
 Responsibilities: Deadline & Deliverables, Scheduling and Tracking, Documentation
@@ -23,7 +23,7 @@ Responsibilities: Deadline & Deliverables, Scheduling and Tracking, Documentatio
 
 === Wong Kai Wen Jeremy
 image::articstranger.png[width="150", align="left"]
-{empty}[http://github.com/articstranger[github]]
+{empty}[http://github.com/articstranger[github]][<<johndoe#, portfolio>>]
 
 Role: Git expert/Travis CI/Developer +
 Responsibilities: Handle Git Hub PRs, Travis Build
@@ -32,7 +32,7 @@ Responsibilities: Handle Git Hub PRs, Travis Build
 
 === Nguyen Dang Huu
 image::ndhuu.png[width="150", align="left"]
-{empty}[http://github.com/ndhuu[github]]
+{empty}[http://github.com/ndhuu[github]][<<Huu#, portfolio>>]
 
 Role: Head Developer +
 Responsibilities: Integration, Code quality
@@ -41,7 +41,7 @@ Responsibilities: Integration, Code quality
 
 === Liow Zhu Hui
 image::swalahlah.png[width="150", align="left"]
-{empty}[http://github.com/swalahlah[github]]
+{empty}[http://github.com/swalahlah[github]][<<Zhuhui#, portfolio>>]
 
 Role: Developer/Tester +
 Responsibilities: UI/UX design, Testing

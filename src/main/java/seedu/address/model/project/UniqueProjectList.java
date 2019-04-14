@@ -1,3 +1,4 @@
+//@@author quinnzzzzz
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
@@ -90,6 +91,12 @@ public class UniqueProjectList implements Iterable<Project> {
         }
     }
 
+    /**
+     * Sets the project with new UniqueProjectList data
+     *
+     * @param replacement
+     */
+
     public void setProjects(UniqueProjectList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -140,7 +147,8 @@ public class UniqueProjectList implements Iterable<Project> {
                 } else {
                     return p1.getProjectDate().getYear() - p2.getProjectDate().getYear();
                 }
-            } }));
+            }
+        }));
     }
 
     @Override
