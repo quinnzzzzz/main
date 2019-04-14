@@ -41,7 +41,6 @@ I am in charge of testing for VolunCHeer. If you found any bugs in VolunCHeer, p
 ** Justification: This feature is one of the basic building blocks of VolunCHeer. Having access to and being able to filter
 thousands of volunteers' data in matter of seconds would allow project managers to plan their projects efficiently and effectively.
 
-
 * *Major enhancement*: Password Feature
 ** What it does: It prompts for a password verification upon executing the application and prevent unauthorised users from using VolunCHeer.
 ** Justification: The data stored in VolunCHeer is important and confidential. I have implemented the password feature
@@ -83,4 +82,3 @@ include::../UserGuide.adoc[tag=volunteerfeature]
 
 *Password Feature
 include::../DeveloperGuide.adoc[tag=PasswordFeature]
-
