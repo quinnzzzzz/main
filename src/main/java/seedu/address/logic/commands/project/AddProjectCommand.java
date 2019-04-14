@@ -18,6 +18,7 @@ import seedu.address.model.project.Project;
 public class AddProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "addProject";
+    public static final String COMMAND_WORD_ALIAS = "ap";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new project to VolunCHeer.\n"
         + "Parameters: "

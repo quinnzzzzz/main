@@ -68,6 +68,7 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddProjectCommand.COMMAND_WORD:
+        case AddProjectCommand.COMMAND_WORD_ALIAS:
             return new AddProjectCommandParser().parse(arguments);
 
         case AddBeneficiaryCommand.COMMAND_WORD:
@@ -99,6 +100,7 @@ public class AddressBookParser {
             return new DeleteBeneficiaryCommandParser().parse(arguments);
 
         case DeleteProjectCommand.COMMAND_WORD:
+        case DeleteProjectCommand.COMMAND_WORD_ALIAS:
             return new DeleteProjectCommandParser().parse(arguments);
 
         case DeleteVolunteerCommand.COMMAND_WORD:
@@ -115,6 +117,7 @@ public class AddressBookParser {
             return new FindVolunteerCommandParser().parse(arguments);
 
         case ListProjectCommand.COMMAND_WORD:
+        case ListProjectCommand.COMMAND_WORD_ALIAS:
             return new ListProjectCommand();
 
         case ListBeneficiaryCommand.COMMAND_WORD:
