@@ -32,7 +32,7 @@ Orphanage.
 beneficiaries with projects. In this project portfolio, the Volunteering Project Manager is mentioned as the user.
 
 == Role
-I am in charge of testing for VolunCHeer. If you found any bugs in VolunCHeer, please do not hesitate to https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/AboutUs.adoc[contact us] directly. 
+I am in charge of testing for VolunCHeer. If you found any bugs in VolunCHeer, please do not hesitate to https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/AboutUs.adoc[contact us] directly.
 
 == Summary of contributions
 
