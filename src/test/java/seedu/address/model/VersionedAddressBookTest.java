@@ -37,8 +37,8 @@ public class VersionedAddressBookTest {
 //                Arrays.asList(emptyAddressBook, addressBookWithAmy, addressBookWithBob),
 //                addressBookWithBob,
 //                Collections.emptyList());
-//    }
-
+//   }
+    
     @Test
     public void commit_multipleAddressBookPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
         VersionedAddressBook versionedAddressBook = prepareAddressBookList(
