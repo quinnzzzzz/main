@@ -9,17 +9,49 @@
 
 == Overview
 
-VolunCHeer is a multifunctional project management application for Project Managers to manage various projects, beneficiaries and volunteers.
+This project portfolio page serves to document my contributions to the VolunCHeer project.
+
+VolunCHeer is an open-sourced Command Line Interface (CLI) management application designed for Volunteering Project Managers.
+We aim to help our target users alleviate the haystack of managing multiple projects, beneficiaries, and volunteers
+in an efficient and effective manner.
+
+Team T08-1 consists of Zhao Junru, Nguyen Dang Huu, Jeremy Wong Kai Wen and myself. We are a group of friends who have experiences,
+working with major volunteering organizations. We understand the challenges volunteering project managers faced when dealing with
+multiple projects, beneficiaries and volunteers and thus, we created VolunCHeer to serve that need.
+
+== Terminology
+* Volunteer: The volunteers who participate in volunteer organization such as NUS Community Service Club, NUS Vietnamese
+Community's CIP Committee.
+
+* Beneficiary: Organizations who benefit from volunteering activities such as Old Folk Home, Nursing Home, and
+Orphanage.
+
+* Project: Projects that are set for volunteers to participate and help the beneficiary.
+
+* Volunteering Project Manager: The one who manages the arrangement of projects, assign volunteers and contact and associate
+beneficiaries with projects. In this project portfolio, the Volunteering Project Manager is mentioned as the user.
+
+== Role
+I am in charge of testing for VolunCHeer. If you found any bugs in VolunCHeer, please do not hesitate to contact us directly. https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/AboutUs.adoc[contact us]
 
 == Summary of contributions
 
-* *Major enhancement*: added *Volunteer Base Class with additional parameters such as race, gender, religion etc.*
-** What it does:
-** Justification: It is important as it is our main function of the program
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: Volunteer Feature
+** What it does: It allows Project Manager to store the data of the volunteers and access specific data easily with a few simple commands.
+** Justification: This feature is one of the basic building blocks of VolunCHeer. Having access to and being able to filter
+thousands of volunteers' data in matter of seconds would allow project managers to plan their projects efficiently and effectively.
 
-* *Minor enhancement*:
+
+* *Major enhancement*: Password Feature
+** What it does: It prompts for a password verification upon executing the application and prevent unauthorised users from using VolunCHeer.
+** Justification: The data stored in VolunCHeer is important and confidential. I have implemented the password feature
+because we are concerned about the security of our users and do not wish data stored in our program to be stolen.
+** Highlights: A simple UI with a single password field is used to implement this feature as it is more user friendly
+compared to using the command line interface.
+
+* *Minor enhancement*: Exit Dialog Box
+** What it does: It prompts the user for a confirmation message when exiting VolunCHeer. It allows the `exit` command to bypass the message.
+** Justification: This feature prevents accidental termination of the program by the user or external program.
 
 * *Code contributed*: [https://github.com/cs2113-ay1819s2-t08-1/main/tree/master/src/main/java/seedu/address/model/volunteer[Functional code]] [https://github.com[Test code]]
 * *Other contributions*:
@@ -41,9 +73,8 @@ VolunCHeer is a multifunctional project management application for Project Manag
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=undoredo]
-
-include::../UserGuide.adoc[tag=dataencryption]
+* Volunteer Class
+include::../UserGuide.adoc[tag=volunteerfeature]
 
 == Contributions to the Developer Guide
 
@@ -51,7 +82,6 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
-
-include::../DeveloperGuide.adoc[tag=dataencryption]
+*Password Feature
+include::../DeveloperGuide.adoc[tag=PasswordFeature]
 
