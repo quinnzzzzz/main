@@ -45,7 +45,7 @@ NOTE: Important information can be found here.
 Now let us go though a quick overview of our VolunCHeer application.
 
 .VolunCHeer user interface
-image::UI.png[width="790"]
+image::UiDraw.png[width="790"]
 
 . Menu Bar:
 This is where you can exit the app (under File) or find the Help page
