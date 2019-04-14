@@ -18,34 +18,55 @@ VolunCheer is a desktop application for project managers who wish to keep track 
 ** Features involved: the relevant features include basic functions such as `addProject`, `deleteProject` and `listProject`. The added features are the `complete` feature
   and the `assign` feature which will be elaborated in further details.
 ** Justification: The Project class forms the basis of the VolunCHeer application whereby the aim is to manage and organise projects better and save users form the hustle of paper works.
-** Highlights: The methods implemented involves interactions between the 3 objects namely `Project` `Beneficiary` and `Volunteer`.
-** Relevant features/enhancements:
-    1. Assign Beneficiary *allows the user to assign a existing beneficiary to the project selected*
-       - Justification: A beneficiary is usually attached to a project and beneficiary details are very important and usually tracked in a separate document / file. Thus we decide to keep Beneficiary information as a separate list and assigned to the project when required such that it can be managed separately.
-       - Highlights: This enhancement requires data from both the project list as well as the beneficiary list, there was thus some difficulty trying to implement the command. Many adjustments had to be made to keep the project class and beneficiary class independent.
-    2. Complete project *allows the user to mark a project as completed in the project list* this is indicated by a colour change - to red for the project title.
+** Highlights: The methods implemented involves interactions between the 3 objects namely `Project` `Beneficiary` and `Volunteer`. It provides user with the
+ability to add and delete `Projects`, assign the specific `Beneficiary` and a list of `Volunteers` to `Project` of interest as well as
+setting projects status as complete to keep track of ongoing and completed `Projects`.
+** Explanation of features implemented
+    1. Assign Beneficiary feature
+    *allows the user to assign a existing `Beneficiary` to the `Project` selected*
+       - Justification: A `Beneficiary` is usually attached to a `Project` and the beneficiary details are very important
+       and usually tracked in a separate document / file. Thus we decide to keep Beneficiary information as a separate list and assigned to the project when required such that it can be managed separately.
+       - Highlights: This enhancement requires data from both the project list as well as the beneficiary list,
+       there was thus some difficulty trying to implement the command. Many adjustments had to be made to keep the project class
+       and beneficiary class independent and yet synchronised.
+    2. Assign Volunteer feature
+    *allows the user to assign a Requried number of `Volunteers` to the `Project` selected*
+    - Justification: Projects usually require varying number of volunteers, we thus decide to make it flexible by allowing user to key in
+    the required number themselves. Furthermore, should there be any requirement for the `Volunteers` they can filter the `Volunteer` list with
+    our `Map Command` and `Sort` function.
+    3. Complete project *allows the user to mark a project as completed in the project list* this is indicated by a colour change - to red for the project title.
        - Justification: This is thought to be a useful feature as project managers would want to keep track of what are the ongoing projects while still have a copy of their completed projects.
        - Highlights: This enhancement indicates a change of status of the specified project, it is a simple yet useful feature for the user.
 
-* *Minor enhancement*: Edit project and Delete project commands are inherited from addressbook and successfully implemented on the project class.
+* *Minor enhancement*: ListProject and DeleteProject commands are inherited from addressBook and successfully implemented on the project class.
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed setting up of Milestones v1.2 and v1.3
-*** Managed deadlines and submissions
-*** Managed releases `v1.3` on GitHub
+*** Team Lead for the project, in charge of ensuring project submissions are accurate and before the deadline.
+*** Managed setting up of Milestones v1.2 v1.3 and v1.4
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/#42#issue-424114821[#42]
+*** Managed releases `v1.3` and `v1.4` on GitHub
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/73#issue-428190500[#73]
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/122#issue-431639827[#122]
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/123#issue-431640740[#123]
+
+*** Setting up of issues to track progress
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/36#issue-422222890[#36]
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/74#issue-428191586[#74]
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/76#issue-428194020[#76]
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/110#issue-430026906[#110]
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/119#issue-431638374[#119]
+https://github.com/cs2113-ay1819s2-t08-1/main/issues/120#issue-431638782[#120]
+*** Managed overall merging of project and solve bugs raised.
+*** Merging and Integration of team's repositories.
+https://github.com/cs2113-ay1819s2-t08-1/main/pull/141#issue-270291847[#141]
 ** Documentation:
 *** Did the UserGuide for v1.1: https://github.com/cs2113-ay1819s2-t08-1/main/pull/6[#6]
 *** Subsequent updates of documents on individual features.
-//** Community:
-//*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-//*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-//*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-//*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-//** Tools:
-//*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-//*** Integrated a new Github plugin (CircleCI) to the team repo
+
+** Tools:
+*** Integrated asciidoc for pdf releases of documentations as well as easy editing of adoc
 
 == Contributions to the User Guide
 
@@ -54,59 +75,17 @@ VolunCheer is a desktop application for project managers who wish to keep track 
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-=== Adding a project: `addProject`
-Adds a new project +
-Format: `addProject n/PROJECT_NAME d/DATE`
+include::C:\Users\Quinn\Desktop\Y2S2\CS2113T\Project\AddressBook4\docs\UserGuide.adoc[tag=ProjectMangement]
 
 ****
-* Please enter DATE in yyyymmdd format.
-* Project Title should not have duplicates in the project list.
-****
 
-Examples:
+== Contributions to the Developer Guide
 
-* `addProject n/Charity Run d/081219`
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
 
 
-=== Deleting a project ： `deleteProject`
+---
 
-Deletes the specified project from the application. +
-Format: `deleteProject INDEX`
-
-****
-* Deletes the project at index "INDEX".
-* The INDEX refers to the index of the project in the project list, use 'listProject' to view all projects if unsure.
-* Error message is shown if the INDEX entered is invalid
-****
-
-=== Assigning a beneficiary to project: 'assign'
-
-Assigns a beneficiary identified by the index number used in the displayed beneficiary list to a project matched
-by project title entered.
-Format: `assign PROJECT_TITLE, i/INDEX`
-
-****
-* Assigns the beneficiary with index = "INDEX" to the project with title "PROJECT_TITLE".
-* Project attached will be shown on the specific beneficiary
-* There can be only one beneficiary for each project, however, one beneficiary can be assigned to multiple projects.
-* The index *must be a positive integer* `1, 2, 3, ...`
-****
-
-//
-//
-//== Contributions to the Developer Guide
-//
-//|===
-//|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
-//|===
-//
-//include::../DeveloperGuide.adoc[tag=undoredo]
-//
-//include::../DeveloperGuide.adoc[tag=dataencryption]
-//
-//
-//== PROJECT: PowerPointLabs
-//
-//---
-//
-//_{Optionally, you may include other projects in your portfolio.}_
+_{Optionally, you may include other projects in your portfolio.}_

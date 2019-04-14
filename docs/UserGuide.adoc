@@ -85,6 +85,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
+// tag::ProjectManagement[]
 === Adding a project: `addProject` / `ap`
 Adds a new project +
 Format: `addProject n/PROJECT_NAME d/DATE`
@@ -170,6 +171,7 @@ image::complete.png[]
 ****
 * Once marked as complete, project title will be displayed in red colour font
 ****
+// end::ProjectManagement[]
 
 === Adding a volunteer: `addVolunteer`
 
