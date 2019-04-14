@@ -34,6 +34,15 @@ If you have found any bugs or have ideas to improve VolunCHeer, create an issue 
 
 === How to use this Developer Guide
 
+[NOTE]
+This is a note. A note contains considerations or notices when using VolunCHeer
+
+[WARNING]
+This is a warning. Ensure not to violate these warnings when using VolunCHeer
+
+[TIP]
+This is a tip. A tip gives you suggestion on how to use certain features in VolunCHeer or how you can contribute to VolunCHeer
+
 == Setting up
 
 === Prerequisites
@@ -230,17 +239,24 @@ The following sequence diagram shows how the complete command works:
 image::CompleteSequenceDiagram.png[width="800"]
 
 
-1.	The CompleteCommandParser parses the user input to obtain the target project index and constructs a ne CompleteCommand with this index.
-2.	The logic portion of the complete command will be executed by the CompleteCommand method. To mark a Project object as complete:
-i.  The CompleteCommand() method creates a targetProject based on the provided project index.
-i. In the executeCommandResult() method then creates a editedProject with Complete attribute set to “true”.
-    The editedProject is created with ProjectBuilder as shown below:
+1.	The `CompleteCommandParser` parses the user input to obtain the target project index and constructs a ne `CompleteCommand` with this index.
+2.	The logic portion of the complete command will be executed by the `CompleteCommand` method. To mark a Project object as complete:
+i.  The *CompleteCommand()* method creates a `targetProject` based on the provided project index.
+i. In the *executeCommandResult()* method then creates a `editedProject` with `Complete` attribute set to “true”.
+    The `editedProject` is created with ProjectBuilder as shown below:
 
-    Project editedProject = newProjectBuilder(targetProject).withComplete(true).build();
+[source, java]
+----
+    Project editedProject = new ProjectBuilder(targetProject).withComplete(true).build();
+----
 
+[start=3]
 3.	In the executeCommandResult() method
 
+[source, java]
+----
     model.setProject(targetProject, editedProject)
+----
 
 is called to replace `Project`’s complete attribute from “false” to “true” in the VolunCHeer in-memory.
 
@@ -270,13 +286,13 @@ implementation of AssignBeneficiary command only and provide the difference betw
 
 The following sequence diagram shows how the AssignBeneficiaryCommand works:
 
-1.	The AssignBeneficiaryCommand(ProjectTitle, Index) takes in the targetProject’s projectTitle attribute and targetBeneficiary’s index.
-2.	The executeCommandResult() method
-i.	Sets up projectToAssign by calling a predicate to compare with the ProjectTitle in FilteredProjectList:
+1.	The *AssignBeneficiaryCommand(ProjectTitle, Index)* takes in the targetProject’s projectTitle attribute and targetBeneficiary’s index.
+2.	The *executeCommandResult()* method
+i.	Sets up projectToAssign by calling a predicate to compare with the `ProjectTitle` in `FilteredProjectList`:
 
     model. getFilteredProjectList(). filtered(equalProjectTitle).get(0);
 
-i.	updateBeneficiary(model) methods updates the `Beneficiary` object so that ProjectTitle is tracked within the Beneficiary class.
+i.	*updateBeneficiary(model)* methods updates the `Beneficiary` object so that ProjectTitle is tracked within the Beneficiary class.
 
 i.	editedProject is created using ProjectBuilder to take in the `Beneficiary` assigned. The following method is called
     to store the `Project` in VolunCHeer with specific `Beneficiary` attached to it.
@@ -290,7 +306,7 @@ i.	editedProject is created using ProjectBuilder to take in the `Beneficiary` as
 ==== Implementation
 Beneficiary is implement in order to manage the information a benefited volunteer organization. These organizations interact
 with the user's organization through projects. Hence, `Beneficiary` class has a bidirectional navigability with `Project` class,
-as shown in the Figure 8.
+as shown in the Figure 10.
 
 .Structure of the `Beneficiary` class including its attributes, and its bidirectional navigability with `Project` class.
 image::BeneficiaryClassDiagram.jpg[width="800"]
@@ -302,22 +318,57 @@ beneficiary is assigned to. The figure below shows how the delete beneficiary co
 .Beneficiary deletion sequence diagram, hard deletion mode.
 image::BeneficiaryHardDeletionSequenceDiagram.png[width="800"]
 
-. The `DeleteBeneficiaryParser` parses the index of the beneficiary that is required to delete.
-+
 [NOTE]
 "-D" indicates that the deletion is in
 the hard mode, meaning that the respective projects that are attached to this beneficiary will be deleted.
-+
-. The `ModelManager` is then called to update the deletion of the respective projects.
+
+
+. The `DeleteBeneficiaryParser` parses the index of the beneficiary that is required to delete. The Parser
+constructs a `DeleteBeneficiaryCommand` with constructor as shown below:
+
+[source, java]
+----
+    public DeleteBeneficiaryCommand(Index targetIndex, boolean isHardDeleteMode) {
+        this.targetIndex = targetIndex;
+        this.isHardDeleteMode = isHardDeleteMode;
+    }
+----
+
+[start=2]
+. Method *deleteAttachedProjects(model, beneficiaryToDelete)* then calls the `ModelManager` to update the deletion of the respective projects.
+
+[source, java]
+----
+    private void deleteAttachedProjects(Model model, Beneficiary beneficiaryToDelete) {
+        HashSet<ProjectTitle> attachedProjects = beneficiaryToDelete.getHashAttachedProjectLists();
+        List<Project> projectsToDelete = new ArrayList<>(model.getFilteredProjectList());
+        for (Project p : projectsToDelete) {
+            if (attachedProjects.contains(p.getProjectTitle())) {
+                model.deleteProject(p);
+            }
+        }
+    }
+----
+
+[start=3]
 . The `ModelManager` is then called to update the deletion of the beneficiary and update all the changes.
 
-The summarised statistics information of beneficiary based on their activeness is generated by using the summarised command.
+[source, java]
+----
+    model.deleteBeneficiary(beneficiaryToDelete);
+    model.commitAddressBook();
+----
+
+In order to view the synchronization, you can observe via project pool. This is to alleviate the worries of looking at attached projects
+when dealing with beneficiary, as a beneficiary can have multiple projects. +
+However, the Beneficiary Management Feature support the viewing of these information via Summarise Command. The Summarise Command generates
+the summarised statistics information of beneficiary based on their activeness.
 
 [NOTE]
 The activeness of a beneficiary is measured by the number of projects that beneficiary has collaborated with the user's organization
 
 
-The sequence diagram below shows how the summarise command works.
+The sequence diagram below shows how the Summarise Command works.
 
 .Summarise beneficiary command sequence diagram.
 image::SummaryBeneficiaryCommandSequenceDiagram.png[width=800]
@@ -367,7 +418,7 @@ To facilitate the filtering mechanism, a new `points` integer field is added to 
 .Volunteer class with new points field
 image::Volunteerclasswithpoints.jpg[width="800"]
 
-`points` was implemented as a integer instead of a class for ease of access. Also, it is not directly influenced by
+`Points` was implemented as a integer instead of a class for ease of access. Also, it is not directly influenced by
 any input from the user, as input has been checked by the the other classes in `Volunteer`. Hence, no accompanying
 methods are necessary.
 
@@ -388,6 +439,8 @@ It then creates a `MapObject` and stores the given arguments in a `Pair` of <poi
 by calling `mapAllVolunteers`.
 
 Within the model, `mapAllVolunteers()` is as shown:
+
+[source, java]
 ----
 public void mapAllVolunteer(MapObject map) {
         versionedAddressBook.getVolunteerList().forEach(volunteer -> {
@@ -407,6 +460,8 @@ which `addPoints` adds to them.
 For the `Sort` command, the `Model` calls the `UniqueVolunteerList` internal `sortByPoints` method.
 This method uses the standard `FXCollections.sort` on the `internalList`,
 which immediately reflects in the UI.
+
+[source, java]
 ----
     public void sortByPoints() {
         FXCollections.sort(internalList, (new Comparator<Volunteer>() {
@@ -429,6 +484,8 @@ The `ExportVolunteerCommandParser` checks that at least 1 type of data and the n
 is given. It then stores the prefixes in a list called `prefixToBePrinted` and returns the the list and the number of volunteers
 as a `Pair` to `ExportVolunteer`.
 The code snippet below shows how the main command is implemented.
+
+[source, java]
 ----
 File output = new File("Export.csv");
         List<String[]> volunteerData = new ArrayList<>();
