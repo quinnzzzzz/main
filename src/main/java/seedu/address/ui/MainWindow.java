@@ -37,7 +37,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
     private ProjectListPanel projectListPanel;
     private VolunteerListPanel volunteerListPanel;
     private BeneficiaryListPanel beneficiaryListPanel;
@@ -126,8 +125,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(logic.selectedVolunteerProperty());
-        browserPlaceholder.getChildren().add(browserPanel.getRoot());
         beneficiaryListPanel = new BeneficiaryListPanel(logic.getFilteredBeneficiaryList(),
             logic.selectedBeneficiaryProperty(), logic::setSelectedBeneficiary);
         beneficiaryListPanelPlaceholder.getChildren().add(beneficiaryListPanel.getRoot());
