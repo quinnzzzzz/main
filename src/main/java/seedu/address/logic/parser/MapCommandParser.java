@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_MEDICAL;
-import static seedu.address.logic.parser.CliSyntaxProject.PREFIX_YEAR;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_RACE;
 import static seedu.address.logic.parser.ParserUtil.isValidInt;
 
@@ -22,8 +22,8 @@ public class MapCommandParser implements Parser<MapCommand> {
      * Returns true if the argMultimap contains any valid prefixes.
      */
     private static boolean noPrefixes(ArgumentMultimap argMultimap) {
-        if (argMultimap.getAllValues(PREFIX_YEAR).isEmpty() && argMultimap.getAllValues(PREFIX_RACE).isEmpty()
-            && argMultimap.getAllValues(PREFIX_MEDICAL).isEmpty()) {
+        if (argMultimap.getAllValues(PREFIX_AGE).isEmpty() && argMultimap.getAllValues(PREFIX_RACE).isEmpty()
+            && argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION).isEmpty()) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public class MapCommandParser implements Parser<MapCommand> {
      */
     public MapCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_YEAR, PREFIX_RACE, PREFIX_MEDICAL);
+            ArgumentTokenizer.tokenize(args, PREFIX_AGE, PREFIX_RACE, PREFIX_MEDICAL_CONDITION);
 
         if (noPrefixes(argMultimap) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MapCommand.MESSAGE_USAGE));
@@ -62,9 +62,9 @@ public class MapCommandParser implements Parser<MapCommand> {
         Pair<Integer, String> localRacePair = new Pair<>(0, "");
         Pair<Integer, String> localMedicalPair = new Pair<>(0, "");
 
-        //TODO: write input checks on the criteria for all
-        if (!argMultimap.getAllValues(PREFIX_YEAR).isEmpty()) {
-            criteriaHolder = argMultimap.getValue(PREFIX_YEAR).get();
+
+        if (!argMultimap.getAllValues(PREFIX_AGE).isEmpty()) {
+            criteriaHolder = argMultimap.getValue(PREFIX_AGE).get();
             prefixPoints = isValidInt(criteriaHolder.substring(0, 1))
                 ? Integer.parseInt(criteriaHolder.substring(0, 1)) : -1;
             if (prefixPoints == -1) {
@@ -89,8 +89,8 @@ public class MapCommandParser implements Parser<MapCommand> {
             localRacePair = new Pair<>(0, "");
         }
 
-        if (!argMultimap.getAllValues(PREFIX_MEDICAL).isEmpty()) {
-            criteriaHolder = argMultimap.getValue(PREFIX_MEDICAL).get();
+        if (!argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION).isEmpty()) {
+            criteriaHolder = argMultimap.getValue(PREFIX_MEDICAL_CONDITION).get();
             prefixPoints = Integer.parseInt(criteriaHolder.substring(0, 1));
             prefixCriteria = criteriaHolder.substring(1, criteriaHolder.length());
             localMedicalPair = new Pair<>(prefixPoints, prefixCriteria);

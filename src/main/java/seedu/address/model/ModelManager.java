@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -388,7 +390,6 @@ public class ModelManager implements Model {
      * Sorts all volunteers in the (@code UniqueVolunteerList)
      * and returns a (@code sortedList)
      */
-
     public void sortVolunteers() {
         sortedVolunteers = versionedAddressBook.getVolunteerList().sorted((new Comparator<Volunteer>() {
             public int compare(Volunteer s1, Volunteer s2) {
@@ -399,6 +400,86 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+
+    /**
+     * Goes throught the volunteer list and adds data to the based on what prefixes are wanted.
+     * stops when the list ends or the provided limit is reached.
+     */
+    public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
+        List<String[]> finalData = new ArrayList<>();
+        finalData.add(new String[]{"Volunteers" });
+        ArrayList<String> tempVolunteer = new ArrayList<>();
+        int i = 0;
+        for (Volunteer vol : versionedAddressBook.getVolunteerList()) {
+            if (i >= numVolunteers) {
+                break;
+            }
+            prefixToBePrinted.forEach(prefix -> {
+                switch (prefix) {
+
+                case "n/":
+                    tempVolunteer.add(vol.getName().toString());
+                    break;
+
+                case "y/":
+                    tempVolunteer.add(vol.getAge().toString());
+                    break;
+
+                case "g/":
+                    tempVolunteer.add(vol.getGender().toString());
+                    break;
+
+                case "r/":
+                    tempVolunteer.add(vol.getRace().toString());
+                    break;
+
+                case "rg/":
+                    tempVolunteer.add(vol.getReligion().toString());
+                    break;
+
+                case "p/":
+                    tempVolunteer.add(vol.getPhone().toString());
+                    break;
+
+                case "a/":
+                    tempVolunteer.add(vol.getAddress().toString());
+                    break;
+
+                case "e/":
+                    tempVolunteer.add(vol.getEmail().toString());
+                    break;
+
+                case "m/":
+                    tempVolunteer.add(vol.getMedicalCondition().toString());
+                    break;
+
+                case "dp/":
+                    tempVolunteer.add(vol.getDietaryPreference().toString());
+                    break;
+
+                case "ec/":
+                    tempVolunteer.add(vol.getEmergencyContact().toString());
+                    break;
+
+                case "t/":
+                    tempVolunteer.add(vol.getTags().toString());
+                    break;
+
+                default:
+                    break;
+                }
+            });
+            finalData.add(tempVolunteer.toArray(new String[0]));
+            tempVolunteer.clear();
+            i++;
+
+        }
+        return finalData;
+    }
+
+
+
+    //@@author swalahlah
     /**
      * Ensures {@code selectedVolunteer} is a valid volunteer in {@code filteredVolunteers}.
      */

@@ -1,3 +1,4 @@
+//@@author ndhuu
 package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
@@ -130,7 +131,8 @@ public class EditBeneficiaryCommand extends Command {
      * @param editedBeneficiary
      * @return
      */
-    private boolean doesEditCauseDuplication(Model model, Beneficiary beneficiaryToEdit, Beneficiary editedBeneficiary) {
+    private boolean doesEditCauseDuplication(
+        Model model, Beneficiary beneficiaryToEdit, Beneficiary editedBeneficiary) {
         return beneficiaryToEdit.isSameBeneficiary(editedBeneficiary)
             && model.getFilteredBeneficiaryList().filtered(x -> x.isSameBeneficiary(editedBeneficiary)).size() != 1;
     }

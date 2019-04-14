@@ -174,6 +174,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    //@@author ndhuu
     /**
      * open summary table window.
      */
@@ -181,8 +182,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleBeneficiarySummary() {
         Stage stage = new Stage();
         TableView<SummarisedBeneficiary> table = new TableView<SummarisedBeneficiary>();
-        final ObservableList<SummarisedBeneficiary> data
-            = SummaryBeneficiaryCommand.getSummarisedBeneficiaries(logic);
+        final ObservableList<SummarisedBeneficiary> data = SummaryBeneficiaryCommand.getSummarisedBeneficiaries(logic);
         Scene scene = SummaryBeneficiaryCommand.getScene(stage, table, data);
         stage.setScene(scene);
         stage.show();

@@ -1,3 +1,4 @@
+//@@author ndhuu
 package seedu.address.logic.commands.beneficiary;
 
 import static java.util.Objects.requireNonNull;
@@ -8,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -403,6 +405,12 @@ public class AddBeneficiaryCommandTest {
         public void sortVolunteers() {
 
         }
+
+        @Override
+        public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
+            throw new AssertionError("This method "
+                    + "should not be called.");
+        }
     }
 
     /**
@@ -424,7 +432,7 @@ public class AddBeneficiaryCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the beneficiary being added.
      */
     private class ModelStubAcceptingBeneficiaryAdded extends ModelStub {
         final ArrayList<Beneficiary> beneficiariesAdded = new ArrayList<>();
