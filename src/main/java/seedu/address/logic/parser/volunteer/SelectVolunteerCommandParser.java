@@ -6,7 +6,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.volunteer.SelectVolunteerCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.volunteer.ParserUtilVolunteer;
 
 /**
  * Parses input arguments and creates a new SelectVolunteerCommand object

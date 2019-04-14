@@ -79,17 +79,17 @@ public class VolunteerCommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String DIETARY_PREFERENCE_DESC_AMY = " "
-            + PREFIX_DIETARY_PREFERENCE + VALID_DIETARY_PREFERENCE_AMY;
+        + PREFIX_DIETARY_PREFERENCE + VALID_DIETARY_PREFERENCE_AMY;
     public static final String DIETARY_PREFERENCE_DESC_BOB = " "
-            + PREFIX_DIETARY_PREFERENCE + VALID_DIETARY_PREFERENCE_BOB;
+        + PREFIX_DIETARY_PREFERENCE + VALID_DIETARY_PREFERENCE_BOB;
     public static final String EMERGENCY_CONTACT_DESC_AMY = " "
-            + PREFIX_EMERGENCY_CONTACT + VALID_EMERGENCY_CONTACT_AMY;
+        + PREFIX_EMERGENCY_CONTACT + VALID_EMERGENCY_CONTACT_AMY;
     public static final String EMERGENCY_CONTACT_DESC_BOB = " "
-            + PREFIX_EMERGENCY_CONTACT + VALID_EMERGENCY_CONTACT_BOB;
+        + PREFIX_EMERGENCY_CONTACT + VALID_EMERGENCY_CONTACT_BOB;
     public static final String MEDICAL_CONDITION_DESC_AMY = " "
-            + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_AMY;
+        + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_AMY;
     public static final String MEDICAL_CONDITION_DESC_BOB = " "
-            + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_BOB;
+        + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_BOB;
 
     public static final String TAG_DESC_INJURY = " " + PREFIX_TAG + VALID_TAG_INJURY;
     public static final String TAG_DESC_NEW = " " + PREFIX_TAG + VALID_TAG_NEW;
@@ -120,11 +120,11 @@ public class VolunteerCommandTestUtil {
 
     static {
         DESC_AMY = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_NEW).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_NEW).build();
         DESC_BOB = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_INJURY).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_INJURY).build();
     }
 
     /**

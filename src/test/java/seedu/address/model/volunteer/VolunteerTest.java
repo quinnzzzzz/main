@@ -37,7 +37,7 @@ public class VolunteerTest {
 
         // different phone and email -> returns false
         Volunteer editedAlice = new VolunteerBuilder(ALICE).withPhone
-                (VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+            (VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSameVolunteer(editedAlice));
 
         // different name -> returns false
