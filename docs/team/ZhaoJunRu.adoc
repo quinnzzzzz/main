@@ -75,7 +75,7 @@ https://github.com/cs2113-ay1819s2-t08-1/main/pull/141#issue-270291847[#141]
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::C:\Users\Quinn\Desktop\Y2S2\CS2113T\Project\AddressBook4\docs\UserGuide.adoc[tag=ProjectMangement]
+include::../UserGuide.adoc[tag=ProjectManagement]
 
 ****
 

@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.volunteer;
 
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntaxVolunteer.PREFIX_AGE;

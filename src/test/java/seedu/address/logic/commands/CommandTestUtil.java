@@ -21,7 +21,7 @@ import seedu.address.model.beneficiary.Beneficiary;
 import seedu.address.model.project.Project;
 import seedu.address.model.volunteer.NameContainsKeywordsPredicate;
 import seedu.address.model.volunteer.Volunteer;
-import seedu.address.testutil.EditVolunteerDescriptorBuilder;
+import seedu.address.testutil.volunteer.EditVolunteerDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
