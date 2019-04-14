@@ -60,7 +60,7 @@ https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=articstranger&sort=d
 
 ** Documentation:
 *** Edited and updated the README https://github.com/cs2113-ay1819s2-t08-1/main/pull/8[#8]
-*** Collated and formatted the User Guide: https://github.com/cs2113-ay1819s2-t08-1/main/pull/8[#8][#14]
+*** Collated and formatted the User Guide: https://github.com/cs2113-ay1819s2-t08-1/main/pull/146[#146]
 ** Reviewed teammates pull requests on Github
 https://github.com/cs2113-ay1819s2-t08-1/main/pull/142[#142]
 ** Addressed critical issues on Github
@@ -69,18 +69,16 @@ https://github.com/cs2113-ay1819s2-t08-1/main/issues/124[#124]
 == Contributions to the User Guide
 
 |===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|These are the sections of the user guide related to my feature. It is also worth noting that I helped my team format the language of the entire User Guide.
 |===
 
-include::../UserGuide.adoc[tag=BeneficiaryManagement]
+include::../UserGuide.adoc[tag=FilteredExport]
 
 
 == Contributions to the Developer Guide
 
 |===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|These are the sections of the Developer Guide related to my task. They showcase my ability to clearly explain the technical documentation of my contributions to any new developers.
 |===
 
-include::../DeveloperGuide.adoc[tag=BeneficiaryManagement]
-
-include::../DeveloperGuide.adoc[tag=BenefUseCases]
+include::../DeveloperGuide.adoc[tag=filterexport]
