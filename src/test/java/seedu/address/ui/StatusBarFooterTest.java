@@ -1,7 +1,7 @@
 package seedu.address.ui;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalVolunteers.ALICE;
 import static seedu.address.ui.StatusBarFooter.SYNC_STATUS_INITIAL;
 import static seedu.address.ui.StatusBarFooter.SYNC_STATUS_UPDATED;
 
@@ -12,12 +12,11 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.util.Date;
 
+import guitests.guihandles.StatusBarFooterHandle;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import guitests.guihandles.StatusBarFooterHandle;
 import seedu.address.model.AddressBook;
 
 public class StatusBarFooterTest extends GuiUnitTest {
@@ -56,7 +55,7 @@ public class StatusBarFooterTest extends GuiUnitTest {
         assertStatusBarContent(RELATIVE_PATH.resolve(STUB_SAVE_LOCATION).toString(), SYNC_STATUS_INITIAL);
 
         // after address book is updated
-        guiRobot.interact(() -> addressBook.addPerson(ALICE));
+        guiRobot.interact(() -> addressBook.addVolunteer(ALICE));
         assertStatusBarContent(RELATIVE_PATH.resolve(STUB_SAVE_LOCATION).toString(),
             String.format(SYNC_STATUS_UPDATED, new Date(injectedClock.millis()).toString()));
     }

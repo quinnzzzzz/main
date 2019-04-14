@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import java.util.Arrays;
 
 import org.junit.Test;
-
 import seedu.address.logic.commands.beneficiary.FindBeneficiaryCommand;
 import seedu.address.model.beneficiary.NameContainsKeywordsPredicate;
 

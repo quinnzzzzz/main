@@ -16,8 +16,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
@@ -28,12 +26,13 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.beneficiary.Beneficiary;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.volunteer.Volunteer;
 import seedu.address.testutil.beneficiary.BeneficiaryBuilder;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.collections.ObservableList;
 
 public class AddBeneficiaryCommandTest {
 
@@ -162,18 +161,6 @@ public class AddBeneficiaryCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method "
-                + "should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method "
-                + "should not be called.");
-        }
-
-        @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method"
                 + " should not be called.");
@@ -181,12 +168,6 @@ public class AddBeneficiaryCommandTest {
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method "
-                + "should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
             throw new AssertionError("This method "
                 + "should not be called.");
         }
@@ -206,12 +187,6 @@ public class AddBeneficiaryCommandTest {
         public void setProject(Project target, Project editedProject)
             throws DuplicateProjectException, ProjectNotFoundException {
 
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method"
-                + " should not be called.");
         }
 
         @Override
@@ -238,11 +213,6 @@ public class AddBeneficiaryCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            return null;
-        }
-
-        @Override
         public ObservableList<Beneficiary> getFilteredBeneficiaryList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -250,12 +220,6 @@ public class AddBeneficiaryCommandTest {
         @Override
         public ObservableList<Project> getFilteredProjectList() {
             return null;
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method "
-                + "should not be called.");
         }
 
         @Override
@@ -301,11 +265,6 @@ public class AddBeneficiaryCommandTest {
         }
 
         @Override
-        public ReadOnlyProperty<Person> selectedPersonProperty() {
-            return null;
-        }
-
-        @Override
         public ReadOnlyProperty<Project> selectedProjectProperty() {
             return null;
         }
@@ -314,16 +273,6 @@ public class AddBeneficiaryCommandTest {
         public ReadOnlyProperty<Beneficiary> selectedBeneficiaryProperty() {
             throw new AssertionError("This method "
                 + "should not be called.");
-        }
-
-        @Override
-        public Person getSelectedPerson() {
-            return null;
-        }
-
-        @Override
-        public void setSelectedPerson(Person person) {
-
         }
 
         @Override
@@ -409,7 +358,7 @@ public class AddBeneficiaryCommandTest {
         @Override
         public List<String[]> addData(int numVolunteers, ArrayList<String> prefixToBePrinted) {
             throw new AssertionError("This method "
-                    + "should not be called.");
+                + "should not be called.");
         }
     }
 
