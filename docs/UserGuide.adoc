@@ -14,40 +14,44 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/cs2113-ay1819s2-t08-1/main
 
+
 By: `CS2113T T08-01`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-VolunCheer is a desktop application for project managers who wish to keep track of their ongoing / upcoming projects as
-well as their beneficiary and volunteer pool.
+Hello and welcome to VolunCHeer! VolunCheer is a desktop application for project managers who want *an easy way to keep
+track of their beneficiaries, volunteers, and any ongoing / upcoming projects.*
 
-You can also use VolunCHeer to filter out suitable volunteers based on their data stored in the system. VolunCHeer is
-The VolunCHeer Application is for project managers or directors who require a system to *keep track of their
-ongoing projects and the volunteer pool*. VolunCheer is optimised for users who prefer a *Command Line Interface (CLI)* while
-still being able to view important data on the *Graphical User Interface(GUI)*. VolunCHeer will save you the need for multiple documents
-and folders just to store volunteer/beneficiary information. It also removes the need to track large amount of volunteer data to fit selection criterias using traditional methods such
-as Excel.
+VolunCheer is optimised for users who prefer a *Command Line Interface (CLI)* while still being able to view important
+data on the *Graphical User Interface(GUI)*. If that suits your tastes come give it a try!
 
-Wish to know more? Click on link:{https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/UserGuide.adoc#quick-start}/[Section 2. "Quick Start"] to get started.
+We guarantee that VolunCHeer will save you the need for multiple documents and folders just to store
+all your information. And with our ability to *filter out suitable volunteers based on their data*,
+you can effectively say goodbye to more cumbersome sorting methods like Excel!
+
+Wish to know more? Click on link:{https://github.com/cs2113-ay1819s2-t08-1/main/blob/master/docs/UserGuide.adoc#quick-start}/[Section 2. "Quick Start"] to get started!
 
 === Overview
 
-Shown below is a quick overview of our VolunCHeer application.
-+
-image::Ui.png[width="790"]
-+
+Now lets just go though quick overview of our VolunCHeer application.
+
+.VolunCHeer user interface
+image::UI.jpg[width="790"]
+
 
 1. Command Box:
-This is where you type your commands.
+This is where you will be typing in your commands.
 
 2. Command Result:
-This shows the result of command execution, useful tips and error messages are also shown here.
+This is where the results of all your commands are displayed. TIP: useful tips and error messages are also shown here.
 
 3. Project List:
 This shows the list of projects currently in VolunCHeer.
 
 4. Beneficiary List:
 This shows the list of beneficiaries currently in VolunCHeer.
+
+5. Volunteer List:
 
 == Quick Start
 
